@@ -4,8 +4,8 @@ from io import BytesIO
 from nonebot import on_command
 from nonebot.adapters.cqhttp import Bot, MessageEvent, MessageSegment
 from nonebot.typing import T_State
-from PIL import Image
 
+from PIL import Image
 from .logo import make_logo
 
 phlogo = on_command("phlogo", aliases={"pornhub", "ph图标"})
