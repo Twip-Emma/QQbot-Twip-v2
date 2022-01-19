@@ -1,8 +1,15 @@
+'''
+Author: 七画一只妖
+Date: 2022-01-07 20:43:34
+LastEditors: 七画一只妖
+LastEditTime: 2022-01-19 21:29:42
+Description: file content
+'''
 import base64
 from io import BytesIO
 
 from nonebot import on_command
-from nonebot.adapters.cqhttp import Bot, MessageEvent, MessageSegment
+from nonebot.adapters.onebot.v11 import Bot, MessageEvent, MessageSegment
 from nonebot.typing import T_State
 
 from PIL import Image
@@ -21,8 +28,8 @@ def img_to_b64(pic: Image.Image) -> str:
 @phlogo.handle()
 async def _(bot: Bot, event: MessageEvent):
     msg = str(event.get_message()).split()
-    if len(msg) == 2:
-        pic = img_to_b64(make_logo(msg[0], msg[1]))
+    if len(msg) == 3:
+        pic = img_to_b64(make_logo(msg[1], msg[2]))
         await phlogo.finish(MessageSegment.image(pic))
     else:
         await phlogo.finish("请输入正确的参数,用空格分开")
