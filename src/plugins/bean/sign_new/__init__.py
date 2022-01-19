@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-19 19:30:58
+LastEditTime: 2022-01-19 20:17:53
 Description: file content
 '''
 
@@ -16,13 +16,18 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-# from tool.black_list_ad.group_black import get_power_in_sdorica
+from tool.black_list_ad.group_black import get_power_in_sdorica
 from .sign import check_user_sign
 from .sign_daily import sign_daily_start
 
 
 get_luck = on_command("求签", rule=to_me())
 user_sign = on_command("签到", rule=to_me())
+
+
+
+# @get_luck.handle()
+# @on_command('weather', aliases=('的天气', '天气预报', '查天气'),only_to_me=False)
 
 
 # 求签
