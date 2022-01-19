@@ -2,10 +2,11 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:29:43
 LastEditors: 七画一只妖
-LastEditTime: 2021-11-24 21:03:15
+LastEditTime: 2022-01-19 19:46:00
 Description: file content
 '''
 
+from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 import json
 import time
@@ -17,8 +18,6 @@ import os
 
 FILE_PATH = path.join(path.dirname(__file__))
 
-from PIL.Image import Image
-
 from .get_image import start
 
 
@@ -27,12 +26,12 @@ SIGN_CHACK_PATH = f"{THIS_PATH}\\user_sign.json"
 SIGN_INFO_PATH = f"{THIS_PATH}\\sign_info.json"
 
 
-def check_user_sign(user_id,user_name):
+def check_user_sign(user_id,user_name) -> Image:
     now_time = time.strftime('%Y %m %d', time.localtime(time.time()))
     data:dict = json.load(open(SIGN_CHACK_PATH, 'r', encoding='utf8'))
     luck_num = random.randint(1,1000)
     
-    cq = "出错了"
+    img = "出错了"
     if user_id not in data:
         luck_info = find_luck_info(luck_num,user_name)
         new_obj = {user_id:{
@@ -40,21 +39,21 @@ def check_user_sign(user_id,user_name):
             "now_time":now_time,
             "luck_info":luck_info
         }}
-        cq = get_image_by_cq(luck_info,user_id)
+        img = get_image_by_cq(luck_info,user_id)
         data.update(new_obj)
     else:
         if data[user_id]["now_time"] == now_time:
-            cq = get_image_by_cq(data[user_id]["luck_info"],user_id)
+            img = get_image_by_cq(data[user_id]["luck_info"],user_id)
         else:
             data[user_id]["now_time"] = now_time
             luck_info = find_luck_info(luck_num,user_name)
-            cq = get_image_by_cq(luck_info,user_id)
+            img = get_image_by_cq(luck_info,user_id)
 
     with open(SIGN_CHACK_PATH, 'w', encoding='utf-8') as f:
         f.write(json.dumps(data, ensure_ascii=False))
         f.close()
 
-    return cq
+    return img
 
 
 def find_luck_info(num,user_name):
@@ -119,8 +118,12 @@ def get_image_by_cq(user_info:dict,user_id):
     img = start(luck_ing, verse, user_name, now_time, chaos_num)
     # b64 = pic2b64(img)
     # cq = ba64_to_cq(b64)
-    cq = save_image(img,user_id)
-    return cq
+    
+    # 返回图片保存的路径
+    pic_path = save_image(img,user_id)
+    img = Image.open(pic_path)
+
+    return img
 
 # 把传进来的Image对象转成base64
 def pic2b64(im:Image):
@@ -136,10 +139,11 @@ def ba64_to_cq(base64_str):
     return f"[CQ:image,file={base64_str}]"
 
 
+# 保存图片，返回路径
 def save_image(img,userid):
     img_path = os.path.join(f'{FILE_PATH}\\image\\{userid}.jpg')
     # 保存图片
     bg_finally = img.convert("RGB")
     bg_finally.save(img_path)
-    cq = f"[CQ:image,file=file:///{FILE_PATH}\\image\\{userid}.jpg]"
+    cq = f"{FILE_PATH}\\image\\{userid}.jpg"
     return cq
