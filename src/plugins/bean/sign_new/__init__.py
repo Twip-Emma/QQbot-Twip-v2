@@ -2,13 +2,12 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-19 20:17:53
+LastEditTime: 2022-01-19 21:31:08
 Description: file content
 '''
 
 from nonebot import on_command
-# from nonebot.adapters import Bot, Event, GroupMessageEvent
-from nonebot.adapters.cqhttp import Bot, GroupMessageEvent, MessageSegment
+from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.typing import T_State
 from nonebot.rule import to_me
 
@@ -32,7 +31,7 @@ user_sign = on_command("签到", rule=to_me())
 
 # 求签
 @get_luck.handle()
-async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
+async def _(bot: Bot, event: GroupMessageEvent):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     # await get_luck.finish("hi")
@@ -47,7 +46,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
 
 # 签到（新版）
 @user_sign.handle()
-async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
+async def _(bot: Bot, event: GroupMessageEvent):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
