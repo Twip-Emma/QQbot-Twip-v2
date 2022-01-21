@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-21 12:57:45
+LastEditTime: 2022-01-21 13:03:47
 Description: file content
 '''
 
@@ -35,14 +35,10 @@ async def _(bot: Bot, event: GroupMessageEvent):
     user_id = event.user_id
     group_id = event.group_id
     message = str(event.get_message())
-    recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
-    user_name = recall_user_info['nickname']
     print(f"群{group_id}的{user_id}发送了一条消息：{message}")
 
 
-
     key_replay = '0'
-    # message = session.msg.strip()
     data = json.load(
         open(ENVE_PATH, 'r', encoding='utf8'))
     messageed = jieba.lcut(message)
@@ -59,8 +55,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
     if key_replay == '0':
         sql = "SELECT thekey,replay,weight FROM ckeyword WHERE thekey LIKE '%" + message + "%'"
         result = sql_dql(sql)
-        # 这里是优先级的设置
-        priority = 70
         a = len(result)
         if a > 0:
             klen = 0
@@ -97,7 +91,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
             datac = res.read()
             datac = json.loads(datac.decode("utf-8"))
             datac = datac["data"][0]["content"]
-            print(datac)
             if datac == "null":
                 target = f'	http://api.qingyunke.com/api.php?key=free&appid=0&msg={message}'
                 req = requests.get(url=target)
