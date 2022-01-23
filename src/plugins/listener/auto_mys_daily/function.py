@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-10-04 12:01:59
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 12:34:02
+LastEditTime: 2022-01-23 13:05:28
 Description: file content
 '''
 
@@ -19,7 +19,7 @@ from nonebot import require
 
 from tool.ascii_pro.BOX_QS import qs_box_to_lock, qs_box_unlock
 from .genshin import start
-bot = nonebot.get_bot()
+# bot = nonebot.get_bot()
 
 
 _PATH = os.path.dirname(__file__)
@@ -38,11 +38,11 @@ async def _():
                 msg_list = start(cookie)
                 logging = _to_string(msg_list)
                 print("成功了")
-                await bot.send_private_msg(user_id=int(user_id), message=logging)
+                await nonebot.get_bot().send_private_msg(user_id=int(user_id), message=logging)
             except:
                 pass
             await asyncio.sleep(4.0)
-        await bot.send_private_msg(user_id=1157529280, message="任务结束")
+        await nonebot.get_bot().send_private_msg(user_id=1157529280, message="任务结束")
                 
 
 

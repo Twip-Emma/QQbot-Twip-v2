@@ -7,6 +7,8 @@ from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Bot, Message, MessageSegment, MessageEvent, GroupMessageEvent
 from nonebot.log import logger
 
+from tool.find_power.format_data import is_level_S
+
 from .data_source import commands, make_image
 from .download import DownloadError, ResourceError
 from .utils import text_to_pic
@@ -36,7 +38,9 @@ help_cmd = on_command('头像表情包', aliases={'头像相关表情包', '头�
 
 
 @help_cmd.handle()
-async def _():
+async def _(event:GroupMessageEvent):
+    if not is_level_S(event):
+        help_cmd.finish()
     img = await text_to_pic(__usage__)
     if img:
         await help_cmd.finish(MessageSegment.image(img))
@@ -60,7 +64,10 @@ async def get_user_info(bot: Bot, user: UserInfo):
         user.gender = info.get('sex', '')
 
 
-async def handle(matcher: Matcher, bot: Bot, event: MessageEvent, type: str, msg: Message):
+async def handle(matcher: Matcher, bot: Bot, event: MessageEvent, type: str, msg: Message, gevent:GroupMessageEvent):
+    if not is_level_S(gevent):
+        help_cmd.finish()
+
     users: List[UserInfo] = []
     sender: UserInfo = UserInfo(qq=str(event.user_id))
     args: List[str] = []

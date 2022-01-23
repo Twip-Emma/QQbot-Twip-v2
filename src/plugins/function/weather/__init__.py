@@ -2,13 +2,15 @@
 Author: 七画一只妖
 Date: 2022-01-19 21:32:13
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-21 12:27:21
+LastEditTime: 2022-01-23 13:16:26
 Description: file content
 '''
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent
+
+from tool.find_power.format_data import is_level_S
 
 from .data_source import get_weather_of_city
 
@@ -20,6 +22,8 @@ CITY = ""
 
 @weather.handle()
 async def handle_first_receive(event: MessageEvent):
+    if not is_level_S(event):
+        weather.finish()
     global CITY
     args = str(event.get_message()).split()  # 首次发送命令时跟随的参数，例：/天气 上海，则args为上海
     try:
