@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-21 12:59:57
+LastEditTime: 2022-01-22 22:47:28
 Description: file content
 '''
 import nonebot
@@ -20,12 +20,12 @@ driver.register_adapter(ONEBOT_V11Adapter)
 # nonebot.load_builtin_plugins()
 
 # 测试模块
-nonebot.load_plugins("src/plugins/bean")
+# nonebot.load_plugins("src/plugins/bean")
 
 # 正式模块
 nonebot.load_plugins("src/plugins/function")
 nonebot.load_plugins("src/plugins/user")
-nonebot.load_plugins("src/plugins/listener")
+# nonebot.load_plugins("src/plugins/listener")
 nonebot.load_plugins("src/plugins/speaker")
 
 # 加载绝对路径头
