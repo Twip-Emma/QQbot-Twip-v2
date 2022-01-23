@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-22 22:47:28
+LastEditTime: 2022-01-23 10:09:42
 Description: file content
 '''
 import nonebot
@@ -16,6 +16,12 @@ nonebot.init()
 driver = nonebot.get_driver()
 driver.register_adapter(ONEBOT_V11Adapter)
 
+# 定时任务
+nonebot.init(apscheduler_autostart=True)
+nonebot.init(apscheduler_config={
+    "apscheduler.timezone": "Asia/Shanghai"
+})
+
 
 # nonebot.load_builtin_plugins()
 
@@ -25,7 +31,7 @@ driver.register_adapter(ONEBOT_V11Adapter)
 # 正式模块
 nonebot.load_plugins("src/plugins/function")
 nonebot.load_plugins("src/plugins/user")
-# nonebot.load_plugins("src/plugins/listener")
+nonebot.load_plugins("src/plugins/listener")
 nonebot.load_plugins("src/plugins/speaker")
 
 # 加载绝对路径头
