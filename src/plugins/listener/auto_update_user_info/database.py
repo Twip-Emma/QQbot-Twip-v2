@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-22 22:20:02
+LastEditTime: 2022-01-23 12:29:08
 Description: file content
 '''
 import MySQLdb
@@ -11,6 +11,7 @@ import datetime
 import random
 
 from tool.setting.database_setting import *
+from ..auto_database_connect import db
 
 
 db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
