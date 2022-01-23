@@ -64,8 +64,8 @@ async def get_user_info(bot: Bot, user: UserInfo):
         user.gender = info.get('sex', '')
 
 
-async def handle(matcher: Matcher, bot: Bot, event: MessageEvent, type: str, msg: Message, gevent:GroupMessageEvent):
-    if not is_level_S(gevent):
+async def handle(matcher: Matcher, bot: Bot, event: GroupMessageEvent, type: str, msg: Message):
+    if not is_level_S(event):
         help_cmd.finish()
 
     users: List[UserInfo] = []
