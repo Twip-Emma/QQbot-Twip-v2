@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-29 13:26:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-29 13:53:19
+LastEditTime: 2022-01-29 14:12:22
 Description: file content
 '''
 from nonebot import on_command
@@ -29,7 +29,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
         await common_help.finish("1.archelp（音游Arcaea相关功能）\
             \n2.头像表情包（制作头像表情包相关功能）\
             \n3.ph图标\
-            \n4.天气<城市>（获取一个城市的天气情况）")
+            \n4.天气<城市>（获取一个城市的天气情况）\
+            \n5.重开（重启你的人生！）")
     elif msg[1] == "陪聊模块":
         await common_help.finish("说明：艾特机器人并说出你想说的话即可获得回复\
             \n使用词库有：\
