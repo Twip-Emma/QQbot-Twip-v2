@@ -2,11 +2,10 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 13:12:28
+LastEditTime: 2022-01-29 13:26:10
 Description: file content
 '''
 
-from tokenize import group
 from nonebot import on_message
 from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
