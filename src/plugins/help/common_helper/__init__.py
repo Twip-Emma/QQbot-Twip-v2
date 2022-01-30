@@ -2,12 +2,14 @@
 Author: 七画一只妖
 Date: 2022-01-29 13:26:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-29 14:12:22
+LastEditTime: 2022-01-31 05:01:55
 Description: file content
 '''
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
+
+from tool.find_power.format_data import is_level_S
 
 
 # 注册消息响应器
@@ -16,6 +18,8 @@ common_help = on_command('common_help', aliases={'帮助', '菜单', '指令列�
 
 @common_help.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
+    if not is_level_S(event):
+        await common_help.finish()
     msg = str(event.get_message()).split()
 
     if len(msg) == 1:

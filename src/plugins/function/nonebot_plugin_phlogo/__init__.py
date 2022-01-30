@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:43:34
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 13:16:09
+LastEditTime: 2022-01-31 05:01:11
 Description: file content
 '''
 import base64
@@ -30,7 +30,7 @@ def img_to_b64(pic: Image.Image) -> str:
 @phlogo.handle()
 async def _(bot: Bot, event: MessageEvent):
     if not is_level_S(event):
-        phlogo.finish()
+        await phlogo.finish()
     msg = str(event.get_message()).split()
     if len(msg) == 3:
         pic = img_to_b64(make_logo(msg[1], msg[2]))

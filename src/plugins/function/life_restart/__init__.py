@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-29 14:01:06
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-29 14:11:12
+LastEditTime: 2022-01-31 05:00:34
 Description: file content
 '''
 # coding=utf-8
@@ -19,6 +19,9 @@ from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.typing import T_State
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent
+
+
+from tool.find_power.format_data import is_level_S
 
 
 life_remake = on_command('remake', aliases={'重开',"人生重开","人生重来模拟器"})
@@ -59,6 +62,8 @@ def genp(prop):
 
 @life_remake.handle()
 async def remake(bot:Bot, event:GroupMessageEvent):
+    if not is_level_S(event):
+        await life_remake.finish()
     pic_list = []
     mes_list = []
 

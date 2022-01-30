@@ -66,7 +66,7 @@ async def get_user_info(bot: Bot, user: UserInfo):
 
 async def handle(matcher: Matcher, bot: Bot, event: GroupMessageEvent, type: str, msg: Message):
     if not is_level_S(event):
-        help_cmd.finish()
+        await help_cmd.finish()
 
     users: List[UserInfo] = []
     sender: UserInfo = UserInfo(qq=str(event.user_id))

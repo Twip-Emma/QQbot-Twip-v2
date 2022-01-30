@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-30 20:55:03
+LastEditTime: 2022-01-31 05:02:50
 Description: file content
 '''
 # 提交测试
@@ -34,7 +34,7 @@ message_handle = on_message(rule=to_me())
 @message_handle.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if not is_level_S(event):
-        message_handle.finish()
+        await message_handle.finish()
     user_id = event.user_id
     group_id = event.group_id
     message = str(event.get_message())
