@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 13:08:26
+LastEditTime: 2022-01-31 05:03:01
 Description: file content
 '''
 
@@ -15,7 +15,6 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-from tool.black_list_ad.group_black import get_power_in_sdorica
 from .sign import check_user_sign
 from .sign_daily import sign_daily_start
 from tool.find_power.format_data import is_level_S
@@ -34,7 +33,7 @@ user_sign = on_command("签到")
 @get_luck.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if not is_level_S(event):
-        get_luck.finish()
+        await get_luck.finish()
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     # await get_luck.finish("hi")
@@ -51,7 +50,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
 @user_sign.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if not is_level_S(event):
-        get_luck.finish()
+        await get_luck.finish()
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
