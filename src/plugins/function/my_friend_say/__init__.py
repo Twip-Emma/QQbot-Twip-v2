@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-01 19:51:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-02-02 15:19:51
+LastEditTime: 2022-02-02 16:10:15
 Description: file content
 '''
 from nonebot import on_command
@@ -255,17 +255,36 @@ async def _(bot: Bot, ev: GroupMessageEvent):
         sex, text = sex_get(info.text)
         uid = info.at_qq if info.at_qq else info.choice_random_member(sex)
 
-    group_id = str(ev.group_id)
-    recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=uid)
-    recall_user_name = recall_user_info['nickname']
+
 
     msg = str(ev.get_message()).split()
     if len(msg) <= 1:
         await my_friend_say.finish("我们直到那天也不知道你朋友说了什么")
-    text = msg[1]
 
-    msg = await make_pic(uid, text, recall_user_name)
-    await my_friend_say.finish(MessageSegment.image(msg))
+    if len(msg) == 3:
+        if msg[1].isdigit():
+            uid = msg[1]
+            text = msg[2]
+        else:
+            uid = msg[2]
+            text = msg[1]
+    else:
+        text = msg[1]
+
+    try:
+        group_id = str(ev.group_id)
+        recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=uid)
+        recall_user_name = recall_user_info['nickname']
+        # print("===================")
+        # print(recall_user_name)
+        # print("===================")
+        if recall_user_info == "":
+            await my_friend_say.finish("宁输入的QQ号不存在于本群")
+
+        msg = await make_pic(uid, text, recall_user_name)
+        await my_friend_say.finish(MessageSegment.image(msg))
+    except Exception as e:
+        await my_friend_say.finish("宁输入的QQ号不存在于本群")
 
 # @sv.on_rex(r'^(.*)酱说(.*)')
 # async def group_owner_say(bot, ev):

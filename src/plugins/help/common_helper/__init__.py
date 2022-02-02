@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-29 13:26:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-31 05:01:55
+LastEditTime: 2022-02-02 15:26:28
 Description: file content
 '''
 from nonebot import on_command
@@ -34,7 +34,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
             \n2.头像表情包（制作头像表情包相关功能）\
             \n3.ph图标\
             \n4.天气<城市>（获取一个城市的天气情况）\
-            \n5.重开（重启你的人生！）")
+            \n5.重开（重启你的人生！）\
+            \n5.我朋友说 <参数>")
     elif msg[1] == "陪聊模块":
         await common_help.finish("说明：艾特机器人并说出你想说的话即可获得回复\
             \n使用词库有：\
