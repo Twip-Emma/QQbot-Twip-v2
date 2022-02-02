@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-01 19:51:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-02-02 15:11:41
+LastEditTime: 2022-02-02 15:19:51
 Description: file content
 '''
 from nonebot import on_command
@@ -18,6 +18,8 @@ import base64
 import time
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
+
+from tool.find_power.format_data import is_level_S
 
 my_friend_say = on_command('我朋友说')
 headers = {"User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1.6) ",
@@ -238,6 +240,8 @@ def sex_get(text):
 
 @my_friend_say.handle()
 async def _(bot: Bot, ev: GroupMessageEvent):
+    if not is_level_S(ev):
+        await my_friend_say.finish()
     # user_id = ev.user_id
     # flag, msg = check_lmt(user_id)
     # if flag:
