@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-02-14 14:15:34
+LastEditTime: 2022-02-14 17:09:26
 Description: file content
 '''
 
@@ -49,7 +49,17 @@ async def _(bot: Bot,event: MessageEvent, e: GroupMessageEvent):
         re = img_to_b64(image)
         await bot.send_group_msg(group_id=DISPLAY, message=f"{msg}{image_url}")
         await bot.send_group_msg(group_id=DISPLAY, message=MessageSegment.image(re))
+    elif "CQ:forward" in message:
+        #获取群名
+        group_list = await bot.get_group_info(group_id=group_id)
+        group_name = group_list['group_name']
 
+        recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
+        recall_user_name = recall_user_info['nickname']
+
+        msg = f"在群【{group_name}({group_id})】中的{recall_user_name}({user_id})这个人发了一组记录："
+        await bot.send_group_msg(group_id=DISPLAY, message=msg)
+        await bot.send_group_msg(group_id=DISPLAY, message=message)
 
 # 撤回消息监听
 async def _recall_message(bot: Bot, ree: GroupRecallNoticeEvent):
