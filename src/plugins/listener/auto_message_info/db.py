@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-09 20:03:46
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-29 13:09:28
+LastEditTime: 2022-02-15 21:57:37
 Description: file content
 '''
 import MySQLdb
@@ -23,10 +23,12 @@ def insert_into_sql(message_id,message_context,group_id,user_id):
     now_time = datetime.datetime.now()
     now_time = now_time.strftime('%Y-%m-%d %H:%M:%S')
 
-    sql = "INSERT INTO message_info VALUES('%s', '%s', '%s', '%s', '%s', '%s')" % \
-        (f'{uid}', f'{message_id}', f"{message_context}", f"{group_id}",f"{user_id}",f"{now_time}")
+    sql = "INSERT INTO message_info VALUES(%s, %s, %s, %s, %s, %s)"
+    args = [f'{uid}', f'{message_id}', f"{message_context}", f"{group_id}",f"{user_id}",f"{now_time}"]
 
-    cursor.execute(sql)
+    # cursor.insert(sql, args)
+
+    cursor.execute(sql, args)
     db.commit()
 
 
