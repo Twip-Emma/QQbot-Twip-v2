@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-02-18 20:21:44
+LastEditors: 七画一只妖
+LastEditTime: 2022-02-19 10:43:02
+Description: file content
+'''
 from pydantic import BaseSettings, Extra, Field
 
 
