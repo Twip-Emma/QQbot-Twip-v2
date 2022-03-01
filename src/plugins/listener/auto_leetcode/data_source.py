@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-18 20:21:44
 LastEditors: 七画一只妖
-LastEditTime: 2022-02-18 20:27:02
+LastEditTime: 2022-03-01 19:29:36
 Description: file content
 '''
 import json
@@ -11,12 +11,11 @@ import logging
 import nonebot.log
 import requests
 
-LEETCODE_URL="https://leetcode-cn.com/problemset/all/"
+LEETCODE_URL = "https://leetcode-cn.com/problemset/all/"
 base_url = 'https://leetcode-cn.com'
 
 
-
-def get_leetcode_question_everyday()->str:
+def get_leetcode_question_everyday() -> str:
     try:
         resp = requests.get(url=LEETCODE_URL)
         response = requests.post(base_url + "/graphql", json={
