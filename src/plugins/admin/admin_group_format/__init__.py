@@ -5,7 +5,6 @@ LastEditors: 七画一只妖
 LastEditTime: 2022-03-01 19:55:32
 Description: file content
 '''
-from distutils.log import error
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent

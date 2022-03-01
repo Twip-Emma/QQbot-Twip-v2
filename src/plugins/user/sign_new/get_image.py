@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:58:57
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-19 19:44:54
+LastEditTime: 2022-03-01 20:59:13
 Description: file content
 '''
 from PIL import Image, ImageDraw, ImageFont
@@ -35,7 +35,9 @@ SIGN_IMG = ["冲虚", "低语", "高歌", "救苦", "普渡", "深渊", "万神"
 
 def get_bg(luck_name):
     bg = Image.open(f"{FILE_PATH}\\icon\\背景.png")
+    bg.convert("RGB")
     luck_img = Image.open(f"{FILE_PATH}\\icon\\{luck_name}.png")
+    luck_img.convert("RGB")
 
     luck_size = 0.7  # 定义图标缩放尺寸
     luck_img = luck_img.resize(

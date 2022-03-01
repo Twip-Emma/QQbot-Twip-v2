@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 10:47:11
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 13:53:35
+LastEditTime: 2022-03-01 21:01:05
 Description: file content
 '''
 '''
@@ -28,6 +28,7 @@ FILE_PATH = path.join(path.dirname(__file__))
 # 对背景图像进行调整
 def get_bg():
     luck_img = Image.open(f"{FILE_PATH}\\icon\\user_info_bg_1.png")
+    luck_img.convert("RGB")
 
     # luck_size = 0.7  # 定义图标缩放尺寸
     # luck_img = luck_img.resize(
