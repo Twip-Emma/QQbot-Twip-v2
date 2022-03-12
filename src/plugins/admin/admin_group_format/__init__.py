@@ -2,14 +2,12 @@
 Author: 七画一只妖
 Date: 2022-03-01 19:28:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-01 19:55:32
+LastEditTime: 2022-03-12 19:45:56
 Description: file content
 '''
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent
-import requests
-import traceback
 
 
 show_group_list = on_command('查看群列表')
