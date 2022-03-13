@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-11 16:57:30
+LastEditTime: 2022-03-13 10:17:52
 Description: file content
 '''
 import MySQLdb
@@ -21,7 +21,7 @@ db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
 def insert_new_user(user_name, user_id, now_time) -> None:
     cursor = db.cursor()
 
-    sql = "INSERT INTO user_info VALUES('%s', '%s', '%s', '%s', '%s', '%s')"
+    sql = "INSERT INTO user_info VALUES(%s, %s, %s, %s, %s, %s)"
     args = [f'{user_name}', f'{user_id}', f"{now_time}", f"{now_time}", "0", "0"]
 
     cursor.execute(sql,args)
