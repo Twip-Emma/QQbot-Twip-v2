@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:58:50
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-16 20:34:46
+LastEditTime: 2022-03-17 21:46:20
 Description: file content
 '''
 import random
@@ -18,8 +18,8 @@ import copy
 FILE_PATH = os.path.dirname(os.path.abspath(__file__))
 
 # 概率设置
-GOLD = 20
-PURPLE = 70
+GOLD = 30
+PURPLE = 90
 BLUE = 200
 
 # 卡池映射
@@ -28,6 +28,7 @@ POOL_INFO_RANK = {
     "盛夏十连": ["mz角色", "2阶角色", "1阶角色", "0阶角色"],
     "限定十连": ["特殊角色", "2阶角色", "1阶角色", "0阶角色"],
     "首发十连": ["3阶角色", "2阶角色", "1阶角色", "0阶角色"],
+    "群友十连": ["群友角色", "2阶角色", "1阶角色", "0阶角色"],
 }
 
 # 导入pool_info.json
