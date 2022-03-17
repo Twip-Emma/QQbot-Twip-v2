@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-09 18:36:14
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-16 21:37:37
+LastEditTime: 2022-03-17 16:21:13
 Description: file content
 '''
 import json
@@ -22,31 +22,42 @@ PACK_PATH = f"{PATH}\\data\\user_package.json"
 def attack_chack(user_id):
     time = find_user_gacha_time(user_id)
     # time = 999
-    sign = json.load(open(SIGN_PATH, 'r', encoding='utf8'))
+    sign:dict = json.load(open(SIGN_PATH, 'r', encoding='utf8'))
     sign_time = str(datetime.datetime.now().strftime('%Y-%m-%d'))
+
+    # 如果没有这个人，则新建用户
     if user_id not in sign:
-        sign_obj = {user_id:{"sign_time":sign_time,"gacha_time":time-1}}
+        sign_obj = {user_id:{"sign_time":sign_time,"gacha_time":time}}
         sign.update(sign_obj)
         with open(SIGN_PATH, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
-        return True
+        if time == 0:
+            return False
+        else:
+            return True
     
-    if sign[user_id]["sign_time"] == sign_time and sign[user_id]["gacha_time"] == 0:
+    # 当天抽卡次数小于等于0，则不允许抽卡
+    if sign[user_id]["sign_time"] == sign_time and sign[user_id]["gacha_time"] <= 0:
         return False
+    # 当天抽卡次数大于0，可以抽卡
     elif sign[user_id]["sign_time"] == sign_time and sign[user_id]["gacha_time"] > 0:
         sign[user_id]["gacha_time"] -= 1
         with open(SIGN_PATH, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
         return True
+    # 新的一天抽卡
     elif sign[user_id]["sign_time"] != sign_time:
         sign[user_id]["sign_time"] = sign_time
-        sign[user_id]["gacha_time"] = time - 1
+        sign[user_id]["gacha_time"] = time
         with open(SIGN_PATH, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
-        return True
+        if time == 0:
+            return False
+        else:
+            return True
 
 
 # 根据用户魂册去重

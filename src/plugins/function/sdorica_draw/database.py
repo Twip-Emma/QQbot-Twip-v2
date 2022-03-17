@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-22 19:01:07
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-16 21:30:53
+LastEditTime: 2022-03-17 16:24:29
 Description: file content
 '''
 from os import path
@@ -15,15 +15,15 @@ from tool.setting.database_setting import *
 
 
 gacha_dict = [
-{"total":500,"time":0},
-{"total":1000,"time":2},
-{"total":2000,"time":4},
-{"total":5000,"time":6},
-{"total":10000,"time":8},
-{"total":20000,"time":10},
-{"total":50000,"time":12},
-{"total":80000,"time":14},
-{"total":110000,"time":16}
+{"total":1000,"time":0},
+{"total":2000,"time":1},
+{"total":4000,"time":2},
+{"total":10000,"time":3},
+{"total":20000,"time":4},
+{"total":40000,"time":5},
+{"total":80000,"time":6},
+{"total":150000,"time":7},
+{"total":200000,"time":8}
 ]
 
 
