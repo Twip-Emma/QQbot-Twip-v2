@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-09 18:36:14
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-17 16:21:13
+LastEditTime: 2022-03-18 12:37:36
 Description: file content
 '''
 import json
@@ -50,7 +50,7 @@ def attack_chack(user_id):
     # 新的一天抽卡
     elif sign[user_id]["sign_time"] != sign_time:
         sign[user_id]["sign_time"] = sign_time
-        sign[user_id]["gacha_time"] = time
+        sign[user_id]["gacha_time"] = time - 1
         with open(SIGN_PATH, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
