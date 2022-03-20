@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 10:47:20
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-23 13:40:33
+LastEditTime: 2022-03-20 13:57:18
 Description: file content
 '''
 import MySQLdb
@@ -12,7 +12,7 @@ from io import BytesIO
 
 
 from tool.setting.database_setting import *
-from .get_image import get_image_start
+from .get_image_new import data_to_image
 
 
 # 查出指定用户的所有信息
@@ -34,11 +34,7 @@ def img_to_b64(pic: Image.Image) -> str:
 
 
 # 主控
-def start(user_name: str, user_id: str) -> str:
-    re = find_user_info(user_id=user_id)
-    speak_total = re[4]
-    coin_total = re[5]
-    img = get_image_start(user_name=user_name, user_id=user_id,
-                          user_level="", speak_total=speak_total, coin_total=coin_total)
-    imgb64 = img_to_b64(img)
-    return imgb64
+def start(user_id: str) -> str:
+    user_info = find_user_info(user_id)
+    return data_to_image(user_info)
+

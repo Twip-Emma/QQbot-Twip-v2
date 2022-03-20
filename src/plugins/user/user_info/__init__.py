@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 10:46:54
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-31 05:04:10
+LastEditTime: 2022-03-20 13:59:21
 Description: file content
 '''
 from nonebot import on_command
@@ -20,10 +20,7 @@ get_info = on_command("个人信息")
 async def _(bot: Bot,event:GroupMessageEvent):
     if not is_level_S(event):
         await get_info.finish()
-    group_id = str(event.group_id)
     user_id = str(event.user_id)
-    # await get_luck.finish("hi")
-    recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
-    recall_user_name = recall_user_info['nickname']
-    imgb64 = start(user_name=recall_user_name,user_id=user_id)
-    await get_info.finish(MessageSegment.image(imgb64))
+    
+    imgb64 = start(user_id=user_id)
+    await get_info.finish(MessageSegment.image("file:///" + imgb64))
