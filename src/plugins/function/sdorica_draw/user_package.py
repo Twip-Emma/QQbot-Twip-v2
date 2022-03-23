@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-09 18:36:14
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-18 12:37:36
+LastEditTime: 2022-03-23 21:26:00
 Description: file content
 '''
 import json
@@ -80,7 +80,7 @@ def select_user_pack(char_name_list,is_new,user_id):
 
         # 根据阶数判断碎片增加量
         char_frame = 0
-        if"SP" in name or"3阶" in name:
+        if"SP" in name or"3阶" in name or"X阶" in name:
             char_frame = 50
         elif"2阶" in name:
             char_frame = 20

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-20 13:02:37
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 13:50:16
+LastEditTime: 2022-03-23 21:31:32
 Description: file content
 '''
 import base64
@@ -10,6 +10,8 @@ from io import BytesIO
 from os import path
 
 from PIL import Image, ImageDraw, ImageFont
+
+from .user_collection_info import get_user_package_ratio,get_user_package_book_ratio
 
 
 FILE_PATH = path.join(path.dirname(__file__))
@@ -24,7 +26,8 @@ def data_to_image(data: list) -> str:
     text += "亲爱的" + str(data[0]) + "(" + str(data[1]) + ")" + "，您好！\n\n"
     text += "你的总发言：" + str(data[4]) + "次\n\n"
     text += "你的总金币：" + str("%.2f" % data[5]) + "个\n\n"
-    text += "你的收集品：" + "--%" + "\n\n"
+    text += "你图鉴占比：" + str(get_user_package_book_ratio(str(data[1]))) + "%\n\n"
+    text += "你魂册强度：" + str(get_user_package_ratio(str(data[1]))) + "%"
 
     bg = Image.new("RGB", (400, 300), (255, 255, 255))
     dr = ImageDraw.Draw(bg)
