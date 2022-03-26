@@ -1,0 +1,38 @@
+[
+    {
+        "name": "悲鸣之匣",
+        "id": "10001",
+        "max_level": 10,
+        "levle_up_cost": 255,
+        "hp_start": 300,
+        "hp_up": 75,
+        "ak_start": 50,
+        "ak_up": 10,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "鸣环",
+        "id": "10002",
+        "max_level": 10,
+        "levle_up_cost": 255,
+        "hp_start": 700,
+        "hp_up": 125,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "混沌水晶",
+        "id": "10003",
+        "max_level": 10,
+        "levle_up_cost": 255,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 100,
+        "am_up": 25
+    }
+]
