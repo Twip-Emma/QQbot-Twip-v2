@@ -2,9 +2,10 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:36:31
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:28:30
+LastEditTime: 2022-03-26 23:03:09
 Description: file content
 '''
+import random
 from .user_buff import get_user_buff, buff_reduce
 from .user_utils import *
 from .user_skill import get_skill_data, get_skill_data_by_name
@@ -12,6 +13,14 @@ from .user_skill import get_skill_data, get_skill_data_by_name
 
 # 普通攻击
 def normal_attack(user_id: str, target_id: str):
+    user_skill_info = query_user_skill(user_id)
+
+
+    # 普通攻击也有MP限制
+    if user_skill_info[1] < 15:
+        return False, "普通攻击消耗15MP，你的MP不足！"
+
+    
     hp1, am1, ak1 = get_user_attribute(user_id)
     hp2, am2, ak2 = get_user_attribute(target_id)
 
@@ -31,15 +40,26 @@ def normal_attack(user_id: str, target_id: str):
     am1 = int(am1)
     am2 = int(am2)
 
+    message_re = ""
+
+    c_hit = random.randint(1, 100)
+    if c_hit <= 50:
+        message_re += "【暴击！】本次伤害翻倍！\n"
+        ak1 *= 2
+
+
     if hp1 <= 0:
-        return False, "你已经去世了，不能再攻击了"
+        message_re += "你已经去世了，不能再攻击了"
+        return False, message_re
 
     if hp2 <= 0:
-        return False, "对方已经去世了，不能再攻击了"
+        message_re += "对方已经去世了，不能再攻击了"
+        return False, message_re
 
     # 判断目标护甲值是否大于攻击者的攻击力
     if am2 >= ak1:
-        return False, "你无法击穿对方的护甲！"
+        message_re += "你无法击穿对方的护甲！"
+        return False, message_re
     else:
         # 对方扣除生命值
         _ = ak1 - am2
@@ -48,10 +68,16 @@ def normal_attack(user_id: str, target_id: str):
         # buff用一次减少一回合
         buff_reduce(user_id, target_id)
 
+        # 技能消耗MP
+        update_user_mp(user_id, f"-15")
+
+
         if hp2 - _ <= 0:
-            return True, f"你击败了{target_id}！"
+            message_re += f"你击败了{target_id}！"
+            return True, message_re
         else:
-            return True, f"你对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            message_re +=  f"你对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            return True, message_re
 
 
 # 技能攻击
@@ -108,16 +134,28 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
     ak2 = int(ak2)
     am1 = int(am1)
     am2 = int(am2)
+
+
+    message_re = ""
+
+    c_hit = random.randint(1, 100)
+    if c_hit <= 50:
+        message_re += "【暴击！】本次伤害翻倍！\n"
+        ak1 *= 2
+        
     
     if hp1 <= 0:
-        return False, "你已经去世了，不能再攻击了"
+        message_re += "你已经去世了，不能再攻击了"
+        return False, message_re
 
     if hp2 <= 0:
-        return False, "对方已经去世了，不能再攻击了"
+        message_re += "对方已经去世了，不能再攻击了"
+        return False, message_re
 
     # 判断目标护甲值是否大于攻击者的攻击力
     if am2 >= ak1:
-        return False, "你无法击穿对方的护甲！"
+        message_re += "你无法击穿对方的护甲！"
+        return False, message_re
     else:
         # 对方扣除生命值
         _ = ak1 - am2
@@ -130,6 +168,8 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
         update_user_mp(user_id, f"-{skill_data['skill_use_cost']}")
 
         if hp2 - _ <= 0:
-            return True, f"你击败了{target_id}！"
+            message_re += f"你击败了{target_id}！"
+            return True, message_re
         else:
-            return True, f"你使用了{skill_name}对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            message_re += f"你使用了{skill_name}对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            return True, message_re

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:07:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:54:27
+LastEditTime: 2022-03-26 23:58:22
 Description: file content
 '''
 from nonebot import on_command
@@ -32,6 +32,7 @@ async def handle_get_help(event: GroupMessageEvent):
     4. 使用技能 (技能名称)
     5. 升级技能 (技能名称)
     6. 升级武器 (武器槽位编号)
+    7. 购买武器 (武器名称) (槽位编号)
     ''')
 
 
@@ -49,6 +50,35 @@ async def handle_my_fattribute(event: GroupMessageEvent):
 
 # 用户获得武器
 # user_get_weapon("1157529280", "10001", "1")
+get_weapon = on_command('购买武器')
+
+
+@get_weapon.handle()
+async def handle_get_weapon(event: GroupMessageEvent):
+    if not is_level_S(event):
+        await get_weapon.finish()
+    
+    args = str(event.get_message()).split()
+    if len(args) != 3:
+        await get_weapon.send(message='输入格式错误，请检查输入格式\n例如：购买武器 混沌水晶 1')
+        return
+    
+    # 判断weapon_name是否全是中文
+    weapon_name = args[1]
+    if not weapon_name.isalpha():
+        await get_weapon.send(message='武器名称不能包含非中文字符')
+        return
+
+    # 判读weapon_pos是否是数字
+    weapon_pos = args[2]
+    if not weapon_pos.isdigit():
+        await get_weapon.send(message='武器槽位编号不能包含非数字')
+        return
+
+
+    await get_weapon.send(message=user_get_weapon(str(event.user_id), weapon_name, int(weapon_pos)))
+
+
 
 # 用户升级武器【已完成】
 # print(user_upgrade_weapon("1157529280",1))
@@ -75,7 +105,7 @@ n_fattack = on_command('攻击')
 
 
 @n_fattack.handle()
-async def handle_n_fattack(event: GroupMessageEvent):
+async def handle_n_fattack(bot:Bot, event: GroupMessageEvent):
     if not is_level_S(event):
         await n_fattack.finish()
 
@@ -92,6 +122,16 @@ async def handle_n_fattack(event: GroupMessageEvent):
             target_qq = str(args[1]).replace("[CQ:at,qq=","").replace("]","")
         else:
             target_qq = str(args[1])
+
+        try:
+            recall_user_info = await bot.get_group_member_info(group_id=event.group_id, user_id=target_qq)
+            user_name = recall_user_info['nickname']
+            if user_name == None:
+                await n_fattack.send(message="获取用户信息失败，用户不存在或者不在这个群")
+                return
+        except:
+            await n_fattack.send(message="获取用户信息失败，用户不存在或者不在这个群")
+            return
                 
         user_id = str(event.user_id)
         await n_fattack.send(message=user_attack(user_id, target_qq))
@@ -105,7 +145,7 @@ fskill_attack = on_command('使用技能')
 
 
 @fskill_attack.handle()
-async def handle_fskill_attack(event: GroupMessageEvent):
+async def handle_fskill_attack(bot:Bot, event: GroupMessageEvent):
     if not is_level_S(event):
         await fskill_attack.finish()
     args = str(event.get_message()).split()
@@ -117,6 +157,17 @@ async def handle_fskill_attack(event: GroupMessageEvent):
             target_qq = str(args[1]).replace("[CQ:at,qq=","").replace("]","")
         else:
             target_qq = str(args[1])
+
+        try:
+            recall_user_info = await bot.get_group_member_info(group_id=event.group_id, user_id=target_qq)
+            user_name = recall_user_info['nickname']
+            if user_name == None:
+                await n_fattack.send(message="获取用户信息失败，用户不存在或者不在这个群")
+                return
+        except:
+            await n_fattack.send(message="获取用户信息失败，用户不存在或者不在这个群")
+            return
+
         user_id = str(event.user_id)
         if len(args) == 2:
             await fskill_attack.finish(message="请在目标QQ号后面接参数：技能名称")

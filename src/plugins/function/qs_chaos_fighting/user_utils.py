@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:23:57
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:28:38
+LastEditTime: 2022-03-26 23:03:13
 Description: file content
 '''
 import json
@@ -33,6 +33,15 @@ def get_weapon_data(weapon_id:str) -> dict:
         data = json.load(f)
         for item in data:
             if item['id'] == weapon_id:
+                return item
+
+
+# 根据arm_name获取武器数据
+def get_weapon_data_by_name(arms_name:str) -> dict:
+    with open(weapon_data_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        for item in data:
+            if item['name'] == arms_name:
                 return item
 
 

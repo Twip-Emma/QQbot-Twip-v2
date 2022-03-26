@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:08:41
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:28:26
+LastEditTime: 2022-03-26 23:40:54
 Description: file content
 '''
 from email import message
@@ -17,7 +17,7 @@ from .user_image import get_image
 
 
 # 用户查看自己的属性
-def user_attribute(user_id:str) -> str:
+def user_attribute(user_id:str):
         ###############################################################
     # 用户基本数据
     # 先判断用户是否存在
@@ -105,6 +105,8 @@ def user_attribute(user_id:str) -> str:
         insert_user_skill(user_id)
     message_re += f"\n===========================\n用户技能：\n"
     user_skill:list = query_user_skill(user_id)
+    message_re += f"力量与智力：{user_skill[2]} | {user_skill[3]} （物理加成|法术加成）\n"
+    message_re += f"剩余MP值： {user_skill[1]} （上限1000，恢复35/小时）\n"
     for i in range(1,9):
         if user_skill[i+3] <= 0:
             continue
@@ -132,24 +134,42 @@ def user_attribute(user_id:str) -> str:
 
 
 # 用户获得武器
-def user_get_weapon(user_id:str, weapon_id:str, weapon_pos:int):
+def user_get_weapon(user_id:str, weapon_name:str, weapon_pos:int):
+    # 获取这个武器的id
+    _ = get_weapon_data_by_name(weapon_name)
+    if _ == None:
+        return "武器不存在"
+    weapon_id = _["id"]
+
+
     # 判断user_arms中user_id是否存在
     if not is_user_arms_exist(user_id):
         # 新建用户武器
         insert_user_arms(user_id)
 
     # 判断用户是否拥有这个武器
-    if query_user_arms_id(user_id, weapon_pos)[0] == weapon_id:
-        print("用户已经拥有该武器")
-        return
+    _ = query_user_arms_level(user_id, weapon_pos)[0]
+    arm_id = query_user_arms_id(user_id, weapon_pos)[0]
+    if _ and _ > 0 and arm_id == weapon_id:
+        return "用户已经拥有该武器"
+
+
+    # 获取升级武器的开销
+    buy_cost = get_weapon_data(weapon_id)["buy_cost"]
+    user_coin_now = query_user_coin(user_id)[0]
+    # 判断用户是否拥有足够的金币
+    if user_coin_now < buy_cost:
+        return f"""购买需要{get_weapon_data(weapon_id)["buy_cost"]}金币\n宁金币不足"""
+        
 
     update_user_arms(user_id, weapon_pos, weapon_id)
     update_user_arms_zero(user_id, weapon_pos)
+    update_user_coin(user_id, f"-{buy_cost}")
 
     # 获取武器详细信息
     weapon_data = get_weapon_data(weapon_id)
     # 打印武器信息
-    print(weapon_data)
+    return "购买成功！"
 
 
 # 用户给某个武器升级
@@ -225,6 +245,10 @@ def user_skill_upgrade(user_id:str, skill_name:str):
         insert_user_skill(user_id)
 
     skill_data = get_skill_data_by_name(skill_name)
+    if skill_data == None:
+        return "没有这个技能"
+
+
     user_skill_info = query_user_skill(user_id)
     skill_id = skill_data["skill_id"]
     skill_max_level = skill_data["skill_max_level"]
@@ -248,4 +272,4 @@ def user_skill_upgrade(user_id:str, skill_name:str):
     # 升级技能
     update_user_skill(user_id, skill_id, f"+1")
     update_user_coin(user_id, f"-{skill_upgrade_cost}") # 扣除金币
-    return f"升级成功：{skill_name}升到了{skill_now_level + 1}级"
+    return f"升级成功\n{skill_name}升到了{skill_now_level + 1}级"
