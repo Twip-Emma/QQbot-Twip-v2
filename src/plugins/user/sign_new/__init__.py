@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-31 05:03:01
+LastEditTime: 2022-03-28 22:35:11
 Description: file content
 '''
 
@@ -21,7 +21,7 @@ from tool.find_power.format_data import is_level_S
 
 
 get_luck = on_command("求签")
-user_sign = on_command("签到")
+user_sign = on_command("-签到")
 
 
 

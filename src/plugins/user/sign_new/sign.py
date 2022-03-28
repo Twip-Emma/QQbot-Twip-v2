@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:29:43
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-19 19:46:00
+LastEditTime: 2022-03-28 22:29:41
 Description: file content
 '''
 
@@ -71,15 +71,15 @@ def find_luck_info(num,user_name):
 
     # 选择logo
     if tag == "S":
-        luck_ing = random.choice(["普渡","万神"])
+        luck_ing = random.choice(["普渡","万神","与愿"])
     elif tag == "L":
-        luck_ing = random.choice(["高歌","救苦"])
+        luck_ing = random.choice(["高歌","救苦","莫测","守序"])
     elif tag == "F":
-        luck_ing = random.choice(["深渊","低语"])
+        luck_ing = random.choice(["深渊","低语","堕入三恶道","因果报应"])
     elif tag == "M":
-        luck_ing = random.choice(["往生","冲虚"])
+        luck_ing = random.choice(["往生","冲虚","人间万事非","再受业报"])
     elif tag == "R":
-        luck_ing = random.choice(["自在","智慧"])
+        luck_ing = random.choice(["自在","智慧","何处染尘埃","身是菩提树"])
 
     # 选择诗句
     verse = random.choice(data["verse"][tag])

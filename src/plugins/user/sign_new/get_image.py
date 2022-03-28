@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:58:57
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-01 20:59:13
+LastEditTime: 2022-03-28 22:34:46
 Description: file content
 '''
 from PIL import Image, ImageDraw, ImageFont
@@ -38,10 +38,12 @@ def get_bg(luck_name):
     bg.convert("RGB")
     luck_img = Image.open(f"{FILE_PATH}\\icon\\{luck_name}.png")
     luck_img.convert("RGB")
+    luck_img.resize((500,500))
 
-    luck_size = 0.7  # 定义图标缩放尺寸
-    luck_img = luck_img.resize(
-        (int(luck_img.width * luck_size), int(luck_img.height * luck_size)))
+    if luck_name in SIGN_IMG:
+        luck_size = 0.7  # 定义图标缩放尺寸
+        luck_img = luck_img.resize(
+            (int(luck_img.width * luck_size), int(luck_img.height * luck_size)))
 
     bg_x = bg.width
     bg_y = bg.height
@@ -58,7 +60,7 @@ def get_bg(luck_name):
 
 # 写字
 def write_something(bg_img, text, verse, user_name, time, chaos_num) -> Image:
-    text = text[0] + "   " + text[1]
+    text = "   ".join(text)
 
     # font_path = os.path.join(f"{FILE_PATH}\\ttf\\印章繁体方篆.ttf")
     font_path = os.path.join(f"{FILE_PATH}\\ttf\\华文新魏.ttf")
