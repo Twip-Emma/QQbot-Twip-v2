@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-01 20:27:54
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-29 20:58:20
+LastEditTime: 2022-04-07 09:16:40
 Description: file content
 '''
 
@@ -38,7 +38,7 @@ def find_speak_rank() -> list:
 
 
 # 将数据转成图片返回image对象
-def data_to_image(data) -> str:
+def data_to_image(data,type:str) -> str:
     # 获取当前时间
     now_time = get_now_time()
     # 获取时间差
@@ -72,7 +72,10 @@ def data_to_image(data) -> str:
         # user_item = f"【{str(rank)}】{item[0]}({item[1]})的发言次数是：{item[4]}\n\n"
         # 对齐
         # item[1]是一个字符串，将这个字符串的开头两个字符和结尾两个字符换成*号
-        user_item = f"{item[0]} ( {item[1][:4]}{'*'*(len(item[1])-4)} ) \n\n"
+        if type == "admin":
+            user_item = f"{item[0]} ( {item[1]} ) \n\n"
+        else:
+            user_item = f"{item[0]} ( {item[1][:4]}{'*'*(len(item[1])-4)} ) \n\n"
         # user_item = f"{item[0]} ( {item[1]} ) \n\n"
         text2 += user_item
         rank += 1
