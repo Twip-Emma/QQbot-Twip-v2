@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:07:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-10 19:07:55
+LastEditTime: 2022-04-10 19:43:31
 Description: file content
 '''
 from nonebot import on_command
@@ -13,6 +13,7 @@ from nonebot.typing import T_Handler, T_RuleChecker, T_State
 # 同级
 from .user_function import user_attribute,user_get_weapon,user_upgrade_weapon,user_attack,user_skill_attack,user_skill_upgrade
 from .user_show import show_shop_arm, show_shop_skill
+from .user_help import get_help_total
 from tool.find_power.format_data import is_level_S
 
 
@@ -217,3 +218,14 @@ async def handle_user_show_shop_skill(event: GroupMessageEvent):
         await user_show_shop_skill.finish()
     image_path = show_shop_skill()
     await user_show_shop_skill.send(MessageSegment.image(f"file:///{image_path}"))
+
+
+user_get_help_total = on_command('说明书')
+
+
+@user_get_help_total.handle()
+async def handle_user_get_help_total(event: GroupMessageEvent):
+    if not is_level_S(event):
+        await user_get_help_total.finish()
+    image_path = get_help_total()
+    await user_get_help_total.send(MessageSegment.image(f"file:///{image_path}"))
