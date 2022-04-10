@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:08:41
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 23:40:54
+LastEditTime: 2022-04-10 11:19:20
 Description: file content
 '''
 from email import message
@@ -62,7 +62,8 @@ def user_attribute(user_id:str):
 
     message_re = ""
     # 输出用户属性，算上ex_hp, ex_ak, ex_am
-    message_re += f"用户ID：{user_id}\n===========================\n"
+    user_coin = query_user_coin(user_id)[0]
+    message_re += f"用户ID：{user_id}（金币：{user_coin}）\n===========================\n"
     message_re += f"用户属性：基础值+装备加成\n"
     message_re += f"用户生命值：{re[1]} + {ex_hp} = {re[1] + ex_hp}\n"
     message_re += f"用户护甲值：{re[2]} + {ex_am} = {re[2] + ex_am}\n"
@@ -255,8 +256,8 @@ def user_skill_upgrade(user_id:str, skill_name:str):
     skill_now_level = user_skill_info[int(skill_id) + 3]
 
     # 判断技能是否存在
-    if is_skill_zero(user_id, skill_id):
-        return "你没有学会这个技能！"
+    # if is_skill_zero(user_id, skill_id):
+    #     return "你没有学会这个技能！"
 
 
     # 判断技能是否满级

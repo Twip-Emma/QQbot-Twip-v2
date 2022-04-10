@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:07:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 23:58:22
+LastEditTime: 2022-04-10 10:29:00
 Description: file content
 '''
 from nonebot import on_command
@@ -12,7 +12,9 @@ from nonebot.typing import T_Handler, T_RuleChecker, T_State
 
 # 同级
 from .user_function import user_attribute,user_get_weapon,user_upgrade_weapon,user_attack,user_skill_attack,user_skill_upgrade
+from .user_show import show_shop
 from tool.find_power.format_data import is_level_S
+
 
 
 # 战斗帮助
@@ -33,6 +35,7 @@ async def handle_get_help(event: GroupMessageEvent):
     5. 升级技能 (技能名称)
     6. 升级武器 (武器槽位编号)
     7. 购买武器 (武器名称) (槽位编号)
+    8. 查看商店
     ''')
 
 
@@ -191,3 +194,14 @@ async def handle_fskill_upgrade(event: GroupMessageEvent):
     else:
         skill_name = str(args[1])
         await fskill_upgrade.send(message=user_skill_upgrade(str(event.user_id), skill_name))
+
+
+user_show_shop = on_command('查看商店')
+
+
+@user_show_shop.handle()
+async def handle_user_show_shop(event: GroupMessageEvent):
+    if not is_level_S(event):
+        await user_show_shop.finish()
+    image_path = show_shop()
+    await user_show_shop.send(MessageSegment.image(f"file:///{image_path}"))

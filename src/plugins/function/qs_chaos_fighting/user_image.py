@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:21:45
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:07:14
+LastEditTime: 2022-04-10 10:56:51
 Description: file content
 '''
 
@@ -40,3 +40,32 @@ def get_image(text:str, user_id:str) -> str:
     # 保存图片
     image.save(f"{save_path}/{user_id}.png")
     return f"{save_path}/{user_id}.png"
+
+
+# 传入一段文字，返回一个图片
+def get_image_by_admin(texta:str, textb:str) -> str:
+    # 设置字体大小
+    font_size = 19
+    # 创建一个新图片
+    image = Image.new('RGB', (1000, 1000), (255, 255, 255))
+    # 创建一个画笔
+    draw = ImageDraw.Draw(image)
+    # 设置字体
+    font = ImageFont.truetype(f"{current_path}/data/yuanshen.ttf", size=font_size)
+    # 绘制文字
+    draw.text((30, 10), texta, (0, 0, 0), font=font)
+
+
+
+    # 设置字体大小
+    font_size = 20
+    # 设置字体
+    font = ImageFont.truetype(f"{current_path}/data/consola-1.ttf", size=font_size)
+    # 绘制文字
+    draw.text((180, 30), textb, (0, 0, 0), font=font)
+
+
+
+    # 保存图片
+    image.save(f"{save_path}/shop.png")
+    return f"{save_path}/shop.png"
