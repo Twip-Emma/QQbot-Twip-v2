@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:07:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-10 10:29:00
+LastEditTime: 2022-04-10 19:07:55
 Description: file content
 '''
 from nonebot import on_command
@@ -12,7 +12,7 @@ from nonebot.typing import T_Handler, T_RuleChecker, T_State
 
 # 同级
 from .user_function import user_attribute,user_get_weapon,user_upgrade_weapon,user_attack,user_skill_attack,user_skill_upgrade
-from .user_show import show_shop
+from .user_show import show_shop_arm, show_shop_skill
 from tool.find_power.format_data import is_level_S
 
 
@@ -35,7 +35,8 @@ async def handle_get_help(event: GroupMessageEvent):
     5. 升级技能 (技能名称)
     6. 升级武器 (武器槽位编号)
     7. 购买武器 (武器名称) (槽位编号)
-    8. 查看商店
+    8. 武器商店
+    9. 技能商店
     ''')
 
 
@@ -196,12 +197,23 @@ async def handle_fskill_upgrade(event: GroupMessageEvent):
         await fskill_upgrade.send(message=user_skill_upgrade(str(event.user_id), skill_name))
 
 
-user_show_shop = on_command('查看商店')
+user_show_shop_arm = on_command('武器商店')
 
 
-@user_show_shop.handle()
-async def handle_user_show_shop(event: GroupMessageEvent):
+@user_show_shop_arm.handle()
+async def handle_user_show_shop_arm(event: GroupMessageEvent):
     if not is_level_S(event):
-        await user_show_shop.finish()
-    image_path = show_shop()
-    await user_show_shop.send(MessageSegment.image(f"file:///{image_path}"))
+        await user_show_shop_arm.finish()
+    image_path = show_shop_arm()
+    await user_show_shop_arm.send(MessageSegment.image(f"file:///{image_path}"))
+
+
+user_show_shop_skill = on_command('技能商店')
+
+
+@user_show_shop_skill.handle()
+async def handle_user_show_shop_skill(event: GroupMessageEvent):
+    if not is_level_S(event):
+        await user_show_shop_skill.finish()
+    image_path = show_shop_skill()
+    await user_show_shop_skill.send(MessageSegment.image(f"file:///{image_path}"))

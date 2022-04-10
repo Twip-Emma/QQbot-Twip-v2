@@ -3,9 +3,9 @@
         "skill_name":"攻杀剑术",
         "skill_id":"1",
         "skill_type":"str",
-        "skill_max_level":10,
-        "skill_up_cost":150,
-        "skill_use_cost":35,
+        "skill_max_level":20,
+        "skill_up_cost":100,
+        "skill_use_cost":30,
         "base_up":50,
         "base_mp":1.5,
         "mp_up":0.2
@@ -14,11 +14,77 @@
         "skill_name":"火球法术",
         "skill_id":"2",
         "skill_type":"int",
-        "skill_max_level":10,
-        "skill_up_cost":150,
-        "skill_use_cost":35,
+        "skill_max_level":20,
+        "skill_up_cost":100,
+        "skill_use_cost":30,
         "base_up":50,
         "base_mp":1.5,
         "mp_up":0.2
+    },
+    {
+        "skill_name":"烈火剑法",
+        "skill_id":"2",
+        "skill_type":"str",
+        "skill_max_level":15,
+        "skill_up_cost":500,
+        "skill_use_cost":150,
+        "base_up":300,
+        "base_mp":2.5,
+        "mp_up":0.3
+    },
+    {
+        "skill_name":"诱惑之光",
+        "skill_id":"2",
+        "skill_type":"int",
+        "skill_max_level":15,
+        "skill_up_cost":500,
+        "skill_use_cost":150,
+        "base_up":300,
+        "base_mp":2.5,
+        "mp_up":0.3
+    },
+    {
+        "skill_name":"逐日剑法",
+        "skill_id":"2",
+        "skill_type":"str",
+        "skill_max_level":10,
+        "skill_up_cost":2500,
+        "skill_use_cost":800,
+        "base_up":1800,
+        "base_mp":4.5,
+        "mp_up":0.7
+    },
+    {
+        "skill_name":"流星火雨",
+        "skill_id":"2",
+        "skill_type":"int",
+        "skill_max_level":10,
+        "skill_up_cost":2500,
+        "skill_use_cost":800,
+        "base_up":1800,
+        "base_mp":4.5,
+        "mp_up":0.7
+    },
+    {
+        "skill_name":"血魄一击",
+        "skill_id":"2",
+        "skill_type":"xxx",
+        "skill_max_level":50,
+        "skill_up_cost":99999,
+        "skill_use_cost":99999,
+        "base_up":999,
+        "base_mp":99.9,
+        "mp_up":99.9
+    },
+    {
+        "skill_name":"末日审判",
+        "skill_id":"2",
+        "skill_type":"xxx",
+        "skill_max_level":50,
+        "skill_up_cost":99999,
+        "skill_use_cost":99999,
+        "base_up":999,
+        "base_mp":99.9,
+        "mp_up":99.9
     }
 ]

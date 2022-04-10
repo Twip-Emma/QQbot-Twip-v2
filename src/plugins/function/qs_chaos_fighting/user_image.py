@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:21:45
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-10 10:56:51
+LastEditTime: 2022-04-10 19:06:44
 Description: file content
 '''
 
@@ -43,7 +43,7 @@ def get_image(text:str, user_id:str) -> str:
 
 
 # 传入一段文字，返回一个图片
-def get_image_by_admin(texta:str, textb:str) -> str:
+def get_image_by_admin(texta:str, textb:str, gofor:int) -> str:
     # 设置字体大小
     font_size = 19
     # 创建一个新图片
@@ -62,7 +62,7 @@ def get_image_by_admin(texta:str, textb:str) -> str:
     # 设置字体
     font = ImageFont.truetype(f"{current_path}/data/consola-1.ttf", size=font_size)
     # 绘制文字
-    draw.text((180, 30), textb, (0, 0, 0), font=font)
+    draw.text((gofor, 150), textb, (0, 0, 0), font=font)
 
 
 
