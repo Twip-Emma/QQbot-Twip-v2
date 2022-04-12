@@ -7,8 +7,8 @@
         "buy_cost": 500,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 50,
-        "ak_up": 10,
+        "ak_start": 25,
+        "ak_up": 5,
         "am_start": 0,
         "am_up": 0
     },
@@ -16,14 +16,14 @@
         "name": "翠绿戒指",
         "id": "10002",
         "max_level": 10,
-        "levle_up_cost": 125,
+        "levle_up_cost": 250,
         "buy_cost": 750,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 30,
+        "ak_start": 20,
         "ak_up": 7,
-        "am_start": 45,
-        "am_up": 5
+        "am_start": 13,
+        "am_up": 3
     },
     {
         "name": "粉碎拳套",
@@ -33,10 +33,10 @@
         "buy_cost": 1000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 100,
-        "ak_up": 20,
-        "am_start": 10,
-        "am_up": 1
+        "ak_start": 55,
+        "ak_up": 12,
+        "am_start": 0,
+        "am_up": 0
     },
     {
         "name": "青铜阔斧",
@@ -46,10 +46,10 @@
         "buy_cost": 2000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 200,
-        "ak_up": 25,
-        "am_start": 30,
-        "am_up": 15
+        "ak_start": 115,
+        "ak_up": 18,
+        "am_start": 0,
+        "am_up": 0
     },
     {
         "name": "半月弯刀",
@@ -59,10 +59,10 @@
         "buy_cost": 4750,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 400,
-        "ak_up": 55,
-        "am_start": 75,
-        "am_up": 25
+        "ak_start": 267,
+        "ak_up": 37,
+        "am_start": 0,
+        "am_up": 0
     },
     {
         "name": "斩马长刀",
@@ -72,8 +72,8 @@
         "buy_cost": 8000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 600,
-        "ak_up": 400,
+        "ak_start": 472,
+        "ak_up": 68,
         "am_start": 0,
         "am_up": 0
     },
@@ -87,8 +87,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 130,
-        "am_up": 13
+        "am_start": 86,
+        "am_up": 9
     },
     {
         "name": "勇者项链",
@@ -100,8 +100,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 400,
-        "am_up": 48
+        "am_start": 246,
+        "am_up": 31
     },
     {
         "name": "便携圆盾",
@@ -113,8 +113,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 1000,
-        "am_up": 120
+        "am_start": 386,
+        "am_up": 42
     },
     {
         "name": "蛇眼戒指",
@@ -124,10 +124,10 @@
         "buy_cost": 14000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 450,
-        "ak_up": 45,
-        "am_start": 1050,
-        "am_up": 105
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 527,
+        "am_up": 53
     },
     {
         "name": "道德戒指",
@@ -137,9 +137,9 @@
         "buy_cost": 20000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 1100,
-        "ak_up": 85,
-        "am_start": 1100,
-        "am_up": 85
+        "ak_start": 570,
+        "ak_up": 51,
+        "am_start": 386,
+        "am_up": 36
     }
 ]

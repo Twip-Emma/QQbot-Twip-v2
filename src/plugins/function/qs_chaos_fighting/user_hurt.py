@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:36:31
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 23:03:09
+LastEditTime: 2022-04-11 20:49:55
 Description: file content
 '''
 import random
@@ -71,12 +71,20 @@ def normal_attack(user_id: str, target_id: str):
         # 技能消耗MP
         update_user_mp(user_id, f"-15")
 
+        # 计算获得的金币
+        get_coin = int(_ * 0.08)
 
         if hp2 - _ <= 0:
-            message_re += f"你击败了{target_id}！"
+            target_coin = query_user_coin(target_id)[0]
+            get_coin += int(target_coin * 0.15)
+            new_tcoin = int(target_coin * 0.2)
+            update_user_coin(target_id, f"-{new_tcoin}")
+            update_user_coin(user_id, f"+{get_coin}")
+            message_re += f"你击败了{target_id}！\n你获得了{get_coin}金币！"
             return True, message_re
         else:
-            message_re +=  f"你对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            update_user_coin(user_id, f"+{get_coin}")
+            message_re += f"你对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！\n你获得了{get_coin}金币！"
             return True, message_re
 
 
@@ -167,9 +175,18 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
         # 技能消耗MP
         update_user_mp(user_id, f"-{skill_data['skill_use_cost']}")
 
+        # 计算获得的金币
+        get_coin = int(_ * 0.08)
+
         if hp2 - _ <= 0:
-            message_re += f"你击败了{target_id}！"
+            target_coin = query_user_coin(target_id)[0]
+            get_coin += int(target_coin * 0.15)
+            new_tcoin = int(target_coin * 0.2)
+            update_user_coin(target_id, f"-{new_tcoin}")
+            update_user_coin(user_id, f"+{get_coin}")
+            message_re += f"你击败了{target_id}！\n你获得了{get_coin}金币！"
             return True, message_re
         else:
-            message_re += f"你使用了{skill_name}对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！"
+            update_user_coin(user_id, f"+{get_coin}")
+            message_re += f"你使用了{skill_name}对{target_id}造成了{_}点伤害！，对方剩余生命值{hp2 - _}！\n你获得了{get_coin}金币！"
             return True, message_re
