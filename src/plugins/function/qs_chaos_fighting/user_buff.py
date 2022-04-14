@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-26 12:10:19
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-26 18:28:17
+LastEditTime: 2022-04-14 20:35:06
 Description: file content
 '''
 import json
@@ -85,3 +85,8 @@ def buff_reduce(user_id:str, target_id:str) -> None:
             update_user_buff(user_id, str(i), f"{-1}")
         if not is_buff_zero(target_id, str(i)):
             update_user_buff(target_id, str(i), f"{-1}")
+
+
+# 增加user_id的x回合buff
+def buff_add(user_id:str, buff_id:str, buff_round:int) -> None:
+    update_user_buff(user_id, buff_id, f"+{buff_round}")

@@ -6,22 +6,22 @@
         "ak_mp": 1.2
     },
     {
-        "bf_name": "专注",
+        "bf_name": "狂暴",
         "bf_id": "2",
         "am_mp": 1,
         "ak_mp": 1.4
     },
     {
-        "bf_name": "暴走",
+        "bf_name": "混乱",
         "bf_id": "3",
-        "am_mp": 0.8,
-        "ak_mp": 1.5
+        "am_mp": 0.7,
+        "ak_mp": 1.8
     },
     {
-        "bf_name": "嗔怒",
+        "bf_name": "破防",
         "bf_id": "4",
-        "am_mp": 0.6,
-        "ak_mp": 1.8
+        "am_mp": 0.7,
+        "ak_mp": 1
     },
     {
         "bf_name": "皮糙肉厚",
@@ -30,21 +30,21 @@
         "ak_mp": 1
     },
     {
-        "bf_name": "壁垒",
+        "bf_name": "断筋",
         "bf_id": "6",
-        "am_mp": 1.7,
+        "am_mp": 0.7,
+        "ak_mp": 0.4
+    },
+    {
+        "bf_name": "弱化",
+        "bf_id": "7",
+        "am_mp": 0.7,
         "ak_mp": 1
     },
     {
-        "bf_name": "不动",
-        "bf_id": "7",
-        "am_mp": 2.5,
-        "ak_mp": 0.8
-    },
-    {
-        "bf_name": "画境",
+        "bf_name": "画境的庇佑",
         "bf_id": "8",
-        "am_mp": 3.5,
-        "ak_mp": 1.5
+        "am_mp": 3,
+        "ak_mp": 3
     }
 ]

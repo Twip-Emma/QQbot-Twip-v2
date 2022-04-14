@@ -8,7 +8,12 @@
         "skill_use_cost":30,
         "base_up":50,
         "base_mp":1.5,
-        "mp_up":0.2
+        "mp_up":0.2,
+        "describe":"使用后自己获得【 怒气 X 3 】，对方获得【 破防 X 3 】",
+        "user_get_buff":"1",
+        "user_get_buff_time":3,
+        "target_get_buff":"4",
+        "target_get_buff_time":3
     },
     {
         "skill_name":"火球法术",
@@ -19,7 +24,12 @@
         "skill_use_cost":30,
         "base_up":50,
         "base_mp":1.5,
-        "mp_up":0.2
+        "mp_up":0.2,
+        "describe":"使用后自己获得【 怒气 X 3 】，对方获得【 弱化 X 3 】",
+        "user_get_buff":"1",
+        "user_get_buff_time":3,
+        "target_get_buff":"7",
+        "target_get_buff_time":3
     },
     {
         "skill_name":"烈火剑法",
@@ -30,7 +40,12 @@
         "skill_use_cost":150,
         "base_up":300,
         "base_mp":2.5,
-        "mp_up":0.3
+        "mp_up":0.3,
+        "describe":"越战越勇！使用后自己获得【 狂暴 X 10 】，对方获得【 破防 X 7 】",
+        "user_get_buff":"2",
+        "user_get_buff_time":10,
+        "target_get_buff":"4",
+        "target_get_buff_time":7
     },
     {
         "skill_name":"诱惑之光",
@@ -41,7 +56,12 @@
         "skill_use_cost":150,
         "base_up":300,
         "base_mp":2.5,
-        "mp_up":0.3
+        "mp_up":0.3,
+        "describe":"你一阵晕眩，感觉到法力溢出，使用后自己获得【 混乱 X 7 】，对方获得【 弱化 X 10 】",
+        "user_get_buff":"3",
+        "user_get_buff_time":7,
+        "target_get_buff":"7",
+        "target_get_buff_time":10
     },
     {
         "skill_name":"逐日剑法",
@@ -52,7 +72,12 @@
         "skill_use_cost":800,
         "base_up":1800,
         "base_mp":4.5,
-        "mp_up":0.7
+        "mp_up":0.7,
+        "describe":"你逐渐理解剑法之道，使用后自己获得【 皮糙肉厚 X 6 】，对方获得【 断筋 X 7 】",
+        "user_get_buff":"5",
+        "user_get_buff_time":6,
+        "target_get_buff":"6",
+        "target_get_buff_time":7
     },
     {
         "skill_name":"流星火雨",
@@ -63,7 +88,12 @@
         "skill_use_cost":800,
         "base_up":1800,
         "base_mp":4.5,
-        "mp_up":0.7
+        "mp_up":0.7,
+        "describe":"啊这，我还没想好，先别买吧~",
+        "user_get_buff":"1",
+        "user_get_buff_time":3,
+        "target_get_buff":"4",
+        "target_get_buff_time":3
     },
     {
         "skill_name":"血魄一击",
@@ -74,7 +104,12 @@
         "skill_use_cost":99999,
         "base_up":999,
         "base_mp":99.9,
-        "mp_up":99.9
+        "mp_up":99.9,
+        "describe":"这技能假的，这只是个占位乱写的技能啊兄弟们~",
+        "user_get_buff":"1",
+        "user_get_buff_time":3,
+        "target_get_buff":"4",
+        "target_get_buff_time":3
     },
     {
         "skill_name":"末日审判",
@@ -85,6 +120,11 @@
         "skill_use_cost":99999,
         "base_up":999,
         "base_mp":99.9,
-        "mp_up":99.9
+        "mp_up":99.9,
+        "describe":"这技能假的，这只是个占位乱写的技能啊兄弟们~",
+        "user_get_buff":"1",
+        "user_get_buff_time":3,
+        "target_get_buff":"4",
+        "target_get_buff_time":3
     }
 ]

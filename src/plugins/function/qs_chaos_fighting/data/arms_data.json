@@ -8,7 +8,7 @@
         "hp_start": 0,
         "hp_up": 0,
         "ak_start": 25,
-        "ak_up": 5,
+        "ak_up": 3,
         "am_start": 0,
         "am_up": 0
     },
@@ -20,10 +20,10 @@
         "buy_cost": 750,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 20,
-        "ak_up": 7,
-        "am_start": 13,
-        "am_up": 3
+        "ak_start": 40,
+        "ak_up": 9,
+        "am_start": 0,
+        "am_up": 0
     },
     {
         "name": "粉碎拳套",
@@ -34,7 +34,7 @@
         "hp_start": 0,
         "hp_up": 0,
         "ak_start": 55,
-        "ak_up": 12,
+        "ak_up": 8,
         "am_start": 0,
         "am_up": 0
     },
@@ -46,8 +46,8 @@
         "buy_cost": 2000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 115,
-        "ak_up": 18,
+        "ak_start": 118,
+        "ak_up": 12,
         "am_start": 0,
         "am_up": 0
     },
@@ -59,8 +59,8 @@
         "buy_cost": 4750,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 267,
-        "ak_up": 37,
+        "ak_start": 297,
+        "ak_up": 25,
         "am_start": 0,
         "am_up": 0
     },
@@ -72,8 +72,8 @@
         "buy_cost": 8000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 472,
-        "ak_up": 68,
+        "ak_start": 533,
+        "ak_up": 43,
         "am_start": 0,
         "am_up": 0
     },
@@ -100,8 +100,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 246,
-        "am_up": 31
+        "am_start": 224,
+        "am_up": 18
     },
     {
         "name": "便携圆盾",
@@ -113,8 +113,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 386,
-        "am_up": 42
+        "am_start": 340,
+        "am_up": 23
     },
     {
         "name": "蛇眼戒指",
@@ -126,8 +126,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 527,
-        "am_up": 53
+        "am_start": 518,
+        "am_up": 52
     },
     {
         "name": "道德戒指",
@@ -137,9 +137,113 @@
         "buy_cost": 20000,
         "hp_start": 0,
         "hp_up": 0,
-        "ak_start": 570,
-        "ak_up": 51,
-        "am_start": 386,
-        "am_up": 36
+        "ak_start": 714,
+        "ak_up": 34,
+        "am_start": 384,
+        "am_up": 25
+    },
+    {
+        "name": "裁决之杖",
+        "id": "10012",
+        "max_level": 10,
+        "levle_up_cost": 2500,
+        "buy_cost": 30000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 2307,
+        "ak_up": 119,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "命运之刃",
+        "id": "10013",
+        "max_level": 10,
+        "levle_up_cost": 4000,
+        "buy_cost": 35000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 2916,
+        "ak_up": 200,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "魔鬼项链",
+        "id": "10014",
+        "max_level": 15,
+        "levle_up_cost": 1500,
+        "buy_cost": 20000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 800,
+        "am_up": 39
+    },
+    {
+        "name": "琥珀戒指",
+        "id": "10015",
+        "max_level": 30,
+        "levle_up_cost": 800,
+        "buy_cost": 27000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 1125,
+        "am_up": 22
+    },
+    {
+        "name": "诸坠渊若魔杖",
+        "id": "10016",
+        "max_level": 10,
+        "levle_up_cost": 6500,
+        "buy_cost": 40000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 3333,
+        "ak_up": 361,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "渺镜云烟魔杖",
+        "id": "10017",
+        "max_level": 20,
+        "levle_up_cost": 11200,
+        "buy_cost": 40000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 3333,
+        "ak_up": 700,
+        "am_start": 0,
+        "am_up": 0
+    },
+    {
+        "name": "封豕暴敛鬼面",
+        "id": "10018",
+        "max_level": 10,
+        "levle_up_cost": 12500,
+        "buy_cost": 50000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 2272,
+        "am_up": 391
+    },
+    {
+        "name": "雷嗔狞髯鬼面",
+        "id": "10019",
+        "max_level": 20,
+        "levle_up_cost": 3500,
+        "buy_cost": 50000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 0,
+        "ak_up": 0,
+        "am_start": 2272,
+        "am_up": 121
     }
 ]

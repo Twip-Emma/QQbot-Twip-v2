@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-04-10 09:46:03
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-10 19:06:00
+LastEditTime: 2022-04-14 20:51:29
 Description: file content
 '''
 # 获取当前文件路径
@@ -67,11 +67,16 @@ def show_shop_skill():
     for item in skill_data:
         shop_txt += f""" {"|" + str(item["skill_name"]).center(10) + "|"}"""
         if item["skill_type"] == "str":
-            shop_txt += f"""   物理伤害   |\n\n"""
+            shop_txt += f"""   物理伤害   |\n"""
         elif item["skill_type"] == "int":
-            shop_txt += f"""   法术伤害   |\n\n"""
+            shop_txt += f"""   法术伤害   |\n"""
         else:
-            shop_txt += f"""   虚无伤害   |\n\n"""
+            shop_txt += f"""   虚无伤害   |\n"""
+        
+        try:
+            shop_txt += item["describe"] + "\n\n"
+        except:
+            pass
         
         
         # shop_txt += f"""{str(item["buy_cost"]):>7} | """
@@ -86,5 +91,5 @@ def show_shop_skill():
         shop_txt_2 += f"""{str(item["skill_use_cost"]):>7}    | """
         shop_txt_2 += f"""{str(item["skill_max_level"]):>7}    | """
         shop_txt_2 += f"""{str(item["base_up"]):>5}    | """
-        shop_txt_2 += f"""{item["base_mp"]:>4}({"+" +str(item["mp_up"]):>4})    | \n\n"""
+        shop_txt_2 += f"""{item["base_mp"]:>4}({"+" +str(item["mp_up"]):>4})    | \n\n\n"""
     return get_image_by_admin(shop_txt,shop_txt_2,260)

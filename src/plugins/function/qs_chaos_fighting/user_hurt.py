@@ -2,11 +2,11 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:36:31
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-11 20:49:55
+LastEditTime: 2022-04-14 21:36:12
 Description: file content
 '''
 import random
-from .user_buff import get_user_buff, buff_reduce
+from .user_buff import get_user_buff, buff_reduce,buff_add
 from .user_utils import *
 from .user_skill import get_skill_data, get_skill_data_by_name
 
@@ -119,13 +119,13 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
         return False, "技能类型错误！"
 
 
-    skill_up_total = skill_data["base_up"] + user_strorint_up # 技能总str/int值
+    skill_up_total = skill_data["base_up"] + user_strorint_up + ak1 # 技能总str/int值
     skill_mp_total = skill_data["base_mp"] + skill_data["mp_up"] * skill_level # 技能总倍率
     # 技能总伤害值
-    skill_hurt_total = skill_up_total * skill_mp_total 
+    skill_hurt_total = int(skill_up_total * skill_mp_total )
 
     # 技能伤害 + 自身和装备攻击力的和乘以buff倍率
-    ak1 = ak1 + skill_hurt_total
+    ak1 = skill_hurt_total
 
     # 自己与目标受到了buff加成
     final_ak_up, final_am_up,_ = get_user_buff(user_id)
@@ -174,6 +174,10 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
 
         # 技能消耗MP
         update_user_mp(user_id, f"-{skill_data['skill_use_cost']}")
+
+        # 使用技能后，双方获得buff
+        buff_add(user_id, skill_data["user_get_buff"], skill_data["user_get_buff_time"])
+        buff_add(target_id, skill_data["target_get_buff"], skill_data["target_get_buff_time"])
 
         # 计算获得的金币
         get_coin = int(_ * 0.08)
