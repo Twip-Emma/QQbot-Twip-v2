@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-25 18:36:31
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-14 21:36:12
+LastEditTime: 2022-04-14 21:41:38
 Description: file content
 '''
 import random
@@ -180,7 +180,7 @@ def skill_attack(user_id: str, target_id: str, skill_name: str):
         buff_add(target_id, skill_data["target_get_buff"], skill_data["target_get_buff_time"])
 
         # 计算获得的金币
-        get_coin = int(_ * 0.08)
+        get_coin = int(_ * 0.05)
 
         if hp2 - _ <= 0:
             target_coin = query_user_coin(target_id)[0]
