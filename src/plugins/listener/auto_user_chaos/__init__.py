@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-04-09 13:49:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-12 16:57:44
+LastEditTime: 2022-04-15 16:43:37
 Description: file content
 '''
 import datetime
@@ -16,19 +16,19 @@ scheduler = require("nonebot_plugin_apscheduler").scheduler
 
 
 # 每个小时要执行的sql语句
-SQL_LIST_EVERY_HOUR_1 = """update user_skill set user_mp=user_mp+3 where user_mp < 500;"""
-SQL_LIST_EVERY_HOUR_2 = """update user_hp_ak_am_coin set user_health=user_health+335 where user_health<25000;"""
-SQL_LIST_EVERY_HOUR_3 = """update user_hp_ak_am_coin set user_coin=user_coin+125 where user_coin<100000;"""
+SQL_LIST_EVERY_HOUR_1 = """update user_skill set user_mp=user_mp+7 where user_mp < 500;"""
+SQL_LIST_EVERY_HOUR_2 = """update user_hp_ak_am_coin set user_health=user_health+round(user_attack*5,0) where user_health<100000;"""
+SQL_LIST_EVERY_HOUR_3 = """update user_hp_ak_am_coin set user_coin=user_coin+100 where user_coin<100000;"""
 
 
 # 每六个小时要执行的sql语句
-SQL_LIST_EVERY_SIX_HOUR_1 = """update user_skill set user_mp=user_mp+14 where user_mp < 2000;"""
-SQL_LIST_EVERY_SIX_HOUR_2 = """update user_hp_ak_am_coin set user_attack=user_attack-5 where user_health<1;"""
-SQL_LIST_EVERY_SIX_HOUR_3 = """update user_hp_ak_am_coin set user_armor=user_armor+20 where user_health<1;"""
-SQL_LIST_EVERY_SIX_HOUR_4 = """update user_hp_ak_am_coin set user_health=5000 where user_health<1;"""
-SQL_LIST_EVERY_SIX_HOUR_5 = """update user_hp_ak_am_coin set user_health=user_health+1200 where user_health<50000;"""
+SQL_LIST_EVERY_SIX_HOUR_1 = """update user_skill set user_mp=user_mp+17 where user_mp < 2000;"""
+SQL_LIST_EVERY_SIX_HOUR_2 = """update user_hp_ak_am_coin set user_attack=round(user_attack * 0.95) where user_health<1;"""
+SQL_LIST_EVERY_SIX_HOUR_3 = """update user_hp_ak_am_coin set user_armor=round(user_armor * 1.2) where user_health<1;"""
+SQL_LIST_EVERY_SIX_HOUR_4 = """update user_hp_ak_am_coin set user_health=round(user_armor * 140) where user_health<1;"""
+SQL_LIST_EVERY_SIX_HOUR_5 = """update user_hp_ak_am_coin set user_health=user_health+round(user_attack*13,0) where user_health<300000;"""
 SQL_LIST_EVERY_SIX_HOUR_6 = """update user_hp_ak_am_coin set user_attack=user_attack+7;"""
-SQL_LIST_EVERY_SIX_HOUR_7 = """update user_hp_ak_am_coin set user_armor=user_armor+3;"""
+SQL_LIST_EVERY_SIX_HOUR_7 = """update user_hp_ak_am_coin set user_armor=user_armor+5;"""
 
 
 # 每5个小时进行一次数据库连接
