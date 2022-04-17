@@ -126,6 +126,9 @@ def check_args_rule(command: Command) -> T_RuleChecker:
             return False
 
         sender = UserInfo(qq=str(event.user_id))
+        await get_user_info(bot, sender)
+        for user in users:
+            await get_user_info(bot, user)
         state["sender"] = sender
         state["users"] = users
         state["args"] = args
@@ -164,14 +167,10 @@ async def handle(
 
 def create_matchers():
     def create_handler(command: Command) -> T_Handler:
-        async def handler(bot: Bot, state: T_State = State()):
-            sender: UserInfo = state["sender"]
-            users: List[UserInfo] = state["users"]
-            args: List[str] = state["args"]
-            await get_user_info(bot, sender)
-            for user in users:
-                await get_user_info(bot, user)
-            await handle(matcher, command, sender, users, args)
+        async def handler(event: MessageEvent,state: T_State = State()):
+            await handle(
+                matcher, command, state["sender"], state["users"], state["args"],event
+            )
 
         return handler
 
