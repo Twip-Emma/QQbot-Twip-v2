@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-04-14 18:06:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-14 19:32:54
+LastEditTime: 2022-04-21 21:22:30
 Description: file content
 '''
 from os import path
@@ -12,6 +12,7 @@ import json
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from tool.find_power.format_data import is_level_S
+from .db_connector import find_user_speak
 
 API_DEFULT = "https://api.lolicon.app/setu/v2"
 THIS_PATH = path.join(path.dirname(__file__))
@@ -23,7 +24,10 @@ THIS_PATH = path.join(path.dirname(__file__))
 NEW_URL = "https://api.pixiv.moe/image/i.pximg.net/img-master"
 
 
-get_setu = on_command("~购买涩图")
+USE_COMD = 75000
+
+
+get_setu = on_command("~t购买涩图")
 
 
 @get_setu.handle()
@@ -31,6 +35,11 @@ async def _(bot: Bot, event: GroupMessageEvent):
     if not is_level_S(event):
         return
     group_id = event.group_id
+    user_id = str(event.user_id)
+
+    if find_user_speak(user_id) <= USE_COMD:
+        await get_setu.send(f"你的发言不足{USE_COMD}条，无法使用该指令\n你当前发言数量：{find_user_speak(user_id)}")
+        return
 
     msg_list = []
 
@@ -57,13 +66,20 @@ async def _(bot: Bot, event: GroupMessageEvent):
     await bot.send_group_forward_msg(group_id=group_id, messages=msg_list)
 
 
-get_tags_setu = on_command("~标签涩图")
+get_tags_setu = on_command("~t标签涩图")
 
 
 @get_tags_setu.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if not is_level_S(event):
         return
+
+    user_id = str(event.user_id)
+
+    if find_user_speak(user_id) <= USE_COMD:
+        await get_setu.send(f"你的发言不足{USE_COMD}条，无法使用该指令\n你当前发言数量：{find_user_speak(user_id)}")
+        return
+
     try:
         group_id = event.group_id
         args = str(event.get_message()).split()
