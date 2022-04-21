@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-01-31 05:02:50
+LastEditTime: 2022-04-17 22:44:34
 Description: file content
 '''
 # 提交测试
@@ -89,11 +89,17 @@ async def _(bot: Bot, event: GroupMessageEvent):
             'Api-Secret': Api_Secret,
             'Content-Type': Content_Type
             }
-            conn.request("POST", "/reply", datac, headers)
-            res = conn.getresponse()
-            datac = res.read()
-            datac = json.loads(datac.decode("utf-8"))
-            datac = datac["data"][0]["content"]
+
+            try:
+                conn.request("POST", "/reply", datac, headers)
+                res = conn.getresponse()
+                datac = res.read()
+                datac = json.loads(datac.decode("utf-8"))
+                datac = datac["data"][0]["content"]
+            except:
+                datac = "null"
+
+
             if datac == "null":
                 target = f'	http://api.qingyunke.com/api.php?key=free&appid=0&msg={message}'
                 req = requests.get(url=target)

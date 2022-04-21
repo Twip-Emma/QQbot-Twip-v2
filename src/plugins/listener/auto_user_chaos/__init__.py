@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-04-09 13:49:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-17 20:13:43
+LastEditTime: 2022-04-17 22:34:16
 Description: file content
 '''
 import datetime
@@ -32,7 +32,7 @@ SQL_LIST_EVERY_SIX_HOUR_7 = """update user_hp_ak_am_coin set user_armor=user_arm
 SQL_LIST_EVERY_SIX_HOUR_8 = """update user_hp_ak_am_coin set user_armor=round(user_armor * 1.1) where user_id='3466189618';"""
 
 
-# 每5个小时进行一次数据库连接
+# 定时任务
 @scheduler.scheduled_job("cron", hour="*")
 async def _():
     now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))

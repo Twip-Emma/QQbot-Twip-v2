@@ -87,8 +87,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 86,
-        "am_up": 9
+        "am_start": 860,
+        "am_up": 90
     },
     {
         "name": "勇者项链",
@@ -100,8 +100,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 224,
-        "am_up": 18
+        "am_start": 2240,
+        "am_up": 180
     },
     {
         "name": "便携圆盾",
@@ -113,8 +113,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 340,
-        "am_up": 23
+        "am_start": 3400,
+        "am_up": 230
     },
     {
         "name": "蛇眼戒指",
@@ -126,8 +126,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 518,
-        "am_up": 52
+        "am_start": 5180,
+        "am_up": 520
     },
     {
         "name": "道德戒指",
@@ -139,8 +139,8 @@
         "hp_up": 0,
         "ak_start": 714,
         "ak_up": 34,
-        "am_start": 384,
-        "am_up": 25
+        "am_start": 3840,
+        "am_up": 250
     },
     {
         "name": "裁决之杖",
@@ -178,8 +178,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 800,
-        "am_up": 39
+        "am_start": 8000,
+        "am_up": 390
     },
     {
         "name": "琥珀戒指",
@@ -191,8 +191,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 1125,
-        "am_up": 22
+        "am_start": 11250,
+        "am_up": 220
     },
     {
         "name": "诸坠渊若魔杖",
@@ -230,8 +230,8 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 2272,
-        "am_up": 391
+        "am_start": 22720,
+        "am_up": 3910
     },
     {
         "name": "雷嗔狞髯鬼面",
@@ -243,7 +243,33 @@
         "hp_up": 0,
         "ak_start": 0,
         "ak_up": 0,
-        "am_start": 2272,
-        "am_up": 121
+        "am_start": 22720,
+        "am_up": 1210
+    },
+    {
+        "name": "画境天阙之书",
+        "id": "10020",
+        "max_level": 20,
+        "levle_up_cost": 12500,
+        "buy_cost": 85000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 3542,
+        "ak_up": 403,
+        "am_start": 19770,
+        "am_up": 2230
+    },
+    {
+        "name": "画境混沌之钟",
+        "id": "10021",
+        "max_level": 20,
+        "levle_up_cost": 3500,
+        "buy_cost": 95000,
+        "hp_start": 0,
+        "hp_up": 0,
+        "ak_start": 3957,
+        "ak_up": 800,
+        "am_start": 22620,
+        "am_up": 4290
     }
 ]

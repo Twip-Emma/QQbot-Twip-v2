@@ -36,7 +36,7 @@ __example__ = """
 __usage__ = f"{__des__}\n\nUsage:\n{__cmd__}\n\nExamples:\n{__example__}"
 
 
-help_cmd = on_command("头像表情包", aliases={"头像相关表情包", "头像相关表情制作"}, block=True, priority=12)
+help_cmd = on_command("头像表情包", aliases={"头像相关表情包", "头像相关表情制作"})
 
 
 @help_cmd.handle()
@@ -178,9 +178,7 @@ def create_matchers():
         matcher = on_command(
             command.keywords[0],
             aliases=set(command.keywords),
-            rule=check_args_rule(command),
-            block=True,
-            priority=12,
+            rule=check_args_rule(command)
         )
         matcher.append_handler(create_handler(command))
 
