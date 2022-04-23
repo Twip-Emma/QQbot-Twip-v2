@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-04-23 10:24:49
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-23 12:56:34
+LastEditTime: 2022-04-23 13:33:17
 Description: file content
 '''
 import os
@@ -36,7 +36,8 @@ async def get_song_info() -> bytes:
     index = 1
     song_info_msg = ""
     for song in song_info_list:
-        song_info_msg += f"{index}.{song['name']}(LEVEL {song['level']}) 来源：{song['address']} | 曲师：{song['author']} | 谱师：{song['mapby']}\n\n"
+        song_info_msg += f"●  {index}.  {song['name']}   | 来源：{song['address']} \n"
+        song_info_msg += f" (LEVEL {song['level']})     |     曲师：{song['author']}     |     谱师：{song['mapby']}\n\n"
         index += 1
     
     return await text_to_pic(song_info_msg)

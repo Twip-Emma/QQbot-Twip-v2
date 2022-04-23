@@ -1,1 +1,352 @@
-{"2022年版机关枪": {"name": "2022年版机关枪", "level": 20.9, "address": "油管", "author": "山茶花", "mapby": "Team4%"}, "紫毒立方": {"name": "紫毒立方", "level": 20.8, "address": "油管", "author": "山茶花", "mapby": "Team4%"}}
+{
+    "2022年版机关枪": {
+        "name": "2022年版机关枪",
+        "level": 20.9,
+        "address": "油管",
+        "author": "山茶花",
+        "mapby": "Team4%"
+    },
+    "紫毒立方": {
+        "name": "紫毒立方",
+        "level": 20.8,
+        "address": "油管",
+        "author": "山茶花",
+        "mapby": "Team4%"
+    },
+    "Dans_la_mer_de_son": {
+        "name": "Dans_la_mer_de_son",
+        "level": 20.5,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "胡三4"
+    },
+    "Its_over_but_not_for_us": {
+        "name": "Its_over_but_not_for_us",
+        "level": 20.4,
+        "address": "创意工坊",
+        "author": "Daflkun",
+        "mapby": "pinball"
+    },
+    "Inferno": {
+        "name": "Inferno",
+        "level": 20.1,
+        "address": "创意工坊",
+        "author": "F-777",
+        "mapby": "Tiara"
+    },
+    "Multi_arm": {
+        "name": "Multi_arm",
+        "level": 21.0,
+        "address": "创意工坊",
+        "author": "Frums",
+        "mapby": "Zagon"
+    },
+    "EXTRAGALACTIC_SPACE": {
+        "name": "EXTRAGALACTIC_SPACE",
+        "level": 19.0,
+        "address": "创意工坊",
+        "author": "Kyutatsuki",
+        "mapby": "Logal0"
+    },
+    "Fallen_Symphony": {
+        "name": "Fallen_Symphony",
+        "level": 21.0,
+        "address": "油管",
+        "author": "Ludicin",
+        "mapby": "SSSangchu"
+    },
+    "Megamix": {
+        "name": "Megamix",
+        "level": 20.5,
+        "address": "油管",
+        "author": "Plum",
+        "mapby": "滚滚"
+    },
+    "Tempest": {
+        "name": "Tempest",
+        "level": 20.1,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "Goyeetroll"
+    },
+    "Rush_e": {
+        "name": "Rush_e",
+        "level": 20.0,
+        "address": "创意工坊",
+        "author": "SheetMusicBoss",
+        "mapby": "xiznyng"
+    },
+    "conflinct": {
+        "name": "conflinct",
+        "level": 20.4,
+        "address": "创意工坊",
+        "author": "Siromaru+cranky",
+        "mapby": "Toht"
+    },
+    "Cry": {
+        "name": "Cry",
+        "level": 21.0,
+        "address": "创意工坊",
+        "author": "Xtrullor",
+        "mapby": "-K"
+    },
+    "Hello2022(BPM2022)": {
+        "name": "Hello2022(BPM2022)",
+        "level": 21.1,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "Lemoni"
+    },
+    "TheKingOfLions": {
+        "name": "TheKingOfLions",
+        "level": 20.5,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "Optimum_P"
+    },
+    "WeCloudGetMoreMachinegunPsystyle": {
+        "name": "WeCloudGetMoreMachinegunPsystyle",
+        "level": 19.5,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "Appeal"
+    },
+    "WeCloudGetMoreMachinegunPsystyle最终版": {
+        "name": "WeCloudGetMoreMachinegunPsystyle最终版",
+        "level": 20.7,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "Appeal"
+    },
+    "WeCloudGetMoreMachinegunPsystyle2022ver": {
+        "name": "WeCloudGetMoreMachinegunPsystyle2022ver",
+        "level": 20.9,
+        "address": "油管",
+        "author": "山茶花",
+        "mapby": "Team4%"
+    },
+    "Inferno(T)": {
+        "name": "Inferno(T)",
+        "level": 18.5,
+        "address": "创意工坊",
+        "author": "MegaSphere",
+        "mapby": "Tiara"
+    },
+    "HardRain": {
+        "name": "HardRain",
+        "level": 17.6,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "Star4th"
+    },
+    "INTO_THE_LAVA": {
+        "name": "INTO_THE_LAVA",
+        "level": 17.8,
+        "address": "创意工坊",
+        "author": "山茶花",
+        "mapby": "coldwater"
+    },
+    "虚": {
+        "name": "虚",
+        "level": 15.7,
+        "address": "创意工坊",
+        "author": "Halv",
+        "mapby": "pixelo3o"
+    },
+    "Explorers": {
+        "name": "Explorers",
+        "level": 15.1,
+        "address": "创意工坊",
+        "author": "Hinkik",
+        "mapby": "TeamFlame"
+    },
+    "TimeLeaper": {
+        "name": "TimeLeaper",
+        "level": 14.5,
+        "address": "创意工坊",
+        "author": "Hinkik",
+        "mapby": "TNTz"
+    },
+    "FelyFfinalRemix": {
+        "name": "FelyFfinalRemix",
+        "level": 16.0,
+        "address": "创意工坊",
+        "author": "onoken",
+        "mapby": "EditorAlric"
+    },
+    "觉醒吧，钢琴~": {
+        "name": "觉醒吧，钢琴~",
+        "level": 14.0,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "Strode"
+    },
+    "F": {
+        "name": "F",
+        "level": 15.0,
+        "address": "创意工坊",
+        "author": "VILA",
+        "mapby": "TeamPAL"
+    },
+    "VikingArena": {
+        "name": "VikingArena",
+        "level": 12.0,
+        "address": "创意工坊",
+        "author": "F-777",
+        "mapby": "NIKINK"
+    },
+    "Realms": {
+        "name": "Realms",
+        "level": 11.5,
+        "address": "创意工坊",
+        "author": "Hinkik",
+        "mapby": "一位不愿意透露姓名的人"
+    },
+    "Lime": {
+        "name": "Lime",
+        "level": 14.5,
+        "address": "创意工坊",
+        "author": "黑皇帝",
+        "mapby": "EditorAlriC"
+    },
+    "TheLostAria": {
+        "name": "TheLostAria",
+        "level": 12.5,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "PrismFall"
+    },
+    "WindFall": {
+        "name": "WindFall",
+        "level": 12.0,
+        "address": "创意工坊",
+        "author": "TheFatRat",
+        "mapby": "LoveLetteR"
+    },
+    "胡桃嗷~": {
+        "name": "胡桃嗷~",
+        "level": 13.0,
+        "address": "创意工坊",
+        "author": "哦呼~",
+        "mapby": "星源XC"
+    },
+    "FadeAgain(remake)": {
+        "name": "FadeAgain(remake)",
+        "level": 11.0,
+        "address": "创意工坊",
+        "author": "jiaye",
+        "mapby": "无名氏"
+    },
+    "Orca": {
+        "name": "Orca",
+        "level": 11.7,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "Parku"
+    },
+    "秘密人偶剧2": {
+        "name": "秘密人偶剧2",
+        "level": 13.5,
+        "address": "创意工坊",
+        "author": "Plum",
+        "mapby": "MaySnow"
+    },
+    "MoonFlower(ver.0.5)": {
+        "name": "MoonFlower(ver.0.5)",
+        "level": 10.0,
+        "address": "创意工坊",
+        "author": "RoDycode",
+        "mapby": "BlaxkBerry"
+    },
+    "Stronger": {
+        "name": "Stronger",
+        "level": 13.5,
+        "address": "创意工坊",
+        "author": "TheFatRat",
+        "mapby": "Thisis20"
+    },
+    "Pagoda": {
+        "name": "Pagoda",
+        "level": 10.5,
+        "address": "创意工坊",
+        "author": "Xomu",
+        "mapby": "ShayZhang162"
+    },
+    "红丝绒蛋糕": {
+        "name": "红丝绒蛋糕",
+        "level": 10.5,
+        "address": "创意工坊",
+        "author": "洛天依",
+        "mapby": "Lin_P"
+    },
+    "CommandSteve": {
+        "name": "CommandSteve",
+        "level": 8.5,
+        "address": "创意工坊",
+        "author": "BossFight",
+        "mapby": "OnSlayet"
+    },
+    "EndLess": {
+        "name": "EndLess",
+        "level": 9.5,
+        "address": "创意工坊",
+        "author": "Creo",
+        "mapby": "Creo"
+    },
+    "Barrage": {
+        "name": "Barrage",
+        "level": 9.0,
+        "address": "创意工坊",
+        "author": "Halv",
+        "mapby": "NumbEr07"
+    },
+    "もぺもペ": {
+        "name": "もぺもペ",
+        "level": 7.0,
+        "address": "创意工坊",
+        "author": "Leaf",
+        "mapby": "JUNK"
+    },
+    "HeartFraction": {
+        "name": "HeartFraction",
+        "level": 8.0,
+        "address": "创意工坊",
+        "author": "MUWOL",
+        "mapby": "Parku"
+    },
+    "Burn": {
+        "name": "Burn",
+        "level": 7.5,
+        "address": "创意工坊",
+        "author": "Nces",
+        "mapby": "Ssinlille"
+    },
+    "超东方不眠夜": {
+        "name": "超东方不眠夜",
+        "level": 5.0,
+        "address": "创意工坊",
+        "author": "PhythmDoctor",
+        "mapby": "Appeal"
+    },
+    "ToTheMoon": {
+        "name": "ToTheMoon",
+        "level": 7.0,
+        "address": "创意工坊",
+        "author": "子引星H",
+        "mapby": "子引星H"
+    },
+    "Virtual": {
+        "name": "Virtual",
+        "level": 6.0,
+        "address": "创意工坊",
+        "author": "Geoxor",
+        "mapby": "Igossi"
+    },
+    "滴答滴答": {
+        "name": "滴答滴答",
+        "level": 5.0,
+        "address": "创意工坊",
+        "author": "洛天依",
+        "mapby": "Lin_P"
+    }
+}
