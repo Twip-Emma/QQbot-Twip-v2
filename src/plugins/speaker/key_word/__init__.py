@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-22 22:56:41
+LastEditTime: 2022-05-18 10:11:58
 Description: file content
 '''
 # 提交测试
@@ -16,7 +16,7 @@ import random
 import http.client
 import requests
 
-from tool.find_power.format_data import is_level_S
+from tool.find_power.format_data import is_level_A
 
 from .db import *
 from tool.setting.speaker_setting import Api_Key, Api_Secret, Content_Type
@@ -33,7 +33,7 @@ message_handle = on_message(rule=to_me())
 
 @message_handle.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    if not is_level_S(event):
+    if not is_level_A(event):
         await message_handle.finish()
     user_id = event.user_id
     group_id = event.group_id
