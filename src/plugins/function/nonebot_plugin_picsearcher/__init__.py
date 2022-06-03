@@ -135,38 +135,38 @@ async def handle_pic(event: GroupMessageEvent, state: T_State = State()):
         pass
 
 
-previous = on_command("上一张图是什么", aliases={"上一张", "这是什么"})
+# previous = on_command("上一张图是什么", aliases={"上一张", "这是什么"})
 
 
-@previous.handle()
-async def handle_previous(bot: Bot, event: GroupMessageEvent):
-    await bot.send(event=event, message="processing...")
-    try:
-        url: str = pic_map[str(event.group_id)]
-        if not getattr(bot.config, "risk_control", None):  # 安全模式
-            async for msg in limiter(get_des(url, "nao"), getattr(bot.config, "search_limit", None) or 2):
-                await bot.send(event=event, message=msg)
-        else:
-            msgs: Message = sum(
-                [msg if isinstance(msg, Message) else Message(msg) async for msg in get_des(url, "nao")])
-            dict_data = json.loads(json.dumps(msgs, cls=DataclassEncoder))
-            await bot.send_group_forward_msg(group_id=event.group_id,
-                                             messages=[
-                                                 {
-                                                     "type": "node",
-                                                     "data": {
-                                                         "name": event.sender.nickname,
-                                                         "uin": event.user_id,
-                                                         "content": [
-                                                             content
-                                                         ]
-                                                     }
-                                                 }
-                                                 for content in dict_data
-                                             ]
-                                             )
-    except (IndexError, ClientError):
-        await bot.send(event, traceback.format_exc())
-        await previous.finish("参数错误")
-    except KeyError:
-        await previous.finish("没有图啊QAQ")
+# @previous.handle()
+# async def handle_previous(bot: Bot, event: GroupMessageEvent):
+#     await bot.send(event=event, message="processing...")
+#     try:
+#         url: str = pic_map[str(event.group_id)]
+#         if not getattr(bot.config, "risk_control", None):  # 安全模式
+#             async for msg in limiter(get_des(url, "nao"), getattr(bot.config, "search_limit", None) or 2):
+#                 await bot.send(event=event, message=msg)
+#         else:
+#             msgs: Message = sum(
+#                 [msg if isinstance(msg, Message) else Message(msg) async for msg in get_des(url, "nao")])
+#             dict_data = json.loads(json.dumps(msgs, cls=DataclassEncoder))
+#             await bot.send_group_forward_msg(group_id=event.group_id,
+#                                              messages=[
+#                                                  {
+#                                                      "type": "node",
+#                                                      "data": {
+#                                                          "name": event.sender.nickname,
+#                                                          "uin": event.user_id,
+#                                                          "content": [
+#                                                              content
+#                                                          ]
+#                                                      }
+#                                                  }
+#                                                  for content in dict_data
+#                                              ]
+#                                              )
+#     except (IndexError, ClientError):
+#         await bot.send(event, traceback.format_exc())
+#         await previous.finish("参数错误")
+#     except KeyError:
+#         await previous.finish("没有图啊QAQ")
