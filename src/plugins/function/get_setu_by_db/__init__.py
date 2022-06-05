@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-03 14:35:38
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-03 15:29:14
+LastEditTime: 2022-06-05 20:10:58
 Description: file content
 '''
 import random
@@ -17,8 +17,8 @@ from .user_function import get_image
 from .user_database import find_user_speak
 
 
-A_CONT = 65000
-S_CONT = 100000
+A_CONT = 10000
+S_CONT = 20000
 
 
 SETU_DATABASE = {
@@ -42,8 +42,8 @@ SETU_DATABASE = {
 }
 
 
-a_get_setu = on_command("等级涩图a")
-s_get_setu = on_command("等级涩图s")
+a_get_setu = on_command("-等级涩图a")
+s_get_setu = on_command("-等级涩图s")
 
 
 @a_get_setu.handle()
@@ -58,11 +58,11 @@ async def _(bot: Bot, event: GroupMessageEvent):
         return
 
     wh = random.choice(SETU_DATABASE["A"])
-    image_name, img_path = get_image(wh)
+    image_name, img_path, user_health = get_image(wh, user_id)
     sex = image_name.split("-")[0]
     image_name = image_name.replace(sex, "")
 
-    message_list = [f"图片名：{image_name}",f"涩涩值：{sex}",f"来自仓库：{wh}",f"[CQ:image,file=file:///{img_path}]"]
+    message_list = [f"图片名：{image_name}",f"涩涩值：{sex}",f"来自仓库：{wh}",f"[CQ:image,file=file:///{img_path}]",f"您剩余健康值：{user_health}"]
 
 
     msg_list = []
@@ -91,11 +91,11 @@ async def _(bot: Bot, event: GroupMessageEvent):
         return
 
     wh = random.choice(SETU_DATABASE["S"])
-    image_name, img_path = get_image(wh)
+    image_name, img_path, user_health = get_image(wh, user_id)
     sex = image_name.split("-")[0]
     image_name = image_name.replace(sex, "")
 
-    message_list = [f"图片名：{image_name}",f"涩涩值：{sex}",f"来自仓库：{wh}",f"[CQ:image,file=file:///{img_path}]"]
+    message_list = [f"图片名：{image_name}",f"涩涩值：{sex}",f"来自仓库：{wh}",f"[CQ:image,file=file:///{img_path}]",f"您剩余健康值：{user_health}"]
 
 
     msg_list = []

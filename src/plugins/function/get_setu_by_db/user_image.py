@@ -2,13 +2,15 @@
 Author: 七画一只妖
 Date: 2022-05-30 21:27:03
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-03 15:18:49
+LastEditTime: 2022-06-05 19:34:43
 Description: file content
 '''
 import os
 from io import BytesIO
 from PIL import Image
 
+
+from tool.image_format.img_vague import img_format_main
 
 # 当前路径
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -40,6 +42,7 @@ def bytes_to_image(image_bytes, image_name, db_name):
     
     
 
-# a = image_to_bytes(f"{BASE_PATH}\\image\\97972911_p0.jpg")
-# print(a.getvalue())
-# bytes_to_image(a.getvalue(), "test2.jpg")
+# 将图片模糊
+def img_vague(percent, input_path:str, output_path:str):
+    output_path = img_format_main(percent, input_path, output_path)
+    return output_path
