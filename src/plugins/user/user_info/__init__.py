@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 10:46:54
 LastEditors: 七画一只妖
-LastEditTime: 2022-04-09 14:17:18
+LastEditTime: 2022-06-06 19:03:20
 Description: file content
 '''
 from nonebot import on_command
@@ -13,7 +13,7 @@ from tool.find_power.format_data import is_level_S
 from .function import start
 
 
-get_info = on_command("个人信息")
+get_info = on_command("x个人信息")
 
 
 @get_info.handle()

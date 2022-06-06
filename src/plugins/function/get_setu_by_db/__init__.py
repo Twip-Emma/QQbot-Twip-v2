@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-03 14:35:38
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-05 20:10:58
+LastEditTime: 2022-06-06 18:36:19
 Description: file content
 '''
 import random
@@ -18,7 +18,7 @@ from .user_database import find_user_speak
 
 
 A_CONT = 10000
-S_CONT = 20000
+S_CONT = 60000
 
 
 SETU_DATABASE = {
