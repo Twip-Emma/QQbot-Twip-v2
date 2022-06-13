@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:58:50
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-23 21:39:23
+LastEditTime: 2022-06-13 08:51:49
 Description: file content
 '''
 import random
@@ -10,8 +10,6 @@ import random
 from .get_image import get_png_path
 
 import os
-from os import path
-import json
 import copy
 
 

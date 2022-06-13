@@ -2,11 +2,10 @@
 Author: 七画一只妖
 Date: 2021-09-22 19:01:07
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-17 16:24:29
+LastEditTime: 2022-06-13 08:51:37
 Description: file content
 '''
 from os import path
-import sqlite3
 
 import MySQLdb
 

@@ -2,13 +2,12 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-17 21:29:31
+LastEditTime: 2022-06-13 08:52:02
 Description: file content
 '''
 from .function_user import start
 
 from nonebot import on_command
-from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 
 from tool.find_power.format_data import is_level_S
@@ -18,7 +17,7 @@ qy_sdorica_draw = on_command("起源十连")
 ss_sdorica_draw = on_command("盛夏十连")
 sd_sdorica_draw = on_command("限定十连")
 sf_sdorica_draw = on_command("首发十连")
-hp_sdorica_draw = on_command("-群友十连")
+hp_sdorica_draw = on_command("群友十连")
 
 
 @qy_sdorica_draw.handle()
