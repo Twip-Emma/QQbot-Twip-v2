@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-05-17 13:19:31
 LastEditors: 七画一只妖
-LastEditTime: 2022-05-17 14:22:31
+LastEditTime: 2022-06-13 20:47:33
 Description: file content
 '''
 # -*- coding: utf-8 -*-
@@ -25,7 +25,8 @@ header = {
     'Host': 'saucenao.com', 'Origin': 'https://saucenao.com', 'Referer': 'https://saucenao.com/index.php',
     'Sec-Fetch-Dest': 'document', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-User': '?1',
     'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
+    }
 
 
 def parse_html(html: str):
