@@ -2,17 +2,16 @@
 Author: 七画一只妖
 Date: 2022-05-30 21:24:00
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-24 09:36:26
+LastEditTime: 2022-06-24 09:39:58
 Description: file content
 '''
 import MySQLdb
 
 
 from tool.setting.database_setting import URL, USER_CARD, PASS_WORD, DATABASE
-from ...listener.auto_database_connect import db2
+from ...listener.auto_database_connect import db2 as db
 
 # db = setudb.connection()
-db = db2
 
 # db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, "image_warehouse_1", charset='utf8')
 

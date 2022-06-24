@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 10:01:59
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-24 09:35:49
+LastEditTime: 2022-06-24 09:47:53
 Description: file content
 '''
 
@@ -38,6 +38,7 @@ db2 = MySQLdb.connect(URL, USER_CARD, PASS_WORD, "image_warehouse_1", charset='u
 @scheduler.scheduled_job("cron", hour="*")
 async def _():
     global db
+    db.close()
     now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
     if now.hour % 5 == 0:
         db = MySQLdb.connect(URL, USER_CARD, PASS_WORD,
@@ -48,6 +49,7 @@ async def _():
 @scheduler.scheduled_job("cron", hour="*")
 async def _():
     global db2
+    db2.close()
     now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
     if now.hour % 5 == 0:
         db2 = MySQLdb.connect(URL, USER_CARD, PASS_WORD, "image_warehouse_1", charset='utf8')

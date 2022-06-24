@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-12 22:26:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-13 10:25:03
+LastEditTime: 2022-06-24 09:43:11
 Description: file content
 '''
 from typing import List
@@ -13,9 +13,10 @@ import random
 import re
 
 from tool.setting.database_setting import *
+from ...listener.auto_database_connect import db
 
 
-db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+# db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
 
 
 # 分页查询
