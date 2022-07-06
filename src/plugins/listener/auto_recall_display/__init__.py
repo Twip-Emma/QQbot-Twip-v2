@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-02-14 17:09:26
+LastEditTime: 2022-07-06 08:52:11
 Description: file content
 '''
 
@@ -72,6 +72,9 @@ async def _recall_message(bot: Bot, ree: GroupRecallNoticeEvent):
     #获取消息内容
     recall_msg_info = await bot.get_msg(message_id=message_id)
     recall_msg = str(recall_msg_info['message'])
+
+    if "<" in recall_msg or ">" in recall_msg:
+        return
 
     #获取群名
     group_list = await bot.get_group_info(group_id=group_id)
