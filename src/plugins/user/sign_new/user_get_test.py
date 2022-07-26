@@ -1,4 +1,11 @@
-{
+'''
+Author: 七画一只妖
+Date: 2022-07-26 11:39:19
+LastEditors: 七画一只妖
+LastEditTime: 2022-07-26 11:47:35
+Description: file content
+'''
+SIGN_TEXT = {
     "verse": {
         "S": [
             "菩提本无树，明镜亦非台",

@@ -2,33 +2,16 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:58:57
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-28 22:34:46
+LastEditTime: 2022-07-26 12:57:29
 Description: file content
 '''
 from PIL import Image, ImageDraw, ImageFont
-import json
-import time
-import random
-import datetime
 import os
 from os import path
 
 FILE_PATH = path.join(path.dirname(__file__))
 
-TRA = {
-    "whisper of autunmn": "秋天的低语",
-    "feather wave": "羽毛 波",
-    "time to journey": "旅行时间",
-    "fam al-fut": "我们快饿死了",
-    "东陵红渊": "东陵红渊",
-    "forces of the sky": "天空的力量",
-    "present = past + future": "现在=过去+未来",
-    "mid sense melancholy": "中感忧郁",
-    "望乡~departure": "望乡~离开",
-    "memories of a town": "乡村记忆",
-    "": "",
-    "": "",
-}
+
 
 SIGN_IMG = ["冲虚", "低语", "高歌", "救苦", "普渡", "深渊", "万神", "往生", "智慧", "自在"]
 
