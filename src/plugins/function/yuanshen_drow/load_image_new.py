@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-10-21 19:06:13
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 16:31:05
+LastEditTime: 2022-08-19 19:43:16
 Description: file content
 '''
 from PIL import Image, ImageFont, ImageDraw, ImageMath
@@ -175,3 +175,15 @@ async def init_pool_list(char_info:dict) -> str:
         return os.path.join(ICON_PATH, '角色图鉴', char_info["name"] + '.png')
     else:
         return os.path.join(ICON_PATH, '武器图鉴', char_info["name"] + '.png')
+
+
+###################################################################################
+# 手动初始化
+# import asyncio
+# loop = asyncio.get_event_loop()
+
+# print(loop.run_until_complete(init_pool_list({
+#     "type":"角色",
+#     "name":"神里凌人",
+#     "type":"水"
+# })))

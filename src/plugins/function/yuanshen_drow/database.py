@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-22 19:01:07
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 16:23:12
+LastEditTime: 2022-08-19 19:34:38
 Description: file content
 '''
 from os import path
@@ -17,12 +17,12 @@ gacha_dict = [
 {"total":1000,"time":0},
 {"total":2000,"time":1},
 {"total":4000,"time":2},
-{"total":10000,"time":3},
-{"total":20000,"time":4},
-{"total":40000,"time":5},
-{"total":80000,"time":6},
-{"total":150000,"time":7},
-{"total":200000,"time":8}
+{"total":10000,"time":2},
+{"total":20000,"time":2},
+{"total":40000,"time":2},
+{"total":80000,"time":2},
+{"total":150000,"time":2},
+{"total":200000,"time":2}
 ]
 
 
