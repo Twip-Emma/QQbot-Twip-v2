@@ -1,6 +1,8 @@
 import re
 from pathlib import Path
 
+from tool.find_power.format_data import is_level_S
+
 from .draw_char_card import *
 from .draw_char_card import draw_char_img
 from ..all_import import *  # noqa: F401,F403
@@ -13,7 +15,7 @@ from ..utils.alias.alias_to_char_name import alias_to_char_name
 refresh = on_command('强制刷新')
 get_charcard_list = on_command('毕业度统计')
 get_char_info = on_command(
-    '查询',
+    'ys查询',
     priority=2,
 )
 
@@ -32,6 +34,8 @@ async def send_char_info(
     args: Message = CommandArg(),
     custom: ImageAndAt = Depends(),
 ):
+    if not is_level_S(event):
+        return
     if args is None:
         return
     logger.info('开始执行[查询角色面板]')
@@ -125,6 +129,8 @@ async def send_card_info(
     event: Union[GroupMessageEvent, PrivateMessageEvent],
     args: Message = CommandArg(),
 ):
+    if not is_level_S(event):
+        return
     message = args.extract_plain_text().strip().replace(' ', '')
     uid = re.findall(r'\d+', message)  # str
     m = ''.join(re.findall('[\u4e00-\u9fa5]', message))
@@ -158,7 +164,8 @@ async def send_charcard_list(
     args: Message = CommandArg(),
     custom: ImageAndAt = Depends(),
 ):
-
+    if not is_level_S(event):
+        return
     message = args.extract_plain_text().strip().replace(' ', '')
     limit = re.findall(r'\d+', message)  # str
     if len(limit) >= 1:

@@ -1,12 +1,19 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:21:07
+Description: file content
+'''
 from ..all_import import *  # noqa: F403,F401
 from ..utils.db_operation.db_operation import config_check
 from .daily_mihoyo_bbs_coin import mihoyo_coin, all_daily_mihoyo_bbs_coin
 
 bbscoin_scheduler = require('nonebot_plugin_apscheduler').scheduler
 
-get_mihoyo_coin = on_command('开始获取米游币', priority=priority)
+get_mihoyo_coin = on_command('X开始获取米游币X', priority=priority)
 all_bbscoin_recheck = on_command(
-    '全部重获取', permission=SUPERUSER, priority=priority
+    'X全部重获取X', permission=SUPERUSER, priority=priority
 )
 
 

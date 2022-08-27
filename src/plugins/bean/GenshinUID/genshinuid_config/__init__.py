@@ -3,6 +3,7 @@ from ..utils.db_operation.db_operation import select_db
 from ..utils.message.get_image_and_at import ImageAndAt
 from .set_config import set_push_value, set_config_func
 from ..utils.message.error_reply import *  # noqa: F403,F401
+from tool.find_power.format_data import is_level_S
 
 open_and_close_switch = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
@@ -25,6 +26,8 @@ async def send_config_msg(
     args: Tuple[Any, ...] = RegexGroup(),
     custom: ImageAndAt = Depends(),
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[设置阈值信息]')
     logger.info('[设置阈值信息]参数: {}'.format(args))
     qid = event.sender.user_id
@@ -66,6 +69,8 @@ async def open_switch_func(
     args: Tuple[Any, ...] = RegexGroup(),
     at: ImageAndAt = Depends(),
 ):
+    if not is_level_S(event):
+        return
     qid = event.sender.user_id
     if at:
         at = at.get_first_at()  # type: ignore

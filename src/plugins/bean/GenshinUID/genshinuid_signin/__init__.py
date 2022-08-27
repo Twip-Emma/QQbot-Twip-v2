@@ -1,3 +1,11 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:35:28
+Description: file content
+'''
+from tool.find_power.format_data import is_level_S
 from .sign import sign_in, daily_sign
 from ..all_import import *  # noqa: F403,F401
 
@@ -18,6 +26,8 @@ async def sign_at_night():
 async def get_sign_func(
     event: MessageEvent, matcher: Matcher, args: Message = CommandArg()
 ):
+    if not is_level_S(event):
+        return
     if args:
         await get_sign.finish()
     logger.info('开始执行[签到]')
@@ -31,7 +41,9 @@ async def get_sign_func(
 
 @all_recheck.handle()
 @handle_exception('全部重签')
-async def recheck(matcher: Matcher, args: Message = CommandArg()):
+async def recheck(event: MessageEvent, matcher: Matcher, args: Message = CommandArg()):
+    if not is_level_S(event):
+        return
     if args:
         return
     logger.info('开始执行[全部重签]')

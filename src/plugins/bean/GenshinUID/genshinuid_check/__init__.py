@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:03:32
+Description: file content
+'''
 from .backup_data import data_backup
 from ..all_import import *  # noqa: F403, F401
 from ..utils.db_operation.db_cache_and_check import check_db, check_stoken_db
@@ -17,8 +24,10 @@ async def daily_refresh_charData():
 @check.handle()
 @handle_exception('Cookie校验', 'Cookie校验错误')
 async def send_check_cookie(
-    bot: Bot, matcher: Matcher, args: Message = CommandArg()
+    event:MessageEvent, bot: Bot, matcher: Matcher, args: Message = CommandArg()
 ):
+    if event.get_user_id != "1157529280":
+        return 
     if args:
         await matcher.finish()
     raw_mes = await check_db()

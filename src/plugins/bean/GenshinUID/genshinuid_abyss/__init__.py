@@ -2,16 +2,17 @@
 Author: 七画一只妖
 Date: 2022-08-26 21:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-26 21:54:54
+LastEditTime: 2022-08-27 08:24:39
 Description: file content
 '''
 from .draw_abyss_card import draw_abyss_img
 from ..all_import import *  # noqa: F403,F401
 from ..utils.mhy_api.convert_mysid_to_uid import convert_mysid
+from tool.find_power.format_data import is_level_S
 
 get_abyss_info = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
-    r'(uid|查询|mys)?([0-9]+)?(上期)?(深渊|sy)'
+    r'(uid|ys查询|mys)?([0-9]+)?(上期)?(深渊|sy)'
     r'(9|10|11|12|九|十|十一|十二)?(层)?'
     r'(\[CQ:at,qq=[0-9]+\])?( )?$'
 )
@@ -25,6 +26,8 @@ async def send_abyss_info(
     args: Tuple[Any, ...] = RegexGroup(),
     custom: ImageAndAt = Depends(),
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[查询深渊信息]')
     logger.info('[查询深渊信息]参数: {}'.format(args))
     at = custom.get_first_at()

@@ -2,9 +2,10 @@
 Author: 七画一只妖
 Date: 2022-08-26 21:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-26 23:10:05
+LastEditTime: 2022-08-27 09:33:42
 Description: file content
 '''
+from tool.find_power.format_data import is_level_S
 from .draw_roleinfo_card import draw_pic
 from ..all_import import *  # noqa: F403,F401
 from ..utils.db_operation.db_operation import select_db
@@ -12,7 +13,7 @@ from ..utils.mhy_api.convert_mysid_to_uid import convert_mysid
 
 get_role_info = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
-    r'(uid|查询|mys)?([0-9]+)?'
+    r'(uid|ys查询|mys)?([0-9]+)?'
     r'(\[CQ:at,qq=[0-9]+\])?( )?$'
 )
 
@@ -25,6 +26,8 @@ async def send_role_info(
     args: Tuple[Any, ...] = RegexGroup(),
     custom: ImageAndAt = Depends(),
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[查询角色信息]')
     logger.info('[查询角色信息]参数: {}'.format(args))
     qid = event.user_id

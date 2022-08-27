@@ -1,3 +1,4 @@
+from tool.find_power.format_data import is_level_S
 from .notice import get_notice_list
 from .resin_text import get_resin_text
 from .draw_resin_card import get_resin_img
@@ -21,6 +22,8 @@ async def send_daily_info(
     custom: ImageAndAt = Depends(),
     args: Tuple[Any, ...] = CommandArg(),
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[每日信息文字版]')
     if args:
         return
@@ -80,6 +83,8 @@ async def send_uid_info(
     custom: ImageAndAt = Depends(),
     args: Tuple[Any, ...] = CommandArg(),
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[每日信息]')
     if args:
         return

@@ -1,3 +1,11 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:14:08
+Description: file content
+'''
+from tool.find_power.format_data import is_level_S
 from ..all_import import *  # noqa: F401, F403
 from .draw_event_img import IMG_PATH, save_draw_event_img
 
@@ -12,7 +20,9 @@ async def draw_event():
 
 @get_event.handle()
 @handle_exception('活动')
-async def send_events(matcher: Matcher, args: Message = CommandArg()):
+async def send_events(event:GroupMessageEvent, matcher: Matcher, args: Message = CommandArg()):
+    if not is_level_S(event):
+        return
     if args:
         return
     while True:

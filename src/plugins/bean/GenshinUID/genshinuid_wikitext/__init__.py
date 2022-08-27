@@ -8,15 +8,15 @@ from .get_wiki_text import (
     artifacts_wiki,
 )
 
-get_weapon = on_command('武器', priority=priority)
-get_char = on_command('角色', priority=priority)
-get_cost = on_command('材料', priority=priority)
-get_polar = on_command('命座', priority=priority)
-get_talents = on_command('天赋', priority=priority)
-get_enemies = on_command('原魔', priority=priority)
-get_audio = on_command('语音', priority=priority)
-get_artifacts = on_command('圣遗物', priority=priority)
-get_food = on_command('食物', priority=priority)
+get_weapon = on_command('武X器', priority=priority)
+get_char = on_command('角X色', priority=priority)
+get_cost = on_command('材X料', priority=priority)
+get_polar = on_command('命X座', priority=priority)
+get_talents = on_command('天X赋', priority=priority)
+get_enemies = on_command('原X魔', priority=priority)
+get_audio = on_command('语X音', priority=priority)
+get_artifacts = on_command('圣X遗X物', priority=priority)
+get_food = on_command('食X物', priority=priority)
 
 
 @get_audio.handle()

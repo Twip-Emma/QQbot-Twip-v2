@@ -2,9 +2,10 @@
 Author: 七画一只妖
 Date: 2022-08-26 21:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-26 23:18:05
+LastEditTime: 2022-08-27 09:36:32
 Description: file content
 '''
+from tool.find_power.format_data import is_level_S
 from ..all_import import *
 from .add_ck import deal_ck
 from .draw_user_card import get_user_card
@@ -19,6 +20,8 @@ bind = on_regex(r'^(绑定|切换|解绑|删除)(uid|UID|mys|MYS)([0-9]+)?$', pr
 async def send_bind_card(
     event: MessageEvent, matcher: Matcher, args: Message = CommandArg()
 ):
+    if not is_level_S(event):
+        return
     if args:
         return
     logger.info('开始执行[查询用户绑定状态]')
@@ -35,6 +38,8 @@ async def send_bind_card(
 async def send_add_ck_msg(
     event: MessageEvent, matcher: Matcher, args: Message = CommandArg()
 ):
+    if not is_level_S(event):
+        return
     mes = args.extract_plain_text().strip().replace(' ', '')
     # print(mes)
     # print(int(event.sender.user_id))
@@ -48,6 +53,8 @@ async def send_add_ck_msg(
 async def send_link_uid_msg(
     event: MessageEvent, matcher: Matcher, args: Tuple[Any, ...] = RegexGroup()
 ):
+    if not is_level_S(event):
+        return
     logger.info('开始执行[绑定/解绑用户信息]')
     logger.info('[绑定/解绑]参数: {}'.format(args))
     qid = event.sender.user_id

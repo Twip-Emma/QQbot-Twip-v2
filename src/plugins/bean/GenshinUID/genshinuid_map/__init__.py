@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:20:48
+Description: file content
+'''
 from typing import Dict
 
 from nonebot.params import RegexDict
@@ -6,6 +13,7 @@ from .create_genshinmap import create_genshin_map
 from .draw_genshinmap_card import draw_genshin_map
 from .genshinmap.models import MapID
 from ..all_import import *  # noqa
+from tool.find_power.format_data import is_level_S
 
 create_map = on_command('生成地图', block=True)
 change_map = on_command('切换地图', block=True)
@@ -34,6 +42,8 @@ async def send_change_map_msg(
         matcher: Matcher,
         args: Message = CommandArg(),
 ):
+    if not is_level_S(event):
+        return
     if args:
         return
     qid = event.sender.user_id
@@ -55,6 +65,8 @@ async def send_create_map_msg(
         matcher: Matcher,
         args: Message = CommandArg(),
 ):
+    if not is_level_S(event):
+        return
     if args:
         return
     qid = event.sender.user_id
@@ -70,9 +82,12 @@ async def send_create_map_msg(
 @find_map2.handle()
 @handle_exception('查找资源点')
 async def send_find_map_msg(
+    event:GroupMessageEvent, 
         matcher: Matcher,
         args: Dict[str, Any] = RegexDict()  # noqa
 ):
+    if not is_level_S(event):
+        return
     logger.info(f'[查找资源点]正在执行...当前地图为{MAP_ID_LIST[0].name}')
     logger.info('[查找资源点]参数: {}'.format(args))
 

@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:25:20
+Description: file content
+'''
 import threading
 
 from ..all_import import *  # noqa: F403, F401
@@ -15,6 +22,8 @@ async def send_download_resource_msg(
     matcher: Matcher,
     args: Message = CommandArg(),
 ):
+    if event.get_user_id != "1157529280":
+        return 
     if args:
         return
     qid = event.sender.user_id

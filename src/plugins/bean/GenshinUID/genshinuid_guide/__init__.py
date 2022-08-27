@@ -1,7 +1,16 @@
+'''
+Author: 七画一只妖
+Date: 2022-08-26 21:34:58
+LastEditors: 七画一只妖
+LastEditTime: 2022-08-27 09:17:09
+Description: file content
+'''
 from pathlib import Path
 from typing import Any, Tuple
 
 import httpx
+
+from tool.find_power.format_data import is_level_S
 
 from ..all_import import *
 from ..utils.alias.alias_to_char_name import alias_to_char_name
@@ -16,8 +25,10 @@ IMG_PATH = Path(__file__).parent / 'img'
 @get_guide_pic.handle()
 @handle_exception('建议')
 async def send_guide_pic(
-    matcher: Matcher, args: Tuple[Any, ...] = RegexGroup()
+    event:GroupMessageEvent, matcher: Matcher, args: Tuple[Any, ...] = RegexGroup()
 ):
+    if not is_level_S(event):
+        return
     name = await alias_to_char_name(str(args[0]))
     url = 'https://img.genshin.minigg.cn/guide/{}.jpg'.format(name)
     if httpx.head(url).status_code == 200:
@@ -29,7 +40,9 @@ async def send_guide_pic(
 
 @get_bluekun_pic.handle()
 @handle_exception('参考面板')
-async def send_bluekun_pic(matcher: Matcher, args: Message = CommandArg()):
+async def send_bluekun_pic(event:GroupMessageEvent, matcher: Matcher, args: Message = CommandArg()):
+    if not is_level_S(event):
+        return
     if str(args[0]) in ['冰', '水', '火', '草', '雷', '风', '岩']:
         name = str(args[0])
     else:
