@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-21 14:58:35
+LastEditTime: 2022-08-28 11:33:47
 Description: file content
 '''
 
@@ -13,7 +13,6 @@ import MySQLdb
 
 
 from tool.setting.database_setting import *
-from ..auto_database_connect import db
 
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler

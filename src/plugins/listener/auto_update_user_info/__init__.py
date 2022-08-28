@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:01
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-11 16:56:57
+LastEditTime: 2022-08-28 11:44:47
 Description: file content
 '''
 import re
@@ -23,7 +23,10 @@ async def _(bot: Bot, event: GroupMessageEvent):
     group_id = str(event.group_id)
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     # print(recall_user_info)
-    user_name = recall_user_info['nickname']
+    try:
+        user_name = recall_user_info['nickname']
+    except:
+        user_name = "不规范的值"
     # user_name = re.findall(r'[\u4e00-\u9fa5]', user_name) # 使用通配符只匹配汉字
     # user_name = "".join(user_name)
     start(user_name=user_name, user_id=user_id)

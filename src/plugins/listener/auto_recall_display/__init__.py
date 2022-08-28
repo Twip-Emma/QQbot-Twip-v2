@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-21 23:26:26
+LastEditTime: 2022-08-28 11:39:36
 Description: file content
 '''
 
@@ -40,6 +40,15 @@ async def _(bot: Bot,event: MessageEvent, e: GroupMessageEvent):
         x = str(re.sub(reg, '', text.upper()))
         id = event.get_user_id()
         url = ('https://gchat.qpic.cn/gchatpic_new/' + id + '/2640570090-2264725042-' + x.upper() + '/0?term=3')
+        #获取群名
+        group_list = await bot.get_group_info(group_id=group_id)
+        group_name = group_list['group_name']
+
+        recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
+        recall_user_name = recall_user_info['nickname']
+
+        msg = f"在群【{group_name}({group_id})】中的{recall_user_name}({user_id})这个人发了一闪照：{url}"
+        await bot.send_group_msg(group_id=DISPLAY, message=msg)
         await bot.send_group_msg(group_id=DISPLAY, message=(MessageSegment.image(url)))
     elif "CQ:forward" in message:
         #获取群名
