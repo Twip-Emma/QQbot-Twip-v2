@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:43:44
+LastEditTime: 2022-08-30 11:14:45
 Description: file content
 '''
 from .function_user import start
@@ -10,7 +10,7 @@ from .function_user import start
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 
-from tool.find_power.format_data import is_level_S
+from tool.find_power.format_data import is_level_A
 
 
 qy_sdorica_draw = on_command("起源十连", block=True, priority=2)
@@ -21,10 +21,8 @@ hp_sdorica_draw = on_command("群友十连", block=True, priority=2)
 
 
 @qy_sdorica_draw.handle()
-@is_level_S
+@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
-    if not is_level_S(event):
-        await qy_sdorica_draw.finish()
     user_id = str(event.user_id)
     re = start(user_id,"起源十连")
     if re:
@@ -38,10 +36,8 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @ss_sdorica_draw.handle()
-@is_level_S
+@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
-    if not is_level_S(event):
-        await ss_sdorica_draw.finish()
     user_id = str(event.user_id)
     re = start(user_id,"盛夏十连")
     if re:
@@ -55,10 +51,8 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @sd_sdorica_draw.handle()
-@is_level_S
+@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
-    if not is_level_S(event):
-        await sd_sdorica_draw.finish()
     user_id = str(event.user_id)
     re = start(user_id,"限定十连")
     if re:
@@ -72,10 +66,8 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @sf_sdorica_draw.handle()
-@is_level_S
+@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
-    if not is_level_S(event):
-        await sf_sdorica_draw.finish()
     user_id = str(event.user_id)
     re = start(user_id,"首发十连")
     if re:
@@ -89,10 +81,8 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @hp_sdorica_draw.handle()
-@is_level_S
+@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
-    if not is_level_S(event):
-        await hp_sdorica_draw.finish()
     user_id = str(event.user_id)
     re = start(user_id,"群友十连")
     if re:
