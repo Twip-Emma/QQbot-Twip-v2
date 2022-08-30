@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-20 14:16:15
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 16:31:19
+LastEditTime: 2022-08-30 13:04:09
 Description: file content
 '''
 import copy
@@ -43,11 +43,11 @@ async def get_result() -> list:
     my_list = []
     while(i<10):
         flag = random.randint(1,1000)
-        if flag <= 200:
+        if flag <= 400:
             item = random.choices(update_pool_5x)
-        elif flag <= 400:
-            item = random.choices(weap_pool_5x)
         elif flag <= 600:
+            item = random.choices(weap_pool_5x)
+        elif flag <= 700:
             item = random.choices(update_pool_4x)
         elif flag <= 800:
             item = random.choices(weap_pool_4x)
