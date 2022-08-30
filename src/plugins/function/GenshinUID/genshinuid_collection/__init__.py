@@ -1,16 +1,31 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:42
+Date: 2022-08-30 21:55:34
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:12:29
+LastEditTime: 2022-08-30 22:01:11
 Description: file content
 '''
-from ..all_import import *  # noqa: F403,F401
+from typing import Any, Tuple, Union
+
+from nonebot import on_regex
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot.params import Depends, RegexGroup
+from nonebot.adapters.onebot.v11 import (
+    MessageSegment,
+    GroupMessageEvent,
+    PrivateMessageEvent,
+)
+
+from tool.find_power.format_data import is_level_S
+
+from ..genshinuid_meta import register_menu
+from ..utils.message.error_reply import UID_HINT
 from .draw_collection_card import draw_collection_img
 from ..utils.db_operation.db_operation import select_db
 from ..utils.message.get_image_and_at import ImageAndAt
-from ..utils.message.error_reply import *  # noqa: F403,F401
 from ..utils.mhy_api.convert_mysid_to_uid import convert_mysid
+from ..utils.exception.handle_exception import handle_exception
 
 get_collection_info = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
@@ -23,6 +38,27 @@ get_collection_info = on_regex(
 
 @get_collection_info.handle()
 @handle_exception('查询收集信息')
+@register_menu(
+    '查询收集信息',
+    '查询(@某人)收集',
+    '查询你的或者指定人的宝箱收集度',
+    detail_des=(
+        '指令：'
+        '<ft color=(238,120,0)>[查询</ft>'
+        '<ft color=(125,125,125)>(@某人)</ft>'
+        '<ft color=(238,120,0)>/uidxxx/mysxxx]</ft>'
+        '<ft color=(238,120,0)>[收集/宝箱/sj/bx]</ft>\n'
+        ' \n'
+        '可以用来查看你的或者指定人的宝箱收集度\n'
+        '可以在命令文本后带一张图以自定义背景图\n'
+        ' \n'
+        '示例：\n'
+        '<ft color=(238,120,0)>查询收集</ft>；\n'
+        '<ft color=(238,120,0)>uid123456789宝箱</ft>；\n'
+        '<ft color=(238,120,0)>查询</ft><ft color=(0,148,200)>@无疑Wuyi'
+        '</ft> <ft color=(238,120,0)>bx</ft>'
+    ),
+)
 @is_level_S
 async def send_collection_info(
     event: Union[GroupMessageEvent, PrivateMessageEvent],

@@ -1,12 +1,23 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:43
+Date: 2022-08-30 21:55:35
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:18:32
+LastEditTime: 2022-08-30 22:10:50
 Description: file content
 '''
+from typing import Union
+from nonebot import on_command
+from nonebot.matcher import Matcher
+from nonebot.params import CommandArg
+from nonebot.adapters.onebot.v11 import Message, MessageEvent, GroupMessageEvent, PrivateMessageEvent
+
+from tool.find_power.format_data import is_level_S
+
 from .note_text import award
-from ..all_import import *  # noqa
+from ..config import priority
+from ..utils.db_operation.db_operation import select_db
+from ..utils.message.error_reply import CK_HINT, UID_HINT
+from ..utils.exception.handle_exception import handle_exception
 
 monthly_data = on_command('每月统计', priority=priority)
 # get_genshin_info = on_command('当前信息', priority=priority)
@@ -17,7 +28,7 @@ monthly_data = on_command('每月统计', priority=priority)
 @handle_exception('每月统计', '获取/发送每月统计失败', '@未找到绑定信息\n' + CK_HINT)
 @is_level_S
 async def send_monthly_data(
-    event: MessageEvent, matcher: Matcher, args: Message = CommandArg()
+    event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()
 ):
     if args:
         await monthly_data.finish()

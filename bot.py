@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-30 12:57:11
+LastEditTime: 2022-08-30 22:16:10
 Description: file content
 '''
 import nonebot
@@ -28,7 +28,7 @@ nonebot.init(apscheduler_config={
 # nonebot.load_plugins("src/plugins/admin")
 nonebot.load_plugins("src/plugins/function")
 # nonebot.load_plugins("src/plugins/user")
-# nonebot.load_plugins("src/plugins/listener")
+nonebot.load_plugins("src/plugins/listener")
 # nonebot.load_plugins("src/plugins/speaker")
 # nonebot.load_plugins("src/plugins/help")
 

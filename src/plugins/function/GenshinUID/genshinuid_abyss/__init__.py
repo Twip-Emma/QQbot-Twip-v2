@@ -1,14 +1,23 @@
-'''
-Author: 七画一只妖
-Date: 2022-08-28 09:24:42
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:13:02
-Description: file content
-'''
-from ..genshinuid_metameta import register_menu
+from typing import Any, Tuple, Union
+
+from nonebot.matcher import Matcher
+from nonebot import logger, on_regex
+from nonebot.params import Depends, RegexGroup
+from nonebot.adapters.onebot.v11 import (
+    MessageSegment,
+    GroupMessageEvent,
+    PrivateMessageEvent,
+)
+
+from ..genshinuid_meta import register_menu
 from .draw_abyss_card import draw_abyss_img
-from ..all_import import *  # noqa: F403,F401
+from ..utils.message.error_reply import UID_HINT
+from ..utils.db_operation.db_operation import select_db
+from ..utils.message.get_image_and_at import ImageAndAt
 from ..utils.mhy_api.convert_mysid_to_uid import convert_mysid
+from ..utils.exception.handle_exception import handle_exception
+
+from tool.find_power.format_data import is_level_S
 
 get_abyss_info = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
@@ -40,7 +49,8 @@ get_abyss_info = on_regex(
         '示例：\n'
         '<ft color=(238,120,0)>查询深渊</ft>；\n'
         '<ft color=(238,120,0)>uid123456789上期深渊</ft>；\n'
-        '<ft color=(238,120,0)>查询@无疑Wuyi 上期深渊12层</ft>'
+        '<ft color=(238,120,0)>查询</ft><ft color=(0,148,200)>@无疑Wuyi</ft> '
+        '<ft color=(238,120,0)>上期深渊12层</ft>'
     ),
 )
 @is_level_S
@@ -51,37 +61,23 @@ async def send_abyss_info(
     custom: ImageAndAt = Depends(),
 ):
     logger.info('开始执行[查询深渊信息]')
-    logger.info('[查询深渊信息]参数: {}'.format(args))
+    logger.info(f'[查询深渊信息]参数: {args}')
     at = custom.get_first_at()
-    if at:
-        qid = at
-    else:
-        qid = event.user_id
-
-    # 判断uid
-    if args[2] != 'mys':
-        if args[3] is None:
-            uid = await select_db(qid, mode='uid')
-            uid = str(uid)
-        elif len(args[3]) != 9:
-            return
-        else:
-            uid = args[3]
-    else:
+    qid = at or event.user_id
+    if args[2] == 'mys':
         uid = await convert_mysid(args[3])
-
-    logger.info('[查询深渊信息]uid: {}'.format(uid))
-
+    elif args[3] is None:
+        uid = await select_db(qid, mode='uid')
+        uid = str(uid)
+    elif len(args[3]) != 9:
+        return
+    else:
+        uid = args[3]
+    logger.info(f'[查询深渊信息]uid: {uid}')
     if '未找到绑定的UID' in uid:
         await matcher.finish(UID_HINT)
-
-    # 判断深渊期数
-    if args[4] is None:
-        schedule_type = '1'
-    else:
-        schedule_type = '2'
-    logger.info('[查询深渊信息]深渊期数: {}'.format(schedule_type))
-
+    schedule_type = '1' if args[4] is None else '2'
+    logger.info(f'[查询深渊信息]深渊期数: {schedule_type}')
     if args[6] in ['九', '十', '十一', '十二']:
         floor = (
             args[6]
@@ -90,12 +86,12 @@ async def send_abyss_info(
             .replace('十二', '12')
             .replace('十', '10')
         )
+
     else:
         floor = args[6]
     if floor is not None:
         floor = int(floor)
-    logger.info('[查询深渊信息]深渊层数: {}'.format(floor))
-
+    logger.info(f'[查询深渊信息]深渊层数: {floor}')
     im = await draw_abyss_img(uid, floor, schedule_type)
     if isinstance(im, str):
         await matcher.finish(im)

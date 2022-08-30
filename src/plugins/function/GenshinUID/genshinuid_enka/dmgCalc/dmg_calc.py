@@ -47,12 +47,12 @@ async def draw_dmgCacl_img(raw_data: dict) -> Tuple[Image.Image, int]:
     weaponAffix = raw_data['weaponInfo']['weaponAffix']
 
     skillList = raw_data['avatarSkill']
-    a_skill_name = skillList[0]['skillName'].replace('普通攻击·', '')
+    # a_skill_name = skillList[0]['skillName'].replace('普通攻击·', '')
     prop = {}
     prop['A_skill_level'] = skillList[0]['skillLevel']
-    e_skill_name = skillList[1]['skillName']
+    # e_skill_name = skillList[1]['skillName']
     prop['E_skill_level'] = skillList[1]['skillLevel']
-    q_skill_name = skillList[-1]['skillName']
+    # q_skill_name = skillList[-1]['skillName']
     prop['Q_skill_level'] = skillList[-1]['skillLevel']
 
     enemy_level = char_level
@@ -200,7 +200,7 @@ async def draw_dmgCacl_img(raw_data: dict) -> Tuple[Image.Image, int]:
             first_artifact = equipSets['set'][-3:]
         else:
             first_artifact = equipSets['set'][-2:]
-        second_artifact = equipSets['set'][:2]
+        # second_artifact = equipSets['set'][:2]
         temp = []
         temp_number = 0
         for artifacts_single_effect in artifacts_effect_map:
@@ -287,7 +287,11 @@ async def draw_dmgCacl_img(raw_data: dict) -> Tuple[Image.Image, int]:
                 .split('+')[1]
             )
             all_effect.append(
-                f'Q一段伤害:attack+{60*extra_value2};Q重击伤害:attack+{60*extra_value2};Q高空下落伤害:attack+{60*extra_value2}'
+                (
+                    f'Q一段伤害:attack+{60*extra_value2};'
+                    f'Q重击伤害:attack+{60*extra_value2};'
+                    f'Q高空下落伤害:attack+{60*extra_value2}'
+                )
             )
             extra_effect = {'Q梦想一刀基础伤害(满愿力)': extra_value}
         del power_list['extra']
@@ -369,6 +373,8 @@ async def draw_dmgCacl_img(raw_data: dict) -> Tuple[Image.Image, int]:
                         float(effect_value_base_on_value)
                         * prop[effect_value_base_on_attr]
                     )
+                    if effect_attr in ['dmgBonus', 'critDmg', 'critrate']:
+                        effect_value = float(effect_value / 100)
                 base_check = False
 
             # 如果要增加的属性不是em元素精通,那么都要除于100
@@ -383,7 +389,6 @@ async def draw_dmgCacl_img(raw_data: dict) -> Tuple[Image.Image, int]:
             # 元素精通则为正常值
             else:
                 effect_value = float(effect_value)
-
             # 如果效果有限制条件
             if effect_limit:
                 # 如果限制条件为中文,则为特殊label才生效

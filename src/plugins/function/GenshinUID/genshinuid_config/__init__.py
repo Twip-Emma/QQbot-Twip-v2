@@ -1,8 +1,23 @@
-from ..all_import import *  # noqa: F403, F401
+from typing import Any, Tuple, Union
+
+from nonebot import on_regex
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot.permission import SUPERUSER
+from nonebot.params import Depends, RegexGroup
+from nonebot.adapters.onebot.v11 import (
+    Bot,
+    GroupMessageEvent,
+    PrivateMessageEvent,
+)
+
+from tool.find_power.format_data import is_level_S
+
+from ..utils.message.error_reply import UID_HINT
 from ..utils.db_operation.db_operation import select_db
 from ..utils.message.get_image_and_at import ImageAndAt
 from .set_config import set_push_value, set_config_func
-from ..utils.message.error_reply import *  # noqa: F403,F401
+from ..utils.exception.handle_exception import handle_exception
 
 open_and_close_switch = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'
@@ -21,6 +36,7 @@ push_config = on_regex(
 @handle_exception('设置推送服务')
 @is_level_S
 async def send_config_msg(
+    bot: Bot,
     event: Union[GroupMessageEvent, PrivateMessageEvent],
     matcher: Matcher,
     args: Tuple[Any, ...] = RegexGroup(),
@@ -30,12 +46,8 @@ async def send_config_msg(
     logger.info('[设置阈值信息]参数: {}'.format(args))
     qid = event.sender.user_id
     at = custom.get_first_at()
-    if qid in SUPERUSERS:
-        is_admin = True
-    else:
-        is_admin = False
 
-    if at and is_admin:
+    if at and await SUPERUSER(bot, event):
         qid = at
     elif at and at != qid:
         await matcher.finish('你没有权限操作别人的状态噢~', at_sender=True)
@@ -63,6 +75,7 @@ async def send_config_msg(
 @open_and_close_switch.handle()
 @is_level_S
 async def open_switch_func(
+    bot: Bot,
     event: Union[GroupMessageEvent, PrivateMessageEvent],
     matcher: Matcher,
     args: Tuple[Any, ...] = RegexGroup(),
@@ -86,12 +99,7 @@ async def open_switch_func(
     else:
         query = 'CLOSED'
         gid = 'off'
-
-    if qid in SUPERUSERS:
-        is_admin = True
-    else:
-        is_admin = False
-
+    is_admin = await SUPERUSER(bot, event)
     if at and is_admin:
         qid = at
     elif at and at != qid:

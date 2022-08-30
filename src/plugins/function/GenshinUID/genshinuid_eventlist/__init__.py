@@ -1,12 +1,22 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:43
+Date: 2022-08-30 21:55:35
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:16:43
+LastEditTime: 2022-08-30 22:05:38
 Description: file content
 '''
-from ..all_import import *  # noqa: F401, F403
+from typing import Union
+from nonebot.matcher import Matcher
+from nonebot.params import CommandArg
+from nonebot import require, on_command
+from nonebot.adapters.onebot.v11 import Message, MessageSegment, GroupMessageEvent, PrivateMessageEvent
+
+from tool.find_power.format_data import is_level_S
+
+from ..config import priority
+from ..genshinuid_meta import register_menu
 from .draw_event_img import IMG_PATH, save_draw_event_img
+from ..utils.exception.handle_exception import handle_exception
 
 get_event = on_command('活动列表', priority=priority)
 scheduler = require('nonebot_plugin_apscheduler').scheduler
@@ -19,8 +29,14 @@ async def draw_event():
 
 @get_event.handle()
 @handle_exception('活动')
+@register_menu(
+    '活动列表',
+    '活动列表',
+    '查询当前版本活动日程表',
+    detail_des=('指令：' '<ft color=(238,120,0)>活动列表</ft>\n' ' \n' '查询当前版本活动日程表'),
+)
 @is_level_S
-async def send_events(event: Union[GroupMessageEvent, PrivateMessageEvent],matcher: Matcher, args: Message = CommandArg()):
+async def send_events(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
     if args:
         return
     while True:

@@ -1,18 +1,27 @@
-'''
-Author: 七画一只妖
-Date: 2022-08-28 09:24:43
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-29 10:17:53
-Description: file content
-'''
-from ..all_import import *
+from typing import Any, Tuple
+
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot import on_regex, on_command
+from nonebot.params import CommandArg, RegexGroup
+from nonebot.adapters.onebot.v11 import (
+    PRIVATE_FRIEND,
+    Message,
+    MessageEvent,
+    MessageSegment,
+)
+
 from .add_ck import deal_ck
+from ..config import priority
 from .draw_user_card import get_user_card
+from ..utils.exception.handle_exception import handle_exception
 from ..utils.db_operation.db_operation import bind_db, delete_db, switch_db
 
-add_cookie = on_command('添加', permission=PRIVATE_FRIEND, priority=1, block=True)
-bind_info = on_command('绑定信息', priority=2, block=True)
-bind = on_regex(r'^(绑定|切换|解绑|删除)(uid|UID|mys|MYS)([0-9]+)?$', priority=2)
+add_cookie = on_command('添加', permission=PRIVATE_FRIEND)
+bind_info = on_command('绑定信息', priority=priority, block=True)
+bind = on_regex(
+    r'^(绑定|切换|解绑|删除)(uid|UID|mys|MYS)([0-9]+)?$', priority=priority
+)
 
 
 @bind_info.handle()

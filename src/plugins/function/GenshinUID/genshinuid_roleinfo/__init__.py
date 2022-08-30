@@ -1,14 +1,30 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:43
+Date: 2022-08-30 21:55:35
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:24:48
+LastEditTime: 2022-08-30 22:14:12
 Description: file content
 '''
+from typing import Any, Tuple, Union
+
+from nonebot import on_regex
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot.params import Depends, RegexGroup
+from nonebot.adapters.onebot.v11 import (
+    MessageSegment,
+    GroupMessageEvent,
+    PrivateMessageEvent,
+)
+
+from tool.find_power.format_data import is_level_S
+
 from .draw_roleinfo_card import draw_pic
-from ..all_import import *  # noqa: F403,F401
+from ..utils.message.error_reply import UID_HINT
 from ..utils.db_operation.db_operation import select_db
+from ..utils.message.get_image_and_at import ImageAndAt
 from ..utils.mhy_api.convert_mysid_to_uid import convert_mysid
+from ..utils.exception.handle_exception import handle_exception
 
 get_role_info = on_regex(
     r'^(\[CQ:at,qq=[0-9]+\])?( )?'

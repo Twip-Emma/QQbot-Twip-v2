@@ -1,12 +1,26 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:43
+Date: 2022-08-30 21:55:35
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:18:25
+LastEditTime: 2022-08-30 22:09:54
 Description: file content
 '''
-from ..all_import import *  # noqa: F403,F401
+import random
+import asyncio
+from typing import Union
+
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot.params import CommandArg
+from nonebot.permission import SUPERUSER
+from nonebot import get_bot, require, on_command
+from nonebot.adapters.onebot.v11 import Message, MessageEvent, GroupMessageEvent, PrivateMessageEvent
+
+from tool.find_power.format_data import is_level_S
+
+from ..config import SUPERUSERS, priority
 from ..utils.db_operation.db_operation import config_check
+from ..utils.exception.handle_exception import handle_exception
 from .daily_mihoyo_bbs_coin import mihoyo_coin, all_daily_mihoyo_bbs_coin
 
 bbscoin_scheduler = require('nonebot_plugin_apscheduler').scheduler
@@ -22,7 +36,7 @@ all_bbscoin_recheck = on_command(
 @handle_exception('获取米游币')
 @is_level_S
 async def send_mihoyo_coin(
-    event: MessageEvent, matcher: Matcher, args: Message = CommandArg()
+    event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()
 ):
     if args:
         return
@@ -35,7 +49,7 @@ async def send_mihoyo_coin(
 @all_bbscoin_recheck.handle()
 @handle_exception('米游币全部重获取')
 @is_level_S
-async def bbs_recheck(matcher: Matcher, args: Message = CommandArg()):
+async def bbs_recheck(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
     if args:
         return
     await matcher.send('已开始执行!可能需要较久时间!')

@@ -1,4 +1,21 @@
-from ..all_import import *  # noqa: F401, F403
+import re
+from typing import Union
+
+from nonebot import on_command
+from nonebot.matcher import Matcher
+from nonebot.params import CommandArg
+from nonebot.adapters.onebot.v11 import (
+    Bot,
+    Message,
+    MessageSegment,
+    GroupMessageEvent,
+    PrivateMessageEvent
+)
+
+from tool.find_power.format_data import is_level_S
+
+from ..config import priority
+from ..utils.exception.handle_exception import handle_exception
 from .get_wiki_text import (
     char_wiki,
     audio_wiki,
@@ -22,7 +39,7 @@ get_food = on_command('食物', priority=priority)
 @get_audio.handle()
 @handle_exception('语音', '语音发送失败，可能是FFmpeg环境未配置。')
 @is_level_S
-async def send_audio(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_audio(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     name = ''.join(re.findall('[\u4e00-\u9fa5]', message))
     im = await audio_wiki(name, message)
@@ -38,7 +55,7 @@ async def send_audio(event: Union[GroupMessageEvent, PrivateMessageEvent], match
 @get_enemies.handle()
 @handle_exception('怪物')
 @is_level_S
-async def send_enemies(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_enemies(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     im = await enemies_wiki(message)
     await matcher.finish(im)
@@ -47,7 +64,7 @@ async def send_enemies(event: Union[GroupMessageEvent, PrivateMessageEvent], mat
 @get_food.handle()
 @handle_exception('食物')
 @is_level_S
-async def send_food(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_food(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     im = await foods_wiki(message)
     await matcher.finish(im)
@@ -56,7 +73,7 @@ async def send_food(event: Union[GroupMessageEvent, PrivateMessageEvent], matche
 @get_artifacts.handle()
 @handle_exception('圣遗物')
 @is_level_S
-async def send_artifacts(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_artifacts(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     im = await artifacts_wiki(message)
     await matcher.finish(im)
@@ -65,7 +82,7 @@ async def send_artifacts(event: Union[GroupMessageEvent, PrivateMessageEvent], m
 @get_weapon.handle()
 @handle_exception('武器')
 @is_level_S
-async def send_weapon(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_weapon(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     name = ''.join(re.findall('[\u4e00-\u9fa5]', message))
     level = re.findall(r'\d+', message)
@@ -81,7 +98,7 @@ async def send_weapon(event: Union[GroupMessageEvent, PrivateMessageEvent], matc
 @is_level_S
 async def send_talents(
     bot: Bot,
-    event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher,
+    event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher,
     args: Message = CommandArg(),
 ):
     message = args.extract_plain_text().strip().replace(' ', '')
@@ -103,7 +120,7 @@ async def send_talents(
 @get_char.handle()
 @handle_exception('角色')
 @is_level_S
-async def send_char(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_char(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     name = ''.join(re.findall('[\u4e00-\u9fa5]', message))
     level = re.findall(r'\d+', message)
@@ -117,7 +134,7 @@ async def send_char(event: Union[GroupMessageEvent, PrivateMessageEvent], matche
 @get_cost.handle()
 @handle_exception('材料')
 @is_level_S
-async def send_cost(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_cost(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     im = await char_wiki(message, 'costs')
     await matcher.finish(im)
@@ -126,7 +143,7 @@ async def send_cost(event: Union[GroupMessageEvent, PrivateMessageEvent], matche
 @get_polar.handle()
 @handle_exception('命座')
 @is_level_S
-async def send_polar(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
+async def send_polar(event: Union[GroupMessageEvent, PrivateMessageEvent] ,matcher: Matcher, args: Message = CommandArg()):
     message = args.extract_plain_text().strip().replace(' ', '')
     num = int(re.findall(r'\d+', message)[0])  # str
     m = ''.join(re.findall('[\u4e00-\u9fa5]', message))

@@ -17,6 +17,8 @@ async def deal_ck(mes, qid):
     else:
         return '该用户没有绑定过UID噢~'
     im_list = []
+    is_add_stoken = False
+    app_cookie, stoken = '', ''
     if 'login_ticket' in simp_dict:
         # 寻找stoken
         login_ticket = simp_dict['login_ticket'].value
@@ -33,18 +35,20 @@ async def deal_ck(mes, qid):
         )
         stoken = stoken_data['data']['list'][0]['token']
         app_cookie = f'stuid={account_id};stoken={stoken}'
-        await stoken_db(app_cookie, uid)
-        im_list.append(f'添加Stoken成功，stuid={account_id}，stoken={stoken}')
         cookie_token_data = await get_cookie_token_by_stoken(
             stoken, account_id
         )
         cookie_token = cookie_token_data['data']['cookie_token']
+        is_add_stoken = True
     elif 'cookie_token' in simp_dict:
         # 寻找uid
         account_id = simp_dict['account_id'].value
         cookie_token = simp_dict['cookie_token'].value
     else:
-        return '添加Cookies失败!Cookies中应该包含cookie_token或者login_ticket相关信息！\n可以尝试退出米游社登陆重新登陆获取！'
+        return (
+            '添加Cookies失败!Cookies中应该包含cookie_token或者login_ticket相关信息！'
+            '\n可以尝试退出米游社登陆重新登陆获取！'
+        )
     account_cookie = f'account_id={account_id};cookie_token={cookie_token}'
     mys_data = await get_mihoyo_bbs_info(account_id, account_cookie)
     # 剔除除了原神之外的其他游戏
@@ -56,6 +60,9 @@ async def deal_ck(mes, qid):
         return f'你的米游社账号{account_id}尚未绑定原神账号，请前往米游社操作！'
     await refresh_ck(uid, account_id)
     await cookies_db(uid, account_cookie, qid)
+    if is_add_stoken:
+        await stoken_db(app_cookie, uid)
+        im_list.append(f'添加Stoken成功，stuid={account_id}，stoken={stoken}')
     im_list.append(
         f'添加Cookies成功，account_id={account_id}，cookie_token={cookie_token}'
     )
@@ -63,7 +70,10 @@ async def deal_ck(mes, qid):
         'Cookies和Stoken属于个人重要信息，如果你是在不知情的情况下添加，请马上修改米游社账户密码，保护个人隐私！'
     )
     im_list.append(
-        f'如果需要【gs开启自动签到】和【gs开启推送】还需要在【群聊中】使用命令“绑定uid”绑定你的uid。\n例如：绑定uid123456789。'
+        (
+            '如果需要【gs开启自动签到】和【gs开启推送】还需要在【群聊中】使用命令“绑定uid”绑定你的uid。'
+            '\n例如：绑定uid123456789。'
+        )
     )
-    im_list.append(f'你可以使用命令【绑定信息】检查你的账号绑定情况！')
+    im_list.append('你可以使用命令【绑定信息】检查你的账号绑定情况！')
     return '\n'.join(im_list)

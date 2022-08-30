@@ -1,16 +1,23 @@
 '''
 Author: 七画一只妖
-Date: 2022-08-28 09:24:43
+Date: 2022-08-30 21:55:35
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:17:15
+LastEditTime: 2022-08-30 22:06:19
 Description: file content
 '''
 from pathlib import Path
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 
 import httpx
+from nonebot.log import logger
+from nonebot.matcher import Matcher
+from nonebot import on_regex, on_command
+from nonebot.params import CommandArg, RegexGroup
+from nonebot.adapters.onebot.v11 import Message, MessageSegment, GroupMessageEvent, PrivateMessageEvent
 
-from ..all_import import *
+from tool.find_power.format_data import is_level_S
+
+from ..genshinuid_meta import register_menu
 from ..utils.alias.alias_to_char_name import alias_to_char_name
 from ..utils.exception.handle_exception import handle_exception
 
@@ -22,6 +29,22 @@ IMG_PATH = Path(__file__).parent / 'img'
 
 @get_guide_pic.handle()
 @handle_exception('建议')
+@register_menu(
+    '角色攻略',
+    'xx攻略',
+    '发送一张对应角色的西风驿站攻略图',
+    detail_des=(
+        '指令：'
+        '<ft color=(238,120,0)>角色名[推荐/攻略]</ft>\n'
+        ' \n'
+        '发送一张对应角色的米游社西风驿站攻略图\n'
+        '支持部分角色别名\n'
+        ' \n'
+        '示例：\n'
+        '<ft color=(238,120,0)>钟离推荐</ft>；\n'
+        '<ft color=(238,120,0)>公子攻略</ft>'
+    ),
+)
 @is_level_S
 async def send_guide_pic(
     event: Union[GroupMessageEvent, PrivateMessageEvent],
@@ -38,8 +61,24 @@ async def send_guide_pic(
 
 @get_bluekun_pic.handle()
 @handle_exception('参考面板')
+@register_menu(
+    '参考面板',
+    '参考面板[角色名/元素名]',
+    '发送一张对应角色/元素的参考面板图',
+    detail_des=(
+        '指令：'
+        '<ft color=(238,120,0)>参考面板[角色名/元素名]</ft>\n'
+        ' \n'
+        '发送一张对应角色/元素的参考面板图\n'
+        '支持部分角色别名\n'
+        ' \n'
+        '示例：\n'
+        '<ft color=(238,120,0)>参考面板火</ft>；\n'
+        '<ft color=(238,120,0)>参考面板公子</ft>'
+    ),
+)
 @is_level_S
-async def send_bluekun_pic(event: Union[GroupMessageEvent, PrivateMessageEvent],matcher: Matcher, args: Message = CommandArg()):
+async def send_bluekun_pic(event: Union[GroupMessageEvent, PrivateMessageEvent], matcher: Matcher, args: Message = CommandArg()):
     if str(args[0]) in ['冰', '水', '火', '草', '雷', '风', '岩']:
         name = str(args[0])
     else:
