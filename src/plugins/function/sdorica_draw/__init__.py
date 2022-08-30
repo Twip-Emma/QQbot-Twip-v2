@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖
-LastEditTime: 2022-06-13 08:52:02
+LastEditTime: 2022-08-28 22:43:44
 Description: file content
 '''
 from .function_user import start
@@ -13,14 +13,15 @@ from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from tool.find_power.format_data import is_level_S
 
 
-qy_sdorica_draw = on_command("起源十连")
-ss_sdorica_draw = on_command("盛夏十连")
-sd_sdorica_draw = on_command("限定十连")
-sf_sdorica_draw = on_command("首发十连")
-hp_sdorica_draw = on_command("群友十连")
+qy_sdorica_draw = on_command("起源十连", block=True, priority=2)
+ss_sdorica_draw = on_command("盛夏十连", block=True, priority=2)
+sd_sdorica_draw = on_command("限定十连", block=True, priority=2)
+sf_sdorica_draw = on_command("首发十连", block=True, priority=2)
+hp_sdorica_draw = on_command("群友十连", block=True, priority=2)
 
 
 @qy_sdorica_draw.handle()
+@is_level_S
 async def _(bot:Bot,event: GroupMessageEvent):
     if not is_level_S(event):
         await qy_sdorica_draw.finish()
@@ -37,6 +38,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @ss_sdorica_draw.handle()
+@is_level_S
 async def _(bot:Bot,event: GroupMessageEvent):
     if not is_level_S(event):
         await ss_sdorica_draw.finish()
@@ -53,6 +55,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @sd_sdorica_draw.handle()
+@is_level_S
 async def _(bot:Bot,event: GroupMessageEvent):
     if not is_level_S(event):
         await sd_sdorica_draw.finish()
@@ -69,6 +72,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @sf_sdorica_draw.handle()
+@is_level_S
 async def _(bot:Bot,event: GroupMessageEvent):
     if not is_level_S(event):
         await sf_sdorica_draw.finish()
@@ -85,6 +89,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 
 @hp_sdorica_draw.handle()
+@is_level_S
 async def _(bot:Bot,event: GroupMessageEvent):
     if not is_level_S(event):
         await hp_sdorica_draw.finish()

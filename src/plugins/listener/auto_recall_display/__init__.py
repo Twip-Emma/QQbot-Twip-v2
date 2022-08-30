@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 11:39:36
+LastEditTime: 2022-08-30 11:02:04
 Description: file content
 '''
 
@@ -23,7 +23,7 @@ import requests
 DISPLAY = "274733672"
 
 # 注册消息响应器
-message_handle = on_message()
+message_handle = on_message(block=False, priority=1)
 
 
 @message_handle.handle()

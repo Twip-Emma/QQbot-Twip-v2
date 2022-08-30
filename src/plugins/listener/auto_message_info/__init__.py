@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-23 13:17:33
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 11:37:10
+LastEditTime: 2022-08-30 11:02:00
 Description: file content
 '''
 from nonebot import on_message
@@ -11,7 +11,7 @@ from .db import insert_into_sql
 
 
 # 注册消息响应器
-message_handle = on_message()
+message_handle = on_message(block=False, priority=1)
 
 
 # 记录每条发言

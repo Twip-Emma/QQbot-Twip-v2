@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:01
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 11:44:47
+LastEditTime: 2022-08-30 11:02:09
 Description: file content
 '''
 import re
@@ -14,7 +14,7 @@ from .database import start
 
 
 # 注册消息响应器
-message_handle = on_message()
+message_handle = on_message(block=False, priority=1)
 
 
 @message_handle.handle()

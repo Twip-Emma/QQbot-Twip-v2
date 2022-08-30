@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-20 14:03:39
 LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 16:52:18
+LastEditTime: 2022-08-28 22:44:55
 Description: file content
 '''
 
@@ -17,13 +17,12 @@ from .user_function import chouka_start
 from .database import chack_user_gacha
 
 
-ys_get_10 = on_command("原神十连")
+ys_get_10 = on_command("原神十连", block=True, priority=2)
 
 
 @ys_get_10.handle()
+@is_level_S
 async def _(bot: Bot, event: GroupMessageEvent):
-    if not is_level_S(event):
-        await ys_get_10.finish()
     user_id = str(event.user_id)
     group_id = str(event.group_id)
     # 获取用户昵称
