@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-12-05 18:58:57
 LastEditors: 七画一只妖
-LastEditTime: 2022-07-26 13:11:24
+LastEditTime: 2022-09-01 09:51:55
 Description: file content
 '''
 import datetime
@@ -31,7 +31,7 @@ def change_sign_info(user_id: str, info: str) -> None:
     db = sqlite3.connect(KEY_DB_PATH)
     cursor = db.cursor()
     sql = "UPDATE user_sign_info SET sign_time='" + \
-        now_time + "' and info='" + info + "'WHERE user_id='" + user_id + "';"
+        now_time + "' , info='" + info + "'WHERE user_id='" + user_id + "';"
     cursor.execute(sql)
     db.commit()
     db.close()
