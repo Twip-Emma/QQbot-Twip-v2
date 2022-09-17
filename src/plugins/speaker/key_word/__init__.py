@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:37:39
+LastEditTime: 2022-09-17 12:42:29
 Description: file content
 '''
 # 提交测试
@@ -29,7 +29,7 @@ ENVE_PATH = f"{THIS_PATH}\\erciyuan.json"
 
 # 注册消息响应器
 # 不允许向下传递，较低优先级
-message_handle = on_message(rule=to_me(), block=True, priority=10)
+message_handle = on_message(rule=to_me(), block=False, priority=10)
 
 
 @message_handle.handle()

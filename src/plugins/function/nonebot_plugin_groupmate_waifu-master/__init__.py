@@ -9,7 +9,7 @@ from nonebot.adapters.onebot.v11 import (
 
 import os
 import random
-
+from nonebot.plugin import PluginMetadata
 try:
     import ujson as json
 except ModuleNotFoundError:
@@ -19,13 +19,25 @@ from .utils import *
 
 from tool.find_power.format_data import is_level_S
 
+__plugin_meta__ = PluginMetadata(
+    name="与群友击剑",
+    description="娶群友透群友相关操作",
+    usage="触发方式：娶群友、透群友、查看群友卡池、涩涩记录",
+)
+
+
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
 # 娶群友
 
 record_waifu = {}
 
-waifu = on_command("娶群友", permission=GROUP, priority = 90, block = True)
+waifu = on_command("娶群友", permission=GROUP, priority = 2, block = True, state={
+    'pm_usage': '娶群友',
+    'pm_describe': '娶到一个群友，当天不改变\n概率抽不到',
+    'pm_description': '娶到一个群友，当天不改变',
+    'pm_priority': 2
+})
 
 no_waifu = [
     "你没有娶到群友，强者注定孤独，加油！",
@@ -79,7 +91,12 @@ async def _(bot:Bot, event: GroupMessageEvent):
 
 # 查看娶群友卡池
 
-waifu_list = on_command("查看群友卡池", aliases = {"群友卡池"}, permission=GROUP, priority = 90, block = True)
+waifu_list = on_command("查看群友卡池", aliases = {"群友卡池"}, permission=GROUP, priority = 2, block = True, state={
+    'pm_usage': '查看群友卡池',
+    'pm_describe': '查看本群可抽/透的群友',
+    'pm_description': '查看本群可抽/透的群友',
+    'pm_priority': 2
+})
 
 @waifu_list.handle()
 @is_level_S
@@ -108,7 +125,12 @@ async def _(bot:Bot, event: GroupMessageEvent):
 
 record_yinpa = {}
 
-yinpa = on_command("透群友", permission=GROUP, priority = 90, block = True)
+yinpa = on_command("透群友", permission=GROUP, priority = 2, block = True, state={
+    'pm_usage': '透群友',
+    'pm_describe': '透一个群友，透多次目标会改变',
+    'pm_description': '透一个群友，透多次目标会改变',
+    'pm_priority': 2
+})
 
 @yinpa.handle()
 @is_level_S
@@ -135,7 +157,12 @@ async def _(bot:Bot, event: GroupMessageEvent):
 
 # 查看涩涩记录
 
-yinpa_list = on_command("涩涩记录",aliases = {"色色记录"}, permission=GROUP, priority = 90, block = True)
+yinpa_list = on_command("涩涩记录",aliases = {"色色记录"}, permission=GROUP, priority = 2, block = True, state={
+    'pm_usage': '涩涩记录',
+    'pm_describe': '查看本群本日被透群友的排行',
+    'pm_description': '查看本群本日被透群友的排行',
+    'pm_priority': 2
+})
 
 @yinpa_list.handle()
 @is_level_S

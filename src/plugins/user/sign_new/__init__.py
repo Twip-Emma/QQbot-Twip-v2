@@ -2,19 +2,33 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖
-LastEditTime: 2022-08-28 22:40:07
+LastEditTime: 2022-09-17 13:20:17
 Description: file content
 '''
 
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
+from nonebot.plugin import PluginMetadata
+from tool.find_power.format_data import is_level_S
 
 from .sign import user_sign_main
 
-from tool.find_power.format_data import is_level_S
+__plugin_meta__ = PluginMetadata(
+    name='求签',
+    description='向境神求签，获得一张引子',
+    usage='求签',
+    extra={
+        'priority': 2,
+    }
+)
 
 
-get_luck = on_command("求签", block=True, priority=2)
+get_luck = on_command("求签", block=True, priority=2, state={
+        'pm_name':        '求签',
+        'pm_description': '向境神求签，获得一张引子',
+        'pm_usage':       '求签',
+        'pm_priority':    2
+    })
 # user_sign = on_command("-签到")
 
 
