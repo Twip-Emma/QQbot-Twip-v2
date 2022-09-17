@@ -100,6 +100,6 @@ async def draw_gacha_img(user_id: int, pool: str, num: int, nickname: str):
             one_img = await draw_ten_items(user_id, gacha_data, type_json)
             img.paste(one_img, (0, 575 * i))
     draw = ImageDraw.Draw(img)
-    draw.text((27, 575 * num - 30), f'@{nickname} {time_str}  Created By LittlePaimon', font=font_manager.get('hywh.ttf', 20),
+    draw.text((27, 575 * num - 30), f'@{nickname} {time_str}  CREATED BY TWIP | 七画一只妖', font=font_manager.get('hywh.ttf', 20),
               fill="#8E8E8E")
     return MessageBuild.Image(img, quality=75, mode='RGB')

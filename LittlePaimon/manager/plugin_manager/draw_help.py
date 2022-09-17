@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-09-15 19:43:58
 LastEditors: 七画一只妖
-LastEditTime: 2022-09-17 13:01:05
+LastEditTime: 2022-09-17 15:30:26
 Description: file content
 '''
 import math
@@ -81,7 +81,7 @@ async def draw_help(plugin_list: List[PluginInfo]):
             await img.text_box(plugin.usage.replace('\n', '^'), (50, 1030), (height_now + 10, height_now + text_height - 10), fm.get('SourceHanSansCN-Bold.otf', 18), '#40342d')
             height_now += matcher_card.height + 6
         height_now += 19
-    await img.text('CREATED BY LITTLEPAIMON', (0, 1080), height_now + 8, fm.get('SourceHanSerifCN-Bold.otf', 24), 'black', 'center')
+    await img.text('CREATED BY TWIP | 七画一只妖', (0, 1080), height_now + 8, fm.get('SourceHanSerifCN-Bold.otf', 24), 'black', 'center')
     height_now += 70
     await bg.stretch((50, bg.height - 50), height_now - 100, 'height')
     await bg.paste(img, (0, 0))

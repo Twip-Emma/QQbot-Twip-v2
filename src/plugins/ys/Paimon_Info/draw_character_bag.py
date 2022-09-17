@@ -196,7 +196,7 @@ async def draw_chara_bag(player: Player, info: PlayerInfo, characters: List[Char
 
     # 角色数量和logo
     await img.text(f'共计{len(characters)}名角色', 237, 190, fm.get('hywh', 30), '#252525')
-    await img.text(f'CREATED BY LITTLEPAIMON AT {datetime.datetime.now().strftime("%m-%d %H:%M")}', 1031, 194,
+    await img.text(f'CREATED BY TWIP | 七画一只妖 AT {datetime.datetime.now().strftime("%m-%d %H:%M")}', 1031, 194,
                    fm.get('bahnschrift_bold', 30, 'Bold'), '#252525', 'right')
 
     # 角色列表

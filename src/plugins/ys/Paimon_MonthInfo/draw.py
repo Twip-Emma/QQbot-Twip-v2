@@ -75,6 +75,6 @@ async def draw_monthinfo_card(data: dict):
         ml_str = f'多了{data["month_data"]["mora_rate"]}%'
     await img.paste(line, (64, 840))
     await img.text(f'本月相比上个月，原石{ys_str}，摩拉{ml_str}', 49, 857, fm.get('msyh.ttc', 23), '#27384C')
-    await img.text('Created by LittlePaimon', 167, 900, fm.get('msyh.ttc', 21), '#27384C')
+    await img.text('CREATED BY TWIP | 七画一只妖', 167, 900, fm.get('msyh.ttc', 21), '#27384C')
 
     return MessageBuild.Image(img, quality=80, mode='RGB')

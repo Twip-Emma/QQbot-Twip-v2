@@ -46,7 +46,7 @@ async def draw_abyss_card(info: AbyssInfo):
     await img.paste(orange_line, (40, 164))
     await img.text('战绩速览', 63, 176, fm.get('SourceHanSansCN-Bold.otf', 30), 'white')
     # logo和生成时间
-    await img.text(f'CREATED BY LITTLEPAIMON AT {datetime.datetime.now().strftime("%m-%d %H:%M")}',
+    await img.text(f'CREATED BY TWIP | 七画一只妖 AT {datetime.datetime.now().strftime("%m-%d %H:%M")}',
                    1025, 178, fm.get('bahnschrift_regular.ttf', 30), '#8c4c2e', 'right')
 
     # 数据栏

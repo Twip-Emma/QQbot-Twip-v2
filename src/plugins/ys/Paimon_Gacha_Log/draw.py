@@ -161,7 +161,7 @@ async def draw_gacha_log(user_id: str, uid: str, nickname: Optional[str], signat
     # 数据总览
     await img.paste(line, (36, 181))
     await img.text('数据总览', 60, 192, fm.get('hywh', 30), 'white')
-    await img.text(f'CREATED BY LITTLEPAIMON AT {datetime.datetime.now().strftime("%m-%d %H:%M")}', 1025, 196,
+    await img.text(f'CREATED BY TWIP | 七画一只妖 AT {datetime.datetime.now().strftime("%m-%d %H:%M")}', 1025, 196,
                    fm.get('bahnschrift_regular', 30), '#252525', 'right')
     total_gacha_count = sum(len(pool) for pool in gacha_log.item_list.values())
     out_gacha_count = total_gacha_count - sum(data_not.values())

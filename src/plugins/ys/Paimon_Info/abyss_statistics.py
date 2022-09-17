@@ -73,7 +73,7 @@ async def get_statistics(group_id: int):
            f'最高承伤角色：  {max_take_damage_user}的{max_take_damage.max_take_damage.name}({max_take_damage.max_take_damage.value})\n' \
            f'11层出场率最高角色：\n  上半：{" ".join(up_sort11)}\n  下半：{" ".join(down_sort11)}\n' \
            f'12层出场率最高角色：\n  上半：{" ".join(up_sort12)}\n  下半：{" ".join(down_sort12)}\n' \
-           f'Created by LittlePaimon'
+           f'CREATED BY TWIP | 七画一只妖'
 
     img = PMImage(size=(500, 33 * 15), color=(255, 255, 255, 255))
     await img.text_box(text.replace('\n', '^'), (10, 490), (10, 33 * 15 - 10), fm.get('hywh', 25), 'black')

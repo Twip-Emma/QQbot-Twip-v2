@@ -131,5 +131,5 @@ async def draw_daily_note_card(data, uid):
                                 mode='RGBA')
     await bg_img.paste(role_img, (1220, 200))
     now = datetime.datetime.now().strftime('%m月%d日%H:%M')
-    await bg_img.text('Created by LittlePaimon·' + now, 554, 1794, fm.get('优设标题黑.ttf', 40), '#5680d2')
+    await bg_img.text('CREATED BY TWIP | 七画一只妖·' + now, 554, 1794, fm.get('优设标题黑.ttf', 40), '#5680d2')
     return MessageBuild.Image(bg_img.image, size=0.35, quality=70, mode='RGB')

@@ -104,7 +104,7 @@ async def draw_chara_card(info: Character):
         await card.text('---', 157, 333, fm.get('hywh', 30), 'white')
     # 天赋
     if not info.talents:
-        await card.text('CREATED BY LITTLEPAIMON', (0, card.width), 389, fm.get('bahnschrift_regular', 24), 'white',
+        await card.text('CREATED BY TWIP | 七画一只妖', (0, card.width), 389, fm.get('bahnschrift_regular', 24), 'white',
                         'center')
         await card.crop((0, 0, card.width, 435))
     else:
@@ -124,7 +124,7 @@ async def draw_chara_card(info: Character):
         await card.draw_rounded_rectangle((249, 382, 321, 450), 8, talent_color[info.talents[2].level - 1][0])
         await card.text(str(info.talents[2].level), (249, 321), 392, fm.get('bahnschrift_bold', 48),
                         talent_color[info.talents[2].level - 1][1], 'center')
-        await card.text('CREATED BY LITTLEPAIMON', (0, card.width), 466, fm.get('bahnschrift_regular', 24), 'white',
+        await card.text('CREATED BY TWIP | 七画一只妖', (0, card.width), 466, fm.get('bahnschrift_regular', 24), 'white',
                         'center')
 
     if img.width >= img.height:

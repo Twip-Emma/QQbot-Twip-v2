@@ -25,7 +25,7 @@ async def draw_rate_rank(type: str = 'role'):
     for i in range(col + 1):
         await bg_img.paste(body_img, (0, top_img.height + i * body_img.height))
     await bg_img.paste(bottom_img, (0, top_img.height + col * 220 + 50))
-    await bg_img.text('Created by LittlePaimon | Data from 原神创意工坊', 130, bg_img.height - 86, color='black',
+    await bg_img.text('CREATED BY TWIP | 七画一只妖 | Data from 原神创意工坊', 130, bg_img.height - 86, color='black',
                       font=fm.get('msyh.ttc', 35))
     for n, role in enumerate(data['result']['rateList']):
         role_card = PMImage(size=(160, 200), color=(200, 200, 200, 255), mode='RGBA')
@@ -59,7 +59,7 @@ async def draw_rate_rank(type: str = 'role'):
 #     for i in range(10):
 #         bg_img.paste(body_img, (0, top_img.height + i * body_img.height))
 #     bg_img.paste(bottom_img, (0, top_img.height + 10 * 240 - 130))
-#     bg_draw.text((130, bg_img.height - 86), 'Created by LittlePaimon | Data from 原神创意工坊', fill='black',
+#     bg_draw.text((130, bg_img.height - 86), 'CREATED BY TWIP | 七画一只妖 | Data from 原神创意工坊', fill='black',
 #                  font=fm.get('msyh.ttc', 35))
 #
 #     for n, team in enumerate(rateList):
