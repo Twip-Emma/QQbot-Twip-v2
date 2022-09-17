@@ -69,7 +69,7 @@ async def is_reply(event: GroupMessageEvent) -> bool:
     return bool(event.reply)
 
 
-learning_chat = on_message(priority=0, block=False, rule=Rule(chat_rule), permission=GROUP, state={
+learning_chat = on_message(priority=99, block=False, rule=Rule(chat_rule), permission=GROUP, state={
     'pm_name':        '群聊学习',
     'pm_description': '(被动技能)bot会学习群友们的发言',
     'pm_usage':       '群聊学习',
@@ -193,19 +193,19 @@ async def _(event: MessageEvent):
 
 
 # @scheduler.scheduled_job('interval', seconds=5, misfire_grace_time=5)
-@scheduler.scheduled_job('cron', minute='*')
-async def speak_up():
-    if not config_manager.config.total_enable:
-        return
-    if not (ret := await LearningChat.speak()):
-        return
-    bot_id, group_id, messages = ret
-    if group_id in config_manager.config.ban_groups:
-        return
-    for msg in messages:
-        logger.info('群聊学习', f'{NICKNAME}即将向群<m>{group_id}</m>发送<m>"{msg}"</m>')
-        await get_bot(str(bot_id)).send_group_msg(group_id=group_id, message=msg)
-        await asyncio.sleep(random.randint(2, 4))
+# @scheduler.scheduled_job('cron', minute='*')
+# async def speak_up():
+#     if not config_manager.config.total_enable:
+#         return
+#     if not (ret := await LearningChat.speak()):
+#         return
+#     bot_id, group_id, messages = ret
+#     if group_id in config_manager.config.ban_groups:
+#         return
+#     for msg in messages:
+#         logger.info('群聊学习', f'{NICKNAME}即将向群<m>{group_id}</m>发送<m>"{msg}"</m>')
+#         await get_bot(str(bot_id)).send_group_msg(group_id=group_id, message=msg)
+#         await asyncio.sleep(random.randint(2, 4))
 
 
 @scheduler.scheduled_job('cron', minute='*')
