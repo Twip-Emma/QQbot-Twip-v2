@@ -1,0 +1,18 @@
+name: 查看水群排行
+module_name: show_speak_rank
+description: 查看所有群的水群前99名
+usage: 查看水群排行
+status: true
+show: true
+priority: 2
+matchers:
+- pm_name: 查看水群排行
+  pm_description: 查看所有群的水群前99名
+  pm_usage: 查看水群排行
+  pm_priority: 2
+  pm_show: true
+- pm_name: 查看水群排行-开发者模式
+  pm_description: 查看所有群的水群前99名，显示完整QQ号
+  pm_usage: '**查看水群排行-开发者模式'
+  pm_priority: 2
+  pm_show: true

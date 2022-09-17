@@ -1,0 +1,13 @@
+name: 陪聊功能
+module_name: key_word
+description: 从预设好的词库中返回你说的话的回答
+usage: '@bot [你想说的话]'
+status: true
+show: true
+priority: 16
+matchers:
+- pm_name: 陪聊功能
+  pm_description: 从预设好的词库中返回你说的话的回答
+  pm_usage: '@bot [你想说的话]'
+  pm_priority: 1
+  pm_show: true

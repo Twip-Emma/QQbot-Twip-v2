@@ -111,13 +111,13 @@ async def _(state: T_State):
 
 @help_cmd.handle()
 async def _(event: MessageEvent, session_id: int = CommandObjectID()):
-    if session_id in cache_help:
-        await help_cmd.finish(cache_help[session_id])
-    else:
-        plugin_list = await plugin_manager.get_plugin_list(event.message_type, event.user_id if isinstance(event, PrivateMessageEvent) else event.group_id if isinstance(event, GroupMessageEvent) else event.guild_id)
-        img = await draw_help(plugin_list)
-        cache_help[session_id] = img
-        await help_cmd.finish(img)
+    # if session_id in cache_help:
+    #     await help_cmd.finish(cache_help[session_id])
+    # else:
+    plugin_list = await plugin_manager.get_plugin_list(event.message_type, event.user_id if isinstance(event, PrivateMessageEvent) else event.group_id if isinstance(event, GroupMessageEvent) else event.guild_id)
+    img = await draw_help(plugin_list)
+    cache_help[session_id] = img
+    await help_cmd.finish(img)
 
 
 @set_config_cmd.handle()

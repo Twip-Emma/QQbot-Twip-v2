@@ -1,0 +1,13 @@
+name: 原神概率魔改抽卡
+module_name: yuanshen_drow
+description: 不会被记录，且概率魔改的原神模拟抽卡，每天有次数限制
+usage: ？？？
+status: true
+show: true
+priority: 2
+matchers:
+- pm_name: 原神抽卡
+  pm_description: 不会被记录，且概率魔改的原神模拟抽卡，每天有次数限制
+  pm_usage: 原神十连
+  pm_priority: 2
+  pm_show: true

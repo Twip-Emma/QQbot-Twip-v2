@@ -1,0 +1,33 @@
+name: 万象模拟抽卡
+module_name: sdorica_draw
+description: 原神的模拟抽卡
+usage: ？？？
+status: true
+show: true
+priority: 9
+matchers:
+- pm_name: 起源十连
+  pm_description: 起源宇宙池
+  pm_usage: 起源十连
+  pm_priority: 1
+  pm_show: true
+- pm_name: 限定十连
+  pm_description: 联动毒池
+  pm_usage: 限定十连
+  pm_priority: 2
+  pm_show: true
+- pm_name: 首发十连
+  pm_description: 与万象物语卡池同步（已弃用）
+  pm_usage: 首发十连
+  pm_priority: 2
+  pm_show: true
+- pm_name: 盛夏十连
+  pm_description: 全部MZ毒池
+  pm_usage: 盛夏十连
+  pm_priority: 2
+  pm_show: true
+- pm_name: 群友十连
+  pm_description: 群友作为角色放入卡池中，目前已有33个群友
+  pm_usage: 群友十连
+  pm_priority: 2
+  pm_show: true

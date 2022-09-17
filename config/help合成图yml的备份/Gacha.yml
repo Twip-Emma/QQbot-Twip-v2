@@ -1,13 +1,13 @@
-name: 原神模拟抽卡
+name: 原神原版模拟抽卡
 module_name: Paimon_Gacha
-description: 原神模拟抽卡
-usage: 抽[数量]十连[卡池]
+description: 万象、原神的模拟抽卡
+usage: ？？？
 status: true
 show: true
-priority: 9
+priority: 2
 matchers:
 - pm_name: 模拟抽卡
-  pm_description: 原神模拟抽卡，卡池有常驻|角色1|角色2|武器
+  pm_description: 会被记录，且概率仿真的原神模拟抽卡，卡池有常驻|角色1|角色2|武器
   pm_usage: 抽[数量]十连[卡池]
   pm_priority: 1
   pm_show: true

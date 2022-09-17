@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖
-LastEditTime: 2022-09-17 14:29:43
+LastEditTime: 2022-09-17 15:09:38
 Description: file content
 '''
 import nonebot
@@ -33,7 +33,7 @@ nonebot.load_plugins("src/plugins/function")
 nonebot.load_plugins("src/plugins/user")
 nonebot.load_plugins("src/plugins/listener")
 nonebot.load_plugins("src/plugins/speaker")
-nonebot.load_plugins("src/plugins/help")
+# nonebot.load_plugins("src/plugins/help")
 
 # 加载绝对路径头
 ABSOLUTE_PATH = path.join(path.dirname(__file__))
