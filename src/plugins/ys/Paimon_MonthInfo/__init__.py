@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-09-17 12:45:42
+LastEditors: 七画一只妖
+LastEditTime: 2022-09-17 16:22:59
+Description: file content
+'''
 import datetime
 import re
 
@@ -5,7 +12,7 @@ from nonebot import on_command
 from nonebot.params import Arg
 from nonebot.adapters.onebot.v11 import Message, MessageEvent
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.utils.message import CommandPlayer
 from .handler import handle_myzj
 
@@ -29,6 +36,7 @@ myzj = on_command('myzj', aliases={'札记信息', '每月札记'}, priority=10,
 
 
 @myzj.handle()
+@is_level_S
 async def myzj_handler(event: MessageEvent, players=CommandPlayer(), msg: str = Arg('msg')):
     month_now = datetime.datetime.now().month
     if month_now == 1:

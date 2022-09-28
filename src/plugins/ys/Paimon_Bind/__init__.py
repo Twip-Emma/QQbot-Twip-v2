@@ -8,7 +8,7 @@ from nonebot.params import CommandArg, ArgPlainText
 from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
 from nonebot.typing import T_State
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon import NICKNAME
 from LittlePaimon.database.models import LastQuery, PrivateCookie, PublicCookie, Character, PlayerInfo, DailyNoteSub, MihoyoBBSSub
 from LittlePaimon.utils import logger
@@ -67,6 +67,7 @@ clear = on_command('清除无效用户', permission=SUPERUSER, block=True, prior
 
 
 @ysb.handle()
+@is_level_S
 async def _(event: MessageEvent, msg: Message = CommandArg()):
     msg = msg.extract_plain_text().strip()
     if uid := re.search(r'[125]\d{8}', msg):
@@ -112,6 +113,7 @@ async def _(event: MessageEvent, msg: Message = CommandArg()):
 
 
 @ysbc.handle()
+@is_level_S
 async def _(event: MessageEvent):
     logger.info('原神Cookie', f'开始校验{str(event.user_id)}的绑定情况')
     ck = await PrivateCookie.filter(user_id=str(event.user_id))
@@ -135,6 +137,7 @@ async def _(event: MessageEvent):
 
 
 @delete_ck.handle()
+@is_level_S
 async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
     if uids := await PrivateCookie.filter(user_id=str(event.user_id)):
         state['msg'] = '你已绑定cookie的uid有：\n' + '\n'.join([uid.uid for uid in uids]) + '\n请选择要删除的uid'
@@ -148,6 +151,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
 
 
 @delete_ck.got('uid', prompt=Message.template('{msg}，或者发送[全部]解绑cookie'))
+@is_level_S
 async def _(event: MessageEvent, state: T_State, uid: str = ArgPlainText('uid')):
     if uid == '全部':
         await PrivateCookie.filter(user_id=str(event.user_id)).delete()
@@ -164,6 +168,7 @@ async def _(event: MessageEvent, state: T_State, uid: str = ArgPlainText('uid'))
 
 
 @ysbca.handle()
+@is_level_S
 async def _(event: MessageEvent):
     logger.info('原神Cookie', '开始校验所有cookie情况')
     await ysbc.send('开始校验全部cookie，请稍等...', at_sender=True)
@@ -194,6 +199,7 @@ async def _(event: MessageEvent):
 
 
 @pck.handle()
+@is_level_S
 async def _(event: MessageEvent, msg: Message = CommandArg()):
     if msg := msg.extract_plain_text().strip():
         if await get_bind_game_info(msg):
@@ -209,6 +215,7 @@ async def _(event: MessageEvent, msg: Message = CommandArg()):
 
 
 @clear.handle()
+@is_level_S
 async def _(bot: Bot, event: MessageEvent):
     total_user_list = []
     group_list = await bot.get_group_list()

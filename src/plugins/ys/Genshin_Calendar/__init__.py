@@ -7,6 +7,7 @@ from LittlePaimon.database.models import GeneralSub
 from LittlePaimon.utils import scheduler, logger
 from LittlePaimon.utils.message import CommandObjectID, CommandSwitch, CommandTime
 from .generate import *
+from tool.find_power.format_data import is_level_S
 
 __plugin_meta__ = PluginMetadata(
     name="原神日历",
@@ -27,6 +28,7 @@ calendar = on_command('原神日历', aliases={'原神日程', '活动日历'}, 
 
 
 @calendar.handle()
+@is_level_S
 async def _(event: MessageEvent, sub_id=CommandObjectID(), switch=CommandSwitch(), sub_time=CommandTime()):
     if switch is None:
         im = await generate_day_schedule('cn')

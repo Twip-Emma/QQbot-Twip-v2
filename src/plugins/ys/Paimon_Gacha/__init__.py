@@ -6,7 +6,7 @@ from nonebot.params import RegexDict, CommandArg
 from nonebot.plugin import PluginMetadata
 from LittlePaimon.utils.tool import freq_limiter
 from LittlePaimon.manager.plugin_manager import plugin_manager as pm
-
+from tool.find_power.format_data import is_level_S
 from .data_handle import load_user_data
 from .draw import draw_gacha_img
 
@@ -64,6 +64,7 @@ show_log = on_command('模拟抽卡记录', aliases={'查看模拟抽卡记录'}
 
 
 @sim_gacha.handle()
+@is_level_S
 async def _(event: MessageEvent, reGroup: Dict = RegexDict()):
     nickname = event.sender.nickname
     if isinstance(event, GroupMessageEvent):
@@ -85,6 +86,7 @@ async def _(event: MessageEvent, reGroup: Dict = RegexDict()):
 
 
 @show_log.handle()
+@is_level_S
 async def show_log_handler(event: MessageEvent, msg: Message = CommandArg()):
     user_info = load_user_data(event.user_id)
     if user_info['抽卡数据']['抽卡总数'] == 0:

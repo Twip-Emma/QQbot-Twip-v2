@@ -11,7 +11,7 @@ from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
 from nonebot.rule import to_me, Rule
 from nonebot.typing import T_State
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon import NICKNAME, SUPERUSERS
 from LittlePaimon.utils import scheduler, logger
 from .api import is_shutup
@@ -99,8 +99,8 @@ set_enable = on_keyword({'学说话', '快学', '开启学习', '闭嘴', '别�
 
 
 @learning_chat.handle()
+@is_level_S
 async def _(event: GroupMessageEvent, answers=Arg('answers')):
-    print("执行了")
     for item in answers:
         logger.info('群聊学习', f'{NICKNAME}即将向群<m>{event.group_id}</m>发送<m>"{item}"</m>')
         await asyncio.sleep(random.randint(1, 3))
@@ -116,6 +116,7 @@ async def _(event: GroupMessageEvent, answers=Arg('answers')):
 
 
 @ban_chat.handle()
+@is_level_S
 async def _(event: GroupMessageEvent):
     if event.sender.role not in ['admin', 'owner'] and event.user_id not in SUPERUSERS:
         await ban_chat.finish(random.choice([f'{NICKNAME}就喜欢说这个，哼！', f'你管得着{NICKNAME}吗！']))
@@ -140,6 +141,7 @@ async def _(event: GroupMessageEvent):
 
 
 @set_enable.handle()
+@is_level_S
 async def _(event: MessageEvent):
     if event.user_id in SUPERUSERS:
         if any(w in event.raw_message for w in {'学说话', '快学', '开启学习'}):
@@ -171,6 +173,7 @@ async def _(event: MessageEvent):
 
 
 # @set_config.handle()
+# @is_level_S
 # async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
 #     state['config_list'] = config_manager.config_list
 #     configs_str = '\n'.join([f'{k}: {v}' for k, v in config_manager.config.dict(by_alias=True).items()])
@@ -184,6 +187,7 @@ async def _(event: MessageEvent):
 #             state['msg'] = '没有叫'
 
 # @ban_msg_latest.handle()
+# @is_level_S
 # async def _(event: GroupMessageEvent):
 #     logger.info('群聊学习', f'{NICKNAME}将群<m>{event.group_id}</m>的最后一条发言列入禁用列表')
 #
@@ -219,6 +223,7 @@ user_speak = on_command("强制说话", priority = 1, block=False)
 
 
 @user_speak.handle()
+@is_level_S
 async def speak_up():
     if not config_manager.config.total_enable:
         return

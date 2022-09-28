@@ -5,7 +5,7 @@ from nonebot.params import CommandArg, ArgPlainText
 from nonebot.adapters.onebot.v11 import MessageEvent, Message, GroupMessageEvent
 from nonebot.plugin import PluginMetadata
 from nonebot.typing import T_State
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.database.models import CloudGenshinSub
 
 from .handler import get_cloud_genshin_info
@@ -42,6 +42,7 @@ uuid_ = str(uuid.uuid4())
 
 
 @yys_bind.handle()
+@is_level_S
 async def _(event: MessageEvent, msg: Message = CommandArg()):
     msg = msg.extract_plain_text().strip()
     if not msg:
@@ -56,6 +57,7 @@ async def _(event: MessageEvent, msg: Message = CommandArg()):
 
 
 @yys_info.handle()
+@is_level_S
 async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
     if uids := await CloudGenshinSub.filter(user_id=str(event.user_id)):
         state['msg'] = '你已绑定的云原神账号有\n' + '\n'.join([str(uid.uid) for uid in uids]) + '\n请选择要查询的账号'
@@ -67,6 +69,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
 
 
 @yys_info.got('uid', prompt=Message.template('{msg}'))
+@is_level_S
 async def _(event: MessageEvent, state: T_State, uid: str = ArgPlainText('uid')):
     if uid in state['uids']:
         await yys_info.finish(await get_cloud_genshin_info(str(event.user_id), uid))
@@ -75,6 +78,7 @@ async def _(event: MessageEvent, state: T_State, uid: str = ArgPlainText('uid'))
 
 
 @yys_delete.handle()
+@is_level_S
 async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
     if uids := await CloudGenshinSub.filter(user_id=str(event.user_id)):
         state['msg'] = '你已绑定的云原神账号有\n' + '\n'.join([str(uid.uid) for uid in uids]) + '\n请选择要解绑的账号'
@@ -88,6 +92,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
 
 
 @yys_delete.got('uid', prompt=Message.template('{msg}，或者发送[全部]解绑全部云原神账号'))
+@is_level_S
 async def _(event: MessageEvent, state: T_State, uid: str = ArgPlainText('uid')):
     if uid == '全部':
         await CloudGenshinSub.filter(user_id=str(event.user_id)).delete()

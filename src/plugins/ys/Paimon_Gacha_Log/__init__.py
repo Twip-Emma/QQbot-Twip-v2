@@ -2,7 +2,7 @@ from typing import Union
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent, PrivateMessageEvent
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.utils import logger
 from LittlePaimon.utils.message import CommandPlayer
 from .data_source import get_gacha_log_img, get_gacha_log_data, create_import_command, gacha_log_to_UIGF
@@ -49,6 +49,7 @@ running_show = []
 
 
 @update_log.handle()
+@is_level_S
 async def _(event: MessageEvent, player=CommandPlayer(1)):
     if f'{player[0].user_id}-{player[0].uid}' in running_update:
         await update_log.finish(f'UID{player[0].uid}已经在获取抽卡记录中，请勿重复发送')
@@ -65,6 +66,7 @@ async def _(event: MessageEvent, player=CommandPlayer(1)):
 
 
 @show_log.handle()
+@is_level_S
 async def _(event: MessageEvent, player=CommandPlayer(1)):
     if f'{player[0].user_id}-{player[0].uid}' in running_show:
         await update_log.finish(f'UID{player[0].uid}已经在绘制抽卡记录分析中，请勿重复发送')
@@ -82,12 +84,14 @@ async def _(event: MessageEvent, player=CommandPlayer(1)):
 
 
 @import_log.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent]):
     create_import_command(event.user_id)
     await import_log.finish('请在5分钟内，上传或发送符合UIGF标准的抽卡记录json文件', at_sender=True)
 
 
 @export_log.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], bot: Bot, player=CommandPlayer(1)):
     state, msg, path = gacha_log_to_UIGF(player[0].user_id, player[0].uid)
     if not state:

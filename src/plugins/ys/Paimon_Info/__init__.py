@@ -2,7 +2,7 @@ from nonebot import on_command, on_regex
 from nonebot.adapters.onebot.v11 import Message, MessageEvent, MessageSegment, GroupMessageEvent
 from nonebot.params import Arg, RegexDict, CommandArg
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon import NICKNAME
 from LittlePaimon.database.models import PlayerAlias
 from LittlePaimon.utils import logger
@@ -94,6 +94,7 @@ show_abyss = on_command('深渊统计', priority=10, block=True, state={
 
 
 @ys.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer()):
     logger.info('原神信息查询', '开始执行')
     msg = Message()
@@ -120,6 +121,7 @@ running_ysa = []
 
 
 @ysa.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer(2)):
     logger.info('原神角色背包', '开始执行')
     msg = Message()
@@ -150,6 +152,7 @@ async def _(event: MessageEvent, players=CommandPlayer(2)):
 
 
 @sy.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer(), msg: str = Arg('msg')):
     logger.info('原神深渊战报', '开始执行')
     abyss_index = 2 if any(i in msg for i in ['上', 'last']) else 1
@@ -174,6 +177,7 @@ async def _(event: MessageEvent, players=CommandPlayer(), msg: str = Arg('msg'))
 
 
 @ysc.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer(only_cn=False), characters=CommandCharacter()):
     logger.info('原神角色卡片', '开始执行')
     msg = Message()
@@ -209,6 +213,7 @@ async def _(event: MessageEvent, players=CommandPlayer(only_cn=False), character
 
 
 @ysd.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer(only_cn=False), characters=CommandCharacter()):
     logger.info('原神角色面板', '开始执行')
     msg = Message()
@@ -246,6 +251,7 @@ running_udi = []
 
 
 @update_info.handle()
+@is_level_S
 async def _(event: MessageEvent, uid=CommandUID(), msg: str = Arg('msg')):
     if not freq_limiter.check(f'udi{uid}'):
         await update_info.finish(f'UID{uid}: 更新信息冷却剩余{freq_limiter.left(f"udi{uid}")}秒\n', at_sender=True)
@@ -267,6 +273,7 @@ async def _(event: MessageEvent, uid=CommandUID(), msg: str = Arg('msg')):
 
 
 @add_alias.handle()
+@is_level_S
 async def _(event: MessageEvent, regex_dict: dict = RegexDict()):
     chara = regex_dict['chara'] or regex_dict['chara2']
     alias = regex_dict['alias'] or regex_dict['alias2']
@@ -275,6 +282,7 @@ async def _(event: MessageEvent, regex_dict: dict = RegexDict()):
 
 
 @delete_alias.handle()
+@is_level_S
 async def _(event: MessageEvent, msg: Message = CommandArg()):
     msg = msg.extract_plain_text().strip()
     if alias := await PlayerAlias.get_or_none(user_id=str(event.user_id), alias=msg):
@@ -285,6 +293,7 @@ async def _(event: MessageEvent, msg: Message = CommandArg()):
 
 
 @show_alias.handle()
+@is_level_S
 async def _(event: MessageEvent):
     if aliases := await PlayerAlias.filter(user_id=str(event.user_id)).all():
         await show_alias.finish('你已设以下别名:' + '\n'.join(f'{alias.alias}->{alias.character}' for alias in aliases),
@@ -294,6 +303,7 @@ async def _(event: MessageEvent):
 
 
 @show_abyss.handle()
+@is_level_S
 async def _(event: GroupMessageEvent):
     result = await get_statistics(event.group_id)
     await show_abyss.finish(result)

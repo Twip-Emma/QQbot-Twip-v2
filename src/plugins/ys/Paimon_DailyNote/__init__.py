@@ -1,10 +1,17 @@
+'''
+Author: 七画一只妖
+Date: 2022-09-17 12:45:42
+LastEditors: 七画一只妖
+LastEditTime: 2022-09-17 16:22:40
+Description: file content
+'''
 from typing import Union
 
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Message, MessageEvent, GroupMessageEvent, PrivateMessageEvent
 from nonebot.params import Arg
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.database.models import DailyNoteSub
 from LittlePaimon.utils import logger
 from LittlePaimon.utils.message import CommandPlayer, CommandUID, CommandSwitch
@@ -39,6 +46,7 @@ ssbq_sub = on_command('ssbq提醒', aliases={'实时便笺提醒', '实时便签
 
 
 @ssbq.handle()
+@is_level_S
 async def _(event: MessageEvent, players=CommandPlayer(), msg: str = Arg('msg')):
     if msg:
         await ssbq.finish('开启提醒请用[ssbq提醒开启|关闭 提醒内容+数量]指令，比如[ssbq提醒开启树脂150]')
@@ -50,6 +58,7 @@ async def _(event: MessageEvent, players=CommandPlayer(), msg: str = Arg('msg'))
 
 
 @ssbq_sub.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], uid=CommandUID(), switch=CommandSwitch(), subs=SubList()):
     sub_data = {
         'user_id':     event.user_id,

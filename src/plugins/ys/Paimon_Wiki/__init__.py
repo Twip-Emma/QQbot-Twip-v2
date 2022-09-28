@@ -7,7 +7,7 @@ from nonebot.adapters.onebot.v11.exception import ActionFailed
 from nonebot.params import RegexDict, ArgPlainText
 from nonebot.plugin import PluginMetadata
 from nonebot.typing import T_State
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon import NICKNAME
 from LittlePaimon.utils.alias import get_match_alias
 from LittlePaimon.utils.message import MessageBuild
@@ -60,6 +60,7 @@ daily_material = on_regex(r'(?P<day>现在|(今|明|后)(天|日)|周(一|二|�
 
 
 @daily_material.handle()
+@is_level_S
 async def _(event: MessageEvent, regex_dict: dict = RegexDict()):
     if regex_dict['day'] in ['今日', '今天', '现在']:
         day = time.strftime("%w")

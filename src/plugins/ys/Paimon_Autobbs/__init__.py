@@ -4,7 +4,7 @@ from nonebot import on_command
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, PrivateMessageEvent
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.database.models import MihoyoBBSSub, PrivateCookie
 from LittlePaimon.utils import logger
 from LittlePaimon.utils.message import CommandUID, CommandSwitch
@@ -55,6 +55,7 @@ coin_getting_list = []
 
 
 @sign.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], uid=CommandUID(), switch=CommandSwitch()):
     if switch is None:
         # 没有开关参数，手动执行米游社签到
@@ -93,12 +94,14 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], uid=CommandUID
 
 
 @all_sign.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent]):
     await all_sign.send('开始执行全部重签，需要一定时间...')
     await bbs_auto_sign()
 
 
 @get_coin.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], uid=CommandUID(), switch=CommandSwitch()):
     if switch is None:
         # 没有开关参数，手动执行米游币获取

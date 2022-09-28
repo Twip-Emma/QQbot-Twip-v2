@@ -1,3 +1,10 @@
+'''
+Author: 七画一只妖
+Date: 2022-09-17 12:45:42
+LastEditors: 七画一只妖
+LastEditTime: 2022-09-17 16:16:44
+Description: file content
+'''
 from typing import Union
 from nonebot import on_regex
 from nonebot.plugin import PluginMetadata
@@ -8,6 +15,7 @@ from nonebot.typing import T_State
 from LittlePaimon.utils.tool import freq_limiter
 from LittlePaimon.utils.filter import filter_msg
 from LittlePaimon.manager.plugin_manager import plugin_manager as pm
+from tool.find_power.format_data import is_level_S
 
 __plugin_meta__ = PluginMetadata(
     name='原神语音合成',
@@ -48,6 +56,7 @@ voice_cmd = on_regex(rf'^(?P<chara>({CHARA_RE})?)说(?P<text>[\w，。！？、�
 
 
 @voice_cmd.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], regex_dict: dict = RegexDict()):
     regex_dict['text'] = filter_msg(regex_dict['text'].replace('\r', '').replace('\n', ''), '星')
     if not freq_limiter.check(

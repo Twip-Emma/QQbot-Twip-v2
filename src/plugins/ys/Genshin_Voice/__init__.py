@@ -7,7 +7,7 @@ from nonebot.adapters.onebot.v11 import Message, MessageEvent, GroupMessageEvent
 from nonebot.params import CommandArg
 from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
-
+from tool.find_power.format_data import is_level_S
 from LittlePaimon.utils.message import CommandCharacter, CommandLang, MessageBuild
 from LittlePaimon.utils.alias import get_match_alias
 from LittlePaimon.database.models import GenshinVoice
@@ -53,6 +53,7 @@ update_voice = on_command('更新原神语音资源', priority=12, permission=SU
 
 
 @guess_voice.handle()
+@is_level_S
 async def _(event: GroupMessageEvent, msg: Message = CommandArg(), lang=CommandLang()):
     msg = msg.extract_plain_text().strip()
     if 'rank' in msg or '排行' in msg:
@@ -70,6 +71,7 @@ async def _(event: GroupMessageEvent, msg: Message = CommandArg(), lang=CommandL
 
 
 @get_voice.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], lang=CommandLang(), msg: Message = CommandArg()):
     msg = msg.extract_plain_text().strip().split(' ')[0]
     if msg.isdigit():
@@ -88,12 +90,14 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], lang=CommandLa
 
 
 @voice_list.handle()
+@is_level_S
 async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], character=CommandCharacter(1, False), lang=CommandLang()):
     result = await get_voice_list(character[0], lang)
     await get_voice.finish(result)
 
 
 @update_voice.handle()
+@is_level_S
 async def _(event: MessageEvent):
     await update_voice.send('开始更新原神语音资源，请稍等...')
     result = await update_voice_resources()
