@@ -140,7 +140,8 @@ dmypy.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-/tool
+# /tool
 /resources
+/setting
 
 .env.prod
