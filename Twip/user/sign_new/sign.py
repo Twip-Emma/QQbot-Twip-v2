@@ -1,18 +1,18 @@
 '''
 Author: 七画一只妖
 Date: 2021-11-24 14:29:43
-LastEditors: 七画一只妖
-LastEditTime: 2022-07-26 13:25:45
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 13:56:24
 Description: file content
 '''
 
 import datetime
 import time
 import random
-from os import path
 import os
 
-FILE_PATH = path.join(path.dirname(__file__))
+from Twip import ABSOLUTE_PATH
+FILE_PATH = f"{ABSOLUTE_PATH}\\user\\sign_new"
 
 from .user_get_test import SIGN_TEXT
 from .user_sql import select_user, insert_new_user, change_sign_info

@@ -2,11 +2,14 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:37:18
+LastEditTime: 2022-10-09 14:02:25
 Description: file content
 '''
 import nonebot
 from nonebot.adapters.onebot.v11 import Adapter as ONEBOT_V11Adapter
+# from nonebot.log import logger, logger_id
+# logger.remove(logger_id)
+
 
 from os import path
 import sys

@@ -1,20 +1,29 @@
 '''
 Author: 七画一只妖
 Date: 2022-03-20 14:03:39
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-30 21:40:43
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 15:20:54
 Description: file content
 '''
 
 
 from nonebot import on_command
-from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-
+from nonebot.plugin import PluginMetadata
+from nonebot.rule import to_me
 from tool.find_power.format_data import is_level_S
-from .user_package import attack_chack
-from .user_function import chouka_start
+
 from .database import chack_user_gacha
+from .user_function import chouka_start
+from .user_package import attack_chack
+
+__plugin_meta__ = PluginMetadata(
+    name='原神抽卡',
+    description='模拟原神抽卡，出金概率魔改版',
+    usage='''原神十连''',
+    extra={'version': 'v1.0.0',
+           'cost': '#150'}
+)
 
 
 ys_get_10 = on_command("原神十连", block=True, priority=2)

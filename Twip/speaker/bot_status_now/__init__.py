@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-02-14 13:46:59
-LastEditors: 七画一只妖
-LastEditTime: 2022-02-14 14:16:52
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 15:18:03
 Description: file content
 '''
 #!/usr/bin/env python3
@@ -17,12 +17,22 @@ Description: file content
 """
 __author__ = "yanyongyu"
 
+from nonebot import get_driver, on_command, on_message, on_notice
 from nonebot.matcher import Matcher
 from nonebot.permission import SUPERUSER
-from nonebot import on_notice, get_driver, on_command, on_message
+from nonebot.plugin import PluginMetadata
 
 from .config import Config
 from .data_source import cpu_status, disk_usage, memory_status, per_cpu_status
+
+__plugin_meta__ = PluginMetadata(
+    name='查看状态',
+    description='查看当前机器人的运行状况',
+    usage='''<戳一戳机器人>''',
+    extra={'version': 'v1.0.0',
+           'cost': '###0'}
+)
+
 
 global_config = get_driver().config
 status_config = Config(**global_config.dict())
@@ -58,7 +68,8 @@ async def server_status(matcher: Matcher):
 
 
 try:
-    from nonebot.adapters.onebot.v11 import PokeNotifyEvent, PrivateMessageEvent
+    from nonebot.adapters.onebot.v11 import (PokeNotifyEvent,
+                                             PrivateMessageEvent)
 except ImportError:
     pass
 else:

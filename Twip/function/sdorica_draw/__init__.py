@@ -1,16 +1,24 @@
 '''
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-30 11:14:45
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 15:24:47
 Description: file content
 '''
-from .function_user import start
-
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-
+from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
+
+from .function_user import start
+
+__plugin_meta__ = PluginMetadata(
+    name='原神抽卡',
+    description='模拟万象物语抽卡',
+    usage='''起源十连|首发十连|盛夏十连|限定十连|群友十连''',
+    extra={'version': 'v1.0.0',
+           'cost': '#150'}
+)
 
 
 qy_sdorica_draw = on_command("起源十连", block=True, priority=2)

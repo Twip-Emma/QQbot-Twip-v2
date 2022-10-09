@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-03-01 19:28:48
-LastEditors: 七画一只妖
-LastEditTime: 2022-03-12 19:45:56
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 15:29:05
 Description: file content
 '''
 from nonebot import on_command
@@ -12,6 +12,16 @@ from nonebot.adapters.onebot.v11 import Bot, MessageEvent
 
 show_group_list = on_command('查看群列表')
 find_user = on_command('锁定用户')
+
+
+from nonebot.plugin import PluginMetadata
+__plugin_meta__ = PluginMetadata(
+    name='锁定用户',
+    description='在机器人所在的所有群搜索某个人',
+    usage='''锁定用户 <用户QQ> | 查看群列表''',
+    extra={'version': 'v1.0.0',
+           'cost': '###0'}
+)
 
 
 SUPER = "1157529280"

@@ -2,24 +2,32 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:41:34
+LastEditTime: 2022-10-09 15:17:36
 Description: file content
 '''
+import http.client
+import json
+import random
+
+import jieba
+import requests
 # 提交测试
 from nonebot import on_message
-from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
-
-import json
-import jieba
-import random
-import http.client
-import requests
-
+from nonebot.plugin import PluginMetadata
+from nonebot.rule import to_me
+from setting import Api_Key, Api_Secret, Content_Type
 from tool.find_power.format_data import is_level_A
 
 from .db import *
-from setting import Api_Key, Api_Secret, Content_Type
+
+__plugin_meta__ = PluginMetadata(
+    name='陪聊系统',
+    description='从预设好的词库选择句子回答',
+    usage='''@<机器人> <你想说的话>''',
+    extra={'version': 'v1.0.0',
+           'cost': '###0'}
+)
 
 
 # 常量

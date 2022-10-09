@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
-LastEditors: 七画一只妖
-LastEditTime: 2022-09-17 13:20:17
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 15:59:29
 Description: file content
 '''
 
@@ -10,27 +10,21 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_S
+from tool.utils.logger import logger as my_logger
 
 from .sign import user_sign_main
 
 __plugin_meta__ = PluginMetadata(
-    name='求签',
-    description='向境神求签，获得一张引子',
-    usage='求签',
-    extra={
-        'priority': 2,
-    }
+    name='求签系统',
+    description='获得一张引子',
+    usage='''您想在使用命令/help <your plugin package name>时提供的帮助文本''',
+    extra={'version': 'v1.0.0',
+           'cost': '##50'}
 )
 
 
-get_luck = on_command("求签", block=True, priority=2, state={
-        'pm_name':        '求签',
-        'pm_description': '向境神求签，获得一张引子',
-        'pm_usage':       '求签',
-        'pm_priority':    2
-    })
+get_luck = on_command("求签", block=True, priority=2)
 # user_sign = on_command("-签到")
-
 
 
 # @get_luck.handle()
@@ -49,6 +43,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
 
     message_image = user_sign_main(user_id, recall_user_name)
     await get_luck.send(MessageSegment.image(message_image))
+    my_logger.success(
+        '求签系统', f'成功发送：用户：<m>{recall_user_name}{user_id}</m> | 群：<m>{group_id}</m>')
 
 
 # 签到（新版）

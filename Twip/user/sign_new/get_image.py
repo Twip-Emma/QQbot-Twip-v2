@@ -1,16 +1,16 @@
 '''
 Author: 七画一只妖
 Date: 2021-11-24 14:58:57
-LastEditors: 七画一只妖
-LastEditTime: 2022-07-26 12:57:29
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 13:56:31
 Description: file content
 '''
 from PIL import Image, ImageDraw, ImageFont
 import os
-from os import path
 
-FILE_PATH = path.join(path.dirname(__file__))
+from Twip import ABSOLUTE_PATH
 
+FILE_PATH = f"{ABSOLUTE_PATH}\\user\\sign_new"
 
 
 SIGN_IMG = ["冲虚", "低语", "高歌", "救苦", "普渡", "深渊", "万神", "往生", "智慧", "自在"]

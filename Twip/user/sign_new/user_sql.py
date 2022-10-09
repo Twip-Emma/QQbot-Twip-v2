@@ -1,15 +1,18 @@
 '''
 Author: 七画一只妖
 Date: 2021-12-05 18:58:57
-LastEditors: 七画一只妖
-LastEditTime: 2022-09-01 09:51:55
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 13:56:41
 Description: file content
 '''
 import datetime
 
 from os import path
 import sqlite3
-KEY_DB_PATH = path.join(path.dirname(__file__), 'user_sign_info.db')
+
+from Twip import ABSOLUTE_PATH
+FILE_PATH = f"{ABSOLUTE_PATH}\\user\\sign_new"
+KEY_DB_PATH = path.join(FILE_PATH, 'user_sign_info.db')
 
 # 新用户存入数据
 def insert_new_user(user_id:str, info:str) -> None:
