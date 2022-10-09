@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
-LastEditors: 七画一只妖
-LastEditTime: 2022-09-17 15:09:38
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-09 13:21:19
 Description: file content
 '''
 import nonebot
@@ -28,7 +28,6 @@ nonebot.init(apscheduler_config={
 
 # 正式模块
 # nonebot.load_plugins("src/plugins/admin")
-nonebot.load_plugins("src/plugins/ys")
 nonebot.load_plugins("src/plugins/function")
 nonebot.load_plugins("src/plugins/user")
 nonebot.load_plugins("src/plugins/listener")
@@ -40,6 +39,5 @@ ABSOLUTE_PATH = path.join(path.dirname(__file__))
 
 if __name__ == "__main__":
     sys.path.append(f"{ABSOLUTE_PATH}\\tool")
-    sys.path.append(f"{ABSOLUTE_PATH}\\LittlePaimon")
     # sys.path.append(f"{ABSOLUTE_PATH}\\src\\plugins\\LittlePaimon")
     nonebot.run()
