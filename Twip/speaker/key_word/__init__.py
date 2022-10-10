@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:17:36
+LastEditTime: 2022-10-10 10:33:39
 Description: file content
 '''
 import http.client
@@ -24,7 +24,7 @@ from .db import *
 __plugin_meta__ = PluginMetadata(
     name='陪聊系统',
     description='从预设好的词库选择句子回答',
-    usage='''@<机器人> <你想说的话>''',
+    usage='''使用方式：@<机器人> <你想说的话>''',
     extra={'version': 'v1.0.0',
            'cost': '###0'}
 )

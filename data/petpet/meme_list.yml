@@ -42,6 +42,10 @@ call_110:
   black_list: []
   mode: 0
   white_list: []
+captain:
+  black_list: []
+  mode: 0
+  white_list: []
 charpic:
   black_list: []
   mode: 0
@@ -90,6 +94,10 @@ eat:
   black_list: []
   mode: 0
   white_list: []
+fencing:
+  black_list: []
+  mode: 0
+  white_list: []
 follow:
   black_list: []
   mode: 0
@@ -107,6 +115,18 @@ gun:
   mode: 0
   white_list: []
 hammer:
+  black_list: []
+  mode: 0
+  white_list: []
+hit_screen:
+  black_list: []
+  mode: 0
+  white_list: []
+hold_tight:
+  black_list: []
+  mode: 0
+  white_list: []
+hug_leg:
   black_list: []
   mode: 0
   white_list: []
@@ -142,6 +162,14 @@ loading:
   black_list: []
   mode: 0
   white_list: []
+look_flat:
+  black_list: []
+  mode: 0
+  white_list: []
+look_this_icon:
+  black_list: []
+  mode: 0
+  white_list: []
 love_you:
   black_list: []
   mode: 0
@@ -163,6 +191,10 @@ mywife:
   mode: 0
   white_list: []
 need:
+  black_list: []
+  mode: 0
+  white_list: []
+no_response:
   black_list: []
   mode: 0
   white_list: []
@@ -226,6 +258,10 @@ rip:
   black_list: []
   mode: 0
   white_list: []
+rip_angrily:
+  black_list: []
+  mode: 0
+  white_list: []
 roll:
   black_list: []
   mode: 0
@@ -251,6 +287,10 @@ support:
   mode: 0
   white_list: []
 symmetric:
+  black_list: []
+  mode: 0
+  white_list: []
+tankuku_holdsign:
   black_list: []
   mode: 0
   white_list: []
@@ -291,6 +331,10 @@ universal:
   mode: 0
   white_list: []
 wallpaper:
+  black_list: []
+  mode: 0
+  white_list: []
+walnut_zoom:
   black_list: []
   mode: 0
   white_list: []

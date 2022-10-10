@@ -2,17 +2,25 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:42:23
+LastEditTime: 2022-10-10 10:37:18
 Description: file content
 '''
 
 import datetime
-from nonebot import require
-import pytz
+
 import MySQLdb
-
-
+import pytz
+from nonebot import require
+from nonebot.plugin import PluginMetadata
 from setting import *
+
+__plugin_meta__ = PluginMetadata(
+    name='静默者-健康回复',
+    description='功能：涩图功能的健康回复系统',
+    usage='''使用方式：无【静默模块】''',
+    extra={'version': 'v0.0.1',
+           'cost': '###0'}
+)
 
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler

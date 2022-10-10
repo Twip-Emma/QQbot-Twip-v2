@@ -2,16 +2,16 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:59:58
+LastEditTime: 2022-10-10 10:33:10
 FilePath: \QQbot-Twip-v2\Twip\__init__.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 from os import path
 from pathlib import Path
-
-from nonebot import load_plugins, get_driver, logger
 from typing import List
 
+from nonebot import get_driver, load_plugins, logger
+from nonebot.plugin import PluginMetadata
 from tool.utils.logger import logger as my_logger
 
 DRIVER = get_driver()
@@ -29,6 +29,16 @@ except KeyError:
     NICKNAME = 'Twip'
 
 ABSOLUTE_PATH = path.join(path.dirname(__file__))
+
+
+__plugin_meta__ = PluginMetadata(
+    name='Twip',
+    description='核心模块，为其他功能服务，守护模块',
+    usage='''使用方式：无''',
+    extra={'version': 'v2.0.0beta2',
+           'cost': '###0'}
+)
+
 
 logo = """<g>
 ___________       .__        
@@ -53,7 +63,10 @@ async def shutdown():
 
 
 # 加载来自商店的模块
-load_plugins(str(Path(__file__).parent / 'plugins'))
+# load_plugins(str(Path(__file__).parent / 'plugins'))
+load_plugins("Twip/plugins")
+
+# 加载自己写的模块
 load_plugins("Twip/admin")
 load_plugins("Twip/function")
 load_plugins("Twip/user")

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 13:46:59
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:18:03
+LastEditTime: 2022-10-10 10:33:33
 Description: file content
 '''
 #!/usr/bin/env python3
@@ -28,7 +28,7 @@ from .data_source import cpu_status, disk_usage, memory_status, per_cpu_status
 __plugin_meta__ = PluginMetadata(
     name='查看状态',
     description='查看当前机器人的运行状况',
-    usage='''<戳一戳机器人>''',
+    usage='''使用方式：<戳一戳机器人>''',
     extra={'version': 'v1.0.0',
            'cost': '###0'}
 )

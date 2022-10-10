@@ -1,22 +1,32 @@
 '''
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-30 11:02:04
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-10 10:39:33
 Description: file content
 '''
 
-from nonebot import on_message, on_notice
-from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent, MessageSegment, GroupRecallNoticeEvent
-from os import path
-import nonebot
-import re
-
-
-from PIL import Image
 import base64
+import re
 from io import BytesIO
+from os import path
+
+import nonebot
 import requests
+from nonebot import on_message, on_notice
+from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent,
+                                         GroupRecallNoticeEvent, MessageEvent,
+                                         MessageSegment)
+from nonebot.plugin import PluginMetadata
+from PIL import Image
+
+__plugin_meta__ = PluginMetadata(
+    name='静默者-闪照撤回',
+    description='功能：破解闪照、破解撤回',
+    usage='''使用方式：无【静默模块】''',
+    extra={'version': 'v0.0.1',
+           'cost': '###0'}
+)
 
 
 # 设置要破解输出的群

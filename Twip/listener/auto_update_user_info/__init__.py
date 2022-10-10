@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:58:06
+LastEditTime: 2022-10-10 10:40:02
 Description: file content
 '''
 import re
@@ -11,6 +11,16 @@ from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
 
 
 from .database import start
+
+
+from nonebot.plugin import PluginMetadata
+__plugin_meta__ = PluginMetadata(
+    name='静默者-信息更新',
+    description='功能：记录每个人的发言数量总数',
+    usage='''使用方式：无【静默模块】''',
+    extra={'version': 'v0.0.1',
+           'cost': '###0'}
+)
 
 
 # 注册消息响应器

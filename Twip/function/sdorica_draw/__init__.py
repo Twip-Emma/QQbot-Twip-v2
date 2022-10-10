@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:24:47
+LastEditTime: 2022-10-10 10:26:24
 Description: file content
 '''
 from nonebot import on_command
@@ -13,7 +13,7 @@ from tool.find_power.format_data import is_level_A
 from .function_user import start
 
 __plugin_meta__ = PluginMetadata(
-    name='原神抽卡',
+    name='万象抽卡',
     description='模拟万象物语抽卡',
     usage='''起源十连|首发十连|盛夏十连|限定十连|群友十连''',
     extra={'version': 'v1.0.0',

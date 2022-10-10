@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:59:29
+LastEditTime: 2022-10-10 10:33:56
 Description: file content
 '''
 
@@ -17,7 +17,7 @@ from .sign import user_sign_main
 __plugin_meta__ = PluginMetadata(
     name='求签系统',
     description='获得一张引子',
-    usage='''您想在使用命令/help <your plugin package name>时提供的帮助文本''',
+    usage='''使用方式：求签''',
     extra={'version': 'v1.0.0',
            'cost': '##50'}
 )
