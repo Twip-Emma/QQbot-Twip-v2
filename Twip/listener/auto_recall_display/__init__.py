@@ -2,16 +2,14 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:39:33
+LastEditTime: 2022-10-10 21:04:45
 Description: file content
 '''
 
 import base64
 import re
 from io import BytesIO
-from os import path
 
-import nonebot
 import requests
 from nonebot import on_message, on_notice
 from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent,

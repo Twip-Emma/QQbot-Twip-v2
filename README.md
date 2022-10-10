@@ -1,11 +1,35 @@
 <!--
  * @Author: 七画一只妖
  * @Date: 2022-01-07 20:25:48
- * @LastEditors: 七画一只妖
- * @LastEditTime: 2022-05-24 19:40:12
+ * @LastEditors: 七画一只妖 1157529280@qq.com
+ * @LastEditTime: 2022-10-10 20:33:19
  * @Description: file content
 -->
-# Twip-v2
+<p align="center">
+  <a href="http://twip.top/#/bloginfo?id=166"><img src="http://cdngoapl.twip.top/%E7%94%A8%E6%88%B7%E5%A4%87%E9%80%89%E5%A4%B4%E5%83%8F/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%96.jpg" width="200" height="200" alt="nonebot"></a>
+</p>
+
+<div align="center">
+
+# Twip
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable-next-line MD036 -->
+_✨ 基于异步机器人框架Nonebot开发的机器人 ✨_
+<!-- prettier-ignore-end -->
+
+</div>
+
+<p align="center">
+
+![maven](https://img.shields.io/badge/python-3.9%2B-blue)
+![maven](https://img.shields.io/badge/nonebot-2.0.0beta5-yellow)
+![maven](https://img.shields.io/badge/go--cqhttp-1.0.0rc3-red)
+
+</p>
+
+# Twip-v2 
+#### 最新版本更新至：v2.0.0beta3
 
 ## 基本介绍
 
@@ -26,36 +50,117 @@
 > 学习到了如何很好的对一个较大的项目进行管理，包括模块与模块之间的耦合度，响应时间，组件复用情况怎么样等等。由于记录发言记录的数据库（MySQL）表的数据是百万级别的，这时候又巩固了如何优化数据库的知识。用户过多，某一时刻使用量过大时，如何处理高并发的问题的解决思路等等
 
 ### 参考指令
-| 所属模块 | 功能描述 | 权限要求 | 参考指令 |
-| ----------- | ----------- | ----------- | ----------- |
-| 用户模块 | 获得一张运势图  |S|求签|
-| 用户模块 | 签到，并且一定量货币，每日只能签到一次 |S|签到|
-|发言模块|艾特机器人并且发出你想说的话即可获得回复|A|无|
-|发言模块|“戳一戳”机器人获得机器人运行状态消息|-|无|
-|聆听模块|数据库连接自动更新|-|无|
-|聆听模块|每天8点12点17点发送力扣每日一题（算法）|-|无|
-|聆听模块|记录每条发言|-|无|
-|聆听模块|米游社每日签到（原神打卡）|-|无|
-|聆听模块|定时检查数据库内的乱码错误并修正|-|无|
-|聆听模块|群友大乱斗根据一定的规则回复生命值、MP值、攻防智力比等|-|无|
-|帮助模块|获得简易指令列表|S|帮助、帮助 功能组模块、...|
-| 功能模块 | 获取指定城市的最近3天天气|S|天气|
-| 功能模块 |生成一个你懂得的P站图标风格的图片|S|ph图标 <参数1> <参数2>|
-|功能模块|获得一张万象物语抽卡结果图，每日有限制抽卡次数|A|起源十连、限定十连、首发十连、雪莉十连、爱丽丝十连|
-|功能模块|获得一张原神抽卡结果图，每日有限制抽卡次数|A|原神十连|
-|功能模块|Arcaea获取B30等功能|S|arcinfo|
-|功能模块|根据PID搜索图片（来自P站）|S|搜索图片 88888888|
-|功能模块|随机涩图、根据指定xp搜索涩图（来自P站）|S|随机涩图、标签涩图 萝莉 白丝（等参数）|
-|功能模块|这人生不想呆了，我选择重开|S|重开|
-|功能模块|讲一句话抽象成emoji表情|S|抽象 大家上午好呀|
-|功能模块|菜梦AI续写文章功能|S|（艾特机器人）续写 XXX|
-|功能模块|多渠道搜图功能|S|搜图 （发送一张图片）|
-|功能模块|随机唐可可功能（眼力挑战，全群可触发、全群可抢答）|S|随机唐可可|
-|功能模块|群友大乱斗功能，发送帮助以获得更多指令（已弃用）|S|乱斗帮助|
-|功能模块|群友的水群排行，从机器人诞生的那一刻开始统计，跨群通用|S|查看水群排行|
+> 详细指令可通过 `帮助 <所属模块名称>` 查看
+
+| 所属模块 | 行动点消耗 | 版本 |
+|  ----  | ----  |----  |
+| Twip | 0 | v2.0.0beta3 |
+nonebot_plugin_apscheduler|0|-
+nonebot_plugin_imageutils|0|-
+万象抽卡|30|v1.0.0
+个人信息|0|v1.0.0
+以图搜图|40|v0.0.1
+原神抽卡|40|v1.0.0
+头像表情|13|0.3.13
+帮助菜单|0|v0.3.1
+查看状态|0|v1.0.0
+水群排行|10|v1.0.0
+求签系统|15|v1.0.0
+电费查询|5|v1.0.0
+群友老婆|65|v0.0.1
+锁定用户|0|v1.0.0
+陪聊系统|2|v1.0.0
+静默者-信息更新|0|v0.0.1
+静默者-健康回复|0|v0.0.1
+静默者-力扣算法|0|v1.3.5
+静默者-消息记录|0|v0.0.1
+静默者-闪照撤回|0|v0.0.1
 
 
 ### 开始部署/使用某个功能
+
+#### 1.直接部署
+1.在根目录创建名为setting的文件夹，并在其中创建`__init__.py` 进入并输入以下配置
+~~~py
+URL = 设置数据库连接（String）
+
+USER_CARD = 登录数据库的用户名（String）
+
+PASS_WORD = 登录数据库的密码（String）
+
+DATABASE = 指定的数据库（String）
+
+Api_Key = 青云客（String）
+
+Api_Secret = 青云客（String）
+
+Content_Type = 青云客（String）
+~~~
+
+2.创建MySQL数据库
+A：表名`message_info`
+~~~sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for message_info
+-- ----------------------------
+DROP TABLE IF EXISTS `message_info`;
+CREATE TABLE `message_info`  (
+  `database_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `message_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `message_context` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `group_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`database_id`) USING BTREE,
+  INDEX `index_message_context2`(`user_id`, `message_context`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+~~~
+B：表名`user_info`
+~~~sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for user_info
+-- ----------------------------
+DROP TABLE IF EXISTS `user_info`;
+CREATE TABLE `user_info`  (
+  `user_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sign_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_speak_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `speak_time_total` int(255) NULL DEFAULT NULL,
+  `coin` double NULL DEFAULT NULL
+) ENGINE = InnoDB AUTO_INCREMENT = 28595 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+~~~
+C：表名`user_info_new`
+~~~sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for user_info_new
+-- ----------------------------
+DROP TABLE IF EXISTS `user_info_new`;
+CREATE TABLE `user_info_new`  (
+  `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_coin` int(255) NULL DEFAULT NULL,
+  `user_health` int(255) NULL DEFAULT NULL,
+  `user_crime` int(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+~~~
+
+#### 2.使用某个功能（解耦）
 > 注意：本部署教程并不是整个机器人的部署教程，在观看前，你需要有一定的Python基础以及机器人的部署经验
 
 **我们拿天气查询功能为例，找到`src/plugins/function/weather`打开`__init__.py`**
@@ -88,3 +193,19 @@ if not is_level_S(event):
 ~~~
 
 **重启你的机器人然后艾特机器人并发送`天气 北京`得到响应即代表安装成功**
+
+### 更新日志（较为重大的更新）
+**2022-10-10** Twip-v2.0.0beta3 -> Twip-v2.0.0beta3-fix1
+>- 增加帮助模块，自动扫描元数据并整理输出
+>- 新增步数限制，避免机器人响应过于频繁
+>- 移除部分插件的限制系统，改为使用全局步数限制
+>- 修改了部分功能的加载逻辑
+>- 优化了输入日志，自定义logger
+>- 新增启动输出信息、logo等
+
+**2022-10-08** Twip-v2.0.0beta2 -> Twip-v2.0.0beta3
+>- 解耦派蒙模块
+>- 移除原神模块
+>- 为每个模块增加了元数据
+>- 极大优化了机器人启动速度和关闭速度
+>- 修改了包的位置
