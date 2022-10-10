@@ -6,7 +6,7 @@
  * @Description: file content
 -->
 <p align="center">
-  <a href="http://twip.top/#/bloginfo?id=166"><img src="http://cdngoapl.twip.top/%E7%94%A8%E6%88%B7%E5%A4%87%E9%80%89%E5%A4%B4%E5%83%8F/%E4%B8%83%E7%94%BB%E4%B8%80%E5%8F%AA%E5%A6%96.jpg" width="200" height="200" alt="nonebot"></a>
+  <a href="http://twip.top/#/bloginfo?id=166"><img src="http://cdngoapl.twip.top/%E7%94%A8%E6%88%B7%E5%A4%87%E9%80%89%E5%A4%B4%E5%83%8F/Twip.jpg" width="200" height="200" alt="nonebot"></a>
 </p>
 
 <div align="center">
