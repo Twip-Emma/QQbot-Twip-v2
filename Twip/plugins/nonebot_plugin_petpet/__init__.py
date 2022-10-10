@@ -34,6 +34,8 @@ from .data_source import memes
 from .depends import split_msg, regex
 from .manager import meme_manager, ActionResult, MemeMode
 
+from tool.find_power.format_data import is_level_S
+
 
 __plugin_meta__ = PluginMetadata(
     name="头像表情",
@@ -45,7 +47,7 @@ __plugin_meta__ = PluginMetadata(
         "example": "摸 @小Q\n摸 114514\n摸 自己\n摸 [图片]",
         "author": "meetwq <meetwq@gmail.com>",
         "version": "0.3.13",
-        "cost":"#100"
+        "cost":"##13"
     },
 )
 
@@ -108,7 +110,8 @@ def check_flag(meme: Meme):
 
 
 @help_cmd.handle()
-async def _(user_id: str = get_user_id()):
+@is_level_S
+async def _(event:GroupMessageEvent,cost=0, user_id: str = get_user_id()):
     img = await help_image(user_id, memes)
     if img:
         await help_cmd.finish(MessageSegment.image(img))
@@ -196,8 +199,11 @@ async def _(matcher: Matcher, msg: Message = CommandArg()):
 
 def create_matchers():
     def handler(meme: Meme) -> T_Handler:
+        @is_level_S
         async def handle(
+            event:GroupMessageEvent,
             matcher: Matcher,
+            cost=13,
             flag: Literal[True] = check_flag(meme),
             res: Union[str, BytesIO] = Depends(meme.func),
         ):
@@ -211,6 +217,7 @@ def create_matchers():
         return handle
 
     for meme in memes:
+        
         on_message(
             regex(meme.pattern),
             block=False,

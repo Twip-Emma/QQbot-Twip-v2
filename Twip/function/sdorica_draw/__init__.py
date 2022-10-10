@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:26:24
+LastEditTime: 2022-10-10 13:51:30
 Description: file content
 '''
 from nonebot import on_command
@@ -17,7 +17,7 @@ __plugin_meta__ = PluginMetadata(
     description='模拟万象物语抽卡',
     usage='''起源十连|首发十连|盛夏十连|限定十连|群友十连''',
     extra={'version': 'v1.0.0',
-           'cost': '#150'}
+           'cost': '##30'}
 )
 
 
@@ -30,7 +30,7 @@ hp_sdorica_draw = on_command("群友十连", block=True, priority=2)
 
 @qy_sdorica_draw.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=30):
     user_id = str(event.user_id)
     re = start(user_id,"起源十连")
     if re:
@@ -45,7 +45,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 @ss_sdorica_draw.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=30):
     user_id = str(event.user_id)
     re = start(user_id,"盛夏十连")
     if re:
@@ -60,7 +60,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 @sd_sdorica_draw.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=30):
     user_id = str(event.user_id)
     re = start(user_id,"限定十连")
     if re:
@@ -75,7 +75,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 @sf_sdorica_draw.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=30):
     user_id = str(event.user_id)
     re = start(user_id,"首发十连")
     if re:
@@ -90,7 +90,7 @@ async def _(bot:Bot,event: GroupMessageEvent):
 
 @hp_sdorica_draw.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=30):
     user_id = str(event.user_id)
     re = start(user_id,"群友十连")
     if re:

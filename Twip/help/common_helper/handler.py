@@ -4,7 +4,9 @@ from nonebot.matcher import Matcher
 from nonebot.params import CommandArg, Arg
 from nonebot.adapters import Event
 from nonebot.adapters.onebot.v11.message import Message, MessageSegment
-
+from nonebot.adapters.onebot.v11 import (GroupMessageEvent,
+                                         MessageSegment)
+from tool.find_power.format_data import is_level_S
 default_start = list(nonebot.get_driver().config.command_start)[0]
 helper = on_command("help", priority=1, aliases={"帮助"})
 # Matcher level info registering, still active in-use
@@ -15,7 +17,8 @@ helper.__help_info__ = f'''{default_start}help  # 获取本插件帮助
 
 
 @helper.handle()
-async def handle_first_receive(event: Event, matcher: Matcher, args: Message = CommandArg()):
+@is_level_S
+async def handle_first_receive(event: GroupMessageEvent, matcher: Matcher, cost=0, args: Message = CommandArg()):
     at = MessageSegment.at(event.get_user_id())
     if args:
         matcher.set_arg("content", args)
@@ -29,7 +32,7 @@ async def handle_first_receive(event: Event, matcher: Matcher, args: Message = C
 
 
 @helper.got("content")
-async def get_result(event: Event, content: Message = Arg()):
+async def get_result(event: GroupMessageEvent, content: Message = Arg()):
     at = MessageSegment.at(event.get_user_id())
     arg = content.extract_plain_text().strip()
     if arg == "列表":
@@ -82,7 +85,8 @@ async def get_result(event: Event, content: Message = Arg()):
             results = []
             # if metadata set, use the general usage in metadata instead of legacy __usage__
             if plugin.metadata and plugin.metadata.name and plugin.metadata.usage:
-                results.extend([f'{plugin.metadata.name}: {plugin.metadata.description}', plugin.metadata.usage])
+                results.extend(
+                    [f'{plugin.metadata.name}: {plugin.metadata.description}', plugin.metadata.usage])
             else:
                 # legacy __usage__ or __doc__
                 try:

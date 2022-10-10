@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-09-04 19:53:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:59:10
+LastEditTime: 2022-10-10 13:50:50
 Description: file content
 '''
 from typing import Union
@@ -13,6 +13,7 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent,
                                          PrivateMessageEvent)
 from nonebot.plugin import PluginMetadata
+from tool.find_power.format_data import is_level_S
 
 from tool.utils.logger import logger as my_logger
 
@@ -21,7 +22,7 @@ __plugin_meta__ = PluginMetadata(
     description='查询湖南工程学院指定宿舍的电费',
     usage='''电费 <滨江|学海|亲民|明德> <宿舍号>''',
     extra={'version': 'v1.0.0',
-           'cost': '###0'}
+           'cost': '###5'}
 )
 
 
@@ -33,7 +34,8 @@ URL_2 = "http://39.108.173.72:8080/isimshngc/monServlet?monType=0"
 
 
 @ele_power_finder.handle()
-async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot):
+@is_level_S
+async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5):
     msg = str(event.get_message()).split()
     group_id = str(event.group_id)
     user_id = str(event.user_id)

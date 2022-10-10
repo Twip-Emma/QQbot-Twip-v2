@@ -31,9 +31,10 @@ __plugin_meta__ = PluginMetadata(
     usage="触发方式：@<机器人> 搜图",
     extra={
         "version": "v0.0.1",
-        "cost":"#750"
+        "cost": "##40"
     },
 )
+
 
 async def get_des(url: str, mode: str):
     """
@@ -61,12 +62,12 @@ async def get_des(url: str, mode: str):
             yield msg
 
 
-setu = on_command("搜图", aliases={"search"}, block=False, priority=1)
+setu = on_command("搜图", aliases={"search"}, block=True, priority=1)
 
 
 @setu.handle()
 @is_level_S
-async def handle_first_receive(event: MessageEvent, state: T_State = State(), setu: Message = CommandArg()):
+async def handle_first_receive(event: MessageEvent, cost=40, state: T_State = State(), setu: Message = CommandArg()):
     if setu:
         state["setu"] = setu
 

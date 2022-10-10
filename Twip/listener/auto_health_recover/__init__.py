@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:37:18
+LastEditTime: 2022-10-10 13:37:05
 Description: file content
 '''
 
@@ -26,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
 
-@scheduler.scheduled_job("cron", minute="*")
+@scheduler.scheduled_job("cron", hour="*")
 async def _():
     now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
     if now.hour % 3 == 0:
@@ -34,4 +34,15 @@ async def _():
                              DATABASE, charset='utf8')
         cursor = db.cursor()
         cursor.execute("update user_info_new set user_health=user_health+1 where user_health<100")
+        db.commit()
+
+
+@scheduler.scheduled_job("cron", hour="*")
+async def _():
+    now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
+    if now.hour % 6 == 0:
+        db = MySQLdb.connect(URL, USER_CARD, PASS_WORD,
+                             DATABASE, charset='utf8')
+        cursor = db.cursor()
+        cursor.execute("update user_info_new set user_coin=user_coin+35 where user_coin<100")
         db.commit()

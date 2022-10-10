@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:33:56
+LastEditTime: 2022-10-10 13:37:41
 Description: file content
 '''
 
@@ -19,7 +19,7 @@ __plugin_meta__ = PluginMetadata(
     description='获得一张引子',
     usage='''使用方式：求签''',
     extra={'version': 'v1.0.0',
-           'cost': '##50'}
+           'cost': '##15'}
 )
 
 
@@ -34,7 +34,7 @@ get_luck = on_command("求签", block=True, priority=2)
 # 求签
 @get_luck.handle()
 @is_level_S
-async def _(bot: Bot, event: GroupMessageEvent):
+async def _(bot: Bot, event: GroupMessageEvent, cost=15):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     # await get_luck.finish("hi")

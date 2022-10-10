@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-20 14:03:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:20:54
+LastEditTime: 2022-10-10 13:52:16
 Description: file content
 '''
 
@@ -22,7 +22,7 @@ __plugin_meta__ = PluginMetadata(
     description='模拟原神抽卡，出金概率魔改版',
     usage='''原神十连''',
     extra={'version': 'v1.0.0',
-           'cost': '#150'}
+           'cost': '##40'}
 )
 
 
@@ -31,7 +31,7 @@ ys_get_10 = on_command("原神十连", block=True, priority=2)
 
 @ys_get_10.handle()
 @is_level_S
-async def _(bot: Bot, event: GroupMessageEvent):
+async def _(bot: Bot, event: GroupMessageEvent, cost=40):
     user_id = str(event.user_id)
     group_id = str(event.group_id)
     # 获取用户昵称

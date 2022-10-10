@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-01 20:27:45
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 15:22:02
+LastEditTime: 2022-10-10 13:51:58
 Description: file content
 '''
 from nonebot import on_command
@@ -18,7 +18,7 @@ __plugin_meta__ = PluginMetadata(
     description='查看机器人所有群综合的水群排行榜前99名',
     usage='''查看水群排行''',
     extra={'version': 'v1.0.0',
-           'cost': '#300'}
+           'cost': '##10'}
 )
 
 
@@ -38,13 +38,12 @@ show_rank_admin = on_command("查看水群排行-开发者模式", block=True, p
 
 @show_rank.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent):
+async def _(bot:Bot,event: GroupMessageEvent, cost=10):
     re = data_to_image(find_speak_rank(),"user")
     await show_rank.send(MessageSegment.image(re))
 
 
 @show_rank_admin.handle()
-@is_level_A
 async def _(bot:Bot,event: GroupMessageEvent):
     if str(event.user_id) != SUPER:
         return

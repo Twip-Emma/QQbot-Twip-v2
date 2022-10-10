@@ -21,7 +21,7 @@ __plugin_meta__ = PluginMetadata(
     description='每日随机分配一个群友作为老婆/老公',
     usage='''娶群友''',
     extra={'version': 'v0.0.1',
-           'cost': '###0'}
+           'cost': '##65'}
 )
 
 
@@ -47,7 +47,7 @@ no_waifu = [
 
 @waifu.handle()
 @is_level_S
-async def _(bot:Bot, event: GroupMessageEvent):
+async def _(bot:Bot, event: GroupMessageEvent, cost=65):
     group_id = event.group_id
     user_id = event.user_id
     global record_waifu

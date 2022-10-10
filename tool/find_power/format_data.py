@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-01-23 12:47:41
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-30 11:28:09
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-10 13:33:45
 Description: file content
 '''
 import os
@@ -11,6 +11,8 @@ import json
 
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from functools import wraps
+
+from .user_database import get_user_info_new, insert_user_info_new, reduce_user_coin
 
 
 _PATH = os.path.dirname(__file__)
@@ -30,6 +32,8 @@ def is_level_S(func):
     @wraps(func)
     async def check_power(*args, **kwargs):
         level_S, _, ban_user = _get_data()
+        cost = None
+        group_id = None
         for k, v in kwargs.items():
             if k == 'event':
                 user_id = str(v.user_id)
@@ -41,7 +45,10 @@ def is_level_S(func):
                     return
                 if group_id not in level_S:
                     return
-                break
+            if k == "cost":
+                cost = v
+        if not delete_user_coin(user_id=user_id, cost=cost):
+            return
         return await func(*args, **kwargs)
     return check_power
 
@@ -51,6 +58,7 @@ def is_level_A(func):
     @wraps(func)
     async def check_power(*args, **kwargs):
         _, level_A, ban_user = _get_data()
+        cost = None
         for k, v in kwargs.items():
             if k == 'event':
                 user_id = str(v.user_id)
@@ -62,6 +70,22 @@ def is_level_A(func):
                     return
                 if group_id not in level_A:
                     return
-                break
+            if k == "cost":
+                cost = v
+        if not delete_user_coin(user_id=user_id, cost=cost):
+            return
         return await func(*args, **kwargs)
     return check_power
+
+
+# 行动点扣除
+def delete_user_coin(user_id:str, cost:int) -> bool:
+    user_data = get_user_info_new(user_id=user_id)
+    if user_data == None:
+        insert_user_info_new(user_id=user_id)
+        user_data = get_user_info_new(user_id=user_id)
+    if user_data[1] >= cost:
+        reduce_user_coin(user_id=user_id, user_coin=cost)
+        return True
+    else:
+        return False
