@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 14:02:25
+LastEditTime: 2022-10-13 18:13:19
 Description: file content
 '''
 import nonebot
@@ -26,8 +26,6 @@ nonebot.init(apscheduler_config={
 
 # 测试模块
 # nonebot.load_plugins("src/plugins/bean")
-# nonebot.load_plugins("src/plugins/LittlePaimon")
-# nonebot.load_plugin("LittlePaimon")
 
 # 正式模块
 # nonebot.load_plugins("src/plugins/admin")
@@ -46,5 +44,4 @@ ABSOLUTE_PATH = path.join(path.dirname(__file__))
 if __name__ == "__main__":
     sys.path.append(f"{ABSOLUTE_PATH}\\tool")
     sys.path.append(f"{ABSOLUTE_PATH}\\setting")
-    # sys.path.append(f"{ABSOLUTE_PATH}\\src\\plugins\\LittlePaimon")
     nonebot.run()
