@@ -1,0 +1,11 @@
+aiohttp
+mysql
+pillow
+Beautifulsoup4
+apscheduler
+psutil
+jieba
+opencv-python
+imageio
+pinyin
+lxml
