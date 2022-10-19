@@ -2,13 +2,15 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:51:30
+LastEditTime: 2022-10-19 14:37:33
 Description: file content
 '''
+import time
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
+from tool.utils.logger import logger as my_logger
 
 from .function_user import start
 
@@ -31,8 +33,11 @@ hp_sdorica_draw = on_command("群友十连", block=True, priority=2)
 @qy_sdorica_draw.handle()
 @is_level_A
 async def _(bot:Bot,event: GroupMessageEvent, cost=30):
+    t1 = time.time()
     user_id = str(event.user_id)
     re = start(user_id,"起源十连")
+    t2 = time.time()
+    print_log(t2-t1, user_id, "起源十连")
     if re:
         # await qy_sdorica_draw.send(re)
         if "Error" in re:
@@ -91,8 +96,11 @@ async def _(bot:Bot,event: GroupMessageEvent, cost=30):
 @hp_sdorica_draw.handle()
 @is_level_A
 async def _(bot:Bot,event: GroupMessageEvent, cost=30):
+    t1 = time.time()
     user_id = str(event.user_id)
     re = start(user_id,"群友十连")
+    t2 = time.time()
+    print_log(t2-t1, user_id, "群友十连")
     if re:
         # await sf_sdorica_draw.send(re)
         if "Error" in re:
@@ -101,3 +109,8 @@ async def _(bot:Bot,event: GroupMessageEvent, cost=30):
             await hp_sdorica_draw.send(MessageSegment.image(re))
     else:
         await hp_sdorica_draw.send("出现了一点问题，请联系开发者七画")
+
+
+def print_log(t, user_id, draw_type) -> None:
+    my_logger.success(
+        '万象抽卡', f'<m>{"{:.3f}".format(t)}秒</m>成功发送：用户：<m>{user_id}</m> | 抽卡类型：<m>{draw_type}</m>')

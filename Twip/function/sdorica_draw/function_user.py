@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-03-16 18:45:52
-LastEditors: 七画一只妖
-LastEditTime: 2022-03-16 21:36:15
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-19 15:28:31
 Description: file content
 '''
 import random
@@ -15,7 +15,6 @@ import os
 from .function_pkg import get_pool_info,removal1,ten_blue
 from .user_package import attack_chack, select_user_pack
 from .get_image import get_png_path,blend_two_images,finally_get_image
-from .database import chack_user_gacha
 
 FILE_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -24,10 +23,9 @@ FILE_PATH = os.path.dirname(os.path.abspath(__file__))
 def start(user_id,pool_name) -> str:
 
     # 抽卡次数判断
-    bool_r = attack_chack(user_id)
+    bool_r, time, total, sptotal = attack_chack(user_id)
     if not bool_r:
-        msg = chack_user_gacha(user_id)
-        return f"{msg}"
+        return f"""【Error】你的发言小于{total},有{time}次抽卡机会，现已用完\n你的发言总数：{sptotal}"""
 
     # 根据名称抽卡
     char_list, char_name_list = get_pool_info(pool_name)
@@ -55,8 +53,8 @@ def start(user_id,pool_name) -> str:
     return cq
 
 
-def img_to_b64(pic: Image.Image) -> str:
-    buf = BytesIO()
-    pic.save(buf, format="PNG")
-    base64_str = base64.b64encode(buf.getbuffer()).decode()
-    return "base64://" + base64_str
+# def img_to_b64(pic: Image.Image) -> str:
+#     buf = BytesIO()
+#     pic.save(buf, format="PNG")
+#     base64_str = base64.b64encode(buf.getbuffer()).decode()
+#     return "base64://" + base64_str

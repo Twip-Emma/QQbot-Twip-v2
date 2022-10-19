@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2021-09-09 18:36:14
-LastEditors: 七画一只妖
-LastEditTime: 2022-03-23 21:26:00
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-19 15:28:24
 Description: file content
 '''
 import json
@@ -20,8 +20,8 @@ PACK_PATH = f"{PATH}\\data\\user_package.json"
 
 # 抽卡限制判断
 def attack_chack(user_id):
-    time = find_user_gacha_time(user_id)
-    # time = 999
+    # 返回理应抽卡次数
+    time, total, sptotal = find_user_gacha_time(user_id)
     sign:dict = json.load(open(SIGN_PATH, 'r', encoding='utf8'))
     sign_time = str(datetime.datetime.now().strftime('%Y-%m-%d'))
 
@@ -33,31 +33,30 @@ def attack_chack(user_id):
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
         if time == 0:
-            return False
+            return False, time, total, sptotal
         else:
-            return True
+            return True, time, total, sptotal
     
     # 当天抽卡次数小于等于0，则不允许抽卡
-    if sign[user_id]["sign_time"] == sign_time and sign[user_id]["gacha_time"] <= 0:
-        return False
-    # 当天抽卡次数大于0，可以抽卡
-    elif sign[user_id]["sign_time"] == sign_time and sign[user_id]["gacha_time"] > 0:
-        sign[user_id]["gacha_time"] -= 1
-        with open(SIGN_PATH, 'w', encoding='utf-8') as f:
-            f.write(json.dumps(sign, ensure_ascii=False))
-            f.close() 
-        return True
-    # 新的一天抽卡
-    elif sign[user_id]["sign_time"] != sign_time:
+    if sign[user_id]["sign_time"] == sign_time:
+        if sign[user_id]["gacha_time"] <= 0:
+            return False, time, total, sptotal
+        else:
+            sign[user_id]["gacha_time"] -= 1
+            with open(SIGN_PATH, 'w', encoding='utf-8') as f:
+                f.write(json.dumps(sign, ensure_ascii=False))
+                f.close() 
+            return True, time, total, sptotal
+    else:
         sign[user_id]["sign_time"] = sign_time
         sign[user_id]["gacha_time"] = time - 1
         with open(SIGN_PATH, 'w', encoding='utf-8') as f:
             f.write(json.dumps(sign, ensure_ascii=False))
             f.close() 
         if time == 0:
-            return False
+            return False, time, total, sptotal
         else:
-            return True
+            return True, time, total, sptotal
 
 
 # 根据用户魂册去重
