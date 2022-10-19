@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:29:43
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:56:24
+LastEditTime: 2022-10-18 19:40:55
 Description: file content
 '''
 
@@ -21,7 +21,7 @@ from .get_image import start as image_start
 
 # 求签主函数，由init调用
 def user_sign_main(user_id:str, user_name) -> str:
-
+    
     luck_num = random.randint(1,1000)
     user = select_user(user_id)
 

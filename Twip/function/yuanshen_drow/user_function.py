@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-03-20 14:13:10
-LastEditors: 七画一只妖
-LastEditTime: 2022-03-20 16:38:53
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-10-18 19:40:10
 Description: file content
 '''
 import random
@@ -61,7 +61,7 @@ async def chouka_start(user_id, user_name, time_gacha) -> str:
     # 写字
     font_size = 40
     text = f"{user_name} 的抽卡结果       QQID：{user_id}       剩余抽卡次数：{time_gacha} \
-    \n\n此功能代码均为 七画一只妖 原创，本机器人遵循MIT License开源协议，望周知    拼合图像耗时：{t}秒"
+    \n\nBy七画一只妖，拼合图像耗时：{t}秒"
     font_path = f"{FILE_PATH}\\yuanshen.ttf"
     font = ImageFont.truetype(font_path, font_size)
     draw = ImageDraw.Draw(bg_finally)

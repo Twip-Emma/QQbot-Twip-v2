@@ -2,10 +2,11 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:37:41
+LastEditTime: 2022-10-18 19:56:02
 Description: file content
 '''
 
+import time
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
@@ -35,6 +36,7 @@ get_luck = on_command("求签", block=True, priority=2)
 @get_luck.handle()
 @is_level_S
 async def _(bot: Bot, event: GroupMessageEvent, cost=15):
+    t1 = time.time()
     group_id = str(event.group_id)
     user_id = str(event.user_id)
     # await get_luck.finish("hi")
@@ -42,9 +44,10 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=15):
     recall_user_name = recall_user_info['nickname']
 
     message_image = user_sign_main(user_id, recall_user_name)
+    t2 = time.time()
     await get_luck.send(MessageSegment.image(message_image))
     my_logger.success(
-        '求签系统', f'成功发送：用户：<m>{recall_user_name}{user_id}</m> | 群：<m>{group_id}</m>')
+        '求签系统', f'<m>{"{:.3f}".format(t2-t1)}秒</m>成功发送：用户：<m>{recall_user_name}{user_id}</m> | 群：<m>{group_id}</m>')
 
 
 # 签到（新版）
