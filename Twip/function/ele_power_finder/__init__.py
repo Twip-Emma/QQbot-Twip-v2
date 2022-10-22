@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-09-04 19:53:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-22 19:53:25
+LastEditTime: 2022-10-22 20:33:43
 Description: file content
 '''
 from typing import Union
@@ -96,13 +96,13 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
                         "3": 143,
                         "4": 144,
                         "5": 145,
-                        "6": 146,
-                        "7": 147,
-                        "8": 148,
-                        "9": 149,
-                        "10": 150,
-                        "11": 151}
-        # print(f'{buildId}棟{room_id}间')
+                        "7": 146,
+                        "8": 147,
+                        "9": 148,
+                        "10": 149,
+                        "11": 150,
+                        "12": 151}
+        print(f'{buildId}棟{room_id}间')
         payload = {
             "xiaoquId": 140,
             "buildingId": buildId_dict[buildId],
