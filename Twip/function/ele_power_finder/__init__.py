@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-09-04 19:53:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:50:50
+LastEditTime: 2022-10-22 19:53:25
 Description: file content
 '''
 from typing import Union
@@ -49,7 +49,8 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "buildingId": 362,
             "roomName": 307
         }
-        await ele_power_finder.send(message=f"（默认查询）滨江9307电费总余量{get_data(payload)}度")
+        power1, power2 = get_data(payload)
+        await ele_power_finder.send(message=f"（默认查询）滨江9307电费总余量{power1}度\n补助电费余量{power2}度")
     elif "滨江" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -70,7 +71,8 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "buildingId": buildId_dict[buildId],
             "roomName": room_id
         }
-        await ele_power_finder.send(message=f"滨江{buildId}栋{room_id}电费总余量{get_data(payload)}度")
+        power1, power2 = get_data(payload)
+        await ele_power_finder.send(message=f"滨江{buildId}栋{room_id}电费总余量{power1}度\n补助电费余量{power2}度")
     elif "亲民" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -84,7 +86,8 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "buildingId": buildId_dict[buildId],
             "roomName": room_id
         }
-        await ele_power_finder.send(message=f"亲民{buildId}栋{room_id}电费总余量{get_data(payload)}度")
+        power1, power2 = get_data(payload)
+        await ele_power_finder.send(message=f"亲民{buildId}栋{room_id}电费总余量{power1}度\n补助电费余量{power2}度")
     elif "学海" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -105,7 +108,8 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "buildingId": buildId_dict[buildId],
             "roomName": room_id
         }
-        await ele_power_finder.send(message=f"学海{buildId}栋{room_id}电费总余量{get_data(payload)}度")
+        power1, power2 = get_data(payload)
+        await ele_power_finder.send(message=f"学海{buildId}栋{room_id}电费总余量{power1}度\n补助电费余量{power2}度")
     elif "明德" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -125,7 +129,8 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "buildingId": buildId_dict[buildId],
             "roomName": room_id
         }
-        await ele_power_finder.send(message=f"明德{buildId}栋{room_id}电费总余量{get_data(payload)}度")
+        power1, power2 = get_data(payload)
+        await ele_power_finder.send(message=f"明德{buildId}栋{room_id}电费总余量{power1}度\n补助电费余量{power2}度")
     else:
         await ele_power_finder.send("目前只支持：滨江|明德|学海|亲民\n请输入正确的宿舍例如：\n电费 滨江9307")
     my_logger.success(
@@ -139,8 +144,14 @@ def get_data(payload):
     resp.encoding = "utf-8"
 
     s = BeautifulSoup(resp.text, 'html.parser')
+    print(resp.text)
     power = s.find_all("div", class_="content1")[0].get_text()
-    return power
+    power2 = 0
+    try:
+        power2 = s.find_all("div", class_="content1")[1].get_text()
+    except:
+        power2 = 0
+    return power, power2
 
 
 # print(get_data({
