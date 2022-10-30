@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:58:57
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-19 14:11:03
+LastEditTime: 2022-10-30 22:12:41
 Description: file content
 '''
 from PIL import Image, ImageDraw, ImageFont
@@ -11,9 +11,6 @@ import os
 from Twip import ABSOLUTE_PATH
 
 FILE_PATH = f"{ABSOLUTE_PATH}\\user\\sign_new"
-
-
-SIGN_IMG = ["冲虚", "低语", "高歌", "救苦", "普渡", "深渊", "万神", "往生", "智慧", "自在"]
 
 
 def get_bg(luck_name):

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-11-24 14:29:43
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-18 19:40:55
+LastEditTime: 2022-10-30 22:24:31
 Description: file content
 '''
 
@@ -45,7 +45,7 @@ def find_luck_info(num,user_name) -> str:
         tag = "S"
     elif num <=150:
         tag = "L"
-    elif num <= 400:
+    elif num <= 300:
         tag = "F"
     elif num <= 500:
         tag = "M"
@@ -58,11 +58,11 @@ def find_luck_info(num,user_name) -> str:
     elif tag == "L":
         luck_ing = random.choice(["高歌","救苦","莫测","守序"])
     elif tag == "F":
-        luck_ing = random.choice(["深渊","低语","堕入三恶道","因果报应"])
+        luck_ing = random.choice(["深渊","低语","悔悟","窥探"])
     elif tag == "M":
-        luck_ing = random.choice(["往生","冲虚","人间万事非","再受业报"])
+        luck_ing = random.choice(["往生","冲虚","事非","次嗟"])
     elif tag == "R":
-        luck_ing = random.choice(["自在","智慧","何处染尘埃","身是菩提树"])
+        luck_ing = random.choice(["自在","智慧","迷幻","安天"])
 
     # 选择诗句
     verse = random.choice(data["verse"][tag])
