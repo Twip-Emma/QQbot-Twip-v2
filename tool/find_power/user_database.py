@@ -2,23 +2,11 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-10 12:52:51
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:34:56
+LastEditTime: 2022-11-03 21:11:27
 '''
 import MySQLdb
 
-# from setting import URL, USER_CARD, PASS_WORD, DATABASE
-
-# 设置数据库连接
-URL = "rm-8vbu4rkgv70eqp2y50o.mysql.zhangbei.rds.aliyuncs.com"
-
-# 登录数据库的用户名
-USER_CARD = "twip"
-
-# 登录数据库的密码
-PASS_WORD = f"H97$*V9@#%hiPj)ih@*98n9I!@%"
-
-# 指定的数据库
-DATABASE = "qqbot-twip-database-1"
+from setting import URL, USER_CARD, PASS_WORD, DATABASE
 
 # 链接
 # db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
