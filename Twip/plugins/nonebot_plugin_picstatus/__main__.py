@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-11-03 20:19:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-11-03 20:20:55
+LastEditTime: 2022-11-05 12:27:29
 FilePath: \QQbot-Twip-v2\Twip\plugins\nonebot_plugin_picstatus\__main__.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -12,6 +12,7 @@ from nonebot.internal.matcher import Matcher
 from nonebot.internal.rule import Rule
 from nonebot.params import CommandArg
 from nonebot.rule import to_me
+from Twip import SUPERUSERS
 
 from .config import config
 from .draw import get_stat_pic
@@ -31,7 +32,7 @@ def trigger_rule():
 
 
 stat_matcher = on_command(
-    "运行状态", aliases={"状态", "zt", "yxzt", "status"}, rule=trigger_rule(), block=True, priority=1
+    "运行状态", aliases={"状态", "zt", "yxzt", "status"}, block=True, priority=1
 )
 
 
@@ -39,6 +40,8 @@ stat_matcher = on_command(
 async def _(
     bot: Bot, event: MessageEvent, matcher: Matcher, arg: Message = CommandArg()
 ):
+    if event.user_id != SUPERUSERS[0]:
+        return
     pic = None
 
     if img := arg["image"]:
