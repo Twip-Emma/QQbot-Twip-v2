@@ -1,0 +1,116 @@
+'''
+Author: 七画一只妖 1157529280@qq.com
+Date: 2022-12-09 09:17:23
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2022-12-09 16:18:14
+'''
+import datetime
+import random
+from io import BytesIO
+from pathlib import Path
+
+import requests
+from PIL import Image, ImageDraw, ImageFont, ImageMath
+
+from .data.pray_txt import PARY_TABLE
+from .data_handler import change_sign_info, insert_new_user, select_user
+from .image_factory import FontEntity, picture_paste_img, write_longsh
+
+BASE_PATH: str = Path(__file__).absolute().parents[0]
+
+
+# qq头像接口
+QQ_API1 = "http://q1.qlogo.cn/g?b=qq&nk=|QQ号码|&s=640"
+
+# qq群头像接口
+QQ_API2 = "http://p.qlogo.cn/gh/|QQ群号码|/|QQ群号码|/100/"
+
+
+# 获取头像
+def get_user_image(user_id: str) -> Image:
+    # 图片url转bytes
+    url = f"http://q1.qlogo.cn/g?b=qq&nk={user_id}&s=640"
+    res = requests.get(url)
+    byte_stream = BytesIO(res.content)
+    return Image.open(byte_stream)
+
+
+# 获取运势
+def get_lucky(user_id:str) -> str:
+    user = select_user(user_id)
+    if user == []: # 判断为新用户
+        info = get_luck_info()
+        insert_new_user(user_id, info)
+        return info
+    else:
+        now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+        if user[0][1] == now_time: # 今日已签到
+            return user[0][2]
+        else: # 今日首次签到
+            info = get_luck_info()
+            change_sign_info(user_id, info)
+            return info
+
+
+# 获取运势信息
+def get_luck_info() -> str:
+    info = None
+    luck_num = random.randint(1,1000)
+    if luck_num <= 30:
+        luck_num2 = random.randint(100000,10000000)
+        info = "大     吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2)
+    elif luck_num <= 100:
+        luck_num2 = random.randint(1000,99999)
+        info = "中     吉|" + random.choice(PARY_TABLE["中吉"]) + "|" + str(luck_num2)
+    elif luck_num <= 300:
+        luck_num2 = random.randint(10,999)
+        info = "小     吉|" + random.choice(PARY_TABLE["小吉"]) + "|" + str(luck_num2)
+    elif luck_num <= 1000:
+        luck_num2 = random.randint(0,9)
+        info = "末     吉|" + random.choice(PARY_TABLE["末吉"]) + "|" + str(luck_num2)
+    else:
+        luck_num2 = random.randint(100000,10000000)
+        info = "大     吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2)
+    return info
+
+
+# 制作背景总控
+def make_bg(user_id:str, user_name: str) -> Image:
+    user_head = get_user_image(user_id)
+    user_head = user_head.resize((300,300))
+    bg = Image.open(Path(BASE_PATH)/r"image"/r"BaseBG.png")
+    location = int((bg.width - user_head.width)/2), 150
+    a1 = picture_paste_img(user_head, bg, location)
+    a2 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"BaseBG2.png"), a1)
+
+    info = get_lucky(user_id)
+    info = info.split("|")
+
+    # 写什么运势
+    ft = FontEntity(fsize=100, color="#FF99FF")
+    a3 = write_longsh(ft, a2, info[0], "C", (450,0))
+    ft.setColor("#FF66FF").setSize(35)
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+    a4 = write_longsh(ft, a3, f"幸运度：{info[2]}\n\n{user_name}   {now_time}", "C", (600,0))
+    ft.setColor("#9933CC").setSize(25)
+    a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
+
+    # 写密语
+    ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#660099")
+    txt = info[1].replace("-","\n\n")
+    a6 = write_longsh(ft, a5, txt, "C", (780,0))
+
+    # 选择猫猫
+    luck = info[0]
+    luck = luck.replace(" ","")
+    neko = Image.open(Path(BASE_PATH)/r"image"/f"{luck}.png")
+    neko = neko.resize((int(neko.width * 0.5), int(neko.height * 0.5)))
+    a7 = picture_paste_img(neko, a6, (200, 600))
+    a8 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"cover.png"), a7)
+
+    # 保存图片
+    save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id}.jpg")
+    a8 = a8.convert("RGB")
+    a8.save(save_path)
+
+    return save_path
