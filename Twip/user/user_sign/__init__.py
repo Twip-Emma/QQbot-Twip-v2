@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-09 16:15:39
+LastEditTime: 2022-12-09 19:53:51
 Description: file content
 '''
 
@@ -27,11 +27,6 @@ __plugin_meta__ = PluginMetadata(
 
 
 get_luck = on_command("求签", block=True, priority=2)
-# user_sign = on_command("-签到")
-
-
-# @get_luck.handle()
-# @on_command('weather', aliases=('的天气', '天气预报', '查天气'),only_to_me=False)
 
 
 # 求签

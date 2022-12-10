@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:17:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-09 16:18:14
+LastEditTime: 2022-12-10 10:35:46
 '''
 import datetime
 import random
@@ -56,61 +56,112 @@ def get_lucky(user_id:str) -> str:
 def get_luck_info() -> str:
     info = None
     luck_num = random.randint(1,1000)
-    if luck_num <= 30:
-        luck_num2 = random.randint(100000,10000000)
-        info = "大     吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2)
-    elif luck_num <= 100:
-        luck_num2 = random.randint(1000,99999)
-        info = "中     吉|" + random.choice(PARY_TABLE["中吉"]) + "|" + str(luck_num2)
-    elif luck_num <= 300:
-        luck_num2 = random.randint(10,999)
-        info = "小     吉|" + random.choice(PARY_TABLE["小吉"]) + "|" + str(luck_num2)
-    elif luck_num <= 1000:
-        luck_num2 = random.randint(0,9)
-        info = "末     吉|" + random.choice(PARY_TABLE["末吉"]) + "|" + str(luck_num2)
+    print(luck_num)
+
+    flag = random.randint(1,100)
+    if flag <= 50:
+        if luck_num <= 30:
+            luck_num2 = random.randint(100000,10000000)
+            info = "大吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2) + "|繁     锦|A"
+        elif luck_num <= 100:
+            luck_num2 = random.randint(1000,99999)
+            info = "中吉|" + random.choice(PARY_TABLE["中吉"]) + "|" + str(luck_num2) + "|争     妍|A"
+        elif luck_num <= 300:
+            luck_num2 = random.randint(10,999)
+            info = "小吉|" + random.choice(PARY_TABLE["小吉"]) + "|" + str(luck_num2) + "|归     鸟|A"
+        elif luck_num <= 1000:
+            luck_num2 = random.randint(0,9)
+            info = "末吉|" + random.choice(PARY_TABLE["末吉"]) + "|" + str(luck_num2) + "|疏     影|A"
+        else:
+            luck_num2 = random.randint(100000,10000000)
+            info = "大吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2) + "|繁     锦|A"
+        return info
     else:
-        luck_num2 = random.randint(100000,10000000)
-        info = "大     吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2)
-    return info
+        if luck_num <= 30:
+            luck_num2 = random.randint(100000,10000000)
+            info = "大吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2) + "|渺 镜 云 烟|B"
+        elif luck_num <= 100:
+            luck_num2 = random.randint(1000,99999)
+            info = "中吉|" + random.choice(PARY_TABLE["中吉"]) + "|" + str(luck_num2) + "|纯 白 之 心|B"
+        elif luck_num <= 300:
+            luck_num2 = random.randint(10,999)
+            info = "小吉|" + random.choice(PARY_TABLE["小吉"]) + "|" + str(luck_num2) + "|诸 坠 渊 若|B"
+        elif luck_num <= 1000:
+            luck_num2 = random.randint(0,9)
+            info = "末吉|" + random.choice(PARY_TABLE["末吉"]) + "|" + str(luck_num2) + "|惄 焉 伤 悴|B"
+        else:
+            luck_num2 = random.randint(100000,10000000)
+            info = "大吉|" + random.choice(PARY_TABLE["大吉"]) + "|" + str(luck_num2) + "|渺 镜 云 烟|B"
+        return info
 
 
 # 制作背景总控
 def make_bg(user_id:str, user_name: str) -> Image:
     user_head = get_user_image(user_id)
     user_head = user_head.resize((300,300))
-    bg = Image.open(Path(BASE_PATH)/r"image"/r"BaseBG.png")
-    location = int((bg.width - user_head.width)/2), 150
-    a1 = picture_paste_img(user_head, bg, location)
-    a2 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"BaseBG2.png"), a1)
+
 
     info = get_lucky(user_id)
     info = info.split("|")
 
-    # 写什么运势
-    ft = FontEntity(fsize=100, color="#FF99FF")
-    a3 = write_longsh(ft, a2, info[0], "C", (450,0))
-    ft.setColor("#FF66FF").setSize(35)
-    now_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    a4 = write_longsh(ft, a3, f"幸运度：{info[2]}\n\n{user_name}   {now_time}", "C", (600,0))
-    ft.setColor("#9933CC").setSize(25)
-    a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
+    # 判断运势类型
+    if info[4] == "A":
+        bg = Image.open(Path(BASE_PATH)/r"image"/r"BaseBG.png")
+        location = int((bg.width - user_head.width)/2), 150
+        a1 = picture_paste_img(user_head, bg, location)
+        a2 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"BaseBG3.png"), a1)
 
-    # 写密语
-    ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#660099")
-    txt = info[1].replace("-","\n\n")
-    a6 = write_longsh(ft, a5, txt, "C", (780,0))
+        # 写什么运势
+        ft = FontEntity(fsize=100, color="#FF99FF")
+        a3 = write_longsh(ft, a2, info[3], "C", (450,0))
+        ft.setColor("#FF66FF").setSize(35)
+        now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+        a4 = write_longsh(ft, a3, f"幸运度：{info[2]}\n\n{user_name}   {now_time}", "C", (600,0))
+        ft.setColor("#9933CC").setSize(25)
+        a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
 
-    # 选择猫猫
-    luck = info[0]
-    luck = luck.replace(" ","")
-    neko = Image.open(Path(BASE_PATH)/r"image"/f"{luck}.png")
-    neko = neko.resize((int(neko.width * 0.5), int(neko.height * 0.5)))
-    a7 = picture_paste_img(neko, a6, (200, 600))
-    a8 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"cover.png"), a7)
+        # 写密语
+        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#660099")
+        txt = info[1].replace("-","\n\n")
+        a6 = write_longsh(ft, a5, txt, "C", (780,0))
 
-    # 保存图片
-    save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id}.jpg")
-    a8 = a8.convert("RGB")
-    a8.save(save_path)
+        # 选择猫猫
+        luck = info[0]
+        luck = luck.replace(" ","")
+        neko = Image.open(Path(BASE_PATH)/r"image"/f"{luck}.png")
+        neko = neko.resize((int(neko.width * 0.5), int(neko.height * 0.5)))
+        a7 = picture_paste_img(neko, a6, (200, 600))
+        a8 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"cover.png"), a7)
+
+        # 保存图片
+        save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id}.jpg")
+        a8 = a8.convert("RGB")
+        a8.save(save_path)
+    else:
+        bg = Image.open(Path(BASE_PATH)/r"image"/r"BaseBG4.png")
+        location = int((bg.width - user_head.width)/2), 150
+        a1 = picture_paste_img(user_head, bg, location)
+        a2 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"BaseBG5.png"), a1)
+        
+        # 写什么运势
+        ft = FontEntity(fsize=100, color="#0099FF")
+        a3 = write_longsh(ft, a2, info[3], "C", (450,0))
+        ft.setColor("#3399FF").setSize(35)
+        now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+        a4 = write_longsh(ft, a3, f"幸运度：{info[2]}\n\n{user_name}   {now_time}", "C", (600,0))
+        ft.setColor("#0066CC").setSize(25)
+        a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
+
+        # 写密语
+        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#3333FF")
+        txt = info[1].replace("-","\n\n")
+        a6 = write_longsh(ft, a5, txt, "C", (780,0))
+
+        a6 = picture_paste_img(Image.open(Path(BASE_PATH)/r"image"/r"cover2.png"), a6)
+
+        # 保存图片
+        save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id}.jpg")
+        a6 = a6.convert("RGB")
+        a6.save(save_path)
 
     return save_path
