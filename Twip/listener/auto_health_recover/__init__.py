@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-29 18:37:32
+LastEditTime: 2022-12-12 15:56:09
 Description: file content
 '''
 
@@ -44,5 +44,5 @@ async def _():
         db = MySQLdb.connect(URL, USER_CARD, PASS_WORD,
                              DATABASE, charset='utf8')
         cursor = db.cursor()
-        cursor.execute("update user_info_new set user_coin=IF(user_coin + 33 > 100,100, user_coin + 33)")
+        cursor.execute("update user_info_new set user_coin=IF(user_coin + 33 > 133,user_coin, user_coin + 33)")
         db.commit()

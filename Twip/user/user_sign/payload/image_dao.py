@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:17:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-10 10:35:46
+LastEditTime: 2022-12-10 10:40:25
 '''
 import datetime
 import random
@@ -145,7 +145,7 @@ def make_bg(user_id:str, user_name: str) -> Image:
         
         # 写什么运势
         ft = FontEntity(fsize=100, color="#0099FF")
-        a3 = write_longsh(ft, a2, info[3], "C", (450,0))
+        a3 = write_longsh(ft, a2, info[3], "C", (480,0))
         ft.setColor("#3399FF").setSize(35)
         now_time = datetime.datetime.now().strftime('%Y-%m-%d')
         a4 = write_longsh(ft, a3, f"幸运度：{info[2]}\n\n{user_name}   {now_time}", "C", (600,0))

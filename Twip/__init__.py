@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-09 16:15:01
+LastEditTime: 2022-12-24 13:29:13
 '''
 from os import path
 from pathlib import Path
@@ -77,9 +77,9 @@ async def shutdown():
 # load_plugins("Twip/bean")
 
 # 加载自己写的模块
-# load_plugins("Twip/admin")
+load_plugins("Twip/admin")
 # load_plugins("Twip/function")
-load_plugins("Twip/user")
+# load_plugins("Twip/user")
 # load_plugins("Twip/listener")
 # load_plugins("Twip/speaker")
 # load_plugins("Twip/help")
