@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-18 20:14:12
+LastEditTime: 2023-01-29 19:34:38
 Description: file content
 '''
 import nonebot
@@ -37,6 +37,9 @@ nonebot.init(apscheduler_config={
 
 # 单模块
 nonebot.load_plugin("Twip")
+
+# 全局模块
+# nonebot.load_plugin()
 
 # 加载绝对路径头
 ABSOLUTE_PATH = path.join(path.dirname(__file__))

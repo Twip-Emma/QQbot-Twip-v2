@@ -15,7 +15,7 @@ nonebot-plugin-test = "^0.3.0"
 
 
 [tool.nonebot]
-plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_status"]
+plugins = ["nonebot_plugin_apscheduler", "nonebot_plugin_status", "nonebot_plugin_novelai"]
 plugin_dirs = []
 [nonebot.plugins]
 plugins = ["nonebot_plugin_heweather", "nonebot_plugin_phlogo", "leetcode"]
