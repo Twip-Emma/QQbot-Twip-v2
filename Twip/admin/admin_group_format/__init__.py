@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-01 19:28:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-24 13:28:28
+LastEditTime: 2023-02-02 10:24:02
 Description: file content
 '''
 from nonebot import on_command
@@ -86,10 +86,11 @@ async def _(bot:Bot,event: MessageEvent):
     user_id = msg[1]
     add_coin = msg[2]
     add_health = msg[3]
+    add_crime = msg[4]
 
     db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
     cursor = db.cursor()
-    sql = f"update user_info_new set user_coin=user_coin{add_coin},user_health=user_health{add_health} where user_id='{user_id}'"
+    sql = f"update user_info_new set user_coin=user_coin{add_coin},user_health=user_health{add_health},user_crime=user_crime{add_crime} where user_id='{user_id}'"
     cursor.execute(sql)
     db.commit()
     db.close()
