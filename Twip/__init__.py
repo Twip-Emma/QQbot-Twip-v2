@@ -74,12 +74,12 @@ async def shutdown():
 # 加载来自商店的模块
 # load_plugins(str(Path(__file__).parent / 'plugins'))
 # load_plugins("Twip/plugins")
-# load_plugins("Twip/bean")
+load_plugins("Twip/bean")
 
 # 加载自己写的模块
 # load_plugins("Twip/admin")
 # load_plugins("Twip/function")
-load_plugins("Twip/user")
+# load_plugins("Twip/user")
 # load_plugins("Twip/listener")
 # load_plugins("Twip/speaker")
 # load_plugins("Twip/help")
