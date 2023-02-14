@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-14 15:18:53
+LastEditTime: 2023-02-14 16:10:02
 Description: file content
 '''
 
@@ -12,7 +12,7 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
 from tool.utils.logger import logger as my_logger
 
-from tool.find_power.user_database import get_user_info_new, insert_user_info_new
+from tool.find_power.user_database import get_user_info_new, insert_user_info_new, change_user_crime, change_coin_max
 
 
 __plugin_meta__ = PluginMetadata(
@@ -27,7 +27,7 @@ __plugin_meta__ = PluginMetadata(
 get_luck = on_command("个人信息", block=True, priority=2)
 
 
-# 求签
+# 个人信息
 @get_luck.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
@@ -39,10 +39,83 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
         insert_user_info_new(user_id=user_id)
         user_data = get_user_info_new(user_id=user_id)
     
-    await get_luck.send(message=f"你的个人信息如下：\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}", at_sender=True)
+    level_data:dict = find_coin_max(user_data[4])
+    level_txt1 = f"等级数：{level_data['now_level']}/{level_data['max_level']}"
+    level_txt2 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
+    await get_luck.send(message=f"你的个人信息如下：\n{level_txt1}\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}\n{level_txt2}", at_sender=True)
     
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']
 
     my_logger.success(
         '个人信息查询', f'成功发送：用户：<m>{recall_user_name}{user_id}</m> | 群：<m>{group_id}</m>')
+
+
+# 升级
+h_level_up = on_command("升级", block=True, priority=2)
+
+@h_level_up.handle()
+@is_level_A
+async def _(bot: Bot, event: GroupMessageEvent, cost=0):
+    group_id = str(event.group_id)
+    user_id = str(event.user_id)
+
+    user_data = get_user_info_new(user_id=user_id)
+    if user_data == None:
+        insert_user_info_new(user_id=user_id)
+        user_data = get_user_info_new(user_id=user_id)
+    level_data:dict = find_coin_max(user_data[4])
+
+    # 判断画境币是否足够
+    if level_data["level_up"] > user_data[3]:
+        await h_level_up.send(message=f"画境币不足，需要{level_data['level_up']}而你只有{user_data[3]}\n通过发言即可获得画境币", at_sender=True)
+        return
+    else:
+        change_user_crime(user_id=user_id, num=f"-{level_data['level_up']}")
+        change_coin_max(user_id=user_id, num=level_data['next_coin_max'])
+        await h_level_up.send(message=f"升级！\n行动点上限增加到：{level_data['next_coin_max']}\n画境币减少：{level_data['level_up']}", at_sender=True)
+
+
+
+
+
+# 根据当前行动点上限查找下一级上限
+def find_coin_max(now_max: int) -> dict:
+    COIN_TABLE = {
+            100:50,
+            110:100,
+            120:200,
+            130:300,
+            140:500,
+            155:1000,
+            170:2000,
+            200:5000,
+            230:7500,
+            260:10000,
+            300:22500,
+            350:40000,
+            400:70000,
+            500:100000,
+        }
+    now_level = 1
+    level_up = 50
+    for item in COIN_TABLE.items():
+        if item[0] == now_max:
+            level_up = item[1]
+            break
+        now_level += 1
+
+    p = now_level
+    next_coin_max = None
+    for item in COIN_TABLE.items():
+        if p == 0:
+            next_coin_max = item[0]
+            break
+        p -= 1
+
+    return {
+        "now_level":now_level,
+        "max_level":len(COIN_TABLE),
+        "level_up":level_up,
+        "next_coin_max":next_coin_max
+    }

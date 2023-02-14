@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-10 12:52:51
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-14 15:14:52
+LastEditTime: 2023-02-14 15:29:16
 '''
 import MySQLdb
 
@@ -39,6 +39,26 @@ def reduce_user_coin(user_id: str, user_coin: int) -> None:
     db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
     cursor = db.cursor()
     sql = f"update user_info_new set user_coin=user_coin-{user_coin} where user_id='{user_id}'"
+    cursor.execute(sql)
+    db.commit()
+    db.close()
+
+
+# 修改画境币
+def change_user_crime(user_id: str, num: str) -> None:
+    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    cursor = db.cursor()
+    sql = f"update user_info_new set user_crime=user_crime{num} where user_id='{user_id}'"
+    cursor.execute(sql)
+    db.commit()
+    db.close()
+
+
+# 修改行动点上限
+def change_coin_max(user_id: str, num: int) -> None:
+    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    cursor = db.cursor()
+    sql = f"update user_info_new set user_coin_max={num} where user_id='{user_id}'"
     cursor.execute(sql)
     db.commit()
     db.close()
