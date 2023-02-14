@@ -7,7 +7,7 @@ from nonebot.log import logger
 from nonebot import get_driver
 
 from nonebot_plugin_imageutils import BuildImage
-from nonebot_plugin_imageutils.fonts import add_font
+from nonebot_plugin_imageutils.fonts import add_font, Font
 
 from .config import petpet_config
 
@@ -48,6 +48,13 @@ async def download_resource(path: str) -> bytes:
     return await download_url(resource_url(path))
 
 
+async def check_font(family: str, fontname: str):
+    try:
+        Font.find(family)
+    except ValueError:
+        await add_font(fontname, resource_url(f"fonts/{fontname}"))
+
+
 async def check_resources():
     resource_list = json.loads(
         (await download_resource("resource_list.json")).decode("utf-8")
@@ -69,13 +76,13 @@ async def check_resources():
                 f.write(data)
         except Exception as e:
             logger.warning(str(e))
-    await add_font("consola.ttf", resource_url("fonts/consola.ttf"))
+    await check_font("Consolas", "consola.ttf")
 
 
 driver = get_driver()
 
 
 @driver.on_startup
-def _():
+async def _():
     logger.info("正在检查资源文件...")
-    asyncio.ensure_future(check_resources())
+    asyncio.create_task(check_resources())

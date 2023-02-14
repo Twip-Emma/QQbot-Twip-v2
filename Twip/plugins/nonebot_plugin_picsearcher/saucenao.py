@@ -1,10 +1,3 @@
-'''
-Author: 七画一只妖
-Date: 2022-05-17 13:19:31
-LastEditors: 七画一只妖
-LastEditTime: 2022-06-13 20:47:33
-Description: file content
-'''
 # -*- coding: utf-8 -*-
 import io
 from typing import List, Tuple
@@ -25,8 +18,7 @@ header = {
     'Host': 'saucenao.com', 'Origin': 'https://saucenao.com', 'Referer': 'https://saucenao.com/index.php',
     'Sec-Fetch-Dest': 'document', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-User': '?1',
     'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'
-    }
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36'}
 
 
 def parse_html(html: str):
@@ -76,8 +68,7 @@ async def get_pic_from_url(url: str):
     :param url:
     :return:
     """
-    conn = aiohttp.TCPConnector(verify_ssl=False)
-    async with aiohttp.ClientSession(connector=conn) as session:
+    async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             content = io.BytesIO(await resp.read())
         data = FormData(boundary="----WebKitFormBoundaryPpuR3EZ1Ap2pXv8W")

@@ -25,7 +25,7 @@ from nonebot.adapters.onebot.v11.permission import (
     PRIVATE_FRIEND,
 )
 
-require("nonebot_plugin_imageutils")
+# require("nonebot_plugin_imageutils")
 from nonebot_plugin_imageutils import BuildImage, Text2Image
 
 from .utils import Meme
@@ -38,7 +38,7 @@ from tool.find_power.format_data import is_level_S
 
 
 __plugin_meta__ = PluginMetadata(
-    name="头像表情",
+    name="头像表情包",
     description="摸头等头像相关表情制作",
     usage="触发方式：指令 + @user/qq/自己/图片\n发送“头像表情包”查看支持的指令",
     config=Config,
@@ -46,8 +46,7 @@ __plugin_meta__ = PluginMetadata(
         "unique_name": "petpet",
         "example": "摸 @小Q\n摸 114514\n摸 自己\n摸 [图片]",
         "author": "meetwq <meetwq@gmail.com>",
-        "version": "0.3.13",
-        "cost":"##13"
+        "version": "0.3.20",
     },
 )
 
@@ -217,7 +216,6 @@ def create_matchers():
         return handle
 
     for meme in memes:
-        
         on_message(
             regex(meme.pattern),
             block=False,
@@ -225,8 +223,10 @@ def create_matchers():
         ).append_handler(handler(meme), parameterless=[split_msg()])
 
     def random_handler() -> T_Handler:
-        def handle(matcher: Matcher):
-            random_meme = random.choice([meme for meme in memes if check_flag(meme)])
+        def handle(matcher: Matcher, user_id: str = get_user_id()):
+            random_meme = random.choice(
+                [meme for meme in memes if meme_manager.check(user_id, meme)]
+            )
             handler_ = Dependent[Any].parse(
                 call=handler(random_meme),
                 parameterless=[split_msg()],

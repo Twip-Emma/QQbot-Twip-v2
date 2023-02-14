@@ -103,5 +103,4 @@ async def get_des(url: str):
         return
     for name, href, pic_url in image_data:
         content = await get_content_from_url(pic_url)
-        msg = MessageSegment.image(file=content) + f"\n本子名称：{name}\n" + f"链接{href}\n"
-        yield msg
+        yield MessageSegment.image(file=content) + f"\n本子名称：{name}\n" + f"链接{href}\n"

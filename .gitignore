@@ -144,4 +144,4 @@ dmypy.json
 /resources
 /setting
 
-.env.prod
+/.env.prod
