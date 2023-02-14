@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-02 10:24:56
+LastEditTime: 2023-02-14 15:18:53
 Description: file content
 '''
 
@@ -39,7 +39,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
         insert_user_info_new(user_id=user_id)
         user_data = get_user_info_new(user_id=user_id)
     
-    await get_luck.send(message=f"你的个人信息如下：\n行动点：{user_data[1]}/100\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}", at_sender=True)
+    await get_luck.send(message=f"你的个人信息如下：\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}", at_sender=True)
     
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']

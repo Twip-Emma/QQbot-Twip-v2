@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-12 15:56:09
+LastEditTime: 2023-02-14 15:17:17
 Description: file content
 '''
 
@@ -40,9 +40,8 @@ async def _():
 @scheduler.scheduled_job("cron", hour="*")
 async def _():
     now = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
-    if now.hour % 6 == 0:
-        db = MySQLdb.connect(URL, USER_CARD, PASS_WORD,
+    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD,
                              DATABASE, charset='utf8')
-        cursor = db.cursor()
-        cursor.execute("update user_info_new set user_coin=IF(user_coin + 33 > 133,user_coin, user_coin + 33)")
-        db.commit()
+    cursor = db.cursor()
+    cursor.execute("update user_info_new set user_coin=IF(user_coin + 10 > user_coin_max, user_coin, user_coin + 10)")
+    db.commit()

@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-10 12:52:51
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-11-03 21:11:27
+LastEditTime: 2023-02-14 15:14:52
 '''
 import MySQLdb
 
@@ -26,7 +26,7 @@ def get_user_info_new(user_id: str) -> tuple:
 def insert_user_info_new(user_id: str) -> None:
     db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
     cursor = db.cursor()
-    sql = "insert into user_info_new(user_id,user_coin,user_health,user_crime) values (%s,100,100,0)"
+    sql = "insert into user_info_new(user_id,user_coin,user_health,user_crime,user_coin_max) values (%s,100,100,0,100)"
     args = (user_id,)
     cursor.execute(sql, args)
     db.commit()
