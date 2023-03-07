@@ -153,7 +153,7 @@ previous = on_command("上一张图是什么", aliases={"上一张", "这是什�
 
 
 @previous.handle()
-async def handle_previous(bot: Bot, event: GroupMessageEvent):
+async def handle_previous(bot: Bot, event: GroupMessageEvent, cost=40):
     await bot.send(event=event, message="processing...")
     try:
         url: str = pic_map[str(event.group_id)]
