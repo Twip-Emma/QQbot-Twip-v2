@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-03-27 15:38:52
+LastEditTime: 2023-03-27 17:53:05
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -29,15 +29,27 @@ async def get_data(date: str = FIGHT_LIST[-1]):
     d_data: dict = await f_get_damage_data(date)
 
     # 数据整合（生成排版文字）
-    text = "===今日数据===\n\n\n"
+    text = f"===今日数据（{date}）===\n\n\n"
     index = 1
     d_data = data_format(d_data)
     for item in sorted(d_data, key=lambda i: i["damage_total"], reverse=True):
-        text += f"""{index}.{item["user_name"]}({item["damage_num"]}) 总伤害：{item["damage_total"]}\n"""
+        text += f"""{index}.{item["user_name"]}(|出刀次数|/3) 总伤害：{item["damage_total"]}\n"""
         d_index = 1
+        fight_total = 0
         for d_tiem in item["damage_list"]:
             text += f""">>>>>{d_tiem["boss_name"]:>5}   {d_tiem["damage"]}\n"""
+            if d_tiem["is_kill"] == 1:
+                fight_total += 1
+            else:
+                fight_total += 2
             d_index += 1
+        # 补偿刀判断
+        if fight_total > 6:
+            fight_total = 6
+        fight_total = format(fight_total * 0.5, ".1f")
+        if fight_total in ["0.0", "1.0", "2.0", "3.0"]:
+            fight_total = fight_total[0]
+        text = text.replace("|出刀次数|", str(fight_total))
         index += 1
         text += "\n\n"
 
@@ -78,19 +90,35 @@ async def get_data_total():
     for date in FIGHT_LIST:
         date: dict = await f_get_damage_data(date)
         for item in date:
+            # 先遍历有效出刀数
+            fight_total = 0
+            for d_tiem in item["damage_list"]:
+                if d_tiem["is_kill"] == 1:
+                    fight_total += 1
+                else:
+                    fight_total += 2
+            if fight_total > 6:
+                fight_total = 6
+            # 计入数据
             if item["user_name"] not in total_data.keys():
                 total_data.update(
-                    {item["user_name"]: item["damage_total"]}
+                    {item["user_name"]: {
+                        "damage_total": item["damage_total"],
+                        "fight_total": fight_total
+                    }}
                 )
             else:
-                total_data[item["user_name"]] += item["damage_total"]
-    total_data = sorted(total_data.items(), key=lambda i: i[1], reverse=True)
+                total_data[item["user_name"]]["damage_total"] += item["damage_total"]
+                total_data[item["user_name"]]["fight_total"] += fight_total
+
+    total_data = sorted(total_data.items(),
+                        key=lambda i: i[1]["damage_total"], reverse=True)
 
     # 输出图片
     text = "===总伤害排行===\n\n\n"
     index = 1
     for item in total_data:
-        text += f"第{index}名：{item[0]:<10}  {item[1]:<10}\n\n"
+        text += f"第{index}名（{item[1]['fight_total']}/84）：{item[0]:<10}  {item[1]['damage_total']:<10}\n\n"
         index += 1
     # 图像处理
     fsize = 20
