@@ -1,0 +1,885 @@
+{
+    "code": 0,
+    "data": [
+        {
+            "user_id": 1000032422,
+            "user_name": "猫斯拉",
+            "damage_num": 4,
+            "damage_total": 33657263,
+            "damage_list": [
+                {
+                    "damage": 10584313,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679502157,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 12092736,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679502238,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 3106086,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 38,
+                    "log_time": 1679502276,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 7874128,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 38,
+                    "log_time": 1679502359,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000051795,
+            "user_name": "阿尔托莉雅",
+            "damage_num": 3,
+            "damage_total": 70933741,
+            "damage_list": [
+                {
+                    "damage": 20702700,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679513228,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 25821846,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679513329,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 24409195,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679513495,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000116377,
+            "user_name": "多串",
+            "damage_num": 3,
+            "damage_total": 55772754,
+            "damage_list": [
+                {
+                    "damage": 20062163,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679527329,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 19196979,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679528119,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 16513612,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679529293,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000192726,
+            "user_name": "西冷牛牛",
+            "damage_num": 3,
+            "damage_total": 48968625,
+            "damage_list": [
+                {
+                    "damage": 19140090,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 40,
+                    "log_time": 1679544228,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 16394790,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 40,
+                    "log_time": 1679544316,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13433745,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 40,
+                    "log_time": 1679544471,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000199692,
+            "user_name": "德丽傻",
+            "damage_num": 3,
+            "damage_total": 31905395,
+            "damage_list": [
+                {
+                    "damage": 13777618,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679523536,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10501655,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679523626,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 7626122,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679523707,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000285485,
+            "user_name": "给小公主来点青椒",
+            "damage_num": 3,
+            "damage_total": 24519021,
+            "damage_list": [
+                {
+                    "damage": 9835998,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679531409,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 7275039,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679531497,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 7407984,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679531586,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000315452,
+            "user_name": "七画一只妖",
+            "damage_num": 3,
+            "damage_total": 30116994,
+            "damage_list": [
+                {
+                    "damage": 10306375,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 40,
+                    "log_time": 1679544245,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 9538087,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 40,
+                    "log_time": 1679544410,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10272532,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 40,
+                    "log_time": 1679544527,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000412480,
+            "user_name": "七海千秋",
+            "damage_num": 3,
+            "damage_total": 29596967,
+            "damage_list": [
+                {
+                    "damage": 10559086,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679520133,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 9988606,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679521254,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 9049275,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679521443,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000435144,
+            "user_name": "Serious",
+            "damage_num": 3,
+            "damage_total": 51324760,
+            "damage_list": [
+                {
+                    "damage": 18850123,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679504097,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 18582712,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679504296,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13891925,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679504486,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000454308,
+            "user_name": "忒修夫斯基",
+            "damage_num": 3,
+            "damage_total": 49614303,
+            "damage_list": [
+                {
+                    "damage": 16885214,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679537419,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 17931789,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679537596,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 14797300,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679537716,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000547686,
+            "user_name": "ZyG4rde",
+            "damage_num": 3,
+            "damage_total": 25563662,
+            "damage_list": [
+                {
+                    "damage": 404710,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679539251,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 14705593,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 40,
+                    "log_time": 1679539403,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10453359,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 40,
+                    "log_time": 1679539515,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000893789,
+            "user_name": "小曹",
+            "damage_num": 3,
+            "damage_total": 37058680,
+            "damage_list": [
+                {
+                    "damage": 12504496,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679536456,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13112207,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679536997,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 11441977,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679537104,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1000970300,
+            "user_name": "风中残烛",
+            "damage_num": 4,
+            "damage_total": 56354536,
+            "damage_list": [
+                {
+                    "damage": 15472119,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679538018,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 22496505,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679538230,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 17141296,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679538362,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 1244616,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679538545,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1001631947,
+            "user_name": "天依",
+            "damage_num": 3,
+            "damage_total": 54525915,
+            "damage_list": [
+                {
+                    "damage": 20231137,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679529953,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 17790850,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679530062,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 16503928,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679530174,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1002627144,
+            "user_name": "穿越也冬至16",
+            "damage_num": 3,
+            "damage_total": 53818360,
+            "damage_list": [
+                {
+                    "damage": 21464498,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679526650,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 19262344,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679526756,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13091518,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679526849,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1003509421,
+            "user_name": "绯色沧月",
+            "damage_num": 3,
+            "damage_total": 56378427,
+            "damage_list": [
+                {
+                    "damage": 19632935,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679524698,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 19618208,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679524788,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 17127284,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679524878,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1005067054,
+            "user_name": "黯神",
+            "damage_num": 3,
+            "damage_total": 65190045,
+            "damage_list": [
+                {
+                    "damage": 22464814,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679512619,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 23560867,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679512746,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 19164364,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679512873,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1005394889,
+            "user_name": "CARDIWAP",
+            "damage_num": 3,
+            "damage_total": 29391298,
+            "damage_list": [
+                {
+                    "damage": 10454166,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679502447,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10565087,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679502543,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 8372045,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 38,
+                    "log_time": 1679502674,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1006181337,
+            "user_name": "卿一",
+            "damage_num": 3,
+            "damage_total": 43846657,
+            "damage_list": [
+                {
+                    "damage": 19391647,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679526417,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 12734760,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679526503,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 11720250,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679526588,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1006465199,
+            "user_name": "小美丽",
+            "damage_num": 3,
+            "damage_total": 59060052,
+            "damage_list": [
+                {
+                    "damage": 20482445,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 40,
+                    "log_time": 1679542126,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 23254069,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 40,
+                    "log_time": 1679542236,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 15323538,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 40,
+                    "log_time": 1679542748,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1011197332,
+            "user_name": "泽南",
+            "damage_num": 4,
+            "damage_total": 37139039,
+            "damage_list": [
+                {
+                    "damage": 10170547,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679508896,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 883907,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679508946,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 12454724,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679510956,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13629861,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679511125,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1012200472,
+            "user_name": "西行寺幽々子",
+            "damage_num": 3,
+            "damage_total": 37732062,
+            "damage_list": [
+                {
+                    "damage": 16544978,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679525669,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 11359438,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679525828,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 9827646,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679525950,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1012501660,
+            "user_name": "维克多",
+            "damage_num": 4,
+            "damage_total": 34498483,
+            "damage_list": [
+                {
+                    "damage": 5581075,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 38,
+                    "log_time": 1679502865,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 4936993,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679502920,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 13179817,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679503005,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10800598,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 38,
+                    "log_time": 1679503089,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1012535556,
+            "user_name": "呵呵",
+            "damage_num": 4,
+            "damage_total": 38350315,
+            "damage_list": [
+                {
+                    "damage": 14524246,
+                    "boss_id": 1021085,
+                    "boss_name": "boss_harvester_guild_fury",
+                    "round": 39,
+                    "log_time": 1679530500,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 2472008,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679530552,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 10088751,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679530755,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 11265310,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679531101,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1012595589,
+            "user_name": "上课时间等你",
+            "damage_num": 4,
+            "damage_total": 42912434,
+            "damage_list": [
+                {
+                    "damage": 11440068,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 38,
+                    "log_time": 1679510607,
+                    "is_kill": 1
+                },
+                {
+                    "damage": 1669573,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679510664,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 17510852,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679510792,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 12291941,
+                    "boss_id": 1022085,
+                    "boss_name": "boss_graboid_guild_fury",
+                    "round": 39,
+                    "log_time": 1679510907,
+                    "is_kill": 0
+                }
+            ]
+        },
+        {
+            "user_id": 1013098179,
+            "user_name": "九尾糊糊啊",
+            "damage_num": 3,
+            "damage_total": 32803087,
+            "damage_list": [
+                {
+                    "damage": 11960834,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679531581,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 11285998,
+                    "boss_id": 2002085,
+                    "boss_name": "恶魔首领",
+                    "round": 39,
+                    "log_time": 1679531771,
+                    "is_kill": 0
+                },
+                {
+                    "damage": 9556255,
+                    "boss_id": 1004085,
+                    "boss_name": "暗影魔王",
+                    "round": 39,
+                    "log_time": 1679531867,
+                    "is_kill": 0
+                }
+            ]
+        }
+    ]
+}
