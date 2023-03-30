@@ -24,17 +24,21 @@ total = on_command("总榜", aliases={"总排行", "排行", "排行榜"}, block
 # 日报
 @daily.handle()
 @is_level_A
-async def _(bot: Bot, event: GroupMessageEvent, cost=0):
+async def send_daily_report(bot: Bot, event: GroupMessageEvent, cost=0):
     msg = str(event.get_message()).split()
-    if len(msg) != 2 and len(msg) != 1:
+
+    if len(msg) not in (1, 2):
         await daily.finish("请求格式错误，举例：\n战报\n战报 2023-03-20")
 
-    if len(msg) == 1:
-        img_path = await get_data()
-        await daily.send(MessageSegment.image("file:///" + img_path))
-    elif len(msg) == 2:
-        img_path = await get_data(msg[1])
-        await daily.send(MessageSegment.image("file:///" + img_path))
+    try:
+        if len(msg) == 1:
+            img_path = await get_data()
+        else:
+            img_path = await get_data(msg[1])
+    except Exception as e:
+        await daily.finish(f"获取数据失败，错误信息：{e}")
+
+    await daily.send(MessageSegment.image("file:///" + img_path))
 
 
 @total.handle()
@@ -44,5 +48,9 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     if len(msg) != 1:
         await daily.finish("请求格式错误，举例：\n总榜")
 
-    img_path = await get_data_total()
+    try:
+        img_path = await get_data_total()
+    except Exception as e:
+        await daily.finish(f"获取数据失败，错误信息：{e}")
+
     await daily.send(MessageSegment.image("file:///" + img_path))
