@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:15:45
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-03-27 12:09:54
+LastEditTime: 2023-03-31 22:20:08
 '''
 from pathlib import Path
 from PIL import Image, ImageFont, ImageDraw, ImageMath
@@ -111,39 +111,38 @@ def write_sh(font_entity: FontEntity, img: Image, text: str, dis: tuple = None, 
     return img
 
 
-def write_longsh(font_entity: FontEntity, img:Image, text: str, mode: str = "C", dis: tuple = (0, 0)) -> Image:
+def write_longsh(font_entity: FontEntity, img: Image, text: str, mode: str = "C", dis: tuple = (0, 0)) -> Image:
     font = ImageFont.truetype(font_entity.ttf_path, font_entity.fsize)
     """
-    说明: 在图片上长文本
-    font_entity: 字体对象
-    img: 图片对象
-    dis: AlignLeft模式中的上下左右边距, Center模式中为None则代表左右居中, 不为空则代表上边距
-    mode: 模式,可选模式有AlignLeft、Center
+    在图片上长文本
+
+    Args:
+        font_entity: 字体对象
+        img: 图片对象
+        text: 待写入的文本，多行用'\n'隔开
+        dis: 在左对齐模式中，代表上下左右边距。在居中对齐模式中，仅代表上边距
+        mode: 模式，可选模式有 'L' (left-align) 和 'C' (center)
+
+    Returns:
+        img: 处理后的图片
     """
-    # 文字、图片预处理
-    text = text.strip().split("\n")
     draw = ImageDraw.Draw(img)
+    text = text.strip().split("\n")
+
+    # 计算文字的大小和位置
+    if mode == "L":
+        text_widths = [font.getsize(t) for t in text]
+        text_coordinates = [(dis[0], dis[1] + sum([text_widths[i][1] for i in range(j)])) for j in range(len(text))]
+    elif mode == "C":
+        text_widths = [font.getsize(t) for t in text]
+        text_coordinates = [(int((img.width - text_widths[i][0]) / 2), dis[0] + sum([text_widths[j][1] for j in range(i)])) for i in range(len(text))]
+    else:
+        raise ValueError("Unsupported mode: {}. Please use 'L' or 'C'".format(mode))
 
     # 写字
-    top_index = dis[0]
-    if mode == "C":
-        for text_item in text:
-            if text_item == "":
-                top_index += text_width[1]
-                continue
-            text_width = font.getsize(text=text_item)
-            text_coordinate = int((img.width-text_width[0])/2), top_index
-            draw.text(text_coordinate, text_item, fill=font_entity.color, font=font)
-            top_index += text_width[1]
-    elif mode == "L":
-        for text_item in text:
-            if text_item == "":
-                top_index += text_width[1]
-                continue
-            text_width = font.getsize(text=text_item)
-            text_coordinate = dis[0], top_index
-            draw.text(text_coordinate, text_item, fill=font_entity.color, font=font)
-            top_index += text_width[1]
-    else:
-        raise RuntimeError("There is no such mode, please use \"C\" or \"L\" mode")
+    for i, text_item in enumerate(text):
+        if text_item == "":
+            continue
+        draw.text(text_coordinates[i], text_item, fill=font_entity.color, font=font)
+
     return img
