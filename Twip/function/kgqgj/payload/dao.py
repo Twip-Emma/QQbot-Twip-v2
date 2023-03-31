@@ -2,13 +2,13 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-03-27 17:53:05
+LastEditTime: 2023-03-31 09:57:25
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import datetime
 
-from .function import f_get_damage_data
+from .function import f_get_damage_data, f_get_rate_data
 from .utils.image_utils import write_longsh, FontEntity
 from .utils.data_utils import data_format
 from .setting import FIGHT_LIST
@@ -141,6 +141,55 @@ async def get_data_total():
     save_path = f"{BASE_PATH}\\cache\\total_damage.jpg"
     image.save(save_path)
     return save_path
+
+
+async def get_rate():
+    resp_data:dict = await f_get_rate_data()
+
+    image_size = (500, 170)
+    font = ImageFont.truetype(FONT_PATH, size=15)
+
+    # Create image and drawing object
+    image = Image.new('RGB', image_size, color=(255, 255, 255))
+    draw = ImageDraw.Draw(image)
+
+    # Define table headers
+    headers = ['BOSS名称', '等级', '属性', '总血量', '当前血量']
+
+    # Define table data
+    # data = [['九尾狐佳岚', '66', '光', '2640000', '2640000'],
+    #         ['宰相邓肯', '66', '暗', '2640000', '2640000']]
+
+    # 数据转换
+    data:list = []
+    for item in resp_data["boss"]:
+        data_item = [str(item["name"]), str(item["level"]), item["elemental_type_cn"], str(item["total_hp"]), str(item["remain_hp"])]
+        data.append(data_item)
+
+    # Define column widths
+    col_widths = [120, 50, 60, 120, 120]
+
+    # Draw table headers
+    x_pos = 10
+    y_pos = 10
+    for i, header in enumerate(headers):
+        draw.text((x_pos, y_pos), header, font=font, fill=(0, 0, 0))
+        x_pos += col_widths[i]
+
+    # Draw table data
+    y_pos += 30
+    for row in data:
+        x_pos = 10
+        for i, cell in enumerate(row):
+            draw.text((x_pos, y_pos), cell, font=font, fill=(0, 0, 0))
+            x_pos += col_widths[i]
+        y_pos += 30
+
+    # Save image as "rate.jpg" in the current working directory
+    save_path = f"{BASE_PATH}\\cache\\rate.jpg"
+    image.save(save_path)
+    return save_path
+    
 
 
 # 获取文本行数和最长字符串个数
