@@ -149,7 +149,7 @@ async def handle_pic(event: GroupMessageEvent, state: T_State):
         pass
 
 
-previous = on_command("上一张图是什么", aliases={"上一张", "这是什么"})
+previous = on_command("xx上一张图是什么", aliases={"xx上一张", "xx这是什么"})
 
 
 @previous.handle()
