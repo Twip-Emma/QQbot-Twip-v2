@@ -2,13 +2,13 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-03-31 22:46:40
+LastEditTime: 2023-04-14 22:58:51
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import datetime
 
-from .function import f_get_damage_data, f_get_rate_data
+from .function import f_get_damage_data, f_get_rate_data, f_get_dao_total, f_get_dao_daily, f_get_damage_total
 from .utils.image_utils import write_longsh, FontEntity
 from .utils.data_utils import data_format
 from .setting import FIGHT_LIST
@@ -185,7 +185,7 @@ async def get_rate():
 
     # 数据转换
     data: list = []
-    for item in resp_data["boss"]:
+    for item in resp_data["boss"][-4:]:
         data_item = [str(item["name"]),
                      str(item["level"]),
                      item["elemental_type_cn"],
@@ -218,6 +218,18 @@ async def get_rate():
     image.save(save_path)
     return save_path
 
+
+async def get_dao_total_image():
+    return await f_get_dao_total()
+
+
+async def get_dao_daily_image():
+    return await f_get_dao_daily()
+
+
+async def get_dao_damage_total_image():
+    return await f_get_damage_total()
+    
 
 def _percentage(smaller, bigger):
     if smaller == 0:
