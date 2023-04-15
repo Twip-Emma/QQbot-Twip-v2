@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-08 21:19:15
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-19 15:25:36
+LastEditTime: 2023-04-15 21:55:46
 Description: file content
 '''
 import os
@@ -53,6 +53,7 @@ def get_png_path(name):
     role_name_pathx = os.path.join(ICON_PATH, "特殊角色", str(name) + ".png")
     role_name_pathxx = os.path.join(ICON_PATH, "群友角色", str(name) + ".png")
     role_name_pathmz = os.path.join(ICON_PATH, "mz角色", str(name) + ".png")
+    role_name_pathai = os.path.join(ICON_PATH, "爱角色", str(name) + ".png")
 
     if os.path.exists(role_name_path3):
         return role_name_path3
@@ -68,6 +69,9 @@ def get_png_path(name):
 
     if os.path.exists(role_name_pathmz):
         return role_name_pathmz
+    
+    if os.path.exists(role_name_pathai):
+        return role_name_pathai
 
     raise FileNotFoundError(f"找不到 {name} 的图标，请检查图标是否存在")
 

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-19 14:37:33
+LastEditTime: 2023-04-15 21:49:40
 Description: file content
 '''
 import time
@@ -28,6 +28,7 @@ ss_sdorica_draw = on_command("盛夏十连", block=True, priority=2)
 sd_sdorica_draw = on_command("限定十连", block=True, priority=2)
 sf_sdorica_draw = on_command("首发十连", block=True, priority=2)
 hp_sdorica_draw = on_command("群友十连", block=True, priority=2)
+ai_draw = on_command("爱十连", block=True, priority=2)
 
 
 @qy_sdorica_draw.handle()
@@ -109,6 +110,24 @@ async def _(bot:Bot,event: GroupMessageEvent, cost=30):
             await hp_sdorica_draw.send(MessageSegment.image(re))
     else:
         await hp_sdorica_draw.send("出现了一点问题，请联系开发者七画")
+
+
+@ai_draw.handle()
+@is_level_A
+async def _(bot:Bot,event: GroupMessageEvent, cost=50):
+    t1 = time.time()
+    user_id = str(event.user_id)
+    re = start(user_id,"爱十连")
+    t2 = time.time()
+    print_log(t2-t1, user_id, "爱十连")
+    if re:
+        # await sf_sdorica_draw.send(re)
+        if "Error" in re:
+            await ai_draw.send(re)
+        else:
+            await ai_draw.send(MessageSegment.image(re))
+    else:
+        await ai_draw.send("出现了一点问题，请联系开发者七画")
 
 
 def print_log(t, user_id, draw_type) -> None:
