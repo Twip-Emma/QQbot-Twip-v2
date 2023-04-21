@@ -16,7 +16,7 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_S
 
 from tool.utils.logger import logger as my_logger
-from tool.QsPilUtils.dao import text_to_image
+from tool.QsPilUtils2.dao import text_to_image
 
 __plugin_meta__ = PluginMetadata(
     name='电费查询',

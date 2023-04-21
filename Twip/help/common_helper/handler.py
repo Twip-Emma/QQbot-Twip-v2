@@ -7,7 +7,7 @@ from nonebot.matcher import Matcher
 from nonebot.params import Arg, CommandArg
 
 from tool.find_power.format_data import is_level_S
-from tool.QsPilUtils.dao import text_to_image
+from tool.QsPilUtils2.dao import text_to_image
 
 default_start = list(nonebot.get_driver().config.command_start)[0]
 helper = on_command("help", priority=1, aliases={"帮助"})

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 13:11:45
+LastEditTime: 2023-04-21 13:30:19
 Description: file content
 '''
 
@@ -11,7 +11,7 @@ from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
 from tool.utils.logger import logger as my_logger
-from tool.QsPilUtils.dao import text_to_image
+from tool.QsPilUtils2.dao import text_to_image
 
 from tool.find_power.user_database import get_user_info_new, insert_user_info_new, change_user_crime, change_coin_max
 
