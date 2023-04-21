@@ -50,7 +50,7 @@ aidraw_parser.add_argument("-o", "--override", "-不优化",
 
 aidraw = on_shell_command(
     ".aidraw",
-    aliases={"绘画", "咏唱", "召唤", "约稿", "aidraw"},
+    aliases={"绘x画", "咏x唱", "召x唤", "约x稿", "xxxxxaidraw"},
     parser=aidraw_parser,
     priority=5
 )

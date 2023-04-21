@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-14 16:25:43
+LastEditTime: 2023-04-21 13:12:43
 Description: file content
 '''
 import random
@@ -32,11 +32,18 @@ async def _(bot: Bot, event: GroupMessageEvent):
     user_id = str(event.user_id)
     group_id = str(event.group_id)
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
-    # print(recall_user_info)
+    # 是否包含乱码
     try:
         user_name = recall_user_info['nickname']
     except:
-        user_name = "不规范的值"
+        user_name = user_id
+
+    # 剔除昵称中的空格
+    user_name = user_name.replace(" ","")
+
+    # 字符长度为零 = 全部是空格的用户ID转成QQ号
+    if len(user_name) == 0:
+        user_name = user_id
     # user_name = re.findall(r'[\u4e00-\u9fa5]', user_name) # 使用通配符只匹配汉字
     # user_name = "".join(user_name)
     flag = random.randint(1,100)

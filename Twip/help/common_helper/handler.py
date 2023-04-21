@@ -1,12 +1,14 @@
 import nonebot.plugin
 from nonebot import on_command
-from nonebot.matcher import Matcher
-from nonebot.params import CommandArg, Arg
 from nonebot.adapters import Event
+from nonebot.adapters.onebot.v11 import GroupMessageEvent, MessageSegment
 from nonebot.adapters.onebot.v11.message import Message, MessageSegment
-from nonebot.adapters.onebot.v11 import (GroupMessageEvent,
-                                         MessageSegment)
+from nonebot.matcher import Matcher
+from nonebot.params import Arg, CommandArg
+
 from tool.find_power.format_data import is_level_S
+from tool.QsPilUtils.dao import text_to_image
+
 default_start = list(nonebot.get_driver().config.command_start)[0]
 helper = on_command("help", priority=1, aliases={"帮助"})
 # Matcher level info registering, still active in-use
@@ -23,12 +25,13 @@ async def handle_first_receive(event: GroupMessageEvent, matcher: Matcher, cost=
     if args:
         matcher.set_arg("content", args)
     else:
-        await matcher.finish(Message(at + f'''欢迎使用Nonebot2 Help Menu
-支持使用的前缀：{" ".join(list(nonebot.get_driver().config.command_start))}
-{default_start}帮助  # 获取本插件帮助
-{default_start}帮助 列表  # 展示已加载插件列表
-{default_start}帮助 <功能名>  # 调取目标插件帮助信息
-'''))
+        message = f'''欢迎使用Nonebot2 Help Menu
+                    支持使用的前缀：{" ".join(list(nonebot.get_driver().config.command_start))}
+                    {default_start}帮助  # 获取本插件帮助
+                    {default_start}帮助 列表  # 展示已加载插件列表
+                    {default_start}帮助 <功能名>  # 调取目标插件帮助信息
+                    '''
+        await helper.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
 
 
 @helper.got("content")
@@ -121,5 +124,5 @@ async def get_result(event: GroupMessageEvent, content: Message = Arg()):
                 )
             results = list(filter(None, results))
             result = '\n'.join(results)
-    await helper.finish(Message().append(at).append(
-        MessageSegment.text(result)))
+    await helper.send(MessageSegment.image(f"file:///{text_to_image(result,15)}"))
+    

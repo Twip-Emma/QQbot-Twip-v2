@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:42:21
+LastEditTime: 2023-04-21 10:29:48
 Description: file content
 '''
 import MySQLdb
@@ -76,9 +76,6 @@ def start(user_name: str, user_id: str) -> None:
     now_time = datetime.datetime.now().strftime('%Y-%m-%d')
     if re != ():
         user_data = re[0]
-        if user_data[0] == "不规范的值":
-            change_name(user_name=user_name, user_id=user_id)
-
         if now_time != user_data[3]:
             change_sign_time(now_time=now_time, user_id=user_id)
             change_speak_total(user_id=user_id)

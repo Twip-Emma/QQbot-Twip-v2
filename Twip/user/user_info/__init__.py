@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-20 10:07:23
+LastEditTime: 2023-04-21 13:11:45
 Description: file content
 '''
 
@@ -11,6 +11,7 @@ from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
 from tool.utils.logger import logger as my_logger
+from tool.QsPilUtils.dao import text_to_image
 
 from tool.find_power.user_database import get_user_info_new, insert_user_info_new, change_user_crime, change_coin_max
 
@@ -42,8 +43,10 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     level_data:dict = find_coin_max(user_data[4])
     level_txt1 = f"等级数：{level_data['now_level']}/{level_data['max_level']}"
     level_txt2 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
-    await get_luck.send(message=f"你的个人信息如下：\n{level_txt1}\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}\n{level_txt2}", at_sender=True)
+    message=f"你的个人信息如下：\n{level_txt1}\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}\n{level_txt2}"
     
+    await get_luck.send(MessageSegment.image(f"file:///{text_to_image(message, 15)}"))
+
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']
 
