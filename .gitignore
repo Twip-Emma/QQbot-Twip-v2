@@ -143,5 +143,6 @@ dmypy.json
 # /tool
 /resources
 /setting
+/data
 
 /.env.prod
