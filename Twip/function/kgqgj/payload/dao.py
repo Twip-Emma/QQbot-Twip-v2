@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-14 22:58:51
+LastEditTime: 2023-04-21 17:15:29
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -26,11 +26,11 @@ async def get_data(date: str = None):
     返回:图片路径
     """
 
-    if date is None:
-        now = datetime.datetime.now().strftime("%Y-%m-%d")
-        now_time = datetime.datetime.strptime(now, "%Y-%m-%d").date()
-        latest_time = datetime.datetime.strptime(FIGHT_LIST[-1], "%Y-%m-%d").date()
-        date = now if latest_time > now_time else latest_time
+    # if date is None:
+    #     now = datetime.datetime.now().strftime("%Y-%m-%d")
+    #     now_time = datetime.datetime.strptime(now, "%Y-%m-%d").date()
+    #     latest_time = datetime.datetime.strptime(FIGHT_LIST[-1], "%Y-%m-%d").date()
+    #     date = now if latest_time > now_time else latest_time
 
 
     d_data: dict = await f_get_damage_data(date)

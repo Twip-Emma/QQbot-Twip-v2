@@ -1,10 +1,10 @@
 header = {
-    "accept": "*/*",
+    "accept": f"text/htfml,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     "accept-encoding": "gzip, deflate, br",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.54",
-    "connection": "keep-alive",
-    "cookie": "_csrf=mekWvfzPK-IVf-YiEAIc4eoP; b_lsid=AFE986CA_1871E29BF5C; buvid_fp=c52ea463c062bcf6b9494bb79ae4d1d9; buvid3=754387E2-CFA4-B1B1-903D-97B31B7EB30167159infoc; b_nut=1679838265; DedeUserID=178547325; DedeUserID__ckMd5=d90ee02c8bad0cdd; SESSDATA=8d68c5bd,1695390391,a47c4*31; bili_jct=d8e98203be854f3dcf0051d5077e378f; sid=feyups5p; buvid4=2E1ACAF3-F64A-4929-2DB6-0323FD8541FD97785-023032621-XHQUoS1U8prhT/1NEcFtEg==; session-api=ql9mo5oeroaimir6p10c0hc7f4; user-info=5287646",
-}
+    "accept-language": f"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    "cache-control": "no-cache",
+    "connection": f"keep-alive",
+    "cookie": f"buvid_fp=14e4a637712f61307faf7cb72a40c7f3; buvid3=9E6484D0-229E-87C3-5570-E0FEEF476BCE59088infoc; b_nut=1667014858; buvid4=23F4DCF0-243F-05CD-0C32-458841A6D0A778370-022071818-OsDwyx78W%2ByrNhIDcatWKA%3D%3D; user-info=5287646; _csrf=d_SfoHeFy4SK71gJaxmxpFPs; b_lsid=1CF4968F_187A2E02CF4; SESSDATA=b8b7653b%2C1697619286%2C8ea7a%2A41; bili_jct=c663b0e4eb73c90c07e325f8964339f2; DedeUserID=178547325; DedeUserID__ckMd5=d90ee02c8bad0cdd; sid=op7ppmaq; session-api=4i6is7ditro8pmv9oo63eoto0r",}
 
 
 header2 = {
