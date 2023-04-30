@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:17:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-10 10:40:25
+LastEditTime: 2023-04-30 19:06:16
 '''
 import datetime
 import random
@@ -121,7 +121,7 @@ def make_bg(user_id:str, user_name: str) -> Image:
         a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
 
         # 写密语
-        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#660099")
+        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"Andrea.otf").setSize(30).setColor("#660099")
         txt = info[1].replace("-","\n\n")
         a6 = write_longsh(ft, a5, txt, "C", (780,0))
 
@@ -153,7 +153,7 @@ def make_bg(user_id:str, user_name: str) -> Image:
         a5 = write_longsh(ft, a4, f"密语", "C", (730,0))
 
         # 写密语
-        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"七画体b3.otf").setSize(30).setColor("#3333FF")
+        ft.setTTF(Path(BASE_PATH)/r"ttf"/r"Andrea.otf").setSize(30).setColor("#3333FF")
         txt = info[1].replace("-","\n\n")
         a6 = write_longsh(ft, a5, txt, "C", (780,0))
 
