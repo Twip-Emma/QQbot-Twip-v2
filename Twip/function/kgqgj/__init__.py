@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 17:17:16
+LastEditTime: 2023-05-31 21:55:20
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -26,6 +26,8 @@ pattern = re.compile(r"url=(.*?)&amp;")
 daily = on_command("日报", aliases={"x每日战报", "x每日", "x日报"}, block=True, priority=1)
 total = on_command("总榜", aliases={"x总排行", "x排行", "x排行榜"}, block=True, priority=1)
 rate = on_command("进度", aliases={"x战况", "x现在情况", "x当前进度"}, block=True, priority=1)
+long_eyes = on_command("千里眼", block=True, priority=1)
+toy = on_command("周边", block=True, priority=1)
 
 set_img = on_command("设置作业", block=True, priority=1)
 get_img = on_command("获取作业", block=True, priority=1)
@@ -108,3 +110,16 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
         await daily.finish(f"获取数据失败，错误信息：{e}")
 
     await daily.send(MessageSegment.image("file:///" + img_path))
+
+
+@long_eyes.handle()
+@is_level_A
+async def _(bot: Bot, event: GroupMessageEvent, cost=0):
+    await long_eyes.send(MessageSegment.image("https://i0.hdslb.com/bfs/article/c02eac3ec9ac4dc237241b50878c6ed10c0d4f7b.jpg"))
+
+
+@toy.handle()
+@is_level_A
+async def _(bot: Bot, event: GroupMessageEvent, cost=0):
+    await toy.send(MessageSegment.image(f"http://cdngoapl.twip.top/%E5%9D%8E%E5%85%AC/%E5%91%A8%E8%BE%B920230531.png"))
+
