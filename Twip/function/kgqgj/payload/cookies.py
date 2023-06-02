@@ -1,10 +1,18 @@
+'''
+Author: 七画一只妖 1157529280@qq.com
+Date: 2023-04-14 23:10:52
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2023-06-02 19:02:37
+FilePath: \QQbot-Twip-v2\Twip\function\kgqgj\payload\cookies.py
+Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+'''
 header = {
     "accept": f"text/htfml,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
     "accept-encoding": "gzip, deflate, br",
     "accept-language": f"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
     "cache-control": "no-cache",
     "connection": f"keep-alive",
-    "cookie": f"buvid_fp=14e4a637712f61307faf7cb72a40c7f3; buvid3=9E6484D0-229E-87C3-5570-E0FEEF476BCE59088infoc; b_nut=1667014858; buvid4=23F4DCF0-243F-05CD-0C32-458841A6D0A778370-022071818-OsDwyx78W%2ByrNhIDcatWKA%3D%3D; user-info=5287646; _csrf=d_SfoHeFy4SK71gJaxmxpFPs; b_lsid=1CF4968F_187A2E02CF4; SESSDATA=b8b7653b%2C1697619286%2C8ea7a%2A41; bili_jct=c663b0e4eb73c90c07e325f8964339f2; DedeUserID=178547325; DedeUserID__ckMd5=d90ee02c8bad0cdd; sid=op7ppmaq; session-api=4i6is7ditro8pmv9oo63eoto0r",}
+    "cookie": f"buvid3=57D7B9AB-6CEF-0EE8-042E-475E2AEEFA3876955infoc; i-wanna-go-back=-1; _uuid=8D1042742-10610C-F1035-AFA7-107CCFADDCC4C76144infoc; buvid_fp_plain=undefined; nostalgia_conf=-1; blackside_state=0; CURRENT_BLACKGAP=0; hit-dyn-v2=1; LIVE_BUVID=AUTO2916589792625841; fingerprint3=b4c05a603c8a5ae0e2ca874759862233; DedeUserID=178547325; DedeUserID__ckMd5=d90ee02c8bad0cdd; b_ut=5; b_nut=100; buvid4=23F4DCF0-243F-05CD-0C32-458841A6D0A778370-022071818-OsDwyx78W%2ByrNhIDcatWKA%3D%3D; rpdid=|(m~Y|~~|~l0J'uYY)l~uu)l; is-2022-channel=1; CURRENT_FNVAL=4048; header_theme_version=CLOSE; hit-new-style-dyn=1; dy_spec_agreed=1; CURRENT_PID=0507da70-c954-11ed-b885-5544c605f9c2; FEED_LIVE_VERSION=V8; home_feed_column=5; fingerprint=00557b7daceeed7b923dbd4d44060804; SESSDATA=594d0328%2C1701091572%2Cf903b%2A51; bili_jct=956eae9d916c52548d1a3cdefc849df0; session-api=hi4qqpl58vckvb2sobrrqncj1n; user-info=5287646; browser_resolution=1536-754; PVID=1; CURRENT_QUALITY=64; bp_video_offset_178547325=802549763506438100; _csrf=RlGP1rt6DsCwDNBbBVvwjS8g; share_source_origin=QQ; bsource=share_source_qqchat; b_lsid=3F51AAE1_1887BB8767A; sid=75soz2hu; buvid_fp=00557b7daceeed7b923dbd4d44060804",}
 
 
 header2 = {
@@ -12,5 +20,5 @@ header2 = {
     "accept-encoding": "gzip, deflate, br",
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.54",
     "connection": "keep-alive",
-    "cookie": f"""291A_2132_saltkey=j0Q0R2bD; 291A_2132_lastvisit=1679833948; 291A_2132_ulastactivity=fe8c9FQsk%2FazuMV7lVMr12ZPrPOlqNxJjTxMiYsAIemLBPawH5MF; 291A_2132_auth=d2ec7foDQlpGWkL3OpGLSg8ucxv%2BwOXEP16pgsgkhhbd6RiZZ8wC3caNBfxeLF2dz0vRAd%2BMbqwo5jW7ABwZLmOpAg; 291A_2132_lastcheckfeed=19542%7C1679900031; 291A_2132_creditnotice=0D0D2D0D0D0D0D0D0D19542; 291A_2132_creditbase=0D0D10D0D0D0D0D0D0; 291A_2132_creditrule=%E6%AF%8F%E5%A4%A9%E7%99%BB%E5%BD%95; PHPSESSID=dojavu84dgfaen0ahdjfmvorp0; 291A_2132_lip=121.225.216.149%2C1681483575; 291A_2132_sid=vtSnxN; 291A_2132_lastact=1681483577%09index.php%09""",
+    "cookie": f"""buvid3=57D7B9AB-6CEF-0EE8-042E-475E2AEEFA3876955infoc; i-wanna-go-back=-1; _uuid=8D1042742-10610C-F1035-AFA7-107CCFADDCC4C76144infoc; buvid_fp_plain=undefined; nostalgia_conf=-1; blackside_state=0; CURRENT_BLACKGAP=0; hit-dyn-v2=1; LIVE_BUVID=AUTO2916589792625841; fingerprint3=b4c05a603c8a5ae0e2ca874759862233; DedeUserID=178547325; DedeUserID__ckMd5=d90ee02c8bad0cdd; b_ut=5; b_nut=100; buvid4=23F4DCF0-243F-05CD-0C32-458841A6D0A778370-022071818-OsDwyx78W%2ByrNhIDcatWKA%3D%3D; rpdid=|(m~Y|~~|~l0J'uYY)l~uu)l; is-2022-channel=1; CURRENT_FNVAL=4048; header_theme_version=CLOSE; hit-new-style-dyn=1; dy_spec_agreed=1; CURRENT_PID=0507da70-c954-11ed-b885-5544c605f9c2; FEED_LIVE_VERSION=V8; home_feed_column=5; fingerprint=00557b7daceeed7b923dbd4d44060804; SESSDATA=594d0328%2C1701091572%2Cf903b%2A51; bili_jct=956eae9d916c52548d1a3cdefc849df0; session-api=hi4qqpl58vckvb2sobrrqncj1n; user-info=5287646; browser_resolution=1536-754; PVID=1; CURRENT_QUALITY=64; bp_video_offset_178547325=802549763506438100; _csrf=RlGP1rt6DsCwDNBbBVvwjS8g; share_source_origin=QQ; bsource=share_source_qqchat; b_lsid=3F51AAE1_1887BB8767A; sid=75soz2hu; buvid_fp=00557b7daceeed7b923dbd4d44060804""",
 }
