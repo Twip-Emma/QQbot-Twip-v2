@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 17:15:29
+LastEditTime: 2023-06-24 13:09:52
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -35,11 +35,15 @@ async def get_data(date: str = None):
 
     d_data: dict = await f_get_damage_data(date)
 
+    if date == None:
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+
     # 数据整合（生成排版文字）
     text1 = f"""===今日数据（{date}，第1-10名）===\n\n"""
     text2 = f"""===今日数据（{date}，第11-20名）===\n\n"""
     text3 = f"""===今日数据（{date}，第21-30名）===\n\n"""
     d_data = data_format(d_data)
+    d_data = d_data["info"]
     for index, item in enumerate(sorted(d_data, key=lambda i: i["damage_total"], reverse=True), 1):
         fight_total = sum([1 if d_tiem["is_kill"] == 1 else 2 for d_tiem in item["damage_list"]])
         fight_total = min(fight_total, 6) * 0.5
@@ -91,6 +95,7 @@ async def get_data_total():
     total_data: dict = {}
     for date in FIGHT_LIST:
         date: dict = await f_get_damage_data(date)
+        date = date["info"]
         for item in date:
             # 先遍历有效出刀数
             fight_total = 0
@@ -185,13 +190,13 @@ async def get_rate():
 
     # 数据转换
     data: list = []
-    for item in resp_data["boss"][-4:]:
-        data_item = [str(item["name"]),
+    for item in resp_data["boss_info"][-4:]:
+        data_item = [str(item["boss_name"]),
                      str(item["level"]),
                      item["elemental_type_cn"],
-                     str(item["total_hp"]),
-                     str(item["remain_hp"]),
-                     _percentage(item["remain_hp"],item["total_hp"])]
+                     str(item["boss_hp"]),
+                     str(item["boss_remain_hp"]),
+                     _percentage(item["boss_remain_hp"],item["boss_hp"])]
         data.append(data_item)
 
     # Define column widths
