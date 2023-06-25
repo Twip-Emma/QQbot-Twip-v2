@@ -79,7 +79,7 @@ setu = on_regex(
 # 响应器处理操作
 @setu.handle()
 @is_level_S
-async def _(bot: Bot, event: GroupMessageEvent, state: T_State, cost = 17):
+async def _(bot: Bot, event: GroupMessageEvent, state: T_State, cost = 45):
     # 获取用户输入的参数
     args = list(state["_matched_groups"])
     r18flag = args[2]
