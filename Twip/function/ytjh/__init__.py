@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-10 13:15:17
+LastEditTime: 2023-07-11 17:26:57
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -42,7 +42,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
 @yinji.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
-    await yinji.send(MessageSegment.image(f"https://cdngoapl.twip.top/%E4%BA%91%E5%9B%BE/%E5%8D%B0%E8%AE%B0%E8%A1%A8.jpg"))
+    await yinji.send(MessageSegment.image(f"https://cdngoapl.twip.top/%E4%BA%91%E5%9B%BE/%E5%8D%B0%E8%AE%B0%E8%A1%A82.jpg"))
 
 
 @yuntu_help.handle()
