@@ -31,7 +31,7 @@ async def handle_first_receive(event: GroupMessageEvent, matcher: Matcher, cost=
                     {default_start}帮助 列表  # 展示已加载插件列表
                     {default_start}帮助 <功能名>  # 调取目标插件帮助信息
                     '''
-        await helper.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
+        await helper.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
 
 
 @helper.got("content")
@@ -124,5 +124,5 @@ async def get_result(event: GroupMessageEvent, content: Message = Arg()):
                 )
             results = list(filter(None, results))
             result = '\n'.join(results)
-    await helper.send(MessageSegment.image(f"file:///{text_to_image(result,15)}"))
+    await helper.send(MessageSegment.image(f"file:///{text_to_image(result,15,(20,20))}"))
     

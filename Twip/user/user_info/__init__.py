@@ -45,7 +45,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     level_txt2 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
     message=f"你的个人信息如下：\n{level_txt1}\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}\n{level_txt2}"
     
-    await get_luck.send(MessageSegment.image(f"file:///{text_to_image(message, 15)}"))
+    await get_luck.send(MessageSegment.image(f"file:///{text_to_image(message, 15, (20,20))}"))
 
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']

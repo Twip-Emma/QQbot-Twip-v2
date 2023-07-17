@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-09-04 19:53:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-04 13:13:37
+LastEditTime: 2023-07-17 16:48:04
 Description: file content
 '''
 from typing import Union
@@ -74,7 +74,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
         }
         power1, power2 = get_data(payload)
         message=f"滨江{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
-        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
+        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "亲民" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -90,7 +90,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
         }
         power1, power2 = get_data(payload)
         message=f"亲民{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
-        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
+        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "学海" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -113,7 +113,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
         }
         power1, power2 = get_data(payload)
         message=f"学海{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
-        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
+        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "明德" in msg[1]:
         room_id = msg[1][-3:]
         buildId = msg[1][2:-3]
@@ -135,7 +135,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
         }
         power1, power2 = get_data(payload)
         message=f"明德{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
-        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15)}"))
+        await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     else:
         await ele_power_finder.send("目前只支持：滨江|明德|学海|亲民\n请输入正确的宿舍例如：\n电费 滨江9307")
     my_logger.success(
