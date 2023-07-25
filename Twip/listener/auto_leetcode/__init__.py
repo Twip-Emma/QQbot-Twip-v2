@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-18 20:21:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:38:25
+LastEditTime: 2023-07-25 09:23:33
 Description: file content
 '''
 import json
@@ -20,7 +20,7 @@ __plugin_meta__ = PluginMetadata(
     description='功能：每天固定三个时间发送每日一题',
     usage='''使用方式：无【静默模块】''',
     extra={'version': 'v1.3.5',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

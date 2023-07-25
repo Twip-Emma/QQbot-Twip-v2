@@ -66,7 +66,7 @@ async def get_result(event: GroupMessageEvent, content: Message = Arg()):
             plugin_names.append(f'{name}|{cost}|{version}')
         plugin_names.sort()
         newline_char = '\n'
-        result = f'已加载插件：\n{newline_char.join(plugin_names)}\n请发送：帮助 <功能名>\n以调取目标插件帮助信息'
+        result = f'已加载插件：\n{newline_char.join(plugin_names)}\n\n\n请发送：帮助 <功能名>\n以调取目标插件帮助信息'
     else:
         # package name
         plugin = nonebot.plugin.get_plugin(arg)

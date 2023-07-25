@@ -2,19 +2,26 @@
 Author: 七画一只妖
 Date: 2022-06-03 14:35:38
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-11-03 21:03:58
+LastEditTime: 2023-07-24 15:22:30
 Description: file content
 '''
 import random
 
-
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-from tool.find_power.format_data import is_level_S
+from nonebot.plugin import PluginMetadata
 
+from tool.find_power.format_data import is_level_S
 
 from .user_function import get_image
 
+__plugin_meta__ = PluginMetadata(
+    name='涩图-数据库',
+    description='获取一张涩图、消耗健康值，健康值越低图片黑域越多',
+    usage='''等级涩图a/等级涩图s''',
+    extra={'version': 'v1.0.0',
+           'cost': '25/75'}
+)
 
 SETU_DATABASE = {
     "A": [

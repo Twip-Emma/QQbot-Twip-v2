@@ -1,20 +1,15 @@
-from nonebot import require
-from nonebot.plugin.on import on_command
-from nonebot.adapters.onebot.v11 import (
-    GROUP,
-    Bot,
-    GroupMessageEvent,
-    Message,
-    MessageSegment,
-    )
-
-import nonebot
+import asyncio
 import os
 import random
-import asyncio
 import time
-
 from pathlib import Path
+
+import nonebot
+from nonebot import require
+from nonebot.adapters.onebot.v11 import (GROUP, Bot, GroupMessageEvent,
+                                         Message, MessageSegment)
+from nonebot.plugin import PluginMetadata
+from nonebot.plugin.on import on_command
 
 try:
     import ujson as json
@@ -23,8 +18,16 @@ except ModuleNotFoundError:
 
 from tool.find_power.format_data import is_level_S
 
-from .utils import *
 from .config import Config
+from .utils import *
+
+__plugin_meta__ = PluginMetadata(
+    name='群友老婆',
+    description='提供群友互娶功能',
+    usage='''娶群友/透群友/离婚/本群cp/涩涩记录''',
+    extra={'version': 'v1.0.0',
+           'cost': '65/30/90/0/0'}
+)
 
 # 加载全局配置
 global_config = nonebot.get_driver().config

@@ -47,6 +47,7 @@ __plugin_meta__ = PluginMetadata(
         "example": "摸 @小Q\n摸 114514\n摸 自己\n摸 [图片]",
         "author": "meetwq <meetwq@gmail.com>",
         "version": "0.3.20",
+        'cost': '13'
     },
 )
 

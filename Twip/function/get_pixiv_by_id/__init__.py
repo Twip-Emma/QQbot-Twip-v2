@@ -2,25 +2,34 @@
 Author: 七画一只妖
 Date: 2022-03-14 22:37:35
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-11-03 20:55:24
+LastEditTime: 2023-07-24 15:19:25
 Description: file content
 '''
 import base64
-from io import BytesIO
-
-from tool.find_power.format_data import is_level_S
-from os import path
 import urllib.request
-import requests
+from io import BytesIO
+from os import path
 
+import requests
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-
+from nonebot.plugin import PluginMetadata
 from PIL import Image
+
+from tool.find_power.format_data import is_level_S
+
 THIS_PATH = path.join(path.dirname(__file__))
 
 
 BASE_URL = "https://pixiv.re/"
+
+__plugin_meta__ = PluginMetadata(
+    name='P站插画搜索',
+    description='查询P站插画',
+    usage='''搜索图片 <插画pid>''',
+    extra={'version': 'v1.0.0',
+           'cost': '30'}
+)
 
 
 def get_image_from_url(pid: str) -> None:

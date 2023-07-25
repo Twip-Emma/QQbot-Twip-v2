@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-20 14:03:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:52:16
+LastEditTime: 2023-07-25 09:22:47
 Description: file content
 '''
 
@@ -22,7 +22,7 @@ __plugin_meta__ = PluginMetadata(
     description='模拟原神抽卡，出金概率魔改版',
     usage='''原神十连''',
     extra={'version': 'v1.0.0',
-           'cost': '##40'}
+           'cost': '40'}
 )
 
 

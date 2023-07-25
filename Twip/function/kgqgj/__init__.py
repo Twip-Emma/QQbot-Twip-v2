@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-10 13:21:02
+LastEditTime: 2023-07-24 15:26:00
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -11,9 +11,10 @@ import re
 from pathlib import Path
 
 import httpx
+import requests
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-import requests
+from nonebot.plugin import PluginMetadata
 
 from tool.find_power.format_data import is_level_A
 
@@ -22,6 +23,13 @@ from .payload.dao import get_data, get_data_total, get_rate
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 pattern = re.compile(r"url=(.*?)&amp;")
 
+__plugin_meta__ = PluginMetadata(
+    name='坎公会战',
+    description='提供《坎公骑冠剑》公会战的查询功能',
+    usage='''日报/总榜/进度/千里眼/周边/设置作业/获取作业''',
+    extra={'version': 'v1.0.0',
+           'cost': '无消耗'}
+)
 
 daily = on_command("日报", aliases={"x每日战报", "x每日", "x日报"}, block=True, priority=1)
 total = on_command("总榜", aliases={"x总排行", "x排行", "x排行榜"}, block=True, priority=1)

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-02-14 12:12:53
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-09 13:46:40
+LastEditTime: 2023-07-25 09:23:51
 Description: file content
 '''
 
@@ -21,7 +21,7 @@ __plugin_meta__ = PluginMetadata(
     description='功能：破解闪照、破解撤回',
     usage='''使用方式：无【静默模块】''',
     extra={'version': 'v1.0.1',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

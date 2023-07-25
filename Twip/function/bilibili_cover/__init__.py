@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-06-04 13:13:19
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-04 13:16:24
+LastEditTime: 2023-07-24 15:23:59
 FilePath: \QQbot-Twip-v2\Twip\function\bilibili_cover\__init__.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -11,12 +11,20 @@ import re
 from pathlib import Path
 
 import httpx
+import requests
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-import requests
+from nonebot.plugin import PluginMetadata
 
 from tool.find_power.format_data import is_level_S
 
+__plugin_meta__ = PluginMetadata(
+    name='哔站封面',
+    description='查询B站视频的封面',
+    usage='''封面 <bv号>''',
+    extra={'version': 'v1.0.0',
+           'cost': '无消耗'}
+)
 
 get_img = on_command("封面", block=True, priority=1)
 

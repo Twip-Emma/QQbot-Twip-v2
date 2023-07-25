@@ -11,19 +11,19 @@ import requests
 from bs4 import BeautifulSoup
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent,
-                                         PrivateMessageEvent, MessageSegment)
+                                         MessageSegment, PrivateMessageEvent)
 from nonebot.plugin import PluginMetadata
-from tool.find_power.format_data import is_level_S
 
-from tool.utils.logger import logger as my_logger
+from tool.find_power.format_data import is_level_S
 from tool.QsPilUtils2.dao import text_to_image
+from tool.utils.logger import logger as my_logger
 
 __plugin_meta__ = PluginMetadata(
     name='电费查询',
     description='查询湖南工程学院指定宿舍的电费',
     usage='''电费 <滨江|学海|亲民|明德> <宿舍号>''',
     extra={'version': 'v1.0.0',
-           'cost': '###5'}
+           'cost': '无消耗'}
 )
 
 
@@ -36,7 +36,7 @@ URL_2 = "http://39.108.173.72:8080/isimshngc/monServlet?monType=0"
 
 @ele_power_finder.handle()
 @is_level_S
-async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5):
+async def _(event: Union[GroupMessageEvent, PrivateMessageEvent], bot: Bot, cost=5):
     msg = str(event.get_message()).split()
     group_id = str(event.group_id)
     user_id = str(event.user_id)
@@ -73,7 +73,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "roomName": room_id
         }
         power1, power2 = get_data(payload)
-        message=f"滨江{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
+        message = f"滨江{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
         await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "亲民" in msg[1]:
         room_id = msg[1][-3:]
@@ -81,7 +81,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
         buildId_dict = {"1": 52,
                         "2": 53,
                         "3": 54,
-                        "4": 55,}
+                        "4": 55, }
         # print(f'{buildId}棟{room_id}间')
         payload = {
             "xiaoquId": 51,
@@ -89,7 +89,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "roomName": room_id
         }
         power1, power2 = get_data(payload)
-        message=f"亲民{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
+        message = f"亲民{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
         await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "学海" in msg[1]:
         room_id = msg[1][-3:]
@@ -112,7 +112,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "roomName": room_id
         }
         power1, power2 = get_data(payload)
-        message=f"学海{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
+        message = f"学海{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
         await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     elif "明德" in msg[1]:
         room_id = msg[1][-3:]
@@ -126,7 +126,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
                         "7": 86,
                         "8": 87,
                         "9": 88,
-                        "10": 89,}
+                        "10": 89, }
         # print(f'{buildId}棟{room_id}间')
         payload = {
             "xiaoquId": 51,
@@ -134,7 +134,7 @@ async def _(event: Union[GroupMessageEvent, PrivateMessageEvent],bot:Bot, cost=5
             "roomName": room_id
         }
         power1, power2 = get_data(payload)
-        message=f"明德{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
+        message = f"明德{buildId}栋{room_id}\n\n电费总余量{power1}度\n补助电费余量{power2}度"
         await ele_power_finder.send(MessageSegment.image(f"file:///{text_to_image(message,15,(20,20))}"))
     else:
         await ele_power_finder.send("目前只支持：滨江|明德|学海|亲民\n请输入正确的宿舍例如：\n电费 滨江9307")

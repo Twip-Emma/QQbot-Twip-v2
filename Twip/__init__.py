@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-05-31 21:48:06
+LastEditTime: 2023-07-25 09:39:22
 '''
 from os import path
 from pathlib import Path
@@ -35,7 +35,7 @@ __plugin_meta__ = PluginMetadata(
     description='核心模块，为其他功能服务，守护模块',
     usage='''使用方式：无''',
     extra={'version': 'v2.0.0beta3-fix2',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

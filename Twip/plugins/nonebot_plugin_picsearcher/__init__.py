@@ -32,7 +32,7 @@ __plugin_meta__ = PluginMetadata(
     usage="触发方式：@<机器人> 搜图",
     extra={
         "version": "v0.0.1",
-        "cost": "##40"
+        "cost": "40"
     },
 )
 

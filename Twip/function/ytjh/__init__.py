@@ -2,22 +2,29 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-24 09:52:50
+LastEditTime: 2023-07-25 09:41:21
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import re
 from pathlib import Path
 
-
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
-
+from nonebot.plugin import PluginMetadata
 
 from tool.find_power.format_data import is_level_A
 
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 pattern = re.compile(r"url=(.*?)&amp;")
+
+__plugin_meta__ = PluginMetadata(
+    name='云图攻略',
+    description='提供《云图计划》各种攻略表的查询',
+    usage='''云图算法/云图强度/云图印记/云图帮助''',
+    extra={'version': 'v1.0.0',
+           'cost': '无消耗'}
+)
 
 
 suanfa = on_command("云图算法", aliases={"云图算法表", "云图算法榜"}, block=True, priority=1)

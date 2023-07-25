@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-29 14:01:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-13 19:01:56
+LastEditTime: 2023-07-25 09:08:47
 Description: file content
 '''
 import random
@@ -27,7 +27,7 @@ __plugin_meta__ = PluginMetadata(
     description='这狗比人生不想呆了，重开！',
     usage='''重开|人生重开|人生重来模拟器|remake''',
     extra={'version': 'v1.0.0',
-           'cost': '##45'}
+           'cost': '45'}
 )
 
 

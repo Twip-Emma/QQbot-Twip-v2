@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 14:37:42
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 10:33:24
+LastEditTime: 2023-07-25 09:42:15
 FilePath: \QQbot-Twip-v2\Twip\help\common_helper\__init__.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -21,7 +21,7 @@ __plugin_meta__ = PluginMetadata(
     description='查看当前机器人的功能列表',
     usage='''使用方式：帮助 [列表|<功能名>]''',
     extra={'version': 'v0.3.1',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

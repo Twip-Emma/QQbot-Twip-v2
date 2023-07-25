@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-09 19:53:51
+LastEditTime: 2023-07-25 09:33:51
 Description: file content
 '''
 
@@ -22,7 +22,7 @@ __plugin_meta__ = PluginMetadata(
     description='获得一张引子',
     usage='''使用方式：求签''',
     extra={'version': 'v1.0.0',
-           'cost': '##15'}
+           'cost': '15'}
 )
 
 

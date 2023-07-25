@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-01 20:27:45
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:51:58
+LastEditTime: 2023-07-25 09:09:28
 Description: file content
 '''
 from nonebot import on_command
@@ -18,7 +18,7 @@ __plugin_meta__ = PluginMetadata(
     description='查看机器人所有群综合的水群排行榜前99名',
     usage='''查看水群排行''',
     extra={'version': 'v1.0.0',
-           'cost': '##10'}
+           'cost': '10'}
 )
 
 

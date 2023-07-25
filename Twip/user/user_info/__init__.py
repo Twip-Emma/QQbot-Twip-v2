@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 13:30:19
+LastEditTime: 2023-07-25 09:33:44
 Description: file content
 '''
 
@@ -21,7 +21,7 @@ __plugin_meta__ = PluginMetadata(
     description='查看自己的行动点和健康值',
     usage='''使用方式：个人信息''',
     extra={'version': 'v1.0.0',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

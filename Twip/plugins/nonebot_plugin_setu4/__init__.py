@@ -2,6 +2,7 @@ import asyncio
 import random
 import time
 from re import I, sub
+
 import nonebot
 from nonebot import on_command, on_regex
 from nonebot.adapters.onebot.v11 import (GROUP, PRIVATE_FRIEND, Bot,
@@ -12,7 +13,9 @@ from nonebot.exception import ActionFailed
 from nonebot.log import logger
 from nonebot.params import CommandArg
 from nonebot.permission import SUPERUSER
+from nonebot.plugin import PluginMetadata
 from nonebot.typing import T_State
+
 from tool.find_power.format_data import is_level_S
 
 from .fetch_resources import DownloadDatabase
@@ -20,6 +23,13 @@ from .get_data import get_setu
 from .permission_manager import PermissionManager
 from .resource.setu_message import setu_sendmessage
 
+__plugin_meta__ = PluginMetadata(
+    name='涩图-在线',
+    description='在线获取一张或者多张涩图',
+    usage='''普通涩图 <[0-9]张> <r18[?]> <你的xp>''',
+    extra={'version': 'v1.0.0',
+           'cost': '45'}
+)
 
 # ⡆⣐⢕⢕⢕⢕⢕⢕⢕⢕⠅⢗⢕⢕⢕⢕⢕⢕⢕⠕⠕⢕⢕⢕⢕⢕⢕⢕⢕⢕
 # ⢐⢕⢕⢕⢕⢕⣕⢕⢕⠕⠁⢕⢕⢕⢕⢕⢕⢕⢕⠅⡄⢕⢕⢕⢕⢕⢕⢕⢕⢕

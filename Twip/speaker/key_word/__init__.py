@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-10 13:37:56
+LastEditTime: 2023-07-25 09:33:35
 Description: file content
 '''
 import http.client
@@ -26,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
     description='从预设好的词库选择句子回答',
     usage='''使用方式：@<机器人> <你想说的话>''',
     extra={'version': 'v1.0.0',
-           'cost': '###2'}
+           'cost': '5'}
 )
 
 
@@ -42,7 +42,7 @@ message_handle = on_message(rule=to_me(), block=False, priority=10)
 
 @message_handle.handle()
 @is_level_A
-async def _(bot: Bot, event: GroupMessageEvent, cost=2):
+async def _(bot: Bot, event: GroupMessageEvent, cost=5):
     user_id = event.user_id
     group_id = event.group_id
     message = str(event.get_message())

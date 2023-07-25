@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-01 19:28:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-02 10:24:02
+LastEditTime: 2023-07-25 09:40:17
 Description: file content
 '''
 from nonebot import on_command
@@ -24,7 +24,7 @@ __plugin_meta__ = PluginMetadata(
     description='在机器人所在的所有群搜索某个人',
     usage='''锁定用户 <用户QQ> | 查看群列表''',
     extra={'version': 'v1.0.0',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

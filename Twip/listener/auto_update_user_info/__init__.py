@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:01
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 13:12:43
+LastEditTime: 2023-07-25 09:23:58
 Description: file content
 '''
 import random
@@ -19,7 +19,7 @@ __plugin_meta__ = PluginMetadata(
     description='功能：记录每个人的发言数量总数',
     usage='''使用方式：无【静默模块】''',
     extra={'version': 'v0.1.0',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-06-21 14:44:44
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-02-14 16:20:26
+LastEditTime: 2023-07-25 09:23:24
 Description: file content
 '''
 
@@ -19,7 +19,7 @@ __plugin_meta__ = PluginMetadata(
     description='功能：涩图功能的健康回复系统',
     usage='''使用方式：无【静默模块】''',
     extra={'version': 'v0.0.1',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

@@ -30,7 +30,7 @@ __plugin_meta__ = PluginMetadata(
     description='查看当前机器人的运行状况',
     usage='''使用方式：<戳一戳机器人>''',
     extra={'version': 'v1.0.0',
-           'cost': '###0'}
+           'cost': '无消耗'}
 )
 
 

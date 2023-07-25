@@ -15,4 +15,6 @@ __plugin_meta__ = PluginMetadata(
     name="PicStatus",
     description="以图片形式显示当前设备的运行状态",
     usage=usage,
+    extra={'version': 'v1.0.0',
+           'cost': '无消耗'}
 )
