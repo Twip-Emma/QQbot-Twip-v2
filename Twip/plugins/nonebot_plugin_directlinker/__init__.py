@@ -2,7 +2,9 @@ import time
 from urllib.parse import urlencode
 
 from nonebot import logger, on_shell_command
-from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment, Message
+from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, Message,
+                                         MessageSegment)
+from nonebot.plugin import PluginMetadata
 from nonebot.rule import ArgumentParser
 from nonebot.typing import T_State
 
@@ -26,6 +28,13 @@ help_text = f"""Manual of 群文件直链提取器
 例：/{linker_command} -n 文件名.exe
 """
 
+__plugin_meta__ = PluginMetadata(
+    name='直链提取',
+    description='提供群文件直链的获取',
+    usage=f'''命令前缀：{linker_command}\n例如：{linker_command} --help''',
+    extra={'version': 'v1.0.0',
+           'cost': '无消耗'}
+)
 
 @linker.handle()
 async def link(bot: Bot, event: GroupMessageEvent, state: T_State):

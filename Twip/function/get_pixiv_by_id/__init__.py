@@ -33,16 +33,12 @@ __plugin_meta__ = PluginMetadata(
 
 
 def get_image_from_url(pid: str) -> None:
-    # image_url = f"{BASE_URL}{pid}.png"
     headers = {'Accept': '*/*',
                'Accept-Encoding': 'gzip, deflate, br',
                'Connection': 'keep-alive',
                'Host': '<calculated when request is sent>',
                'User-Agent': 'PostmanRuntime/7.29.0'}
     resp = requests.get(url=BASE_URL + pid + ".png")
-    print("==============================")
-    print(resp)
-    print("==============================")
 
     if resp.status_code != 200:
         return False
@@ -72,14 +68,6 @@ def get_image_from_url2(url: str) -> Image.Image:
 def start(pid: str):
     # 获取图片
     return get_image_from_url(pid)
-    # image = download_img(pid)
-    # 判断图片是否有效
-    # try:
-    #     base64_str = img_to_b64(image)
-    #     # 发送图片
-    #     return base64_str
-    # except:
-    #     return None
 
 
 get_pic = on_command("搜索图片", block=True, priority=2)
