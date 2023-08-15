@@ -2,14 +2,14 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-25 09:33:44
+LastEditTime: 2023-08-15 09:32:30
 Description: file content
 '''
 
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
-from tool.find_power.format_data import is_level_A
+from tool.find_power.format_data import is_level_S
 from tool.utils.logger import logger as my_logger
 from tool.QsPilUtils2.dao import text_to_image
 
@@ -30,7 +30,7 @@ get_luck = on_command("个人信息", block=True, priority=2)
 
 # 个人信息
 @get_luck.handle()
-@is_level_A
+@is_level_S
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
@@ -58,7 +58,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
 h_level_up = on_command("升级", block=True, priority=2)
 
 @h_level_up.handle()
-@is_level_A
+@is_level_S
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
