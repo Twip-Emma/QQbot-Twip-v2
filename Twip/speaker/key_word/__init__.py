@@ -112,7 +112,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=20):
 
 
 # 返回匹配值最高的结果
-def get_best_response(message: str, fuzzy_threshold=20):
+def get_best_response(message: str, fuzzy_threshold=74):
     keywords = preprocess_text(message)
     best_match = None
     highest_score = 0
