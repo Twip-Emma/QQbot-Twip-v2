@@ -2,9 +2,8 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-25 17:41:27
+LastEditTime: 2023-08-28 14:27:32
 '''
-from os import path
 from pathlib import Path
 from typing import List
 
@@ -26,8 +25,8 @@ try:
     NICKNAME: str = list(DRIVER.config.nickname)[0]
 except KeyError:
     NICKNAME = 'Twip'
-
-ABSOLUTE_PATH = path.join(path.dirname(__file__))
+    
+ABSOLUTE_PATH: str = Path(__file__).absolute().parents[0]
 
 
 __plugin_meta__ = PluginMetadata(
