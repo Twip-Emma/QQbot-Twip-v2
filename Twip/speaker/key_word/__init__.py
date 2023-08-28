@@ -12,7 +12,7 @@ from fuzzywuzzy import fuzz
 import jieba
 import requests
 from pathlib import Path
-from db import sql_dql
+from .db import sql_dql
 # 提交测试
 from nonebot import on_message
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
