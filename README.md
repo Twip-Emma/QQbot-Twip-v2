@@ -2,7 +2,7 @@
  * @Author: 七画一只妖
  * @Date: 2022-01-07 20:25:48
  * @LastEditors: 七画一只妖 1157529280@qq.com
- * @LastEditTime: 2023-08-29 10:50:39
+ * @LastEditTime: 2023-08-29 14:36:55
  * @Description: file content
 -->
 <p align="center">
@@ -80,85 +80,48 @@ nonebot_plugin_imageutils|0|-
 ### 开始部署/使用某个功能
 
 #### 1.直接部署
-1.在根目录创建名为setting的文件夹，并在其中创建`__init__.py` 进入并输入以下配置
-~~~py
-URL = 设置数据库连接（String）
+1.在根目录创建`.env.prod`文件进入并输入以下配置
+~~~.env.prod
+HOST=127.0.0.1
+SECRET=
+ACCESS_TOKEN=
 
-USER_CARD = 登录数据库的用户名（String）
+PORT=8080  # 配置 NoneBot 监听的端口
+DEBUG=false  # 开启 debug 模式 **请勿在生产环境开启**
+SUPERUSERS=[""]  # 配置 NoneBot 超级用户
+NICKNAME=[""]  # 配置机器人的昵称
+COMMAND_START=["/", ""]  # 配置命令起始字符
+COMMAND_SEP=["."]  # 配置命令分割字符
+LOG_LEVEL=SUCCESS
 
-PASS_WORD = 登录数据库的密码（String）
+# 力扣
+LEETCODE_QQ_FRIENDS=[]
+LEETCODE_QQ_GROUPS=[123,456]
+LEETCODE_INFORM_TIME=[{"HOUR":8,"MINUTE":10},{"HOUR":12,"MINUTE":10},{"HOUR":17,"MINUTE":10}]
 
-DATABASE = 指定的数据库（String）
+# 搜图插件
+EX_COOKIE=
+PROXY=
+SEARCH_LIMIT=10
+RISK_CONTROL=true
+RECORD_PRIORITY=99
 
-Api_Key = 青云客（String）
+# 直链提取器
+linker_group=["123"]
 
-Api_Secret = 青云客（String）
+# 数据库连接
+db_url="数据库连接"
+db_card="账号"
+db_pass="密码"
+db_lib="数据库名称"
 
-Content_Type = 青云客（String）
+# 茉莉云
+mly_key="茉莉云key"
+mly_secret='茉莉云secret'
 ~~~
 
-2.创建MySQL数据库
-A：表名`message_info`
-~~~sql
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for message_info
--- ----------------------------
-DROP TABLE IF EXISTS `message_info`;
-CREATE TABLE `message_info`  (
-  `database_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `message_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `message_context` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `group_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`database_id`) USING BTREE,
-  INDEX `index_message_context2`(`user_id`, `message_context`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;
-~~~
-B：表名`user_info`
-~~~sql
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for user_info
--- ----------------------------
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info`  (
-  `user_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `sign_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `last_speak_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `speak_time_total` int(255) NULL DEFAULT NULL,
-  `coin` double NULL DEFAULT NULL
-) ENGINE = InnoDB AUTO_INCREMENT = 28595 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;
-~~~
-C：表名`user_info_new`
-~~~sql
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for user_info_new
--- ----------------------------
-DROP TABLE IF EXISTS `user_info_new`;
-CREATE TABLE `user_info_new`  (
-  `user_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user_coin` int(255) NULL DEFAULT NULL,
-  `user_health` int(255) NULL DEFAULT NULL,
-  `user_crime` int(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;
-~~~
+2.执行以下SQL语句
+> 进入根目录的`sql`文件，把里面的sql文件全部执行一遍即可
 
 #### 2.使用某个功能（解耦）
 > 注意：本部署教程并不是整个机器人的部署教程，在观看前，你需要有一定的Python基础以及机器人的部署经验
@@ -193,19 +156,3 @@ if not is_level_S(event):
 ~~~
 
 **重启你的机器人然后艾特机器人并发送`天气 北京`得到响应即代表安装成功**
-
-### 更新日志（较为重大的更新）
-**2022-10-10** Twip-v2.0.0beta3 -> Twip-v2.0.0beta3-fix1
->- 增加帮助模块，自动扫描元数据并整理输出
->- 新增步数限制，避免机器人响应过于频繁
->- 移除部分插件的限制系统，改为使用全局步数限制
->- 修改了部分功能的加载逻辑
->- 优化了输入日志，自定义logger
->- 新增启动输出信息、logo等
-
-**2022-10-08** Twip-v2.0.0beta2 -> Twip-v2.0.0beta3
->- 解耦派蒙模块
->- 移除原神模块
->- 为每个模块增加了元数据
->- 极大优化了机器人启动速度和关闭速度
->- 修改了包的位置
