@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:17:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-05-08 21:01:11
+LastEditTime: 2023-08-29 13:52:24
 '''
 import datetime
 import random
@@ -78,7 +78,7 @@ def make_bg(user_id:str, user_name: str) -> Image:
 
 
     # 保存图片
-    save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id}.jpg")
+    save_path = str(Path(BASE_PATH)/r"cache"/f"{user_id[0]}.jpg")
     a4 = a4.convert("RGB")
     a4.save(save_path)
 

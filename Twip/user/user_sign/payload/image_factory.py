@@ -2,15 +2,16 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:15:45
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-12-09 11:12:33
+LastEditTime: 2023-08-29 13:50:01
 '''
 from pathlib import Path
 from PIL import Image, ImageFont, ImageDraw, ImageMath
+from Twip import TTF_PATH
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 
 
 class FontEntity:
-    def __init__(self, fsize: int = 12, color: str = "#000000", ttf_path: str = str(Path(BASE_PATH)/r"ttf"/r"zh-cn.ttf")) -> None:
+    def __init__(self, fsize: int = 12, color: str = "#000000", ttf_path: str = str(Path(TTF_PATH))) -> None:
         self.fsize = fsize
         self.color = color
         self.ttf_path = ttf_path

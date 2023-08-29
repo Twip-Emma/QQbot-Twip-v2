@@ -1,19 +1,19 @@
 '''
 Author: 七画一只妖
 Date: 2022-05-30 21:27:03
-LastEditors: 七画一只妖
-LastEditTime: 2022-06-05 19:34:43
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2023-08-29 11:15:11
 Description: file content
 '''
 import os
 from io import BytesIO
 from PIL import Image
+from pathlib import Path
 
-
-from tool.image_format.img_vague import img_format_main
+from .img_vague import img_format_main
 
 # 当前路径
-BASE_PATH = os.path.dirname(os.path.realpath(__file__))
+BASE_PATH: str = Path(__file__).absolute().parents[0]
 
 
 # 获取当前路径下的所有文件路径

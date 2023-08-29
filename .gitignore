@@ -146,3 +146,5 @@ dmypy.json
 /data
 
 /.env.prod
+
+# 各插件缓存排除

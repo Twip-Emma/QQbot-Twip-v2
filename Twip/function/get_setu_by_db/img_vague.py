@@ -1,8 +1,8 @@
 '''
 Author: 七画一只妖
 Date: 2022-06-05 19:09:57
-LastEditors: 七画一只妖
-LastEditTime: 2022-06-05 19:40:09
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2023-08-29 10:57:09
 Description: file content
 '''
 '''
@@ -12,24 +12,17 @@ LastEditors: 七画一只妖
 LastEditTime: 2022-05-30 17:55:19
 Description: file content
 '''
-import os
 import random
+from pathlib import Path
+
 from PIL import Image
 
-
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
-IMG_PATH = os.path.join(BASE_PATH, 'images')
+BASE_PATH: str = Path(__file__).absolute().parents[0]
+IMG_PATH = f'{BASE_PATH}\\images'
 
 
 # 黑块大小
 BIOCK_SIZE = 50
-
-
-# 随机获取一张图片
-def get_random_img(input_path):
-    # img_list = os.listdir(IMG_PATH)
-    # return os.path.join(IMG_PATH, random.choice(img_list))
-    return f"{BASE_PATH}\\碧绿.png"
 
 
 # 将图片切割成(100, 100)的小块并记录每一个小块的左上角坐标，返回一个列表
@@ -84,8 +77,6 @@ def paint_black(cut_list, img_path):
 
 # 主控
 def img_format_main(percent, input_path:str, output_path:str) -> str:
-    # img_path = get_random_img(input_path)
-    # print(random_list(cut_img(img_path)))
     img = paint_black(random_list(cut_img(input_path),percent), input_path)
     img.save(output_path)
     return output_path
