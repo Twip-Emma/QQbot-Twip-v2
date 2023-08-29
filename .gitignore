@@ -152,9 +152,15 @@ dmypy.json
 # git add .
 # git commit -m ".gitignore 刷新"
 # 各插件缓存排除
-/Twip/user/user_sign/payload/cache
-/Twip/get_setu_by_db/images
-/Twip/get_setu_by_id/images
-/Twip/kgqgj/payload/cache
-/Twip/sdorica_draw/image
-/Twip/yuanshen_draw/image
+/Twip/user/user_sign/payload/cache/*
+!/Twip/user/user_sign/payload/cache/
+/Twip/get_setu_by_db/images/*
+!/Twip/get_setu_by_db/images/
+/Twip/get_setu_by_id/images/*
+!/Twip/get_setu_by_id/images/
+/Twip/kgqgj/payload/cache/*
+!/Twip/kgqgj/payload/cache/
+/Twip/sdorica_draw/image/*
+!/Twip/sdorica_draw/image/
+/Twip/yuanshen_draw/image/*
+!/Twip/yuanshen_draw/image/
