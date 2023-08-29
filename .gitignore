@@ -147,4 +147,14 @@ dmypy.json
 
 /.env.prod
 
+# 让本文件刷新效果
+# git rm -r --cached .
+# git add .
+# git commit -m ".gitignore 刷新"
 # 各插件缓存排除
+/Twip/user/user_sign/payload/cache
+/Twip/get_setu_by_db/images
+/Twip/get_setu_by_id/images
+/Twip/kgqgj/payload/cache
+/Twip/sdorica_draw/image
+/Twip/yuanshen_draw/image
