@@ -2,12 +2,13 @@
 Author: 七画一只妖
 Date: 2022-03-20 14:13:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-18 19:40:10
+LastEditTime: 2023-08-29 14:21:51
 Description: file content
 '''
 import random
 import time
 from PIL import Image, ImageFont, ImageDraw, ImageMath
+from Twip import TTF_PATH
 
 
 # 同级
@@ -62,7 +63,7 @@ async def chouka_start(user_id, user_name, time_gacha) -> str:
     font_size = 40
     text = f"{user_name} 的抽卡结果       QQID：{user_id}       剩余抽卡次数：{time_gacha} \
     \n\nBy七画一只妖，拼合图像耗时：{t}秒"
-    font_path = f"{FILE_PATH}\\yuanshen.ttf"
+    font_path = TTF_PATH
     font = ImageFont.truetype(font_path, font_size)
     draw = ImageDraw.Draw(bg_finally)
     text_coordinate = int(100), int(bg_finally.height - 180)
@@ -70,7 +71,7 @@ async def chouka_start(user_id, user_name, time_gacha) -> str:
 
     # 要保存图片的路径
     # bg_finally = small_image(bg_finally)
-    img_path = f'{FILE_PATH}\\image\\{user_id}.jpg'
+    img_path = f'{FILE_PATH}\\image\\{user_id[0]}.jpg'
     # 保存图片
     bg_finally = bg_finally.convert("RGB")
     bg_finally.save(img_path)

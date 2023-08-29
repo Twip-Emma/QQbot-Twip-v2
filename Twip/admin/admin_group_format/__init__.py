@@ -10,7 +10,7 @@ from nonebot.rule import to_me
 from nonebot.adapters.onebot.v11 import Bot, MessageEvent
 import MySQLdb
 
-from setting import URL, USER_CARD, PASS_WORD, DATABASE
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
 
 show_group_list = on_command('查看群列表')
@@ -88,7 +88,7 @@ async def _(bot:Bot,event: MessageEvent):
     add_health = msg[3]
     add_crime = msg[4]
 
-    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
     cursor = db.cursor()
     sql = f"update user_info_new set user_coin=user_coin{add_coin},user_health=user_health{add_health},user_crime=user_crime{add_crime} where user_id='{user_id}'"
     cursor.execute(sql)

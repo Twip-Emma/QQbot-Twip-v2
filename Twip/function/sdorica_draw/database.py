@@ -10,7 +10,7 @@ from os import path
 import MySQLdb
 
 THIS_PATH = path.join(path.dirname(__file__))
-from setting import *
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
 
 gacha_dict = [
@@ -47,7 +47,7 @@ def find_user_speak_total(user_id):
 
 ### 数据库封装
 def sql_dql(sql):
-    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
     cursor = db.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()

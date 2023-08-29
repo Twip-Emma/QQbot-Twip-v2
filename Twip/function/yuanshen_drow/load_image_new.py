@@ -1,13 +1,14 @@
 '''
 Author: 七画一只妖
 Date: 2021-10-21 19:06:13
-LastEditors: 七画一只妖
-LastEditTime: 2022-08-19 19:43:16
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2023-08-29 14:10:30
 Description: file content
 '''
 from PIL import Image, ImageFont, ImageDraw, ImageMath
 from loguru import logger
 from io import BytesIO
+from Twip import TTF_PATH
 
 
 import httpx
@@ -29,7 +30,7 @@ ARMS_API = ['https://genshin.honeyhunterworld.com/db/weapon/sword/?lang=CHS',
             'https://genshin.honeyhunterworld.com/db/weapon/catalyst/?lang=CHS']
 ROLES_HTML_LIST = None
 ARMS_HTML_LIST = None
-FONT_PATH = f"{os.path.dirname(__file__)}\\yuanshen.ttf"
+FONT_PATH = TTF_PATH
 FONT = ImageFont.truetype(FONT_PATH, size=20)
 
 

@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-29 13:58:41
+LastEditTime: 2023-08-29 14:11:48
 '''
 from pathlib import Path
 from typing import List
@@ -10,7 +10,6 @@ from typing import List
 from nonebot import get_driver, load_plugins, logger
 from nonebot.plugin import PluginMetadata
 from tool.utils.logger import logger as my_logger
-from setting import *
 
 DRIVER = get_driver()
 __version__ = 'v2.0.0beta3-fix2'
@@ -116,9 +115,9 @@ load_plugins("Twip/plugins")
 # load_plugins("Twip/bean")
 
 # 加载自己写的模块
-# load_plugins("Twip/admin")
-# load_plugins("Twip/function")
+load_plugins("Twip/admin")
+load_plugins("Twip/function")
 load_plugins("Twip/user")
-# load_plugins("Twip/listener")
-# load_plugins("Twip/speaker")
-# load_plugins("Twip/help")
+load_plugins("Twip/listener")
+load_plugins("Twip/speaker")
+load_plugins("Twip/help")

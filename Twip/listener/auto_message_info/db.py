@@ -2,17 +2,17 @@
 Author: 七画一只妖
 Date: 2021-11-09 20:03:46
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:41:43
+LastEditTime: 2023-08-29 14:03:21
 Description: file content
 '''
 import MySQLdb
 import uuid
 import datetime
 
-from setting import *
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
 
-db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
 
 
 def insert_into_sql(message_id, message_context, group_id, user_id):

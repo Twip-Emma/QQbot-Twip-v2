@@ -9,10 +9,10 @@ import MySQLdb
 import datetime
 import re
 
-from setting import *
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
 
-db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
 
 
 def insert_new_user(user_name, user_id, now_time) -> None:

@@ -8,11 +8,11 @@ Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查�
 '''
 import MySQLdb
 
-from setting import URL, USER_CARD, PASS_WORD, DATABASE
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 # 数据库封装
 # 把数据库的操作函数都封装到一个函数里面，避免麻烦
 def sql_dql(sql):
-    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
     cursor = db.cursor()
     try:
         cursor.execute(sql)
@@ -24,7 +24,7 @@ def sql_dql(sql):
 
 
 def sql_dml(sql):
-    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
     cursor = db.cursor()
     try:
         cursor.execute(sql)

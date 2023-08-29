@@ -2,14 +2,14 @@
 Author: 七画一只妖
 Date: 2022-03-01 20:27:54
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2022-10-09 13:42:21
+LastEditTime: 2023-08-29 14:09:10
 Description: file content
 '''
 
 import base64
 from io import BytesIO
 import time
-from setting import *
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB, TTF_PATH
 import MySQLdb
 from os import path
 
@@ -29,7 +29,7 @@ def get_now_time() -> str:
 
 
 def find_speak_rank() -> list:
-    db = MySQLdb.connect(URL, USER_CARD, PASS_WORD, DATABASE, charset='utf8')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
     sql = "select * from user_info order by speak_time_total desc limit 0,99;"
     cursor = db.cursor()
     cursor.execute(sql)
@@ -80,13 +80,13 @@ def data_to_image(data,type:str) -> str:
         text2 += user_item
         rank += 1
     dr = ImageDraw.Draw(bg)
-    font = ImageFont.truetype(f"{FILE_PATH}\\yuanshen.ttf", 19)
+    font = ImageFont.truetype(TTF_PATH, 19)
     dr.text((275,100), text=text2, font=font, fill="#000000")
     ################################################
     text3 = f"当前时间：{now_time}\n\n"
     text4 = f"统计时长：{time_difference}\n\n"
     dr = ImageDraw.Draw(bg)
-    font = ImageFont.truetype(f"{FILE_PATH}\\yuanshen.ttf", 19)
+    font = ImageFont.truetype(TTF_PATH, 19)
     # 将text3和text4居中
     text_width3 = font.getsize(text=text3)
     text_width4 = font.getsize(text=text4)

@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-21 12:34:58
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-28 15:07:43
+LastEditTime: 2023-08-29 14:26:54
 Description: file content
 '''
 import http.client
@@ -18,7 +18,7 @@ from nonebot import on_message
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent
 from nonebot.plugin import PluginMetadata
 from nonebot.rule import to_me
-from setting import Api_Key, Api_Secret
+from Twip import MLY_KEY, MLY_SECRET
 from tool.find_power.format_data import is_level_A
 
 __plugin_meta__ = PluginMetadata(
@@ -85,8 +85,8 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=20):
             "fromName": recall_user_name
         })
         headers = {
-            'Api-Key': Api_Key,
-            'Api-Secret': Api_Secret,
+            'Api-Key': MLY_KEY,
+            'Api-Secret': MLY_SECRET,
             'Content-Type': 'application/json'
         }
         try:
@@ -121,8 +121,8 @@ def get_best_response(message: str, fuzzy_threshold=74):
         score_list = []
         for user_key in keywords:
             score_list.append(fuzz.ratio(keyword, user_key))
-        if max(score_list) != 0:
-            print(str(max(score_list)) + "|" + keyword + "|" + str(keywords))
+        # if max(score_list) != 0:
+        #     print(str(max(score_list)) + "|" + keyword + "|" + str(keywords))
         if max(score_list) >= fuzzy_threshold and max(score_list) > highest_score:
             highest_score = max(score_list)
             best_match = random.choice(responses)

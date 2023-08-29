@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2021-09-08 21:19:15
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-15 21:55:46
+LastEditTime: 2023-08-29 14:07:32
 Description: file content
 '''
 import os
@@ -11,7 +11,7 @@ import base64
 from .user_package import *
 
 from PIL import Image, ImageDraw, ImageFont
-from Twip import ABSOLUTE_PATH
+from Twip import ABSOLUTE_PATH, TTF_PATH
 
 
 FILE_PATH = ABSOLUTE_PATH + "\\function\\sdorica_draw"
@@ -162,7 +162,7 @@ def write_char(char_name, bg):
     bg_size = (179, 256)
 
     # 设置字体:路径、字体大小
-    font = ImageFont.truetype(os.path.join(f"{FILE_PATH}\\zh-cn.ttf"), 18)
+    font = ImageFont.truetype(TTF_PATH, 18)
 
     # 计算使用该字体占据的空间
     # 返回一个 tuple (width, height)
@@ -194,7 +194,7 @@ def add_text(bg, text):
     bg_size = (2160, 1080)
 
     # 设置字体
-    font = ImageFont.truetype(os.path.join(f"{FILE_PATH}\\zh-cn.ttf"), 30)
+    font = ImageFont.truetype(TTF_PATH, 30)
 
     # 计算使用该字体占据的空间
     # 返回一个 tuple (width, height)

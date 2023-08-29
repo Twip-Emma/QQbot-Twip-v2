@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 10:45:06
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-24 13:09:52
+LastEditTime: 2023-08-29 14:05:39
 '''
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
@@ -13,8 +13,10 @@ from .utils.image_utils import write_longsh, FontEntity
 from .utils.data_utils import data_format
 from .setting import FIGHT_LIST
 
+from Twip import TTF_PATH
+
 BASE_PATH: str = Path(__file__).absolute().parents[0]
-FONT_PATH = f"{BASE_PATH}\\ttf\\yuanshen.ttf"
+FONT_PATH = TTF_PATH
 
 
 # 获取当日出刀表图

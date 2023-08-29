@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-07 20:25:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-01-30 16:08:22
+LastEditTime: 2023-08-29 14:18:55
 Description: file content
 '''
 import nonebot
@@ -46,5 +46,4 @@ ABSOLUTE_PATH = path.join(path.dirname(__file__))
 
 if __name__ == "__main__":
     sys.path.append(f"{ABSOLUTE_PATH}\\tool")
-    sys.path.append(f"{ABSOLUTE_PATH}\\setting")
     nonebot.run()
