@@ -158,6 +158,8 @@ dmypy.json
 !/Twip/get_setu_by_db/images/
 /Twip/get_setu_by_id/images/*
 !/Twip/get_setu_by_id/images/
+/Twip/get_setu_by_id/cache/*
+!/Twip/get_setu_by_id/cache/
 /Twip/kgqgj/payload/cache/*
 !/Twip/kgqgj/payload/cache/
 /Twip/sdorica_draw/image/*
