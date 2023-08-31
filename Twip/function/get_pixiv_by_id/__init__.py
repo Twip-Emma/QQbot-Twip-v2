@@ -2,11 +2,13 @@
 Author: 七画一只妖
 Date: 2022-03-14 22:37:35
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-31 10:34:04
+LastEditTime: 2023-08-31 10:50:51
 Description: file content
 '''
 import os
+import random
 import httpx
+from PIL import Image
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
@@ -60,7 +62,24 @@ async def download_image(img_url, save_folder):
         if response.status_code == 200:
             with open(save_path, 'wb') as file:
                 file.write(response.content)
+
+            # 打开原始图片并随机移除像素点
+            img = Image.open(save_path)
+            img_with_removed_pixel = random_remove_pixel(img)
+            img_with_removed_pixel.save(save_path)
+
             return save_path
         else:
             print("Failed to download image.")
             return None
+        
+
+# 随机移除一个像素点
+def random_remove_pixel(image):
+    width, height = image.size
+    x = random.randint(0, width - 1)
+    y = random.randint(0, height - 1)
+    pixel_data = list(image.getdata())
+    pixel_data[y * width + x] = (0, 0, 0, 0)  # 设置随机像素点为透明
+    image.putdata(pixel_data)
+    return image
