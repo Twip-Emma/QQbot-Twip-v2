@@ -2,23 +2,19 @@
 Author: 七画一只妖
 Date: 2022-03-14 22:37:35
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-31 10:25:04
+LastEditTime: 2023-08-31 10:34:04
 Description: file content
 '''
-from os import path
 import os
 import httpx
-import asyncio
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
-from PIL import Image
-
+from pathlib import Path
+BASE_PATH: str = Path(__file__).absolute().parents[0]
 from tool.find_power.format_data import is_level_S
 
-THIS_PATH = path.join(path.dirname(__file__))
-
-IMAGE_FOLDER = f"{THIS_PATH}\\cache"
+IMAGE_FOLDER = f"{BASE_PATH}\\cache"
 
 BASE_URL = "https://pixiv.re"
 
@@ -56,6 +52,7 @@ async def download_image(img_url, save_folder):
     
     # 拼接保存路径
     save_path = os.path.join(save_folder, img_name)
+    print(save_path)
     
     async with httpx.AsyncClient() as client:
         # 发起HTTP请求并下载图片
