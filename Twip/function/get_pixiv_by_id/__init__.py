@@ -2,15 +2,13 @@
 Author: 七画一只妖
 Date: 2022-03-14 22:37:35
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-24 15:19:25
+LastEditTime: 2023-08-31 10:25:04
 Description: file content
 '''
-import base64
-import urllib.request
-from io import BytesIO
 from os import path
-
-import requests
+import os
+import httpx
+import asyncio
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.plugin import PluginMetadata
@@ -20,8 +18,9 @@ from tool.find_power.format_data import is_level_S
 
 THIS_PATH = path.join(path.dirname(__file__))
 
+IMAGE_FOLDER = f"{THIS_PATH}\\cache"
 
-BASE_URL = "https://pixiv.re/"
+BASE_URL = "https://pixiv.re"
 
 __plugin_meta__ = PluginMetadata(
     name='P站插画搜索',
@@ -31,45 +30,6 @@ __plugin_meta__ = PluginMetadata(
            'cost': '30'}
 )
 
-
-def get_image_from_url(pid: str) -> None:
-    headers = {'Accept': '*/*',
-               'Accept-Encoding': 'gzip, deflate, br',
-               'Connection': 'keep-alive',
-               'Host': '<calculated when request is sent>',
-               'User-Agent': 'PostmanRuntime/7.29.0'}
-    resp = requests.get(url=BASE_URL + pid + ".png")
-
-    if resp.status_code != 200:
-        return False
-
-    filename = THIS_PATH + "\\image\\user_pixiv.png"
-    with open(filename, 'wb') as f:
-        f.write(resp.content)
-    return True
-    # image = Image.open(BytesIO(resp.content))
-
-
-def img_to_b64(pic: Image.Image) -> str:
-    buf = BytesIO()
-    pic.save(buf, format="PNG")
-    base64_str = base64.b64encode(buf.getbuffer()).decode()
-    return "base64://" + base64_str
-
-
-# 根据url获取图片
-def get_image_from_url2(url: str) -> Image.Image:
-    resp = requests.get(url=url, allow_redirects=False)
-    image = Image.open(BytesIO(resp.content))
-    return image
-
-
-# 主控函数
-def start(pid: str):
-    # 获取图片
-    return get_image_from_url(pid)
-
-
 get_pic = on_command("搜索图片", block=True, priority=2)
 
 
@@ -77,34 +37,33 @@ get_pic = on_command("搜索图片", block=True, priority=2)
 @is_level_S
 async def _(bot: Bot, event: GroupMessageEvent, cost = 30):
     pid = event.message.extract_plain_text().split(" ")[1]
-    re = start(pid)
-    if re:
-        await get_pic.send(MessageSegment.image("file:///" + THIS_PATH + "\\image\\user_pixiv.png"))
+    img_url = f"{BASE_URL}/{pid}.png"
+    
+    if not os.path.exists(IMAGE_FOLDER):
+        os.makedirs(IMAGE_FOLDER)
+
+    downloaded_image_path = await download_image(img_url, IMAGE_FOLDER)
+
+    if downloaded_image_path:
+        await get_pic.send(MessageSegment.image(f"file:///{downloaded_image_path}"))
     else:
-        await get_pic.send(f"获取失败，该作品下面可能有多张图片，请在pid后面连接第几张\n比如搜索pid为xxx的第2张：xxx-2")
-        # await get_pic.send(MessageSegment.image(f"{BASE_URL}{pid}.png",proxy=False))
+        await get_pic.send("下载失败，请检查日志！")
 
 
-def download_img(pid: str):
-    # header = {"Authorization": "Bearer " + api_token} # 设置http header
-    print("就绪》》》》》")
-    img_url = BASE_URL + pid + ".png"
-
-    request = urllib.request.Request(img_url)
-    try:
-        response = urllib.request.urlopen(request)
-        img_name = pid + ".png"
-        filename = THIS_PATH + "\\image\\" + img_name
-        if (response.getcode() == 200):
-            with open(filename, "wb") as f:
-                print("开始下载》》》》》")
-                f.write(response.read())  # 将内容写入图片
-            return filename
-    except:
-        return "failed"
-
-# if __name__ == '__main__':
-#     # 下载要的图片
-#     img_url = "http://www.baidu.com/some_img_url"
-#     api_token = "fklasjfljasdlkfjlasjflasjfljhasdljflsdjflkjsadljfljsda"
-#     download_img(img_url, api_token)
+async def download_image(img_url, save_folder):
+    # 获取图片文件名
+    img_name = img_url.split("/")[-1]
+    
+    # 拼接保存路径
+    save_path = os.path.join(save_folder, img_name)
+    
+    async with httpx.AsyncClient() as client:
+        # 发起HTTP请求并下载图片
+        response = await client.get(img_url, follow_redirects=True)
+        if response.status_code == 200:
+            with open(save_path, 'wb') as file:
+                file.write(response.content)
+            return save_path
+        else:
+            print("Failed to download image.")
+            return None
