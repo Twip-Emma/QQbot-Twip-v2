@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-03 22:40:36
+LastEditTime: 2023-09-03 22:42:36
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -34,12 +34,12 @@ __plugin_meta__ = PluginMetadata(
 )
 
 
-get_sf = on_command("t云图算法", aliases={"云图算法表", "云图算法榜"}, block=True, priority=1)
-get_qd = on_command("t云图强度", aliases={
+get_sf = on_command("云图算法", aliases={"云图算法表", "云图算法榜"}, block=True, priority=1)
+get_qd = on_command("云图强度", aliases={
                   "云图强度表", "云图强度榜", "云图节奏", "云图节奏表", "云图节奏榜"}, block=True, priority=1)
-get_yj = on_command("t云图印记", aliases={"云图印记表", "云图印记榜"}, block=True, priority=1)
+get_yj = on_command("云图印记", aliases={"云图印记表", "云图印记榜"}, block=True, priority=1)
 get_help = on_command(
-    "云图帮助", aliases={"t云图帮助表", "帮助云图", "云图 帮助"}, block=True, priority=1)
+    "云图帮助", aliases={"云图帮助表", "帮助云图", "云图 帮助"}, block=True, priority=1)
 
 # 管理员指令
 set_sf = on_command("云图设置算法", block=True, priority=1)
