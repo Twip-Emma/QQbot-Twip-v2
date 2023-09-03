@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-03 22:42:36
+LastEditTime: 2023-09-03 22:59:02
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -57,22 +57,22 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     except:
         await get_sf.send("该命令下没有配置图片，请联系管理员！")
 
-@set_yj.handle()
+@get_yj.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     try:
-        await set_yj.send(MessageSegment.image(f"file:///{get_resp_img(json.load(open(CONFIG_PATH, 'r', encoding='utf8'))['yj'])}"))
+        await get_yj.send(MessageSegment.image(f"file:///{get_resp_img(json.load(open(CONFIG_PATH, 'r', encoding='utf8'))['yj'])}"))
     except:
-        await set_yj.send("该命令下没有配置图片，请联系管理员！")
+        await get_yj.send("该命令下没有配置图片，请联系管理员！")
 
 
-@set_qd.handle()
+@get_qd.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     try:
-        await set_qd.send(MessageSegment.image(f"file:///{get_resp_img(json.load(open(CONFIG_PATH, 'r', encoding='utf8'))['qd'])}"))
+        await get_qd.send(MessageSegment.image(f"file:///{get_resp_img(json.load(open(CONFIG_PATH, 'r', encoding='utf8'))['qd'])}"))
     except:
-        await set_qd.send("该命令下没有配置图片，请联系管理员！")
+        await get_qd.send("该命令下没有配置图片，请联系管理员！")
 
 
 @get_help.handle()
