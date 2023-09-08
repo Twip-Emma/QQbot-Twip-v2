@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-08 23:43:14
+LastEditTime: 2023-09-08 23:52:24
 Description: file content
 '''
 
@@ -26,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
 )
 
 
-get_luck = on_command("t个人信息", block=True, priority=2)
+get_luck = on_command("个人信息", block=True, priority=2)
 
 
 # 个人信息
