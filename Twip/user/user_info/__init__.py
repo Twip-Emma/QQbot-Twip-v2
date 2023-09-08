@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-15 09:32:30
+LastEditTime: 2023-09-08 23:43:14
 Description: file content
 '''
 
@@ -12,8 +12,9 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_S
 from tool.utils.logger import logger as my_logger
 from tool.QsPilUtils2.dao import text_to_image
-
 from tool.find_power.user_database import get_user_info_new, insert_user_info_new, change_user_crime, change_coin_max
+
+from .payload.image_dao import get_card
 
 
 __plugin_meta__ = PluginMetadata(
@@ -25,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
 )
 
 
-get_luck = on_command("个人信息", block=True, priority=2)
+get_luck = on_command("t个人信息", block=True, priority=2)
 
 
 # 个人信息
@@ -35,20 +36,10 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     group_id = str(event.group_id)
     user_id = str(event.user_id)
 
-    user_data = get_user_info_new(user_id=user_id)
-    if user_data == None:
-        insert_user_info_new(user_id=user_id)
-        user_data = get_user_info_new(user_id=user_id)
-    
-    level_data:dict = find_coin_max(user_data[4])
-    level_txt1 = f"等级数：{level_data['now_level']}/{level_data['max_level']}"
-    level_txt2 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
-    message=f"你的个人信息如下：\n{level_txt1}\n行动点：{user_data[1]}/{user_data[4]}\n健康值：{user_data[2]}/100\n画境币：{user_data[3]}\n{level_txt2}"
-    
-    await get_luck.send(MessageSegment.image(f"file:///{text_to_image(message, 15, (20,20))}"))
-
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']
+
+    await get_luck.send(MessageSegment.image(f"file:///{await get_card(user_id=user_id, user_name=recall_user_name)}"))
 
     my_logger.success(
         '个人信息查询', f'成功发送：用户：<m>{recall_user_name}{user_id}</m> | 群：<m>{group_id}</m>')
