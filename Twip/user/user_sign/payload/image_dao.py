@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-12-09 09:17:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-29 13:52:24
+LastEditTime: 2023-09-09 15:18:50
 '''
 import datetime
 import random
@@ -42,16 +42,16 @@ def get_luck_info():
     info = None
     luck_num = random.randint(1,1000)
 
-    if luck_num <= 10:
-        luck_num2 = -99999999
-        info = '地狱'
-    elif luck_num <= 30:
+    if luck_num <= 50:
+        luck_num2 = "-" + str(random.randint(100000,10000000))
+        info = random.choice(PARY_TABLE["厄运"])
+    elif luck_num <= 100:
         luck_num2 = random.randint(100000,10000000)
         info = random.choice(PARY_TABLE["大吉"])
-    elif luck_num <= 100:
+    elif luck_num <= 200:
         luck_num2 = random.randint(1000,99999)
         info = random.choice(PARY_TABLE["中吉"])
-    elif luck_num <= 300:
+    elif luck_num <= 400:
         luck_num2 = random.randint(10,999)
         info = random.choice(PARY_TABLE["小吉"])
     elif luck_num <= 1000:

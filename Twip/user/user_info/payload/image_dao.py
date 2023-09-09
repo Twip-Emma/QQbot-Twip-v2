@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-09-08 21:27:33
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-08 23:49:04
+LastEditTime: 2023-09-09 14:27:25
 FilePath: \074个人信息卡片\payload\image_dao.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -14,6 +14,7 @@ LastEditTime: 2023-09-08 21:31:07
 FilePath: \074个人信息卡片\image_dao.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
+import random
 import httpx
 from PIL import Image
 from pathlib import Path
@@ -39,7 +40,10 @@ async def get_card(user_id: str, user_name: str) -> str:
     avatar_path = await get_avatar(user_id)
 
     # 2.背景合成
-    bg = Image.open(f"{BASE_PATH}\\image\\bg.png").convert('RGBA')
+    bg_list = [x for x in Path(f"{BASE_PATH}\\image").glob("bg*.png")]
+    bg_path = str(bg_list[random.randint(0, len(bg_list) - 1)])
+    bg = Image.open(bg_path).convert('RGBA')
+    
     card = Image.open(f"{BASE_PATH}\\image\\card.png").convert('RGBA')
     avatar = Image.open(avatar_path).convert('RGBA')
     avatar = avatar.resize((339,339))
@@ -47,7 +51,7 @@ async def get_card(user_id: str, user_name: str) -> str:
 
     # 4.合成
     avatar1 = circle(avatar)
-    img1 = picture_paste_img(avatar1, bg, (104,772))
+    img1 = picture_paste_img(avatar1, bg, (50,772))
     img2 = picture_paste_img(card, img1)
 
     # 获取数据
@@ -62,16 +66,16 @@ async def get_card(user_id: str, user_name: str) -> str:
     # 写字
     f_a = FontEntity()
     f_a.setSize(75).setColor("#FFFFE0")
-    resp1 = write_longsh(f_a, img2, f"=======    {level:<5}级   ======", "C", (270, 0))
+    resp1 = write_longsh(f_a, img2, f"{level:<5}级", "C", (270, 0))
 
     resp2 = write_longsh(f_a.setSize(50), resp1, f"{user_name}", "L", (180, 660))
 
-    resp2 = write_longsh(f_a, resp1, f"体力： {user_data[1]}/{user_data[4]}", "L", (600, 660))
-    resp2 = write_longsh(f_a, resp1, f"健康： {user_data[2]}/100", "L", (600, 760))
-    resp2 = write_longsh(f_a, resp1, f"境泉： {user_data[3]}", "L", (600, 860))
-    resp2 = write_longsh(f_a, resp1, f"发言： {user_data_old[4]}", "L", (600, 1060))
-    resp2 = write_longsh(f_a, resp1, f"占位： 0", "L", (600, 1160))
-    resp2 = write_longsh(f_a, resp1, f"占位： 0", "L", (600, 1260))
+    resp2 = write_longsh(f_a, resp1, f"体力值： {user_data[1]}/{user_data[4]}", "L", (550, 660))
+    resp2 = write_longsh(f_a, resp1, f"健康值： {user_data[2]}/100", "L", (550, 760))
+    resp2 = write_longsh(f_a, resp1, f"画境币： {user_data[3]}", "L", (550, 860))
+    resp2 = write_longsh(f_a, resp1, f"发言数： {user_data_old[4]}", "L", (550, 1060))
+    resp2 = write_longsh(f_a, resp1, f"占位符： 0", "L", (550, 1160))
+    resp2 = write_longsh(f_a, resp1, f"占位符： 0", "L", (550, 1260))
 
     level_txt1 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
 
