@@ -14,8 +14,8 @@ from PIL import Image, ImageDraw, ImageFont
 from Twip import ABSOLUTE_PATH, TTF_PATH
 
 
-FILE_PATH = ABSOLUTE_PATH + "\\function\\sdorica_draw"
-ICON_PATH = ABSOLUTE_PATH + "\\function\\sdorica_draw\\char"
+FILE_PATH = str(ABSOLUTE_PATH) + "\\function\\sdorica_draw"
+ICON_PATH = str(ABSOLUTE_PATH) + "\\function\\sdorica_draw\\char"
 
 
 char_rare_data = {
