@@ -2,11 +2,12 @@
 Author: 七画一只妖
 Date: 2022-03-01 20:27:54
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-29 14:09:10
+LastEditTime: 2023-09-22 19:53:28
 Description: file content
 '''
 
 import base64
+import datetime
 from io import BytesIO
 import time
 from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB, TTF_PATH
@@ -34,6 +35,7 @@ def find_speak_rank() -> list:
     cursor = db.cursor()
     cursor.execute(sql)
     results = cursor.fetchall()
+    db.close()
     return results
 
 
@@ -64,7 +66,7 @@ def data_to_image(data,type:str) -> str:
     bg = Image.new("RGB",(650,5000), (255,255,255))
     dr = ImageDraw.Draw(bg)
     font = ImageFont.truetype(f"{FILE_PATH}\\consola-1.ttf", 20)
-    dr.text((10,100), text=text1, font=font, fill="#000000")
+    dr.text((10,200), text=text1, font=font, fill="#000000")
     ################################################
     text2 = ""
     rank = 1
@@ -81,10 +83,72 @@ def data_to_image(data,type:str) -> str:
         rank += 1
     dr = ImageDraw.Draw(bg)
     font = ImageFont.truetype(TTF_PATH, 19)
-    dr.text((275,100), text=text2, font=font, fill="#000000")
+    dr.text((275,200), text=text2, font=font, fill="#000000")
     ################################################
     text3 = f"当前时间：{now_time}\n\n"
     text4 = f"统计时长：{time_difference}\n\n"
+    dr = ImageDraw.Draw(bg)
+    font = ImageFont.truetype(TTF_PATH, 19)
+    # 将text3和text4居中
+    text_width3 = font.getsize(text=text3)
+    text_width4 = font.getsize(text=text4)
+    text_width5 = font.getsize(text="By  Twip  七画一只妖")
+    
+    dr.text(((650-text_width3[0])/2,20), text=text3, font=font, fill="#000000")
+    dr.text(((650-text_width4[0])/2,20+text_width3[1]), text=text4, font=font, fill="#000000")
+    dr.text(((650-text_width5[0])/2,20+text_width3[1]+text_width4[1]), text="By  Twip  七画一只妖", font=font, fill="#000000")
+
+    font = ImageFont.truetype(TTF_PATH, 40)
+    text_width6 = font.getsize(text="发 言 总 排 行 榜")
+    dr.text(((650-text_width6[0])/2,40+text_width3[1]+text_width4[1]+text_width5[1]), text="发 言 总 排 行 榜", font=font, fill="#000000")
+
+    # bg.show()
+    return img_to_b64(bg)
+
+
+# 获取当日发言排名
+def get_speak_rank_today(type:str):
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+    db = MySQLdb.connect(DB_URL, DB_CARD, DB_PASS, DB_LIB, charset='utf8')
+    sql = f"select * from t_bot_listener_speaklog where speak_time='{now_time}' order by speak_count desc limit 0,99;"
+    cursor = db.cursor()
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    db.close()
+
+    ################################################
+    text1 = ""
+    rank = 1
+    for item in data:
+        # user_item = f"【{str(rank)}】{item[0]}({item[1]})的发言次数是：{item[4]}\n\n"
+        # 对齐
+        user_item = f"[{str(rank):>2}] ===> {item[4]:>6}   |\n\n"
+        text1 += user_item
+        rank += 1
+    bg = Image.new("RGB",(650,5000), (255,255,255))
+    dr = ImageDraw.Draw(bg)
+    font = ImageFont.truetype(f"{FILE_PATH}\\consola-1.ttf", 20)
+    dr.text((10,200), text=text1, font=font, fill="#000000")
+    ################################################
+    text2 = ""
+    rank = 1
+    for item in data:
+        # user_item = f"【{str(rank)}】{item[0]}({item[1]})的发言次数是：{item[4]}\n\n"
+        # 对齐
+        # item[1]是一个字符串，将这个字符串的开头两个字符和结尾两个字符换成*号
+        if type == "admin":
+            user_item = f"{item[2]} ( {item[1]} ) \n\n"
+        else:
+            user_item = f"{item[2]} ( {item[1][:4]}{'*'*(len(item[1])-4)} ) \n\n"
+        # user_item = f"{item[0]} ( {item[1]} ) \n\n"
+        text2 += user_item
+        rank += 1
+    dr = ImageDraw.Draw(bg)
+    font = ImageFont.truetype(TTF_PATH, 19)
+    dr.text((275,200), text=text2, font=font, fill="#000000")
+    ################################################
+    text3 = f"当前时间：{now_time}\n\n"
+    text4 = f"统计时长：今天0点到目前为止\n\n"
     dr = ImageDraw.Draw(bg)
     font = ImageFont.truetype(TTF_PATH, 19)
     # 将text3和text4居中
@@ -95,8 +159,13 @@ def data_to_image(data,type:str) -> str:
     dr.text(((650-text_width4[0])/2,20+text_width3[1]), text=text4, font=font, fill="#000000")
     dr.text(((650-text_width5[0])/2,20+text_width3[1]+text_width4[1]), text="By  Twip  七画一只妖", font=font, fill="#000000")
 
+    font = ImageFont.truetype(TTF_PATH, 40)
+    text_width6 = font.getsize(text="当 日 发 言 排 行 榜")
+    dr.text(((650-text_width6[0])/2,40+text_width3[1]+text_width4[1]+text_width5[1]), text="当 日 发 言 排 行 榜", font=font, fill="#000000")
+
     # bg.show()
     return img_to_b64(bg)
+    
 
 
 def img_to_b64(pic: Image.Image) -> str:

@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-09-08 21:27:33
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-09 14:27:25
+LastEditTime: 2023-09-22 20:40:08
 FilePath: \074个人信息卡片\payload\image_dao.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -14,6 +14,7 @@ LastEditTime: 2023-09-08 21:31:07
 FilePath: \074个人信息卡片\image_dao.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
+import datetime
 import random
 import httpx
 from PIL import Image
@@ -21,6 +22,7 @@ from pathlib import Path
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 
 from .image_factory import picture_paste_img, circle, write_longsh, FontEntity
+from .db import sql_dml, sql_dql
 
 from tool.find_power.user_database import get_user_info_new, insert_user_info_new, change_user_crime, change_coin_max, get_user_info_old
 
@@ -68,14 +70,17 @@ async def get_card(user_id: str, user_name: str) -> str:
     f_a.setSize(75).setColor("#FFFFE0")
     resp1 = write_longsh(f_a, img2, f"{level:<5}级", "C", (270, 0))
 
-    resp2 = write_longsh(f_a.setSize(50), resp1, f"{user_name}", "L", (180, 660))
+    resp2 = write_longsh(f_a.setSize(50), resp1, f"{user_name}", "C", (530, 480))
 
-    resp2 = write_longsh(f_a, resp1, f"体力值： {user_data[1]}/{user_data[4]}", "L", (550, 660))
-    resp2 = write_longsh(f_a, resp1, f"健康值： {user_data[2]}/100", "L", (550, 760))
-    resp2 = write_longsh(f_a, resp1, f"画境币： {user_data[3]}", "L", (550, 860))
-    resp2 = write_longsh(f_a, resp1, f"发言数： {user_data_old[4]}", "L", (550, 1060))
-    resp2 = write_longsh(f_a, resp1, f"占位符： 0", "L", (550, 1160))
-    resp2 = write_longsh(f_a, resp1, f"占位符： 0", "L", (550, 1260))
+    resp2 = write_longsh(f_a, resp1, f"体力值： {user_data[1]}/{user_data[4]}", "L", (500, 660))
+    resp2 = write_longsh(f_a, resp1, f"健康值： {user_data[2]}/100", "L", (500, 760))
+    resp2 = write_longsh(f_a, resp1, f"画境币： {user_data[3]}", "L", (500, 860))
+    resp2 = write_longsh(f_a, resp1, f"总发言： {user_data_old[4]}", "L", (500, 1060))
+
+    rank_data = await get_speak_info(user_id=user_id)
+    resp2 = write_longsh(f_a, resp1, f"总排行： {rank_data[0]}", "L", (500, 1160))
+    resp2 = write_longsh(f_a, resp1, f"当日发言： {rank_data[2]}", "L", (500, 1260))
+    resp2 = write_longsh(f_a, resp1, f"当日排行： {rank_data[1]}", "L", (500, 1360))
 
     level_txt1 = f"升级到{level_data['now_level']+1}级需要花费{level_data['level_up']}画境币\n发送 升级 即可"
 
@@ -86,6 +91,29 @@ async def get_card(user_id: str, user_name: str) -> str:
     s_path = f"""{BASE_PATH}\\cache\\resp_{user_id[0]}.jpg"""
     resp2.save(s_path, optimize=True, quality=50)
     return str(s_path)
+
+
+# 获取发言排行信息
+async def get_speak_info(user_id:str) -> list[str]:
+    now_time = datetime.datetime.now().strftime('%Y-%m-%d')
+    sql = " select * from ("
+    sql += " SELECT user_id, speak_time_total,"
+    sql += "     RANK() OVER (ORDER BY speak_time_total DESC) AS message_rank,"
+    sql += "     (SELECT COUNT(*) FROM user_info) AS total_users"
+    sql += " FROM user_info ) as tt WHERE tt.user_id = '%s';"
+
+    sql2 = " select user_id, speak_count, message_rank, total_users from ("
+    sql2 += " SELECT user_id, speak_count, speak_time, "
+    sql2 += "     RANK() OVER (ORDER BY speak_count DESC) AS message_rank,"
+    sql2 += "     (SELECT COUNT(*) FROM t_bot_listener_speaklog) AS total_users"
+    sql2 += " FROM t_bot_listener_speaklog ) as tt WHERE tt.user_id = '%s' and tt.speak_time = '%s';"
+
+    data = sql_dql(sql % user_id)
+    data2 = sql_dql(sql2 % (user_id, now_time))
+
+    print(data)
+
+    return [f"{data[0][2]} / {data[0][3]}",f"{data2[0][2]} / {data2[0][3]}",f"{data2[0][1]}"]
 
 
 # 根据当前行动点上限查找下一级上限

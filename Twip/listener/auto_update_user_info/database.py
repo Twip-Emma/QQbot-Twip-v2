@@ -2,12 +2,13 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-04-21 10:29:48
+LastEditTime: 2023-09-22 19:45:30
 Description: file content
 '''
 import MySQLdb
 import datetime
 import re
+import uuid
 
 from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
@@ -82,5 +83,33 @@ def start(user_name: str, user_id: str) -> None:
         else:
             change_speak_total(user_id=user_id)
     else:
-        insert_new_user(user_name=user_name,
-                        user_id=user_id, now_time=now_time)
+        try:
+            insert_new_user(user_name=user_name,user_id=user_id, now_time=now_time)
+        except:
+            insert_new_user(user_name=user_id,user_id=user_id, now_time=now_time)
+
+
+
+    # 记录每日发言 t_bot_listener_speaklog
+    cursor = db.cursor()
+    sql = "SELECT * FROM t_bot_listener_speaklog WHERE user_id=%s and speak_time=%s;"
+    cursor.execute(sql, (user_id, now_time))
+    results = cursor.fetchall()
+    if results == ():
+        sql = "INSERT INTO t_bot_listener_speaklog(id, user_id, user_name, speak_time, speak_count) VALUES (%s, %s, %s, %s, %s);"
+        try:
+            cursor.execute(sql, (uuid.uuid1(), user_id, user_name, now_time, 1))
+        except:
+            cursor.execute(sql, (uuid.uuid1(), user_id, get_real_name(user_name), now_time, 1))
+        db.commit()
+    else:
+        sql = "UPDATE t_bot_listener_speaklog SET speak_count=speak_count+1 WHERE user_id=%s and speak_time=%s;"
+        cursor.execute(sql, (user_id, now_time))
+        db.commit()
+
+
+# 获取处理后的昵称
+def get_real_name(user_name:str) -> str:
+    user_name = re.findall(r'[\u4e00-\u9fa5]', user_name) # 使用通配符只匹配汉字
+    user_name = "".join(user_name)
+    return user_name
