@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-22 21:42:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-22 19:45:30
+LastEditTime: 2023-09-22 20:46:19
 Description: file content
 '''
 import MySQLdb
@@ -20,10 +20,17 @@ def insert_new_user(user_name, user_id, now_time) -> None:
     cursor = db.cursor()
 
     sql = "INSERT INTO user_info VALUES(%s, %s, %s, %s, %s, %s)"
+    
     args = [f'{user_name}', f'{user_id}',
             f"{now_time}", f"{now_time}", "0", "0"]
-
-    cursor.execute(sql, args)
+    
+    args2 = [get_real_name(user_name=user_name), f'{user_id}',
+            f"{now_time}", f"{now_time}", "0", "0"]
+    
+    try:
+        cursor.execute(sql, args)
+    except:
+        cursor.execute(sql, args2)
     db.commit()
 
 
