@@ -104,3 +104,13 @@ def select_user_pack(char_name_list,is_new,user_id):
         f.close() 
     # print("第二次去重",is_new)
     return is_new
+
+
+# 背包方案2，mysql实现
+# t_bot_function_sdoricadraw_pkg
+# id varchar
+# user_id varchar
+# char_name varchar
+# char_count int
+
+# 现在有十个

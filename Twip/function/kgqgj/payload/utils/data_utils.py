@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:55:54
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-06-24 13:09:44
+LastEditTime: 2023-10-06 09:32:19
 '''
 import json
 
@@ -50,4 +50,9 @@ def _data_format(name):
         "愤怒的牛头人":"牛头",
         "熔岩史莱姆国王":"史莱姆"
     }
-    return data[name]
+    try:
+        boss_name = data[name]
+    except KeyError:
+        boss_name = name
+
+    return boss_name
