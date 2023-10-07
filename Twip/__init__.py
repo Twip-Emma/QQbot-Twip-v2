@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-22 20:44:57
+LastEditTime: 2023-10-07 13:20:09
 '''
 from pathlib import Path
 from typing import List
@@ -63,6 +63,9 @@ MLY_SECRET = DRIVER.config.dict().get("mly_secret", None)
 
 # 字体
 TTF_PATH = f"{BASE_PATH}\\ttf\\zh-cn.ttf"
+
+# 坎公会战工具
+KGQGJ_COOKIE = DRIVER.config.dict().get("kgqgj_cookie", None)
 
 
 # ========================校验全局变量========================

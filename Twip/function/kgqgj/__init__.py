@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-08-29 11:18:05
+LastEditTime: 2023-10-07 13:31:49
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -18,6 +18,7 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
 
 from .payload.dao import get_data, get_data_total, get_rate
+from .payload2.data_format import all_report, today_report
 
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 pattern = re.compile(r"url=(.*?)&amp;")
@@ -79,12 +80,13 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
 async def send_daily_report(bot: Bot, event: GroupMessageEvent, cost=0):
     msg = str(event.get_message()).split()
     if len(msg) != 1:
-        await daily.finish("请求格式错误，举例：\n出刀表")
-
-    try:
-        img_path = await get_data()
-    except Exception as e:
-        await daily.finish(f"获取数据失败，错误信息：{e}")
+        await daily.finish("请求格式错误，举例：\n日报")
+        
+    img_path = await today_report(event.get_user_id())
+    # try:
+    #     img_path = await today_report(event.get_user_id())
+    # except Exception as e:
+    #     await daily.finish(f"获取数据失败，错误信息：{e}")
 
     await daily.send(MessageSegment.image("file:///" + img_path))
 
@@ -97,7 +99,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
         await daily.finish("请求格式错误，举例：\n总榜")
 
     try:
-        img_path = await get_data_total()
+        img_path = await all_report(event.get_user_id())
     except Exception as e:
         await daily.finish(f"获取数据失败，错误信息：{e}")
 
