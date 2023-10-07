@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-07 10:53:46
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 13:10:00
+LastEditTime: 2023-10-07 20:09:26
 FilePath: \060坎公骑冠剑会战工具\payload2\test2.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -155,4 +155,13 @@ def make_image(data, user_id):
     return path
 
 
-# make_image(data)
+# 合成进度表
+def get_rate_image(text:str, user_id:str) -> str:
+    # 将文本转图片
+    font = ImageFont.truetype(f"{BASE_PATH}\\a.ttf", )
+    image = Image.new("RGB", (270, 180), (255, 255, 255))
+    draw = ImageDraw.Draw(image)
+    draw.text((10, 10), text, font=font, fill=(0, 0, 0))
+    path = f"{BASE_PATH}\\cache\\进度表_{user_id}.jpg"
+    image.save(path)
+    return path

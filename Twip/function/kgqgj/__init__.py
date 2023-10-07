@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 13:31:49
+LastEditTime: 2023-10-07 20:12:07
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -17,8 +17,9 @@ from nonebot.plugin import PluginMetadata
 
 from tool.find_power.format_data import is_level_A
 
-from .payload.dao import get_data, get_data_total, get_rate
-from .payload2.data_format import all_report, today_report
+# from .payload.dao import get_data, get_data_total, get_rate
+from .payload2.data_format import all_report, today_report, get_rate
+from tool.QsPilUtils2.dao import text_to_image
 
 BASE_PATH: str = Path(__file__).absolute().parents[0]
 pattern = re.compile(r"url=(.*?)&amp;")
@@ -114,11 +115,11 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
         await daily.finish("请求格式错误，举例：\n进度")
 
     try:
-        img_path = await get_rate()
+        txt = await get_rate(event.get_user_id())
     except Exception as e:
         await daily.finish(f"获取数据失败，错误信息：{e}")
 
-    await daily.send(MessageSegment.image("file:///" + img_path))
+    await daily.send(MessageSegment.image(f"file:///{text_to_image(txt,15,(20,20))}"))
 
 
 @long_eyes.handle()
