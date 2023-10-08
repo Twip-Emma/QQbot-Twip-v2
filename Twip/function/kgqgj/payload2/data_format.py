@@ -2,12 +2,12 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-07 10:22:42
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 20:15:05
+LastEditTime: 2023-10-08 11:00:22
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import asyncio
 import datetime
-from .api import get_daily, get_date, get_daily_target, get_rate_data
+from .api import get_daily, get_date, get_daily_target, get_rate_data, re_start_index
 from .get_image import make_image, get_rate_image
 
 async def today_report(user_id):
@@ -39,6 +39,7 @@ async def today_report(user_id):
 
 
 async def all_report(user_id):
+    re_start_index()
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     data1 = await get_date()
     data2 = {}
@@ -75,6 +76,7 @@ async def all_report(user_id):
 
 
 async def get_rate(user_id:str):
+    re_start_index()
     # 获取最新一轮是第几轮-获取当日数据round最高值
     round = 0
     data = await get_daily()

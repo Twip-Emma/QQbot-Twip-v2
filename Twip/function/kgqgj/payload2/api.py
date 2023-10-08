@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-06 23:32:24
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-08 10:47:45
+LastEditTime: 2023-10-08 11:01:46
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import httpx
@@ -71,7 +71,31 @@ REQ_TABLE = [
         "nonce": "3b9d65b5-7117-4483-812b-82c377d98449",
         "sign": "dee2b6cb50f2cccf5632f51bcb798627"
     },
-    
+    {
+        "ts": "1696733808185",
+        "nonce": "174847e2-2394-45dc-98f5-d0229059ed1b",
+        "sign": "e2c3c2bd4824e2b198ea386e6ced51f8"
+    },
+    {
+        "ts": "1696733814793",
+        "nonce": "dd92baea-31fb-4634-9fb5-80669b84b012",
+        "sign": "63d5deab5cb349572b3b2e965e0e685c"
+    },
+    {
+        "ts": "1696733815192",
+        "nonce": "9c2c5987-6bd4-4554-83c9-cdc909bb242f",
+        "sign": "e532a9a774a022abb578d56dc647e3d8"
+    },
+    {
+        "ts": "1696733815592",
+        "nonce": "cf0a8f0f-5fbd-4d79-b0b0-b421cd87546e",
+        "sign": "9f79c7aed8e57341031ca515b1f27ae4"
+    },
+    {
+        "ts": "1696733816088",
+        "nonce": "1be220a5-4d84-486e-83b1-4553611594bb",
+        "sign": "b106029f24c42af1f78dbe2684ce5e25"
+    },
 ]
 
 
@@ -144,3 +168,6 @@ def change_req(req_url:str) -> str:
     return req_url
 
 
+def re_start_index():
+    global req_index
+    req_index = 0
