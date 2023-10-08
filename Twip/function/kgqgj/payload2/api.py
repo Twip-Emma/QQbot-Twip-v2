@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-06 23:32:24
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 20:08:36
+LastEditTime: 2023-10-08 09:21:26
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import httpx
@@ -15,7 +15,7 @@ import httpx
 DATE_URL = f"https://api.game.bilibili.com/game/player/tools/kan_gong/fight_report_date?ts=1696605833368&nonce=75eb6ddb-ddf9-4d57-9a77-b81a4f497f8a&appkey=a5e793dd8b8e425c9bff92ed79e4458f&sign=d516800de7bbb7d860642a7e64aa0fcf"
 DAILY_URL = f"https://api.game.bilibili.com/game/player/tools/kan_gong/fight_report?ts=1696605833457&nonce=270389f7-01e1-447b-874b-a57dfea83754&appkey=a5e793dd8b8e425c9bff92ed79e4458f&sign=e3fbe1f86dbcc76d49a8178f9dd81fc6"
 DAILY_URL_TAR_A = f"https://api.game.bilibili.com/game/player/tools/kan_gong/fight_report?date="
-DAILY_URL_TAR_B = f"&ts=1696644412590&nonce=1ce27678-61f6-4a91-9ad8-10dad1d2010d&appkey=a5e793dd8b8e425c9bff92ed79e4458f&sign=ad94b01a3d3000f40abdc2e8b986a18d"
+DAILY_URL_TAR_B = f"&ts=1696727951838&nonce=7dab7fb0-b732-4312-ac3d-e3f78c742823&appkey=a5e793dd8b8e425c9bff92ed79e4458f&sign=cb7ca41699431e1837ad900e525ac81b"
 RATE_URL = f"""https://api.game.bilibili.com/game/player/tools/kan_gong/fight_news?ts=1687583171294&nonce=286263db-9437-493f-bc4f-25ec6b1326ee&appkey=a5e793dd8b8e425c9bff92ed79e4458f&sign=73bb681870500d80828ec38ebf751bbc"""
 
 
