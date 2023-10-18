@@ -2,15 +2,16 @@
 Author: 七画一只妖
 Date: 2022-03-01 19:28:48
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-25 09:40:17
+LastEditTime: 2023-10-14 13:59:40
 Description: file content
 '''
 from nonebot import on_command
 from nonebot.rule import to_me
-from nonebot.adapters.onebot.v11 import Bot, MessageEvent
+from nonebot.adapters.onebot.v11 import Bot, MessageEvent, MessageSegment
 import MySQLdb
 
 from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
+from tool.QsPilUtils2.dao import text_to_image
 
 
 show_group_list = on_command('查看群列表')
@@ -41,7 +42,7 @@ async def _(bot:Bot,session: MessageEvent):
         msg='共有{}个群：'.format(len(group_list))
         for group in group_list:
             msg+='\n-----------------\n'+'群名:' + group['group_name'] + '\n' +'群号:' + str(group['group_id'])
-        await show_group_list.send(msg)
+        await show_group_list.send(MessageSegment.image(f"file:///{text_to_image(msg, 15, (20, 20))}"))
     except Exception as e:
         await show_group_list.finish(message=f"{type(e)}")
 
@@ -70,7 +71,7 @@ async def _(bot:Bot,session:MessageEvent):
                 if str(item['user_id']) == findUseId:
                     msg +='群名：'+ group['group_name'] + '\n群号：' + str(group['group_id']) + '\n\n'
         msg += '─────────'
-        await find_user.send(msg)
+        await find_user.send(MessageSegment.image(f"file:///{text_to_image(msg, 15, (20, 20))}"))
     except Exception as e:
         await find_user.finish(message=f"{type(e)}")
 
