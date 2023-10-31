@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-09-08 21:27:33
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-09-27 11:19:08
+LastEditTime: 2023-10-31 23:27:02
 FilePath: \074个人信息卡片\payload\image_dao.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -107,11 +107,11 @@ async def get_speak_info(user_id:str) -> list[str]:
     sql2 = " select user_id, speak_count, message_rank, total_users from ("
     sql2 += " SELECT user_id, speak_count, speak_time, "
     sql2 += "     RANK() OVER (ORDER BY speak_count DESC) AS message_rank,"
-    sql2 += "     (SELECT COUNT(*) FROM t_bot_listener_speaklog) AS total_users"
+    sql2 += "     (SELECT COUNT(*) FROM t_bot_listener_speaklog where speak_time = '%s') AS total_users"
     sql2 += " FROM t_bot_listener_speaklog a1 WHERE a1.speak_time = '%s' ) as tt WHERE tt.user_id = '%s' and tt.speak_time = '%s';"
 
     data = sql_dql(sql % user_id)
-    data2 = sql_dql(sql2 % (now_time, user_id, now_time))
+    data2 = sql_dql(sql2 % (now_time, now_time, user_id, now_time))
 
     print(data)
 
