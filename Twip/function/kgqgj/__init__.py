@@ -119,7 +119,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     except Exception as e:
         await daily.finish(f"获取数据失败，错误信息：{e}")
 
-    await daily.send(MessageSegment.image(f"file:///{text_to_image(txt,15,(20,20))}"))
+    await daily.send(MessageSegment.image(f"file:///{txt}"))
 
 
 @long_eyes.handle()

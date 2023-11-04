@@ -7,7 +7,7 @@ Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查�
 '''
 import asyncio
 import datetime
-from .api import get_daily, get_date, get_daily_target, get_rate_data, re_start_index
+from .api import get_daily, get_date, get_daily_target, get_rate_data
 from .get_image import make_image, get_rate_image
 
 async def today_report(user_id):
@@ -39,7 +39,6 @@ async def today_report(user_id):
 
 
 async def all_report(user_id):
-    re_start_index()
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     data1 = await get_date()
     data2 = {}
@@ -76,7 +75,6 @@ async def all_report(user_id):
 
 
 async def get_rate(user_id:str):
-    re_start_index()
     # 获取最新一轮是第几轮-获取当日数据round最高值
     round = 0
     data = await get_daily()
@@ -124,8 +122,7 @@ async def get_rate(user_id:str):
             # 精确到2位小数
             ra = "%.2f" % ra
             text += f"轮数:{round}  {item['boss_name']}  {boss_damage[item['boss_name']]}  {ra}%   \n\n"
-        # return get_rate_image(text, user_id)
-        return text + "\n\n双子大于40%|航母低于60%"
+        return get_rate_image(text, user_id)
     else:
         # 轮数小于25的直接调用接口
         res = await get_rate_data()
@@ -136,9 +133,7 @@ async def get_rate(user_id:str):
             # 精确到2位小数
             ra = "%.2f" % ra
             text += f"等级:{item['level']}  {item['boss_name']}  {item['boss_hp']}  {ra*100}%   \n\n"
-        # return get_rate_image(text, user_id)
-        return text + "\n\n双子大于40%|航母低于60%"
-    
+        return get_rate_image(text, user_id)
 
 # loop = asyncio.get_event_loop()
 # loop.run_until_complete(all_report())
