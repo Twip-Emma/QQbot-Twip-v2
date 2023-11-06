@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2022-10-09 13:27:39
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 13:20:09
+LastEditTime: 2023-11-06 15:15:19
 '''
 from pathlib import Path
 from typing import List
@@ -52,10 +52,10 @@ ABSOLUTE_PATH: str = Path(__file__).absolute().parents[0]
 BASE_PATH: str = Path(__file__).absolute().parents[1]
 
 # 数据库连接
-DB_URL = DRIVER.config.dict().get("db_url", None)
-DB_CARD = DRIVER.config.dict().get("db_card", None)
-DB_PASS = DRIVER.config.dict().get("db_pass", None)
-DB_LIB = DRIVER.config.dict().get("db_lib", None)
+DB_URL = str(DRIVER.config.dict().get("db_url", None))
+DB_CARD = str(DRIVER.config.dict().get("db_card", None))
+DB_PASS = str(DRIVER.config.dict().get("db_pass", None))
+DB_LIB = str(DRIVER.config.dict().get("db_lib", None))
 
 # 茉莉云
 MLY_KEY = DRIVER.config.dict().get("mly_key", None)
