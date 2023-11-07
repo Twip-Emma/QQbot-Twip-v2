@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-07 10:22:42
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-08 11:00:22
+LastEditTime: 2023-11-07 19:25:38
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import asyncio
@@ -121,7 +121,10 @@ async def get_rate(user_id:str):
                 ra = 100
             # 精确到2位小数
             ra = "%.2f" % ra
-            text += f"轮数:{round}  {item['boss_name']}  {boss_damage[item['boss_name']]}  {ra}%   \n\n"
+            try:
+                text += f"轮数:{round}  {item['boss_name']}  {boss_damage[item['boss_name']]}  {ra}%   \n\n"
+            except:
+                text += f"轮数:{round}  {item['boss_name']}  {max_hp}  {ra}%   \n\n"
         return get_rate_image(text, user_id)
     else:
         # 轮数小于25的直接调用接口
