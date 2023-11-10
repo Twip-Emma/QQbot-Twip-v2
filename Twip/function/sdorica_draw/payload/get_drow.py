@@ -73,7 +73,7 @@ async def get_draw_result(image_dict: dict) -> list:
         index = random.randint(0, 100)
         if index <= 3:
             drow_list_tmp.append(random.choice(["群友角色", "mz角色", "sp角色"]))
-        elif index <= 7:
+        elif index <= 10:
             drow_list_tmp.append("2阶角色")
         elif index <= 20:
             drow_list_tmp.append("1阶角色")

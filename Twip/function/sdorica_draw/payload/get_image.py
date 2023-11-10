@@ -50,25 +50,27 @@ def blend_two_images(char_image_path, char_name, new):
     else:
         rare = char_rare_data["3阶"]
 
-    img1 = Image.open(char_image_path).resize((179, 256)).convert('RGBA')
-    img2 = Image.open(f"{ABSOLUTE_PATH}\\icon\\mask_base.png").resize(
-        (179, 256)).convert('RGBA')
-    img = Image.alpha_composite(img1, img2)
-
     try:
+        img1 = Image.open(char_image_path).resize((179, 256)).convert('RGBA')
+        img2 = Image.open(f"{ABSOLUTE_PATH}\\icon\\mask_base.png").resize(
+            (179, 256)).convert('RGBA')
+        img = Image.alpha_composite(img1, img2)
+
         img3 = Image.open(f"{ABSOLUTE_PATH}\\icon\\{rare}.png").resize(
             (179, 256)).convert('RGBA')
         img = Image.alpha_composite(img, img3)
-    except:
-        print(char_image_path, char_name, new)
+    
 
-    # 判断是否为new
-    if new == 0:
-        img4 = Image.open(f"{ABSOLUTE_PATH}\\icon\\new.png").resize(
-            (179, 256)).convert('RGBA')
-        img = Image.alpha_composite(img, img4)
-    img = write_char(char_name, img)
-    return img
+        # 判断是否为new
+        if new == 0:
+            img4 = Image.open(f"{ABSOLUTE_PATH}\\icon\\new.png").resize(
+                (179, 256)).convert('RGBA')
+            img = Image.alpha_composite(img, img4)
+        img = write_char(char_name, img)
+        return img
+    except:
+        print(f"找不到文件{char_image_path}")
+    
 
 
 # 合成结算界面

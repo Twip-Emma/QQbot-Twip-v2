@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-11-10 14:02:40
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-10 16:58:38
+LastEditTime: 2023-11-10 20:04:17
 '''
 # 用户图鉴生成
 from .get_drow import get_pool_dict
@@ -14,6 +14,7 @@ import math
 import os
 from pathlib import Path
 import re
+import time
 loop = asyncio.get_event_loop()
 
 
@@ -34,7 +35,10 @@ char_rare_data = {
 
 
 async def get_user_ill(user_id: str):
+    t1 = time.time()
     ill_data, char_name_list = await get_user_pkg(user_id)
+    t2 = time.time()
+    print(f"获取图鉴耗时：{t2 - t1}")
     img_list = []
     for item in ill_data:
         img_list.append(blend_two_images(
@@ -42,7 +46,12 @@ async def get_user_ill(user_id: str):
             char_name=str(item[1]),
             char_rank=item[2]
         ))
-    return await generate_icon(img_list=img_list, char_name_list=char_name_list, ill_data=ill_data, user_id=user_id)
+    t3 = time.time()
+    print(f"逐个彩色图片生成耗时：{t3 - t2}")
+    img_path = await generate_icon(img_list=img_list, char_name_list=char_name_list, ill_data=ill_data, user_id=user_id)
+    t4 = time.time()
+    print(f"生成灰色图片与彩色图片进行排序+生成图鉴图片：{t4 - t3}")
+    return img_path
 
 
 # 对背包数据进行处理，生成对应的图片路径列表
@@ -107,16 +116,21 @@ def blend_two_images(char_image_path, char_name, char_rank):
     else:
         rare = char_rare_data["3阶"]
 
-    img1 = Image.open(char_image_path).resize((179, 256)).convert('RGBA')
-    img2 = Image.open(f"{ABSOLUTE_PATH}\\icon\\mask_base.png").resize(
-        (179, 256)).convert('RGBA')
-    img = Image.alpha_composite(img1, img2)
+    try:
+        img1 = Image.open(char_image_path).resize((179, 256)).convert('RGBA')
+        img2 = Image.open(f"{ABSOLUTE_PATH}\\icon\\mask_base.png").resize(
+            (179, 256)).convert('RGBA')
+        img = Image.alpha_composite(img1, img2)
 
-    img3 = Image.open(f"{ABSOLUTE_PATH}\\icon\\{rare}.png").resize(
-        (179, 256)).convert('RGBA')
-    img = Image.alpha_composite(img, img3)
-    img = write_char(char_name, img)
-    return img
+        img3 = Image.open(f"{ABSOLUTE_PATH}\\icon\\{rare}.png").resize(
+            (179, 256)).convert('RGBA')
+        img = Image.alpha_composite(img, img3)
+        img = write_char(char_name, img)
+        return img
+    except:
+        print(f"找不到文件{char_image_path}")
+    
+    
 
 
 # 为角色图片上写上角色名字
