@@ -2,13 +2,12 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-18 13:00:25
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-18 13:31:02
+LastEditTime: 2023-11-10 13:09:23
 '''
 
 import sqlite3
 import uuid
 import time
-from datetime import datetime
 
 
 # 时间间隔(秒)
