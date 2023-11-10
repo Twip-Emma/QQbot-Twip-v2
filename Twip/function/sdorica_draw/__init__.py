@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-03-16 18:36:16
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-10 17:22:38
+LastEditTime: 2023-11-10 17:40:02
 Description: file content
 '''
 import time
@@ -43,7 +43,7 @@ async def _(bot:Bot,event: GroupMessageEvent, cost=30):
 
 @sdorica_ill.handle()
 @is_level_A
-async def _(bot:Bot,event: GroupMessageEvent, cost=30):
+async def _(bot:Bot,event: GroupMessageEvent, cost=0):
     t1 = time.time()
     user_id = str(event.user_id)
     re = await user_ill.get_user_ill(user_id)
