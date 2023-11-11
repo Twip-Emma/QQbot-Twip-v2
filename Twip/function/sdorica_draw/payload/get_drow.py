@@ -3,6 +3,7 @@ import os
 import random
 import re
 from pathlib import Path
+import uuid
 from .user_pkg import add_pkg, get_pkg
 from .get_image import get_img_result
 from .db import sql_dql
@@ -95,8 +96,9 @@ async def get_draw_result(image_dict: dict) -> list:
 
 # 往背包里面添加数据
 async def add_data(data: list, user_id: int):
+    drow_id = ''.join(str(uuid.uuid4()).split('-'))
     for item in data:
-        await add_pkg(user_id, item[2], item[0])
+        await add_pkg(user_id, item[2], item[0], drow_id)
 
 
 # 获取是否为new的抽卡列表
@@ -121,13 +123,13 @@ async def is_new(data: list, user_pkg: list) -> bool:
 # 校验该用户是否还有抽卡次数
 async def check_user_pull(user_id: int) -> bool:
     re = await sql_dql(
-        "select count(*) from user_pkg where drow_time=? and user_id=?",
+        "select count(*) from user_pkg where drow_time=%s and user_id=%s",
         (
             datetime.datetime.now().strftime("%Y-%m-%d"),
             user_id
         )
     )
-    if int(re[0][0]) >= PULL_NUM * 10:
+    if int(re[0]['count(*)']) >= PULL_NUM * 10:
         return False
     else:
         return True

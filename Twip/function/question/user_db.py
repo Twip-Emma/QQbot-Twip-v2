@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-18 13:00:25
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-10 13:09:23
+LastEditTime: 2023-11-11 15:01:36
 '''
 
 import sqlite3
@@ -13,11 +13,14 @@ import time
 # 时间间隔(秒)
 CUR_TIME = 20
 
+from pathlib import Path
+ABSOLUTE_PATH: str = Path(__file__).absolute().parents[0]
+DB_FILE = f'{ABSOLUTE_PATH}\\time.db'
 
 # 发送方法
 def send_time(user_id) -> [bool, int]:
     # 连接到数据库
-    conn = sqlite3.connect('time.db')
+    conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
 
     # 创建表格（如果不存在的话）

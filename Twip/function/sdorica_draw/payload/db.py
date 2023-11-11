@@ -1,71 +1,59 @@
-import sqlite3
+'''
+Author: 七画一只妖 1157529280@qq.com
+Date: 2023-11-10 21:40:41
+LastEditors: 七画一只妖 1157529280@qq.com
+LastEditTime: 2023-11-11 15:27:23
+FilePath: \QQbot-Twip-v2\Twip\function\sdorica_draw\payload\db.py
+Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+'''
+import MySQLdb
+from MySQLdb.cursors import DictCursor
+from dbutils.pooled_db import PooledDB
+from Twip import DB_URL, DB_CARD, DB_PASS, DB_LIB
 
+# Define your database connection pool
+DB_POOL = PooledDB(
+    MySQLdb,
+    maxconnections=10,
+    host=DB_URL,
+    user=DB_CARD,
+    passwd=DB_PASS,
+    db=DB_LIB,
+    charset='utf8',
+    cursorclass=DictCursor  # Use DictCursor for dictionary-like results
+)
 
-from pathlib import Path
-ABSOLUTE_PATH: str = Path(__file__).absolute().parents[0]
-DB_FILE = f'{ABSOLUTE_PATH}\\pkg.db'
+async def create_connection():
+    return DB_POOL.connection()
 
-async def sql_dql(query, params=None):
-    """
-    执行 SQL 查询语句
+async def close_connection(connection):
+    if connection:
+        connection.close()
 
-    Parameters:
-        query (str): SQL 查询语句
-        params (tuple, optional): 参数化查询的参数，默认为 None
-
-    Returns:
-        list: 查询结果集合
-    """
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
+async def sql_dql(sql, params=None):
+    connection = await create_connection()
+    cursor = connection.cursor()
 
     try:
-        if params:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
-
+        cursor.execute(sql, params)
         result = cursor.fetchall()
         return result
 
     finally:
-        conn.close()
+        await close_connection(connection)
 
-async def sql_dml(statement, params=None):
-    """
-    执行 SQL 修改语句
+async def sql_dml(sql, params=None):
+    connection = await create_connection()
+    cursor = connection.cursor()
 
-    Parameters:
-        statement (str): SQL 修改语句
-        params (tuple, optional): 参数化查询的参数，默认为 None
-
-    Returns:
-        int: 受影响的行数
-    """
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
     try:
-        if params:
-            cursor.execute(statement, params)
-        else:
-            cursor.execute(statement)
+        cursor.execute(sql, params)
+        res = cursor.fetchone()
+        connection.commit()
+        return res
 
-        conn.commit()
-        return cursor.rowcount
+    except:
+        connection.rollback()
 
     finally:
-        conn.close()
-
-# 示例用法：
-
-# 查询示例
-# select_query = 'SELECT * FROM user_pkg WHERE char_name = ?'
-# select_params = ('John',)
-# result = sql_dql(select_query, select_params)
-# print(result)
-
-# 修改示例
-# update_statement = 'UPDATE user_pkg SET char_rank = ? WHERE char_name = ?'
-# update_params = ('New Rank', 'John')
-# affected_rows = sql_dml(update_statement, update_params)
-# print(f'Affected Rows: {affected_rows}')
+        await close_connection(connection)
