@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-11-10 11:40:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-11 15:55:45
+LastEditTime: 2023-11-11 16:11:37
 '''
 import uuid
 import datetime
@@ -42,13 +42,13 @@ async def add_pkg(data: list, user_id: int):
     insert_data = []
 
     for item in data:
-        char_count = get_char_count(item[1])
+        char_count = get_char_count(item[0])
         insert_data.append((str(uuid.uuid1()),
                            drow_id,
                            datetime.datetime.now().strftime("%Y-%m-%d"),
-                           item[0],
+                           item[2],
                            char_count,
-                           item[1],
+                           item[0],
                            user_id))
 
     await add_pkg_batch(insert_data)
