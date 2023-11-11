@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-11-10 11:40:23
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-11 15:33:08
+LastEditTime: 2023-11-11 15:55:45
 '''
 import uuid
 import datetime
@@ -36,29 +36,45 @@ async def get_pkg(user_id: str) -> list:
     return sorted(result, key=lambda x: x[1], reverse=True)
 
 
-# 往背包新增一条数据
-async def add_pkg(user_id: str, char_name: str, char_rank: str, drow_id: str) -> bool:
-    await init()
-    char_count = 0
-    if char_rank == "0阶角色":
-        char_count = 1
-    elif char_rank == "1阶角色":
-        char_count = 5
-    elif char_rank == "2阶角色":
-        char_count = 20
-    else:
-        char_count = 50
+# 将十连结果记录到数据库
+async def add_pkg(data: list, user_id: int):
+    drow_id = ''.join(str(uuid.uuid4()).split('-'))
+    insert_data = []
+
+    for item in data:
+        char_count = get_char_count(item[1])
+        insert_data.append((str(uuid.uuid1()),
+                           drow_id,
+                           datetime.datetime.now().strftime("%Y-%m-%d"),
+                           item[0],
+                           char_count,
+                           item[1],
+                           user_id))
+
+    await add_pkg_batch(insert_data)
+
+
+async def add_pkg_batch(data: list) -> bool:
+    # await init() # 创建数据库
+
+    print(str(str(tuple(data)).replace("((","(").replace("))",")")))
 
     await sql_dml(
+        f'''
+        INSERT INTO user_pkg (id, drow_id, drow_time, char_name, char_count, char_rank, user_id)
+        VALUES {str(str(tuple(data)).replace("((","(").replace("))",")"))}
+        ON DUPLICATE KEY UPDATE
+        char_count = VALUES(char_count), drow_time = VALUES(drow_time)
         '''
-            INSERT INTO user_pkg (id, drow_id, drow_time, char_name, char_count, char_rank, user_id)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        ''',
-        (str(uuid.uuid1()),
-        drow_id,
-        datetime.datetime.now().strftime("%Y-%m-%d"),
-        char_name,
-        char_count,
-        char_rank,
-        user_id)
     )
+
+
+def get_char_count(char_rank: str) -> int:
+    if char_rank == "0阶角色":
+        return 1
+    elif char_rank == "1阶角色":
+        return 5
+    elif char_rank == "2阶角色":
+        return 20
+    else:
+        return 50

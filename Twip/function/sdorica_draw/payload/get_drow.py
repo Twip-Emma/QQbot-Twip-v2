@@ -96,9 +96,7 @@ async def get_draw_result(image_dict: dict) -> list:
 
 # 往背包里面添加数据
 async def add_data(data: list, user_id: int):
-    drow_id = ''.join(str(uuid.uuid4()).split('-'))
-    for item in data:
-        await add_pkg(user_id, item[2], item[0], drow_id)
+    await add_pkg(data, user_id)
 
 
 # 获取是否为new的抽卡列表
