@@ -2,7 +2,7 @@
 Author: 七画一只妖
 Date: 2022-01-18 21:03:02
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-07-25 09:33:51
+LastEditTime: 2023-11-12 13:32:01
 Description: file content
 '''
 
@@ -15,13 +15,13 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_S
 from tool.utils.logger import logger as my_logger
 
-from .payload.image_dao import make_bg
+from .payload import user_pkg
 
 __plugin_meta__ = PluginMetadata(
     name='求签系统',
     description='获得一张引子',
     usage='''使用方式：求签''',
-    extra={'version': 'v1.0.0',
+    extra={'version': 'v2.0.0',
            'cost': '15'}
 )
 
@@ -40,7 +40,7 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=15):
     recall_user_info = await bot.get_group_member_info(group_id=group_id, user_id=user_id)
     recall_user_name = recall_user_info['nickname']
 
-    message_image = make_bg(user_id, recall_user_name)
+    message_image = await user_pkg.get_sign(user_id, recall_user_name)
     t2 = time.time()
     await get_luck.send(MessageSegment.image("file:///" + message_image))
     my_logger.success(
