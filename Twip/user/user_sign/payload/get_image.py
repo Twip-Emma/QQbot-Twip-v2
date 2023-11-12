@@ -65,15 +65,15 @@ async def draw_bg():
     drawn_coordinates = set()
 
     # 定义固定字的坐标
-    draw.text((500 + drift, 500 + drift), "空", font=font, fill=(255, 255, 255))
+    draw.text((500 + drift, 500 + drift), "空", font=font, fill=(255, 255, 0))
     drawn_coordinates.add((500 + drift, 500 + drift))
-    draw.text((100 + drift, 100 + drift), "吉", font=font, fill=(255, 255, 255))
+    draw.text((100 + drift, 100 + drift), "吉", font=font, fill=(255, 255, 0))
     drawn_coordinates.add((100 + drift, 100 + drift))
-    draw.text((900 + drift, 100 + drift), "平", font=font, fill=(255, 255, 255))
+    draw.text((900 + drift, 100 + drift), "平", font=font, fill=(255, 0, 0))
     drawn_coordinates.add((900 + drift, 100 + drift))
-    draw.text((100 + drift, 900 + drift), "诡", font=font, fill=(255, 255, 255))
+    draw.text((100 + drift, 900 + drift), "诡", font=font, fill=(255, 255, 0))
     drawn_coordinates.add((100 + drift, 900 + drift))
-    draw.text((900 + drift, 900 + drift), "厄", font=font, fill=(255, 255, 255))
+    draw.text((900 + drift, 900 + drift), "厄", font=font, fill=(255, 255, 0))
     drawn_coordinates.add((900 + drift, 900 + drift))
 
 
