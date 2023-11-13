@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-06 23:32:24
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-13 14:55:46
+LastEditTime: 2023-11-13 15:04:51
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import hashlib
@@ -14,6 +14,8 @@ import os
 import time
 from urllib.parse import urlencode
 import json
+
+from Twip import KGQGJ_COOKIE
 
 # 全局变量下标
 req_index = 0
@@ -32,7 +34,7 @@ header = {
     "cache-control": "no-cache",
     "connection": f"keep-alive"}
 
-header["cookie"] = config["cookies"]
+header["cookie"] = KGQGJ_COOKIE
 
 
 app_key = 'a5e793dd8b8e425c9bff92ed79e4458f'
