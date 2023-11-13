@@ -165,3 +165,100 @@ def get_rate_image(text:str, user_id:str) -> str:
     path = f"{BASE_PATH}\\cache\\进度表_{user_id}.jpg"
     image.save(path)
     return path
+
+
+
+# 合成出刀表
+def get_knife_image(data: dict, user_id: str, date_list:list) -> str:
+    # 定义表格的大小和格子的高度
+    table_width = 8
+    table_height = 31
+    cell_height = 50
+
+    # 计算表格的宽度
+    cell_widths = [300] + [50] * (table_width - 1)
+    table_width_px = sum(cell_widths)
+
+    # 计算表格的高度
+    table_height_px = table_height * cell_height
+
+    # 定义边缘距离
+    margin = 30
+
+    # 创建图像，考虑边缘距离
+    img_width = table_width_px + 2 * margin
+    img_height = table_height_px + 2 * margin
+    img = Image.new('RGB', (img_width, img_height), 'white')
+    draw = ImageDraw.Draw(img)
+
+    # 绘制表格线条，考虑边缘距离
+    line_width = 2
+    x = margin
+
+    # 绘制纵向线条
+    for width in cell_widths:
+        draw.line([(x, margin), (x, img_height - margin)],
+                  fill='black', width=line_width)
+        x += width
+
+    # 补上最后一列右侧的线条
+    draw.line([(x, margin), (x, img_height - margin)],
+              fill='black', width=line_width)
+
+    # 绘制横向线条
+    y = margin
+    for i in range(table_height + 1):
+        draw.line([(margin, y), (img_width - margin, y)],
+                  fill='black', width=line_width)
+        y += cell_height
+
+    # 在第一行的每个格子中写上数字 1 到 7，确保居中
+    font_size = 25
+    font = ImageFont.truetype(f"{BASE_PATH}\\a.ttf", font_size)
+
+    for col in range(1, table_width):
+        number = str(col)
+        text_width, text_height = draw.textsize(number, font=font)
+
+        # 计算居中位置
+        x_centered = margin + \
+            sum(cell_widths[1:col + 1]) - cell_widths[col] + \
+            (cell_widths[col] - text_width) // 2
+        y_centered = margin + (cell_height - text_height) // 2
+
+        # 在图像上绘制文本
+        draw.text((x_centered + 300, y_centered),
+                  number, fill='black', font=font)
+
+    # 在表格中填入数据，从第二行开始
+    for row, (name, date_data) in enumerate(data.items(), start=1):
+        # 在第一列写入成员名字，确保居中
+        text_width, text_height = draw.textsize(name, font=font)
+        x_centered = margin + (cell_widths[0] - text_width) // 2
+        y_centered = margin + row * cell_height + \
+            (cell_height - text_height) // 2
+        draw.text((x_centered, y_centered), name, fill='black', font=font)
+        index = 0
+        for col, number in enumerate(range(1, table_width), start=1):
+            date = date_list[len(date_list) - index - 1]
+            value = date_data.get(date, 0)  # 如果日期数据不存在，填充为0
+            value_str = str(value)
+            text_width, text_height = draw.textsize(value_str, font=font)
+
+            # 计算居中位置
+            x_centered = margin + \
+                sum(cell_widths[1:col + 1]) - cell_widths[col] + \
+                (cell_widths[col] - text_width) // 2
+            y_centered = margin + row * cell_height + \
+                (cell_height - text_height) // 2
+
+            # 检查数值是否为3，如果不是则填充红色
+            text_color = 'red' if value != 3 else 'black'
+
+            # 在图像上绘制文本
+            draw.text((x_centered + 300, y_centered),
+                      value_str, fill=text_color, font=font)
+            index += 1
+    path = f"{BASE_PATH}\\cache\\出刀图_{user_id}.jpg"
+    img.save(path)
+    return path

@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-03-27 09:01:10
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-13 14:58:13
+LastEditTime: 2023-11-13 17:30:51
 FilePath: \060坎公骑冠剑会战工具\main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -18,7 +18,7 @@ from nonebot.plugin import PluginMetadata
 from tool.find_power.format_data import is_level_A
 
 # from .payload.dao import get_data, get_data_total, get_rate
-from .payload2.data_format import all_report, today_report, get_rate
+from .payload2.data_format import all_report, today_report, get_rate, get_knife
 from tool.QsPilUtils2.dao import text_to_image
 
 BASE_PATH: str = Path(__file__).absolute().parents[0]
@@ -35,6 +35,7 @@ __plugin_meta__ = PluginMetadata(
 daily = on_command("日报", aliases={"x每日战报", "x每日", "x日报"}, block=True, priority=1)
 total = on_command("总榜", aliases={"x总排行", "x排行", "x排行榜"}, block=True, priority=1)
 rate = on_command("进度", aliases={"x战况", "x现在情况", "x当前进度"}, block=True, priority=1)
+knife = on_command("查刀", block=True, priority=1)
 long_eyes = on_command("千里眼", block=True, priority=1)
 toy = on_command("周边", block=True, priority=1)
 
@@ -87,11 +88,12 @@ async def send_daily_report(bot: Bot, event: GroupMessageEvent, cost=0):
     try:
         img_path = await today_report(event.get_user_id())
     except Exception as e:
-        await daily.finish(f"获取数据失败，错误信息：{e}")
+        await daily.finish(MessageSegment.image(f"""file:///{text_to_image(f"获取数据失败，错误信息：{e}")}"""))
 
     await daily.send(MessageSegment.image("file:///" + img_path))
 
 
+# 总榜
 @total.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
@@ -102,11 +104,12 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     try:
         img_path = await all_report(event.get_user_id())
     except Exception as e:
-        await daily.finish(f"获取数据失败，错误信息：{e}")
+        await daily.finish(MessageSegment.image(f"""file:///{text_to_image(f"获取数据失败，错误信息：{e}")}"""))
 
     await daily.send(MessageSegment.image("file:///" + img_path))
 
 
+# 进度
 @rate.handle()
 @is_level_A
 async def _(bot: Bot, event: GroupMessageEvent, cost=0):
@@ -117,7 +120,23 @@ async def _(bot: Bot, event: GroupMessageEvent, cost=0):
     try:
         txt = await get_rate(event.get_user_id())
     except Exception as e:
-        await daily.finish(f"获取数据失败，错误信息：{e}")
+        await daily.finish(MessageSegment.image(f"""file:///{text_to_image(f"获取数据失败，错误信息：{e}")}"""))
+
+    await daily.send(MessageSegment.image(f"file:///{txt}"))
+
+
+# 查刀
+@knife.handle()
+@is_level_A
+async def _(bot: Bot, event: GroupMessageEvent, cost=0):
+    msg = str(event.get_message()).split()
+    if len(msg) != 1:
+        await daily.finish("请求格式错误，举例：\n查刀")
+
+    try:
+        txt = await get_knife(event.get_user_id())
+    except Exception as e:
+        await daily.finish(MessageSegment.image(f"""file:///{text_to_image(f"获取数据失败，错误信息：{e}")}"""))
 
     await daily.send(MessageSegment.image(f"file:///{txt}"))
 
