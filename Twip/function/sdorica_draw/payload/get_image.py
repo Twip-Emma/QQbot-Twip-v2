@@ -16,7 +16,7 @@ char_rare_data = {
 
 
 # 获取结果
-async def get_img_result(data:list, is_new_list:list, user_id:str):
+async def get_img_result(data:list, is_new_list:list, user_id:str, coin:int):
     index = 0
     img_obj_list = []
     for item in data:
@@ -26,7 +26,7 @@ async def get_img_result(data:list, is_new_list:list, user_id:str):
             new=is_new_list[index]
         ))
         index += 1
-    bg = finally_get_image(img_class=img_obj_list, user_id=user_id)
+    bg = finally_get_image(img_class=img_obj_list, user_id=user_id, coin=coin)
     # 保存图片并返回路径
     bg.save(f"{ABSOLUTE_PATH}\\cache\\{user_id}.jpg")
     return f"{ABSOLUTE_PATH}\\cache\\{user_id}.jpg"
@@ -76,7 +76,7 @@ def blend_two_images(char_image_path, char_name, new):
 # 合成结算界面
 # 传入：合成后的单图片Image对象的列表，用户QQ号
 # 返回：结果的图片对象
-def finally_get_image(img_class, user_id) -> Image.Image:
+def finally_get_image(img_class, user_id, coin:int) -> Image.Image:
     bg_size = (2160, 1080)
     bg_path = os.path.join(f'{ABSOLUTE_PATH}\\icon\\base.png')
     bg = Image.open(bg_path).convert('RGBA')
@@ -99,7 +99,7 @@ def finally_get_image(img_class, user_id) -> Image.Image:
             width_more = 0
 
     # 写字
-    text = "用户QQ ID: " + user_id
+    text = "用户QQ ID: " + user_id + "  （附赠画境币：" + str(coin) + "）"
     bg = add_text(bg, text)
 
     # 保存图片

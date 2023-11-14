@@ -6,7 +6,7 @@ from pathlib import Path
 import uuid
 from .user_pkg import add_pkg, get_pkg
 from .get_image import get_img_result
-from .db import sql_dql
+from .db import sql_dql, sql_dml
 
 ABSOLUTE_PATH: str = Path(__file__).absolute().parents[0]
 CHAR_PATH: str = f"{ABSOLUTE_PATH}\\char"
@@ -29,13 +29,18 @@ async def drow(user_id: str):
     result = await get_draw_result(pool_dict)
 
     # 获取is_new列表
-    is_new_list = await is_new(result, await get_pkg(user_id))
+    user_pkg = await get_pkg(user_id)
+    is_new_list = await is_new(result, user_pkg)
+
+    # 计算获赠的画境币并更新数据库
+    coin = await calc_coin(user_pkg)
+    await add_coin(user_id, coin)
 
     # 添加抽卡数据
     await add_data(data=result, user_id=user_id)
 
     # 合成并返回图片结果
-    return await get_img_result(data=result, is_new_list=is_new_list, user_id=user_id)
+    return await get_img_result(data=result, is_new_list=is_new_list, user_id=user_id, coin=coin)
 
 
 
@@ -131,3 +136,25 @@ async def check_user_pull(user_id: int) -> bool:
         return False
     else:
         return True
+    
+
+# 计算获赠的画境币
+async def calc_coin(user_pkg: list) -> int:
+    total = 50
+    for i in user_pkg:
+        if i[1] < 5:
+            total += 1
+        elif i[1] < 20:
+            total += 3
+        elif i[1] < 50:
+            total += 8
+        elif i[1] < 250:
+            total += 12
+        else:
+            total += 17
+    return total
+
+
+# 添加金币
+async def add_coin(user_id: str, coin: int):
+    await sql_dml("update user_info_new set user_crime=user_crime+%s where user_id=%s", (coin, user_id))

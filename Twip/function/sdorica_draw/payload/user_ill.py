@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-11-10 14:02:40
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-14 11:41:33
+LastEditTime: 2023-11-14 15:48:08
 '''
 # 用户图鉴生成
 from .get_drow import get_pool_dict
@@ -237,9 +237,9 @@ async def generate_icon(img_list: list, char_name_list: list, ill_data: list, us
         title_bg = Image.new("RGBA", title_size, (10, 39, 42, 255))
 
         font = ImageFont.truetype(TTF_PATH, 60)
-        text_width = font.getsize(key)
         # 根据卡池名称重新映射
         key = get_new_title(key)
+        text_width = font.getsize(key)
         draw = ImageDraw.Draw(title_bg)
 
         # 写字
