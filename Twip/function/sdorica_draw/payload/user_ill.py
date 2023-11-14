@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-11-10 14:02:40
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-10 20:04:17
+LastEditTime: 2023-11-14 11:41:33
 '''
 # 用户图鉴生成
 from .get_drow import get_pool_dict
@@ -40,13 +40,16 @@ async def get_user_ill(user_id: str):
     t2 = time.time()
     print(f"获取图鉴耗时：{t2 - t1}")
     img_list = []
+    index = 0
     for item in ill_data:
         img_list.append(blend_two_images(
             char_image_path=item[0],
             char_name=str(item[1]),
-            char_rank=item[2]
+            char_rank=item[2],
+            name=char_name_list[index]
         ))
-    t3 = time.time()
+        index += 1
+    t3 = time.time()    
     print(f"逐个彩色图片生成耗时：{t3 - t2}")
     img_path = await generate_icon(img_list=img_list, char_name_list=char_name_list, ill_data=ill_data, user_id=user_id)
     t4 = time.time()
@@ -100,7 +103,7 @@ async def get_user_pkg(user_id: str) -> list:
 # 生成单角色赋魂图
 # 传入：角色图片路径，角色名称，是否为NEW(0/1)
 # 返回：Image对象
-def blend_two_images(char_image_path, char_name, char_rank):
+def blend_two_images(char_image_path, char_name, char_rank, name = None):
     rare = ""
 
     if "3阶" in char_rank:
@@ -128,7 +131,9 @@ def blend_two_images(char_image_path, char_name, char_rank):
         img = write_char(char_name, img)
         return img
     except:
-        print(f"找不到文件{char_image_path}")
+        print(f"找不到文件{name}")
+        return None
+        
     
     
 
@@ -188,6 +193,9 @@ async def generate_icon(img_list: list, char_name_list: list, ill_data: list, us
                 # 由于img_list和ill_data是乱序的，因此需要手动找出对应的图片对象
                 index = 0
                 for i in char_name_list:
+                    if img_list[index] == None:
+                        index += 1
+                        continue
                     if i == char_name:
                         icon_list.append(img_list[index])
                         break
@@ -230,6 +238,8 @@ async def generate_icon(img_list: list, char_name_list: list, ill_data: list, us
 
         font = ImageFont.truetype(TTF_PATH, 60)
         text_width = font.getsize(key)
+        # 根据卡池名称重新映射
+        key = get_new_title(key)
         draw = ImageDraw.Draw(title_bg)
 
         # 写字
@@ -262,3 +272,112 @@ async def generate_icon(img_list: list, char_name_list: list, ill_data: list, us
     result.save(save_path, quality=50)
     return save_path
 
+
+# 根据卡池生成图鉴
+async def get_pool_ill():
+    # 先获取所有角色
+    char_data:dict = await get_pool_dict()
+    # 移除key为群友角色的元素
+    char_data.pop("群友角色")
+
+    # 结果集
+    resp_img_list = []
+    resp_img_bg = [0, 0]
+    resp_y = []
+
+    for key, value in char_data.items():
+        # 1.遍历这一个类型的角色
+        icon_list = []
+        for v in value:
+            # 遍历这一个类型的所有角色，然后判断是否拥有，如果有，则正常拼接图像，如果没有，根据原阶级拼接灰度图
+            char_name = re.sub(PATTERN, '', os.path.basename(v))
+            img_obj = blend_two_images(v, char_name, key)
+            # 转换为灰度图
+            icon_list.append(img_obj)
+
+        # 2.遍历完成后，生成对应的图片
+        # 确认画布大小，根据char数量，每行10个char，生成对应长宽的背景
+        char_size = (179, 256)
+        char_count = len(value)
+        bg_w = 0
+        bg_h = 0
+        if char_count >= 0:
+            bg_w = char_size[0] * 10
+        else:
+            bg_w = char_size[0] * char_count
+
+        if char_count <= 10:
+            bg_h = char_size[1]
+        else:
+            bg_h = char_size[1] * math.ceil(char_count / 10)
+
+        # bg颜色为#0a272a
+        bg_size = (bg_w, bg_h)
+        bg = Image.new("RGBA", bg_size, (10, 39, 42, 255))
+
+        # 遍历icon_list把每个元素依次贴到bg上面，每10个一行
+        x = 0
+        y = 0
+        for i in range(0, len(icon_list)):
+            bg.paste(icon_list[i], (x, y), mask=icon_list[i])
+            x += char_size[0]
+            if (i + 1) % 10 == 0:
+                # 换行操作
+                y += char_size[1]
+                x = 0
+
+        # 生成标题背景，文字上下左右居中
+        title_size = (bg_w, 80)
+        title_bg = Image.new("RGBA", title_size, (10, 39, 42, 255))
+
+        font = ImageFont.truetype(TTF_PATH, 60)
+        # 根据卡池名称重新映射
+        key = get_new_title(key)
+
+        text_width = font.getsize(key)
+        draw = ImageDraw.Draw(title_bg)
+
+        # 写字
+        draw.text((int((title_size[0]-text_width[0])/2), int((title_size[1] -
+                  text_width[1])/2)), key, fill="#FFFF00", font=font)
+        
+        # 把bg和title_bg上下拼接在一起
+        resp = Image.new("RGBA", (bg_size[0], bg_size[1] + title_size[1]), (10, 39, 42, 255))
+        resp.paste(title_bg, (0, 0))
+        resp.paste(bg, (0, 80))
+
+        # 累计记录图片高度以及每组图鉴的图像对象，为最后合成图片做准备
+        resp_y.append(resp_img_bg[1])
+        if bg_size[0] > resp_img_bg[0]:
+            resp_img_bg[0] = bg_size[0]
+        resp_img_bg[1] += bg_size[1] + title_size[1]
+        resp_img_list.append(resp)
+        
+
+    # 最后合成图片
+    result = Image.new("RGBA", (resp_img_bg[0], resp_img_bg[1]), (10, 39, 42, 255))
+    index = 0
+    for img in resp_img_list:
+        result.paste(img, (0, resp_y[index]), mask=img)
+        index += 1
+
+    # 保存图片并返回路径
+    save_path = f"{ABSOLUTE_PATH}\\cache\\全图鉴.png"
+    result.save(save_path)
+    return save_path
+
+
+# 重新映射
+def get_new_title(key: str) -> str:
+    if key == "0阶角色":
+        return "非证"
+    elif key == "1阶角色":
+        return "亚证"
+    elif key == "2阶角色":
+        return "欧证"
+    elif key == "sp角色":
+        return "SP/OS/联动角色"
+    elif key == "mz角色":
+        return "MZ角色"
+    else:
+        return key
