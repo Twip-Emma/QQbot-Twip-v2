@@ -142,13 +142,14 @@ async def check_user_pull(user_id: int) -> bool:
 async def calc_coin(user_pkg: list) -> int:
     total = 50
     for i in user_pkg:
-        if i[1] < 5:
+        now = int(i[1])
+        if now < 5:
             total += 1
-        elif i[1] < 20:
+        elif now < 20:
             total += 3
-        elif i[1] < 50:
+        elif now < 50:
             total += 8
-        elif i[1] < 250:
+        elif now < 250:
             total += 12
         else:
             total += 17
