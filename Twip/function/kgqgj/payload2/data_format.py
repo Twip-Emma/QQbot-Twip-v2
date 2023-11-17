@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-07 10:22:42
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-11-13 17:19:37
+LastEditTime: 2023-11-17 11:52:51
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import asyncio
@@ -138,10 +138,10 @@ async def get_rate(user_id: str):
         rate = res["data"]["boss_info"]
         text = ""
         for item in rate:
-            ra = item['boss_hp'] / item['boss_remain_hp']
+            ra = item['boss_remain_hp'] / item['boss_hp'] * 100
             # 精确到2位小数
             ra = "%.2f" % ra
-            text += f"等级:{item['level']}  {item['boss_name']}  {item['boss_hp']}  {ra*100}%   \n\n"
+            text += f"等级:{item['level']}  {item['boss_name']}  {item['boss_remain_hp']}  {ra}%   \n\n"
         return get_rate_image(text, user_id)
 
 

@@ -2,7 +2,7 @@
 Author: 七画一只妖 1157529280@qq.com
 Date: 2023-10-07 10:53:46
 LastEditors: 七画一只妖 1157529280@qq.com
-LastEditTime: 2023-10-07 20:09:26
+LastEditTime: 2023-11-17 12:01:44
 FilePath: \060坎公骑冠剑会战工具\payload2\test2.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -238,9 +238,12 @@ def get_knife_image(data: dict, user_id: str, date_list:list) -> str:
         y_centered = margin + row * cell_height + \
             (cell_height - text_height) // 2
         draw.text((x_centered, y_centered), name, fill='black', font=font)
-        index = 0
+        index = 1
         for col, number in enumerate(range(1, table_width), start=1):
-            date = date_list[len(date_list) - index - 1]
+            try:
+                date = date_list[len(date_list) - index - 1]
+            except:
+                date = "不存在的日期"
             value = date_data.get(date, 0)  # 如果日期数据不存在，填充为0
             value_str = str(value)
             text_width, text_height = draw.textsize(value_str, font=font)
